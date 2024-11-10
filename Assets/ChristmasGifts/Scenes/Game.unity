@@ -280,9 +280,9 @@ MonoBehaviour:
   container: {fileID: 105064802}
   navMeshSpawner: {fileID: 105064800}
   prizeConfigs:
-  - {fileID: 11400000, guid: 66efe078f50044e208f203721c276897, type: 2}
-  - {fileID: 11400000, guid: 24e97faa192584d14b8aa520a2561f09, type: 2}
-  - {fileID: 11400000, guid: 218d5578d4b9b48419d45f69f6910ae6, type: 2}
+  - {fileID: 11400000, guid: b703b6efa2d4d4728bca257863173e3b, type: 2}
+  - {fileID: 11400000, guid: 6094ca7d3b13246fa9b3122ced8fa2ef, type: 2}
+  - {fileID: 11400000, guid: 2b30e9a0e108643f0a60d0f309454c85, type: 2}
 --- !u!4 &105064802
 Transform:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669d9e17749b40e09e0a28373834f92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatorConfig: {fileID: 11400000, guid: 193ec4a42efd2497588bccac082c6810, type: 2}
+  generatorConfig: {fileID: 11400000, guid: 33fcb58d26d6a447c82652ec50cdf103, type: 2}
   factory: {fileID: 105064801}
 --- !u!1 &160253534
 GameObject:
@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06adfb50343446a99607238a789c35ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatorConfig: {fileID: 11400000, guid: d76924dc3a68c4a91991ed2ede81c52d, type: 2}
+  generatorConfig: {fileID: 11400000, guid: 975c42429af0446ac9d8157de8bf7e1a, type: 2}
   factory: {fileID: 550250971}
 --- !u!114 &550250971
 MonoBehaviour:
@@ -1231,7 +1231,7 @@ MonoBehaviour:
   container: {fileID: 550250973}
   navMeshSpawner: {fileID: 550250972}
   obstacleConfigs:
-  - {fileID: 11400000, guid: 346b05a27f62148dea44487a441a50e4, type: 2}
+  - {fileID: 11400000, guid: 5dc6b3e7e34554886a85e8d197925849, type: 2}
 --- !u!114 &550250972
 MonoBehaviour:
   m_ObjectHideFlags: 0

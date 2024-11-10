@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b317b68745fd42e7a423da6199d66ead, type: 3}
-  m_Name: PrizeGeneratorConfig
+  m_Script: {fileID: 11500000, guid: f6d182240a2c40b19c8922f63d919786, type: 3}
+  m_Name: Medium Prize Config
   m_EditorClassIdentifier: 
-  <Delay>k__BackingField: 4
-  <MaxCount>k__BackingField: 15
+  <Prefab>k__BackingField: {fileID: 2902691599827775755, guid: 2e8f8781cbe3d4cfab4b1106ed4b4649,
+    type: 3}
+  <LootingTime>k__BackingField: 2

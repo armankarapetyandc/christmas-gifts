@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f5f39e00104a9a98aeaa68dd798e9b, type: 3}
-  m_Name: BigPrizeConfig
+  m_Script: {fileID: 11500000, guid: f6d182240a2c40b19c8922f63d919786, type: 3}
+  m_Name: Small Prize Config
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 1126655815011539992, guid: 4ffdeebbdacc743ada19574f035ecba6,
+  <Prefab>k__BackingField: {fileID: 6673481555946854487, guid: aa4caa7efa2cc45fb87020c180603a23,
     type: 3}
-  <LootingTime>k__BackingField: 3
+  <LootingTime>k__BackingField: 1

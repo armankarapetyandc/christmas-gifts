@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81312f26a08d46869fd157288346ea5c, type: 3}
-  m_Name: ObstacleConfig
+  m_Script: {fileID: 11500000, guid: d7457f99b02a49b885a93b3c1a8bf7a2, type: 3}
+  m_Name: Prize Generator Config
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 7502565906920940492, guid: 8b7b3cb4c2c734f25a22ecdb8ccc4133,
-    type: 3}
+  <Delay>k__BackingField: 3
+  <MaxCount>k__BackingField: 15
