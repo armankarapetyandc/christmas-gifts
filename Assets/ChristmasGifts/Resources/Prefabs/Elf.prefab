@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8343648652534405727}
   - component: {fileID: 8270863782866506860}
   - component: {fileID: 309256710177208738}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Elf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,12 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc50d04becf14add9972d271c0e1d50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 6
-  stoppingDistance: 1
-  agent: {fileID: 309256710177208738}
-  stateMachine: {fileID: 8343648652534405727}
   taskManager: {fileID: 8270863782866506860}
-  <IsMain>k__BackingField: 1
+  stateMachine: {fileID: 8343648652534405727}
+  agent: {fileID: 309256710177208738}
 --- !u!114 &8343648652534405727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +160,7 @@ GameObject:
   - component: {fileID: 1457346988360563665}
   - component: {fileID: 4757256636797494513}
   - component: {fileID: 2126876018919974890}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lowpoly_Christmas_Pack_076:pCube19
   m_TagString: Untagged
   m_Icon: {fileID: 0}

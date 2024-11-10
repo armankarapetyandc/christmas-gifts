@@ -10,11 +10,12 @@ namespace ChristmasGifts.Scripts.Game.Tools
         [SerializeField] private float overlapRadius = 2f; // Radius for overlap check
         [SerializeField] private int maxAttempts = 10; // Max attempts to find a clear spot
 
-        public bool TrySpawn<T>(T prefab, Quaternion rotation, out T instance) where T : Object
+        public bool TrySpawn<T>(T prefab, Transform container,Quaternion rotation, out T instance) where T : Component
         {
             if (TryGetRandomSpawnPointInBounds(out Vector3 spawnPoint))
             {
-                instance = Instantiate(prefab, spawnPoint, rotation);
+                instance = Instantiate(prefab, container);
+                instance.transform.SetPositionAndRotation(spawnPoint, rotation);
                 return true;
             }
 
