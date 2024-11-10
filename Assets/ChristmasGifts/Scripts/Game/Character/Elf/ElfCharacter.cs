@@ -1,4 +1,5 @@
 using System;
+using ChristmasGifts.Scripts.Config.Characters;
 using ChristmasGifts.Scripts.Game.Character.Elf.StateMachine;
 using ChristmasGifts.Scripts.Game.Character.Elf.TaskManager;
 using ChristmasGifts.Scripts.Game.Character.TaskManager;
@@ -9,49 +10,39 @@ using UnityEngine.AI;
 
 namespace ChristmasGifts.Scripts.Game.Character
 {
-    public class ElfCharacter : MonoBehaviour, IMoveable, ILootable
+    public class ElfCharacter :
+        AbstractCharacter<ElfStateMachine, ElfStateMachineFactory, ElfCharacter, ElfCharacterConfig>, IMoveable,
+        ILootable
     {
-        [SerializeField] private float movementSpeed;
-        [SerializeField] private float stoppingDistance;
         [SerializeField] private NavMeshAgent agent;
-        [SerializeField] private ElfStateMachine stateMachine;
-        [SerializeField] private Game.TaskManager.TaskManager taskManager;
-        [field: SerializeField] public bool IsMain { get; private set; }
         internal NavMeshAgent Agent => agent;
 
-        private ElfStateMachineFactory _stateMachineFactory;
-
-        public bool ShouldCollect => taskManager.ShouldCollect;
+        public bool ShouldCollect => TaskManager.ShouldCollect;
 
 
-        private void Start()
+        protected override void InternalStart()
         {
-            _stateMachineFactory = new ElfStateMachineFactory(stateMachine, this);
-            agent.speed = movementSpeed;
-            agent.stoppingDistance = stoppingDistance;
-            taskManager.Run(destroyCancellationToken);
+            agent.speed = CharacterConfig.MovementSpeed;
+            agent.stoppingDistance = CharacterConfig.StoppingDistance;
+            TaskManager.Run(destroyCancellationToken);
         }
 
-        async UniTask IMoveable.Move(Vector3 destinationPosition)
+        UniTask IMoveable.Move(Vector3 destinationPosition)
         {
-            // IsBusy = true;
-            await _stateMachineFactory.UseMovement(destinationPosition);
-            // IsBusy = false;
+            return StateMachineFactory.UseMovement(destinationPosition);
         }
 
-        async UniTask ILootable.Loot(ICollectible collectible)
+        UniTask ILootable.Loot(ICollectible collectible)
         {
-            // IsBusy = true;
-            await _stateMachineFactory.UseLooting(collectible);
-            // IsBusy = false;
+            return StateMachineFactory.UseLooting(collectible);
         }
 
         public void DoJob(ICollectible collectible, Vector3 hitPoint)
         {
-            taskManager.Enqueue(new MovementTask(this, hitPoint));
+            TaskManager.Enqueue(new MovementTask(this, hitPoint));
             if (collectible != null)
             {
-                taskManager.Enqueue(new LootingTask(this, collectible));
+                TaskManager.Enqueue(new LootingTask(this, collectible));
             }
         }
     }

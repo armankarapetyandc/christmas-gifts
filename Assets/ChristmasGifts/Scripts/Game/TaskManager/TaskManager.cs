@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -34,6 +35,10 @@ namespace ChristmasGifts.Scripts.Game.TaskManager
                 await Process().AttachExternalCancellation(cts.Token);
             }
             catch (TaskCanceledException)
+            {
+                //ignored
+            }
+            catch (OperationCanceledException)
             {
                 //ignored
             }
