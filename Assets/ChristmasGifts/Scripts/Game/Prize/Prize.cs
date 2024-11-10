@@ -1,5 +1,7 @@
 using System;
 using ChristmasGifts.Scripts.Config.Characters;
+using ChristmasGifts.Scripts.Config.Prizes;
+using ChristmasGifts.Scripts.Game.TaskManager;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 

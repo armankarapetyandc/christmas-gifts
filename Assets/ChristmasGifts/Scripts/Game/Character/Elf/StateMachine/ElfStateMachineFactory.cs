@@ -1,4 +1,5 @@
 using ChristmasGifts.Scripts.Game.StateMachine;
+using ChristmasGifts.Scripts.Game.TaskManager;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 

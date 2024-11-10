@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7938115890700722803}
   - component: {fileID: 2902691599827775755}
+  - component: {fileID: 4021163787324253683}
   m_Layer: 8
   m_Name: MediumPrize
   m_TagString: Untagged
@@ -132,7 +133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7894750468010346547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.1, y: 1, z: 9.6}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -152,3 +153,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7611121888174a9c9147cba2c0ac0ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &4021163787324253683
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7894750468010346547}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.4, y: 0.5, z: 0.4}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

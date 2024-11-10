@@ -1,14 +1,12 @@
-using System;
 using ChristmasGifts.Scripts.Config.Characters;
 using ChristmasGifts.Scripts.Game.Character.Elf.StateMachine;
 using ChristmasGifts.Scripts.Game.Character.Elf.TaskManager;
-using ChristmasGifts.Scripts.Game.Character.TaskManager;
-using ChristmasGifts.Scripts.Game.StateMachine;
+using ChristmasGifts.Scripts.Game.TaskManager;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace ChristmasGifts.Scripts.Game.Character
+namespace ChristmasGifts.Scripts.Game.Character.Elf
 {
     public class ElfCharacter :
         AbstractCharacter<ElfStateMachine, ElfStateMachineFactory, ElfCharacter, ElfCharacterConfig>, IMoveable,

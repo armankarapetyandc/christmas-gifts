@@ -2,7 +2,7 @@ using ChristmasGifts.Scripts.Game.TaskManager;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace ChristmasGifts.Scripts.Game.Character.TaskManager
+namespace ChristmasGifts.Scripts.Game.Character.Elf.TaskManager
 {
     public class MovementTask : ITask
     {

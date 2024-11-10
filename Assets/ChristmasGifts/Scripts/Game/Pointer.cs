@@ -1,22 +1,39 @@
 using System;
+using ChristmasGifts.Scripts.Common;
+using ChristmasGifts.Scripts.Game.TaskManager;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace ChristmasGifts.Scripts.Game
 {
-    public class Pointer : MonoBehaviour
+    public class Pointer : MonoBehaviour, IGameRun
     {
-        [SerializeField] private UnityEngine.Camera mainCamera;
+        [Inject(Id = "MainCamera")] private UnityEngine.Camera mainCamera;
+
         [SerializeField] private LayerMask interactionLayers;
         [SerializeField] private LayerMask obstacleLayers;
 
         private readonly Subject<(ICollectible collectible, Vector3 hitPoint)> _pointerClickSubject =
             new Subject<(ICollectible collectible, Vector3 hitPoint)>();
 
-        public IObservable<(ICollectible collectible, Vector3 hitPoint)> PointerClickStream => _pointerClickSubject; 
-        
-        void Update()
+        private bool _isRunning;
+
+        public IObservable<(ICollectible collectible, Vector3 hitPoint)> PointerClickStream => _pointerClickSubject;
+
+        public void Run()
         {
+            _isRunning = true;
+        }
+
+
+        private void Update()
+        {
+            if (!_isRunning)
+            {
+                return;
+            }
+
             if (Input.GetMouseButtonDown(0)) // Left-click
             {
                 if (TryGetHitObject(out ICollectible collectible, out Vector3 hitPoint))

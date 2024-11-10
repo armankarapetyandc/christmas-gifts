@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace ChristmasGifts.Scripts.Game
+namespace ChristmasGifts.Scripts.Game.TaskManager
 {
     public interface IMoveable
     {

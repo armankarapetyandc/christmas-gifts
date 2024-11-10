@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ChristmasGifts.Scripts
+namespace ChristmasGifts.Scripts.Common
 {
     public static class Utils
     {

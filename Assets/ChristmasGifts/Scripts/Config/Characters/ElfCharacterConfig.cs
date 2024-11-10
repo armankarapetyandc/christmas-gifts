@@ -1,4 +1,5 @@
 using ChristmasGifts.Scripts.Game.Character;
+using ChristmasGifts.Scripts.Game.Character.Elf;
 using UnityEngine;
 
 namespace ChristmasGifts.Scripts.Config.Characters

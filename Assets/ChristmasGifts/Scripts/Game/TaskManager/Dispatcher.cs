@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using ChristmasGifts.Scripts.Config.Characters;
 using ChristmasGifts.Scripts.Game.Character;
+using ChristmasGifts.Scripts.Game.Character.Elf;
 using UnityEngine;
 
 namespace ChristmasGifts.Scripts.Game.TaskManager
@@ -11,7 +12,7 @@ namespace ChristmasGifts.Scripts.Game.TaskManager
 
         private List<ElfCharacter> _elfCharacters;
 
-        private void Start()
+        public void PopulateCharacters()
         {
             _elfCharacters = characterFactory.Populate<ElfCharacter, ElfCharacterConfig>();
         }
@@ -23,8 +24,6 @@ namespace ChristmasGifts.Scripts.Game.TaskManager
             {
                 if (!character.ShouldCollect && !collectibleTaskGiven && collectible != null)
                 {
-                    Debug.LogError(
-                        $"{character}: ShouldCollect: {character.ShouldCollect} Do Collectible: {collectible}");
                     character.DoJob(collectible, hitPoint);
                     collectibleTaskGiven = true;
                 }
