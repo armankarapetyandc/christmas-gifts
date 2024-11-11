@@ -21,28 +21,16 @@ namespace ChristmasGifts.Scripts.Game.TaskManager
 
         public void DoJob(ICollectible collectible, Vector3 hitPoint)
         {
-            /*bool collectibleTaskGiven = false;
-            foreach (var character in _elfCharacters)
-            {
-                if (!character.ShouldCollect && !collectibleTaskGiven && collectible != null)
-                {
-                    character.DoJob(collectible, hitPoint);
-                    collectibleTaskGiven = true;
-                }
-
-                character.DoJob(null, hitPoint);
-            }*/
-
-
-            if (collectible==null)
+            if (collectible == null)
             {
                 foreach (var character in _elfCharacters)
                 {
                     character.DoJob(hitPoint, null);
                 }
+
                 return;
             }
-            
+
             var currentSnapshot = GetSnapshot();
             var calculated = new Dictionary<ElfCharacter, float>();
             foreach (var pair in currentSnapshot)
@@ -53,12 +41,13 @@ namespace ChristmasGifts.Scripts.Game.TaskManager
                 }
             }
 
-            var optimal = calculated.OrderBy(pair => pair.Value).Select(pair => pair.Key).FirstOrDefault();
+            var ordered = calculated.OrderBy(pair => pair.Value);
+            
+            var optimal = ordered.Select(pair => pair.Key).FirstOrDefault();
             if (optimal == null)
             {
-                throw new Exception("Unable to give task to characters");
+                throw new Exception("Unable to give task to the optimal character");
             }
-
             optimal.DoJob(hitPoint, collectible);
         }
 

@@ -18,7 +18,16 @@ namespace ChristmasGifts.Scripts.Game.Prize
 
         public void Run()
         {
+            PopulateInitial();
             Process().Forget();
+        }
+
+        private void PopulateInitial()
+        {
+            for (int i = 0; i < generatorConfig.InitialCount; i++)
+            {
+                Create();
+            }
         }
 
         private async UniTaskVoid Process()
@@ -32,15 +41,20 @@ namespace ChristmasGifts.Scripts.Game.Prize
                     continue;
                 }
 
-                Prize prize = factory.Create();
-                if (prize == null)
-                {
-                    continue;
-                }
-
-                prize.OnDestroyAsObservable().Subscribe(_ => _prizes.Remove(prize)).AddTo(this);
-                _prizes.Add(prize);
+                Create();
             }
+        }
+
+        private void Create()
+        {
+            Prize prize = factory.Create();
+            if (prize == null)
+            {
+                return;
+            }
+
+            prize.OnDestroyAsObservable().Subscribe(_ => _prizes.Remove(prize)).AddTo(this);
+            _prizes.Add(prize);
         }
     }
 }

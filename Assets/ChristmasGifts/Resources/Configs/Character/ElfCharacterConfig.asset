@@ -15,4 +15,4 @@ MonoBehaviour:
   <CharacterPrefab>k__BackingField: {fileID: 5620930096794822616, guid: 5c0a5cfd1b03b4f19b12d9164932cf6e,
     type: 3}
   <MovementSpeed>k__BackingField: 6
-  <StoppingDistance>k__BackingField: 1
+  <StoppingDistance>k__BackingField: 1.5

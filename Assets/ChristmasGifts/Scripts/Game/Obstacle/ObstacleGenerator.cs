@@ -15,13 +15,21 @@ namespace ChristmasGifts.Scripts.Game.Obstacle
         [SerializeField] private ObstacleFactory factory;
 
         private readonly List<Obstacle> _obstacles = new List<Obstacle>();
-        
+
         public void Run()
         {
+            PopulateInitial();
             Process().Forget();
         }
-        
-        
+
+        private void PopulateInitial()
+        {
+            for (int i = 0; i < generatorConfig.InitialCount; i++)
+            {
+                Create();
+            }
+        }
+
         private async UniTaskVoid Process()
         {
             while (!destroyCancellationToken.IsCancellationRequested)
@@ -33,15 +41,20 @@ namespace ChristmasGifts.Scripts.Game.Obstacle
                     continue;
                 }
 
-                Obstacle obstacle = factory.Create();
-                if (obstacle == null)
-                {
-                    continue;
-                }
-
-                obstacle.OnDestroyAsObservable().Subscribe(_ => _obstacles.Remove(obstacle)).AddTo(this);
-                _obstacles.Add(obstacle);
+                Create();
             }
+        }
+
+        private void Create()
+        {
+            Obstacle obstacle = factory.Create();
+            if (obstacle == null)
+            {
+                return;
+            }
+
+            obstacle.OnDestroyAsObservable().Subscribe(_ => _obstacles.Remove(obstacle)).AddTo(this);
+            _obstacles.Add(obstacle);
         }
     }
 }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Prize Generator Config
   m_EditorClassIdentifier: 
   <Delay>k__BackingField: 3
+  <InitialCount>k__BackingField: 5
   <MaxCount>k__BackingField: 15
