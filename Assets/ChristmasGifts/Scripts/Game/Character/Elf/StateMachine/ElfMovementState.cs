@@ -10,19 +10,21 @@ namespace ChristmasGifts.Scripts.Game.Character.Elf.StateMachine
     {
         public class Props
         {
-            public NavMeshAgent Agent { get; }
+            public ElfCharacter Character { get; }
             public Vector3 DestinationPosition { get; }
 
-            public Props(NavMeshAgent agent, Vector3 destinationPosition)
+            public Props(ElfCharacter character, Vector3 destinationPosition)
             {
-                Agent = agent;
+                Character = character;
                 DestinationPosition = destinationPosition;
             }
         }
 
         private bool _hasReachedDestination;
+        
 
         private UniTaskCompletionSource _completionSource;
+
 
         public ElfMovementState(Game.StateMachine.StateMachine stateMachine, Props properties) : base(
             stateMachine, properties)
@@ -34,13 +36,14 @@ namespace ChristmasGifts.Scripts.Game.Character.Elf.StateMachine
             _completionSource = new UniTaskCompletionSource();
             Debug.Log($"[ElfMovementState] OnEnter: DestinationPosition: {Properties.DestinationPosition}");
             _hasReachedDestination = false;
-            Properties.Agent.SetDestination(Properties.DestinationPosition);
+            Properties.Character.Agent.SetDestination(Properties.DestinationPosition);
         }
 
         protected override void OnUpdate()
         {
             // Only proceed if the agent has a valid and complete path
-            if (Properties.Agent.pathPending || Properties.Agent.pathStatus != NavMeshPathStatus.PathComplete)
+            if (Properties.Character.Agent.pathPending ||
+                Properties.Character.Agent.pathStatus != NavMeshPathStatus.PathComplete)
                 return;
 
             // Check if the agent has reached the destination
@@ -59,8 +62,8 @@ namespace ChristmasGifts.Scripts.Game.Character.Elf.StateMachine
         private bool IsAgentAtDestination()
         {
             // Check if the agent is within the stopping distance and has stopped moving
-            return Properties.Agent.remainingDistance <= Properties.Agent.stoppingDistance &&
-                   Properties.Agent.velocity.sqrMagnitude == 0f;
+            return Properties.Character.Agent.remainingDistance <= Properties.Character.Agent.stoppingDistance &&
+                   Properties.Character.Agent.velocity.sqrMagnitude == 0f;
         }
 
         private void OnDestinationReached()
@@ -70,11 +73,12 @@ namespace ChristmasGifts.Scripts.Game.Character.Elf.StateMachine
             _completionSource.TrySetResult();
         }
 
+
         public UniTask AwaitCompletion()
         {
             return _completionSource.Task;
         }
-        
+
         protected override void OnExit()
         {
             if (!_hasReachedDestination)

@@ -263,7 +263,7 @@ MonoBehaviour:
   checkLayers:
     serializedVersion: 2
     m_Bits: 1856
-  overlapRadius: 1
+  overlapRadius: 2
   maxAttempts: 10
 --- !u!114 &105064801
 MonoBehaviour:
@@ -1248,7 +1248,7 @@ MonoBehaviour:
   checkLayers:
     serializedVersion: 2
     m_Bits: 1856
-  overlapRadius: 2
+  overlapRadius: 2.5
   maxAttempts: 10
 --- !u!4 &550250973
 Transform:

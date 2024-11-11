@@ -39,6 +39,7 @@ namespace ChristmasGifts.Scripts.Game
                 if (TryGetHitObject(out ICollectible collectible, out Vector3 hitPoint))
                 {
                     Debug.Log("Hit interaction object: " + collectible + " at point " + hitPoint);
+                    hitPoint.y = 0f;
                     _pointerClickSubject?.OnNext((collectible, hitPoint));
                 }
                 else

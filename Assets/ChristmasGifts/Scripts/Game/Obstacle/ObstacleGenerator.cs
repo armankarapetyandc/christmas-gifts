@@ -15,13 +15,13 @@ namespace ChristmasGifts.Scripts.Game.Obstacle
         [SerializeField] private ObstacleFactory factory;
 
         private readonly List<Obstacle> _obstacles = new List<Obstacle>();
-
-
+        
         public void Run()
         {
             Process().Forget();
         }
-
+        
+        
         private async UniTaskVoid Process()
         {
             while (!destroyCancellationToken.IsCancellationRequested)

@@ -7,6 +7,7 @@ namespace ChristmasGifts.Scripts.Config.Obstacles
     public class ObstacleGeneratorConfig : ScriptableObject
     {
         [field: SerializeField] public float Delay { get; private set; }
+        [field: SerializeField] public int InitialCount { get; private set; }
         [field: SerializeField] public int MaxCount { get; private set; }
     }
 }

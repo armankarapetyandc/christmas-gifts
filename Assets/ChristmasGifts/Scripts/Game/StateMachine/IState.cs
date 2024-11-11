@@ -6,4 +6,9 @@ namespace ChristmasGifts.Scripts.Game.StateMachine
         void Update();
         void Exit();
     }
+
+    public interface IStateProgress
+    {
+        float RemaniningTime { get; }
+    }
 }

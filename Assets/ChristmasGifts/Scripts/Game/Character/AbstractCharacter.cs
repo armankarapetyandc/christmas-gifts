@@ -8,7 +8,7 @@ namespace ChristmasGifts.Scripts.Game.Character
     {
         [SerializeField] private Game.TaskManager.TaskManager taskManager;
 
-        protected Game.TaskManager.TaskManager TaskManager => taskManager;
+        public Game.TaskManager.TaskManager TaskManager => taskManager;
 
         protected virtual void Start()
         {

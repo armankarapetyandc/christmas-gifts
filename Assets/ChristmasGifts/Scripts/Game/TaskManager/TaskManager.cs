@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ChristmasGifts.Scripts.Game.Character.Elf.TaskManager;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -14,8 +13,6 @@ namespace ChristmasGifts.Scripts.Game.TaskManager
         private readonly List<ITask> _tasks = new List<ITask>();
         private bool _isRunning;
         private CancellationTokenSource cts;
-
-        public bool ShouldCollect => _tasks.Any(task => task is LootingTask);
 
         public void Enqueue(ITask task)
         {
@@ -44,6 +41,11 @@ namespace ChristmasGifts.Scripts.Game.TaskManager
             }
         }
 
+        public ITask GetPreviousTask()
+        {
+            return _tasks.Count==0 ? null : _tasks[^1];
+        }
+
         public void Stop()
         {
             cts.Cancel();
@@ -61,13 +63,18 @@ namespace ChristmasGifts.Scripts.Game.TaskManager
                 }
 
                 ITask task = _tasks[0];
-                _tasks.RemoveAt(0);
                 Debug.Log($"[TaskManager] Executing Task: {task}, Remaining Tasks: {_tasks.Count}");
                 await task.Execute().AttachExternalCancellation(cts.Token);
+                _tasks.RemoveAt(0);
                 Debug.Log($"[TaskManager] Done Task: {task}, Remaining Tasks: {_tasks.Count}");
             }
 
             _isRunning = false;
+        }
+
+        public float EvaluateTasksRemainingTime()
+        {
+            return _tasks.Sum(task => task.RemainingTime);
         }
     }
 }

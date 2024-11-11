@@ -9,15 +9,16 @@ namespace ChristmasGifts.Scripts.Game.Prize
 {
     public class Prize : MonoBehaviour, ICollectible
     {
+        public float Duration => _config.LootingTime;
+
         private PrizeConfig _config;
         public void Setup(PrizeConfig config)
         {
             _config = config;
         }
 
-        public async UniTask Collect()
+        public void Collect()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(_config.LootingTime));
             Destroy(gameObject);
         }
     }

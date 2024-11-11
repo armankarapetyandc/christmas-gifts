@@ -10,7 +10,7 @@ namespace ChristmasGifts.Scripts.Game.Character.Elf.StateMachine
         public UniTask UseMovement(Vector3 destinationPosition)
         {
             ElfMovementState state = new ElfMovementState(StateMachine,
-                new ElfMovementState.Props(Character.Agent, destinationPosition));
+                new ElfMovementState.Props(Character, destinationPosition));
             StateMachine.ChangeState(state);
             return state.AwaitCompletion();
         }

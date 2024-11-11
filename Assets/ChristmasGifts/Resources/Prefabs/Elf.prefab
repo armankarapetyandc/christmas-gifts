@@ -103,6 +103,9 @@ MonoBehaviour:
   taskManager: {fileID: 8270863782866506860}
   stateMachine: {fileID: 8343648652534405727}
   agent: {fileID: 309256710177208738}
+  movementMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &8343648652534405727
 MonoBehaviour:
   m_ObjectHideFlags: 0
