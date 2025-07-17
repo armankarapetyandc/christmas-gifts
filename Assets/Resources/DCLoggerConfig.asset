@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08f307a01d7d4965afaa681e0286512, type: 3}
+  m_Name: DCLoggerConfig
+  m_EditorClassIdentifier: 
+  moduleConfigs:
+  - {fileID: 11400000, guid: 5966e4310c18649cbbcadee9a24275a7, type: 2}
+  - {fileID: 11400000, guid: 18834020b015548c08175df61830eb36, type: 2}
+  - {fileID: 11400000, guid: 1166428c410c7b544bedc2ff17b2e9eb, type: 2}
+  channelStates:
+  - ModuleName: AssetDatabase
+    Id: b36d9778-dbc1-4a13-a05e-51c814d9d4a8
+    Enabled: 1
+  - ModuleName: AssetDatabase
+    Id: 84e2d0d3-caf0-4f08-ad7e-78022c20a83c
+    Enabled: 1
+  - ModuleName: ContextLoader
+    Id: 49436c62-3a52-42c6-be20-a2291c7011f8
+    Enabled: 1
+  - ModuleName: ContextLoader
+    Id: 2b160930-72f6-4c84-a8ca-06873863c54c
+    Enabled: 1
+  - ModuleName: SpaceMonkeyLogChannels
+    Id: e5ca11b5-1b88-4fd2-be55-83d6c6cf883b
+    Enabled: 1
+  - ModuleName: SpaceMonkey
+    Id: 0cec06b2-abcb-4325-a2ce-62ec2b42fd85
+    Enabled: 1
