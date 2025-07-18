@@ -46,6 +46,19 @@
       "dependencies": {},
       "hash": "a7753a4a66007fefce3edd30fb1ffe25a3273772"
     },
+    "com.doublecoconut.uiservice": {
+      "version": "https://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@github.com/double-coconut-unity/module-ui-service.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.cysharp.unitask": "2.5.5",
+        "com.github-glitchenzo.nugetforunity": "4.1.1",
+        "com.cysharp.r3": "1.1.16",
+        "com.svermeulen.extenject": "9.2.0-stcf3",
+        "com.doublecoconut.dclogger": "1.0.7"
+      },
+      "hash": "eb59a46713978d34ea16aab359bc2cc49f09d115"
+    },
     "com.github-glitchenzo.nugetforunity": {
       "version": "4.4.0",
       "depth": 0,

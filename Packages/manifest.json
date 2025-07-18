@@ -5,6 +5,7 @@
     "com.doublecoconut.assetdatabase": "https://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@github.com/double-coconut-unity/module-asset-database.git",
     "com.doublecoconut.contextloaderservice": "https://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@github.com/double-coconut-unity/module-context-loader-service.git",
     "com.doublecoconut.dclogger": "https://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@github.com/double-coconut-unity/dc-logger.git",
+    "com.doublecoconut.uiservice": "https://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@github.com/double-coconut-unity/module-ui-service.git",
     "com.github-glitchenzo.nugetforunity": "4.4.0",
     "com.svermeulen.extenject": "9.1.0",
     "com.unity.2d.animation": "11.0.0",
