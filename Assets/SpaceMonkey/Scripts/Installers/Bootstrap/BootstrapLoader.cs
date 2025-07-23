@@ -3,6 +3,8 @@ using ContextLoaderService.Runtime;
 using ContextLoaderService.Runtime.BaseUnits;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Core.ContextLoader;
+using SpaceMonkey.Scripts.UI.Views.Splash;
+using UIService.Runtime.Presenter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -15,6 +17,7 @@ namespace SpaceMonkey.Scripts.Installers.Bootstrap
     {
         private readonly BootstrapParams _params;
         private readonly LoadingService _loadingService;
+        private readonly PresenterService _presenterService;
 
         public class Installer : Installer<BootstrapParams, Installer>
         {
@@ -31,10 +34,11 @@ namespace SpaceMonkey.Scripts.Installers.Bootstrap
             }
         }
 
-        public BootstrapLoader(BootstrapParams @params, LoadingService loadingService)
+        public BootstrapLoader(BootstrapParams @params, LoadingService loadingService, PresenterService presenterService)
         {
             _params = @params;
             _loadingService = loadingService;
+            _presenterService = presenterService;
         }
 
         void IInitializable.Initialize()

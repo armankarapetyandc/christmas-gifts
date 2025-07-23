@@ -12,6 +12,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Splash
             Controller.OpenNextView();
             return UniTask.CompletedTask;
         }
+        
+        
 
         public override void Dispose()
         {

@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using R3;
 using SpaceMonkey.Scripts.UI.Views.CategorySelection.BusinessIdeaItems;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace SpaceMonkey.Scripts.UI.Views.CategorySelection
@@ -15,13 +16,19 @@ namespace SpaceMonkey.Scripts.UI.Views.CategorySelection
         [SerializeField] private Button infoButton;
         [SerializeField] private Button backButton;
         [SerializeField] private Button nextButton;
+        [SerializeField] private BusinessIdeaItem selectedIdea;
 
         [SerializeField] private BusinessIdeaItem businessIdeaItemPrefab;
 
         [SerializeField] private RectTransform businessIdeaContainer;
+        
+        [SerializeField] private List<BusinessIdeaItem> businessItemsList;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
+            categoryApprove.SetActive(false);
+            categorySelection.SetActive(true);
+            backButton.interactable = false;
             infoButton.onClick.AddListener(Controller.OnInfoButtonClicked);
             backButton.onClick.AddListener(Controller.OnBackButtonClicked);
             LoadBusinessIdeas().Forget();
@@ -34,17 +41,21 @@ namespace SpaceMonkey.Scripts.UI.Views.CategorySelection
             var businessData = Controller.GetBusinessItemsData();
             if (businessData != null)
             {
-                foreach (var businessIdea in businessData)
+                for (var i = 0; i < businessItemsList.Count; ++i)
                 {
-                    BusinessIdeaItem businessIdeaItem = Instantiate(businessIdeaItemPrefab, businessIdeaContainer);
-                    businessIdeaItem.Initialize(businessIdea);
-                    //businessIdeaItem.OnClickObservable.Subscribe(ShowApprove).AddTo(businessIdea);
+                    var item = businessItemsList[i];
+                    item.Initialize(businessData[i]);
+                    item.OnClickObservable.Subscribe(ShowApprove).AddTo(item);
                 }
             }
         }
 
-        private void ShowApprove(BusinessIdeaItem businessIdea)
+        private void ShowApprove(BusinessItemData businessIdea)
         {
+            categorySelection.SetActive(false);
+            categoryApprove.SetActive(true);
+            backButton.interactable = true;
+            selectedIdea.Initialize(businessIdea);
         }
 
         public override void Dispose()
