@@ -296,6 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3371151024305756446}
   - component: {fileID: 4436485014549534088}
+  - component: {fileID: 7822983033349044222}
   m_Layer: 5
   m_Name: BusinessIdea
   m_TagString: Untagged
@@ -368,6 +369,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7822983033349044222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5152298814531195015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa2cf51e3b64bd8b07711156f59c66d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  businessIdeaImage: {fileID: 8350123317065836123}
+  businessIdeaName: {fileID: 5798374753417311481}
+  categoryButton: {fileID: 4436485014549534088}
 --- !u!1 &8556079681980071604
 GameObject:
   m_ObjectHideFlags: 0

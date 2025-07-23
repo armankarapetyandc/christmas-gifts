@@ -1,4 +1,5 @@
 ﻿using ContextLoaderService.Runtime;
+using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using UIService.Runtime.Core;
 using UIService.Runtime.Installers;
@@ -13,6 +14,7 @@ namespace SpaceMonkey.Scripts.Installers.Project
         [SerializeField] private LoadingView loadingViewPrefab;
         [SerializeField] private PresenterView presenterViewPrefab;
         [SerializeField] private PopupPresenterView popupPresenterViewPrefab;
+        [SerializeField] private BusinessIdeaAssetDatabase businessIdeaAssetDatabase;
 
         public override void InstallBindings()
         {
@@ -39,6 +41,11 @@ namespace SpaceMonkey.Scripts.Installers.Project
                 .FromMethod(GetPopupPresenterInstance)
                 .AsSingle()
                 .NonLazy();
+            
+            Container
+                .BindInterfacesAndSelfTo<BusinessIdeaAssetDatabase>()
+                .FromInstance(businessIdeaAssetDatabase)
+                .AsSingle();
         }
 
         private PresenterView GetPresenterInstance(InjectContext ctx)

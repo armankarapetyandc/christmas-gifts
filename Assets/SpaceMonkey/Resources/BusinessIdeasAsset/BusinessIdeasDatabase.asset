@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e857625d17e41979e8be31ff747c13d, type: 3}
+  m_Name: BusinessIdeasDatabase
+  m_EditorClassIdentifier: 
+  assets:
+  - {fileID: 11400000, guid: 5062e0139ab614b4e94a7d2bf0c28d44, type: 2}
+  - {fileID: 11400000, guid: 5a583fd31d60e40abb7489415e520f49, type: 2}
+  - {fileID: 11400000, guid: 01f04df067cc6488ebd765c0c08c2ec5, type: 2}
+  - {fileID: 11400000, guid: 3ab1107ab869443029b110317919c6e7, type: 2}
+  - {fileID: 11400000, guid: 74ce76a2e52a24caf87b33962389c906, type: 2}
+  - {fileID: 11400000, guid: 7737b87ec5a5e44a7a19db891689649f, type: 2}
