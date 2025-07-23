@@ -1,5 +1,6 @@
 ﻿using ContextLoaderService.Runtime;
 using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
+using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using UIService.Runtime.Core;
 using UIService.Runtime.Installers;
@@ -14,6 +15,7 @@ namespace SpaceMonkey.Scripts.Installers.Project
         [SerializeField] private LoadingView loadingViewPrefab;
         [SerializeField] private PresenterView presenterViewPrefab;
         [SerializeField] private PopupPresenterView popupPresenterViewPrefab;
+        [SerializeField] private NavigationPresenterView navigationPresenterViewPrefab;
         [SerializeField] private BusinessIdeaAssetDatabase businessIdeaAssetDatabase;
 
         public override void InstallBindings()
@@ -25,6 +27,7 @@ namespace SpaceMonkey.Scripts.Installers.Project
 
             UIServiceInstaller.Install(Container);
             Container.Bind<PopupPresenterService>().AsSingle().NonLazy();
+            Container.Bind<NavigationPresenterService>().AsSingle().NonLazy();
 
             Container
                 .BindInterfacesAndSelfTo<LoadingView>()
@@ -41,7 +44,13 @@ namespace SpaceMonkey.Scripts.Installers.Project
                 .FromMethod(GetPopupPresenterInstance)
                 .AsSingle()
                 .NonLazy();
-            
+
+            Container
+                .BindInterfacesAndSelfTo<NavigationPresenterView>()
+                .FromMethod(GetNavigationPresenterInstance)
+                .AsSingle()
+                .NonLazy();
+
             Container
                 .BindInterfacesAndSelfTo<BusinessIdeaAssetDatabase>()
                 .FromInstance(businessIdeaAssetDatabase)
@@ -56,6 +65,11 @@ namespace SpaceMonkey.Scripts.Installers.Project
         private PopupPresenterView GetPopupPresenterInstance(InjectContext ctx)
         {
             return Instantiate(popupPresenterViewPrefab);
+        }
+
+        private NavigationPresenterView GetNavigationPresenterInstance(InjectContext ctx)
+        {
+            return Instantiate(navigationPresenterViewPrefab);
         }
     }
 }

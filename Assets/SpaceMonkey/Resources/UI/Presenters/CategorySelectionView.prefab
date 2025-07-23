@@ -893,7 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _containerSource: 2
+  _containerSource: 0
 --- !u!114 &6490301351513727654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,7 +916,7 @@ MonoBehaviour:
   infoButton: {fileID: 7060760368335939158}
   backButton: {fileID: 7785561572263899192}
   nextButton: {fileID: 4479213994798323103}
-  businessIdeaPrefab: {fileID: 5152298814531195015, guid: 5801d68b8b91d4fab8663b6d2bb1c4a8, type: 3}
+  businessIdeaItemPrefab: {fileID: 0}
   businessIdeaContainer: {fileID: 4789476483724481835}
 --- !u!114 &7133622531333645580
 MonoBehaviour:

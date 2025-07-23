@@ -77,4 +77,5 @@ MonoBehaviour:
   loadingViewPrefab: {fileID: 4094833621966904705, guid: 8751ec14d7b77144d815ada30250de3e, type: 3}
   presenterViewPrefab: {fileID: -2898863111937682877, guid: dd64275d80474db4dbf06504110d27da, type: 3}
   popupPresenterViewPrefab: {fileID: 530169136107966036, guid: 94410dca759a3b74bac8cc5e478f8c66, type: 3}
+  navigationPresenterViewPrefab: {fileID: 7000274042814176345, guid: aefb6c610b96aea448c4c8bc6348142b, type: 3}
   businessIdeaAssetDatabase: {fileID: 11400000, guid: 933f85b67f8d845f48948530131e5bee, type: 2}
