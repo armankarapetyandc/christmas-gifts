@@ -1,6 +1,7 @@
 ﻿using System;
 using ContextLoaderService.Runtime;
 using Cysharp.Threading.Tasks;
+using DCLogger.Runtime;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
@@ -45,9 +46,10 @@ namespace SpaceMonkey.Scripts.Installers.Main
             }
             catch (Exception e)
             {
+                Logger.LogError(e.Message, SpaceMonkeyLogChannels.Default);
             }
         }
-        
+
         public class Installer : Installer<Installer>
         {
             public override void InstallBindings()
