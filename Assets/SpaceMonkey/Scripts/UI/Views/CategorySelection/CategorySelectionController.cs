@@ -33,9 +33,9 @@ namespace SpaceMonkey.Scripts.UI.Views.CategorySelection
             Debug.LogError("Opened Info Popup");
         }
 
-        public void OnBackButtonClicked()
+        public void OPenNextView()
         {
-            Debug.LogError("Back Button Clicked");
+            //PresenterService.Show<>();
         }
     }
 }

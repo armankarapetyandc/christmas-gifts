@@ -28,15 +28,16 @@ namespace SpaceMonkey.Scripts.UI.Views.CategorySelection
         {
             categoryApprove.SetActive(false);
             categorySelection.SetActive(true);
-            backButton.interactable = false;
-            infoButton.onClick.AddListener(Controller.OnInfoButtonClicked);
-            backButton.onClick.AddListener(Controller.OnBackButtonClicked);
-            LoadBusinessIdeas().Forget();
+            backButton.gameObject.SetActive(false);
+            infoButton.OnClickAsObservable().Subscribe(_ => Controller.OnInfoButtonClicked());
+            backButton.OnClickAsObservable().Subscribe(_ => OnBackButtonClicked());
+            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OPenNextView());
+            LoadBusinessIdeas();
 
             return UniTask.CompletedTask;
         }
 
-        private async UniTask LoadBusinessIdeas()
+        private void LoadBusinessIdeas()
         {
             var businessData = Controller.GetBusinessItemsData();
             if (businessData != null)
@@ -54,8 +55,15 @@ namespace SpaceMonkey.Scripts.UI.Views.CategorySelection
         {
             categorySelection.SetActive(false);
             categoryApprove.SetActive(true);
-            backButton.interactable = true;
+            backButton.gameObject.SetActive(true);
             selectedIdea.Initialize(businessIdea);
+        }
+        
+        private void OnBackButtonClicked()
+        {
+            categorySelection.SetActive(true);
+            categoryApprove.SetActive(false);
+            backButton.gameObject.SetActive(false);
         }
 
         public override void Dispose()
