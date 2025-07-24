@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7630f3caaadc23d41ae7b1dd4f2b4e95
+guid: 434f638de7a1ff14c998c2cacb1d9f0b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4414033502616580384
-    second: bt_pri_white_alt_0
+      213: -4479482432743040743
+    second: finny_slideout_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 20, y: 26, z: 20, w: 20}
+  spriteBorder: {x: 38, y: 42, z: 38, w: 38}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bt_pri_white_alt_0
+      name: finny_slideout_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 126
-        height: 126
+        width: 112
+        height: 154
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 20, y: 26, z: 20, w: 20}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0217226851cc14d30800000000000000
-      internalID: 4414033502616580384
+      spriteID: 9199fb2f57ea5d1c0800000000000000
+      internalID: -4479482432743040743
       vertices: []
       indices: 
       edges: []
@@ -151,8 +151,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4e3a86fac112dbd4bb28fffc459a7fbf
-    internalID: 1971464419
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bt_pri_white_alt_0: 4414033502616580384
+      finny_slideout_0: -4479482432743040743
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
