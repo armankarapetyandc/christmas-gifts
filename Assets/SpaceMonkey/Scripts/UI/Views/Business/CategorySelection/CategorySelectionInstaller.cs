@@ -1,8 +1,8 @@
 using Zenject;
 
-namespace SpaceMonkey.Scripts.UI.Views.CategorySelection
+namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 {
-    public class CategorySelectionInstaller : MonoInstaller<CategorySelectionInstaller>
+    public class CategorySelectionInstaller:MonoInstaller
     {
         public override void InstallBindings()
         {

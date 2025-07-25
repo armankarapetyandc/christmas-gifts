@@ -48,7 +48,7 @@ namespace SpaceMonkey.Editor.Utilities
             if (rectTransform == null) return;
 
             // Find the Canvas
-            Canvas canvas = GetCanvasFromRectTransform(rectTransform);
+            Canvas canvas = FindLastCanvas(rectTransform);
             if (canvas == null)
             {
                 EditorGUILayout.HelpBox("No Canvas found in parent hierarchy", MessageType.Warning);
@@ -81,6 +81,37 @@ namespace SpaceMonkey.Editor.Utilities
         }
 
         private Canvas GetCanvasFromRectTransform(RectTransform rt)
+        {
+            Transform current = rt.transform;
+            while (current != null)
+            {
+                Canvas canvas = current.GetComponent<Canvas>();
+                if (canvas != null)
+                    return canvas;
+                current = current.parent;
+            }
+
+            return null;
+        }
+        
+        private Canvas FindLastCanvas(RectTransform rt)
+        {
+            Transform current = rt.transform;
+            Canvas lastCanvas = null;
+    
+            while (current != null)
+            {
+                Canvas canvas = current.GetComponent<Canvas>();
+                if (canvas != null)
+                    lastCanvas = canvas; // Keep updating to get the topmost one
+            
+                current = current.parent;
+            }
+    
+            return lastCanvas;
+        }
+        
+        private Canvas GetMainCanvasFromRectTransform(RectTransform rt)
         {
             Transform current = rt.transform;
             while (current != null)
