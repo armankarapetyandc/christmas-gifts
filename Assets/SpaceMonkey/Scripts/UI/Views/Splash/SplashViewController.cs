@@ -1,6 +1,7 @@
+using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.UI.Views.Startup;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
-using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Splash
 {
@@ -10,9 +11,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Splash
         {
         }
 
-        public void OpenNextView()
+        public async UniTaskVoid OpenNextView()
         {
-            Debug.LogError("Open next view");
+            await UniTask.Delay(2000);
+            await PresenterService.Hide();
+            PresenterService.Show<StartupView>().Forget();
         }
     }
 }
