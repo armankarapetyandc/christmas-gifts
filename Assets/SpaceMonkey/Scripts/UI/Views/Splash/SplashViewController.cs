@@ -1,7 +1,8 @@
-using SpaceMonkey.Scripts.UI.Views.CategorySelection;
+using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.UI.Views.Startup;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
-using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Splash
 {
@@ -11,11 +12,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Splash
         {
         }
 
-        public void OpenNextView()
+        public async UniTaskVoid OpenNextView()
         {
-            Debug.LogError("Open next view");
-            PresenterService.Show<CategorySelectionView>();
-
+            await UniTask.Delay(2000);
+            PresenterService.HidePreviousAndShow<StartupView>().Forget();
         }
     }
 }

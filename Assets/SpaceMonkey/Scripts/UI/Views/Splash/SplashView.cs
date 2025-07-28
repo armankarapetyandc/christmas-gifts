@@ -8,17 +8,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Splash
     {
         public override UniTask Initialize(IPresenterData data = null)
         {
-            return UniTask.Delay(2000).ContinueWith(() =>
-            {
-                Controller.OpenNextView();
-            });
+            Controller.OpenNextView();
+            return UniTask.CompletedTask;
         }
-        
-        
+
 
         public override void Dispose()
-        {   
-            
+        {
         }
     }
 }

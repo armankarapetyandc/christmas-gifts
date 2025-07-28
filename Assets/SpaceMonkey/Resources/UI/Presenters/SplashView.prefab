@@ -435,7 +435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ceebc6fb5c4f0faddbc313ca5df915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSequence: []
+  animationSequence:
+  - animations:
+    - {fileID: 11400000, guid: fa016b951778fd644a0bfb284c26f7b5, type: 2}
   group: {fileID: 6344812660559720175}
   presenterHolder: {fileID: 2764051673535462984}
   dimmerButton: {fileID: 0}
