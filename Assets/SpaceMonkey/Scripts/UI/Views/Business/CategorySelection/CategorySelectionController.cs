@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup;
+using SpaceMonkey.Scripts.UI.Views.Startup;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -24,6 +28,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
         internal void Next()
         {
+            PresenterService.HidePreviousAndShow<BusinessSetupView>(new BusinessSetupView.Data
+            {
+                BackHandler = () => PresenterService.HidePreviousAndShow<CategorySelectionView>(
+                    new CategorySelectionView.Data
+                    {
+                        BackHandler = () => PresenterService.HidePreviousAndShow<StartupView>().Forget()
+                    }).Forget()
+            }).Forget();
         }
     }
 }

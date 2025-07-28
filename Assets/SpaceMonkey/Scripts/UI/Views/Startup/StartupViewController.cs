@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Views.Business.CategorySelection;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -16,18 +17,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
         {
         }
 
-        public async UniTaskVoid StartNewBusiness()
+        public void StartNewBusiness()
         {
             _uiInteractableProperty.Value = false;
-            await PresenterService.Hide();
-            await PresenterService.Show<CategorySelectionView>(new CategorySelectionView.Data
+
+            PresenterService.HidePreviousAndShow<CategorySelectionView>(new CategorySelectionView.Data
             {
-                BackHandler = async () =>
-                {
-                    await PresenterService.Hide();
-                    await PresenterService.Show<StartupView>();
-                }
-            });
+                BackHandler = () => PresenterService.HidePreviousAndShow<StartupView>().Forget()
+            }).Forget();
         }
 
         public void LoadCurrentBusiness()
