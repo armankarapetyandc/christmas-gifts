@@ -14,11 +14,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
 
         [SerializeField] private Button backButton;
         [SerializeField] private BusinessDetailsPanel detailsPanel;
+        [SerializeField] private Button saveButton;
 
 
         public override UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ =>  Controller.OnBack()).AddTo(this);
+            saveButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             return UniTask.CompletedTask;
         }
 

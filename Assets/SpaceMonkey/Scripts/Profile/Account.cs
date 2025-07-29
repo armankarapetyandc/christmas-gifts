@@ -1,13 +1,32 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-
-namespace SpaceMonkey.Scripts.Profile
+﻿namespace SpaceMonkey.Scripts.Profile
 {
     public class Account
     {
         public CompanyInfo Company { get; set; }
         public uint Level { get; set; }
         public float Rating { get; set; }
+
+        public void SetCategory(string category)
+        {
+            Company.Category = category;
+        }
+
+        public void SetCompanyName(string companyName)
+        {
+            Company.CompanyName = companyName;
+        }
+
+        public static Account CreateEmpty()
+        {
+            var account = new Account
+            {
+                Company = new CompanyInfo
+                {
+                    Logo = new CompanyLogo()
+                }
+            };
+            return account;
+        }
     }
 
     public class CompanyInfo

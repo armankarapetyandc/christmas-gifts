@@ -16,5 +16,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
         {
             PresenterService.HidePreviousAndShow<CategorySelectionView>().Forget();
         }
+
+        public void OnNext()
+        {
+            
+        }
     }
 }

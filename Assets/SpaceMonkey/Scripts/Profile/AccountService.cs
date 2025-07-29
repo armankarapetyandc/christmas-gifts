@@ -11,8 +11,13 @@ namespace SpaceMonkey.Scripts.Profile
         private const string FILENAME = "Account";
         private readonly string _path = Path.Combine(Application.persistentDataPath, FILENAME);
         public Account Account { get; private set; }
-        
+
         public bool IsFreshAccount => !File.Exists(_path);
+
+        public void CreateNewAccount()
+        {
+            Account = Account.CreateEmpty();
+        }
 
         public async UniTask SaveAsync()
         {

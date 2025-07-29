@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
 using TMPro;
@@ -77,6 +76,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
         private void IdeaSelected(IdeaInfo ideaInfo)
         {
+            Controller.IdeaSelected(ideaInfo);
             selectedIdeaIconImage.sprite = ideaInfo.Icon;
             selectedIdeaNameText.text = ideaInfo.Name;
             categoryDetailsPanel.gameObject.SetActive(true);

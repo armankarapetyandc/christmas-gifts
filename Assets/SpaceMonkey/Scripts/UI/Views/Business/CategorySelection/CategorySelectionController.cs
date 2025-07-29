@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup;
 using SpaceMonkey.Scripts.UI.Views.Startup;
@@ -12,11 +13,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 {
     public class CategorySelectionController : BasePresenterController
     {
+        private readonly AccountService _accountService;
         private readonly BusinessIdeaAssetDatabase _ideaAssetDatabase;
 
-        public CategorySelectionController(PresenterService presenterService,
+        public CategorySelectionController(PresenterService presenterService, AccountService accountService,
             BusinessIdeaAssetDatabase ideaAssetDatabase) : base(presenterService)
         {
+            _accountService = accountService;
             _ideaAssetDatabase = ideaAssetDatabase;
         }
 
@@ -34,6 +37,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         public void OnNext()
         {
             PresenterService.HidePreviousAndShow<BusinessSetupView>().Forget();
+        }
+
+        public void IdeaSelected(IdeaInfo ideaInfo)
+        {
+            _accountService.Account.SetCategory(ideaInfo.Name);
         }
     }
 }
