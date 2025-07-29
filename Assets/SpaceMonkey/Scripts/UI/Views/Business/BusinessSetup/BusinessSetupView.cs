@@ -11,27 +11,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
 {
     public class BusinessSetupView : BasePresenterWithController<BusinessSetupController>
     {
-        public class Data : IPresenterData
-        {
-            public Action BackHandler { get; set; }
-        }
-
 
         [SerializeField] private Button backButton;
         [SerializeField] private BusinessDetailsPanel detailsPanel;
 
-        private Data _data;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            _data = data as Data;
-            backButton.OnClickAsObservable().Subscribe(_ => OnBackButtonClicked()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>  Controller.OnBack()).AddTo(this);
             return UniTask.CompletedTask;
-        }
-
-        private void OnBackButtonClicked()
-        {
-            _data.BackHandler?.Invoke();
         }
 
         public override void Dispose()

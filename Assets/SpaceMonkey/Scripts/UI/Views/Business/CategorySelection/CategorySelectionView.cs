@@ -12,11 +12,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 {
     public class CategorySelectionView : BasePresenterWithController<CategorySelectionController>
     {
-        public class Data : IPresenterData
-        {
-            public Action BackHandler { get; set; }
-        }
-
         [Header("General")] [SerializeField] private Button backButton;
         [SerializeField] private Button infoButton;
         [SerializeField] private RectTransform categorySelectionPanel;
@@ -33,17 +28,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         [SerializeField] private Button nextButton;
 
 
-        private Data _data;
-
         public override UniTask Initialize(IPresenterData data = null)
         {
-            _data = data as Data;
             backButton.OnClickAsObservable().Subscribe(_ => OnBackButtonClicked()).AddTo(this);
             infoButton.OnClickAsObservable().Subscribe(_ => OnInfoButtonClicked()).AddTo(this);
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.Next()).AddTo(this);
+            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             SetupIdeas();
             return UniTask.CompletedTask;
         }
+
 
         private void OnInfoButtonClicked()
         {
@@ -53,7 +46,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         {
             if (categorySelectionPanel.gameObject.activeSelf)
             {
-                _data.BackHandler?.Invoke();
+                Controller.Back();
                 return;
             }
 
@@ -89,7 +82,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
             categoryDetailsPanel.gameObject.SetActive(true);
             categorySelectionPanel.gameObject.SetActive(false);
         }
-        
+
         public override void Dispose()
         {
         }

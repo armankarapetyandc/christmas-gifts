@@ -26,16 +26,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
                 new IdeaInfo(asset.BusinessIdeaName, asset.BusinessIdeaItemAsset)).ToList();
         }
 
-        internal void Next()
+        public void Back()
         {
-            PresenterService.HidePreviousAndShow<BusinessSetupView>(new BusinessSetupView.Data
-            {
-                BackHandler = () => PresenterService.HidePreviousAndShow<CategorySelectionView>(
-                    new CategorySelectionView.Data
-                    {
-                        BackHandler = () => PresenterService.HidePreviousAndShow<StartupView>().Forget()
-                    }).Forget()
-            }).Forget();
+            PresenterService.HidePreviousAndShow<StartupView>().Forget();
+        }
+
+        public void OnNext()
+        {
+            PresenterService.HidePreviousAndShow<BusinessSetupView>().Forget();
         }
     }
 }

@@ -11,11 +11,5 @@ namespace SpaceMonkey.Scripts.UI.Views.Splash
         public SplashViewController(PresenterService presenterService) : base(presenterService)
         {
         }
-
-        public async UniTaskVoid OpenNextView()
-        {
-            await UniTask.Delay(2000);
-            PresenterService.HidePreviousAndShow<StartupView>().Forget();
-        }
     }
 }
