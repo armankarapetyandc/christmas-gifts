@@ -21,15 +21,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
         {
             _uiInteractableProperty.Value = false;
 
-            PresenterService.HidePreviousAndShow<CategorySelectionView>(new CategorySelectionView.Data
-            {
-                BackHandler = () => PresenterService.HidePreviousAndShow<StartupView>().Forget()
-            }).Forget();
+            PresenterService.HidePreviousAndShow<CategorySelectionView>().Forget();
         }
 
         public void LoadCurrentBusiness()
         {
-            _uiInteractableProperty.Value = false;
+            // _uiInteractableProperty.Value = false;
         }
     }
 }

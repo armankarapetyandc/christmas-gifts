@@ -3,9 +3,11 @@ using ContextLoaderService.Runtime;
 using Cysharp.Threading.Tasks;
 using DCLogger.Runtime;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.Splash;
+using SpaceMonkey.Scripts.UI.Views.Startup;
 using UIService.Runtime.Presenter;
 using UnityEngine.Rendering;
 using Zenject;
@@ -36,6 +38,8 @@ namespace SpaceMonkey.Scripts.Installers.Main
                 if (_accountService.IsFreshAccount)
                 {
                     await LoadingService.BeginLoading(_presenterService.Show<SplashView>().ToLoadingUnit());
+                    await UniTask.Delay(2000);
+                    await LoadingService.BeginLoading(_presenterService.Show<StartupView>().ToLoadingUnit());
                     return;
                 }
 
