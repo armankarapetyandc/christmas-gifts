@@ -118,7 +118,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194242856260999809}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   <AutoFitSupported>k__BackingField: 1
   backButton: {fileID: 6395363846843507823}
   detailsPanel: {fileID: 268774472749529632}
-  iconBuilderPanel: {fileID: 4218810861769878949}
+  saveButton: {fileID: 6941167466526089148}
 --- !u!114 &7403438687328606510
 MonoBehaviour:
   m_ObjectHideFlags: 0
