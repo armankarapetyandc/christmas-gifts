@@ -9,6 +9,5 @@ namespace SpaceMonkey.Scripts.UI.Asset.IconBuilder
         [SerializeField] public List<Sprite> ShapesSprites;
         [SerializeField] public List<Sprite> IconSprites;
         [SerializeField] public List<Color> BackgroundColors;
-
     }
 }

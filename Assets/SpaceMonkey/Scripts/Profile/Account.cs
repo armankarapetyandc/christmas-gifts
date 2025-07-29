@@ -27,6 +27,13 @@
             };
             return account;
         }
+
+        public void SetCompanyLogo(string shapeSpriteName, string iconSpriteName, string backgroundColorHex)
+        {
+            Company.Logo.Shape = shapeSpriteName;
+            Company.Logo.Icon = iconSpriteName;
+            Company.Logo.Background = backgroundColorHex;
+        }
     }
 
     public class CompanyInfo

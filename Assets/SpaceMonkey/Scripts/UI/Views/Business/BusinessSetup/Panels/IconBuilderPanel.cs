@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using R3;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.IconBuilder;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,62 +10,69 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
 {
     public class IconBuilderPanel : MonoBehaviour
     {
+        public class Result
+        {
+            public Sprite ShapeSprite { get; }
+            public Sprite IconSprite { get; }
+            public Color BackgroundColor { get; }
+
+            public Result(Sprite shapeSprite, Sprite iconSprite, Color backgroundColor)
+            {
+                ShapeSprite = shapeSprite;
+                IconSprite = iconSprite;
+                BackgroundColor = backgroundColor;
+            }
+        }
+
         [SerializeField] private Button backButton;
         [SerializeField] private Button saveButton;
 
-        [SerializeField] private Image selectedShape;
-        [SerializeField] private Image selectedIcon;
-        
-        [SerializeField] private List<ShapeItem> shapesSprites;
+        [SerializeField] private Image builderShapeImage;
+        [SerializeField] private Image builderIconImage;
+
+        [SerializeField] private List<ShapeItem> shapeItems;
         [SerializeField] private IconBuilderTab iconBuilderTab;
-        // [SerializeField] private List<IconItem> iconItems;
-        // [SerializeField] private List<BackgroundItem> backgroundImages;
-        
-        // [SerializeField] private Sprite selectedButtonBackground;
-        // [SerializeField] private Sprite noneSelectedButtonBackground;
+        [SerializeField] private IconBuilderConfig iconBuilderConfig;
 
-        internal void Initialize(IconBuilderConfig iconBuilderConfig)
+        private readonly ReactiveCommand<Result> _saveCommand = new ReactiveCommand<Result>();
+        public Observable<Result> SaveCommand => _saveCommand;
+
+        private void Start()
         {
-            if (iconBuilderConfig == null)
+            for (var i = 0; i < shapeItems.Count; ++i)
             {
-                Debug.LogError("IconBuilderConfig is null");
-                return;
-            }
-            
-            for (var i = 0; i < shapesSprites.Count; ++i)
-            {
-                shapesSprites[i].Set(iconBuilderConfig.ShapesSprites[i]);
-                shapesSprites[i].SelectedShapeSprite.Subscribe(UpdateSelectedShape);
+                shapeItems[i].Set(iconBuilderConfig.ShapesSprites[i]);
             }
 
-            foreach (var icon in iconBuilderTab.IconItems)
-            {
-                icon.OnSelectedSprite.Subscribe(UpdateSelectedIcon);
-            }
-
-            foreach (var background in iconBuilderTab.BackgroundItems)
-            {
-                background.OnSelectedColor.Subscribe(UpdateSelectedBackground);
-            }
-            
+            shapeItems.Select(item => item.SelectedShapeSprite).Merge().Subscribe(ShapeSelected).AddTo(this);
+            iconBuilderTab.IconSelected.Subscribe(IconSelected).AddTo(this);
+            iconBuilderTab.ColorSelected.Subscribe(ColorSelected).AddTo(this);
             iconBuilderTab.Initialize(iconBuilderConfig.IconSprites, iconBuilderConfig.BackgroundColors);
+            saveButton.OnClickAsObservable().Subscribe(_ => OnSaveClicked()).AddTo(this);
         }
 
-        private void UpdateSelectedShape(Sprite shape)
+        private void OnSaveClicked()
         {
-            selectedShape.gameObject.SetActive(true);
-            selectedShape.sprite = shape;
+            _saveCommand.Execute(new Result(builderShapeImage.sprite, builderIconImage.sprite,
+                builderShapeImage.color));
         }
-        
-        private void UpdateSelectedIcon(Sprite shape)
+
+        private void ShapeSelected(Sprite sprite)
         {
-            selectedIcon.gameObject.SetActive(true);
-            selectedIcon.sprite = shape;
+            builderShapeImage.gameObject.SetActive(true);
+            builderShapeImage.sprite = sprite;
         }
-        
-        private void UpdateSelectedBackground(Color color)
+
+        private void IconSelected(Sprite sprite)
         {
-            selectedShape.color = color;
+            builderIconImage.gameObject.SetActive(true);
+            builderIconImage.sprite = sprite;
+        }
+
+        private void ColorSelected(Color color)
+        {
+            builderShapeImage.gameObject.SetActive(true);
+            builderShapeImage.color = color;
         }
     }
 }

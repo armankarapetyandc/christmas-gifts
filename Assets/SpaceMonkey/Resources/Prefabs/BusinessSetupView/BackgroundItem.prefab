@@ -139,9 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21244fe643cd43a6ae23106ee92d35aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundImage: {fileID: 4165694231039489250}
+  iconImage: {fileID: 4165694231039489250}
   toggle: {fileID: 2473210934649826176}
-  selectedBackground: {fileID: 7100387070650324933}
 --- !u!1 &4032919406792498296
 GameObject:
   m_ObjectHideFlags: 0
