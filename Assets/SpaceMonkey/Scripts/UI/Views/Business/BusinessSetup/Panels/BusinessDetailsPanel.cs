@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using R3;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,5 +14,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
         [SerializeField] private TextMeshProUGUI hashtagsCountText;
         [SerializeField] private HashtagListItem[] hashtagItems;
         [SerializeField] private Button saveButton;
+
+        public Observable<Unit> OnIconButtonClicked => iconBuilderButton.OnClickAsObservable();
     }
 }

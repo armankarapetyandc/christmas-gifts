@@ -19,14 +19,24 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
 
         [SerializeField] private Button backButton;
         [SerializeField] private BusinessDetailsPanel detailsPanel;
+        [SerializeField] private IconBuilderPanel iconBuilderPanel;
 
         private Data _data;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
             _data = data as Data;
+            detailsPanel.gameObject.SetActive(true);
             backButton.OnClickAsObservable().Subscribe(_ => OnBackButtonClicked()).AddTo(this);
+            detailsPanel.OnIconButtonClicked.Subscribe(_ => OnIconBuilderClicked()).AddTo(this);
             return UniTask.CompletedTask;
+        }
+
+        private void OnIconBuilderClicked()
+        {
+            detailsPanel.gameObject.SetActive(false);
+            iconBuilderPanel.gameObject.SetActive(true);
+            iconBuilderPanel.Initialize(Controller.IconBuilderConfig);
         }
 
         private void OnBackButtonClicked()
