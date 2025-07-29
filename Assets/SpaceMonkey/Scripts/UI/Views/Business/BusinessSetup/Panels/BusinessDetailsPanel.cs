@@ -1,7 +1,10 @@
-﻿using R3;
+﻿using System;
+using R3;
+using SpaceMonkey.Scripts.Profile;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
 {
@@ -17,8 +20,22 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
         [SerializeField] private HashtagListItem[] hashtagItems;
         [SerializeField] private Button saveButton;
 
+        private readonly ReactiveCommand<Unit> _saveCommand = new ReactiveCommand<Unit>();
+        internal Observable<Unit> SaveCommand => _saveCommand;
         internal Observable<Unit> OnIconButtonClicked => iconBuilderButton.OnClickAsObservable();
 
+
+        [Inject] private AccountService _accountService;
+        
+        private void Start()
+        {
+            saveButton.OnClickAsObservable().Subscribe(_ => SaveButtonClicked()).AddTo(this);
+        }
+
+        private void SaveButtonClicked()
+        {
+            _accountService.Account.SetCompanyName(businessNameInputField.text);
+        }
 
         internal void SetCompanyLogo(Sprite shapeSprite, Sprite iconSprite, Color backgroundColor)
         {

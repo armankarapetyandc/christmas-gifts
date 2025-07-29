@@ -34,10 +34,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
 
         private void OnIconSelected(IconBuilderPanel.Result result)
         {
+            Controller.SetCompanyLogoData(result.ShapeSprite, result.IconSprite, result.BackgroundColor);
             iconBuilderPanel.gameObject.SetActive(false);
             detailsPanel.gameObject.SetActive(true);
             detailsPanel.SetCompanyLogo(result.ShapeSprite, result.IconSprite, result.BackgroundColor);
-            Controller.SetCompanyLogoData(result.ShapeSprite, result.IconSprite, result.BackgroundColor);
         }
 
         public override void Dispose()
