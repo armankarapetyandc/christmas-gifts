@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using PlasticGui.WorkspaceWindow;
 using R3;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Views.BusinessHub;
 using SpaceMonkey.Scripts.UI.Views.Map;
 using UIService.Runtime.Core;
 using UIService.Runtime.Utilities;
@@ -94,6 +95,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
                     await Controller.ShowPresenter<MapView>();
                     break;
                 case MainNavigationType.BusinessHub:
+                    await Controller.ShowPresenter<BusinessHubView>();
                     break;
                 case MainNavigationType.Opportunities:
                     break;

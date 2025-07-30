@@ -25,7 +25,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
 
         public void OnNext()
         {
-            //PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
+            PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
         }
 
         public void SetCompanyLogoData(Sprite shapeSprite, Sprite iconSprite, Color backgroundColor)

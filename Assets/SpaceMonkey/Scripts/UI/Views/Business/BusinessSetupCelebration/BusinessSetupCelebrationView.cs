@@ -20,11 +20,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
         
         public override UniTask Initialize(IPresenterData data = null)
         {
-            if (Controller == null)
-            {
-                Debug.LogError("Error, something is wrong");
-                return UniTask.CompletedTask;
-            }
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             shapeImage.sprite = Controller.ShapeSprite();
             iconImage.sprite = Controller.IconSprite();

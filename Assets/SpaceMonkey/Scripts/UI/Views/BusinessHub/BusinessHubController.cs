@@ -1,31 +1,32 @@
-using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI.Asset.Dashboard;
 using SpaceMonkey.Scripts.UI.Asset.IconBuilder;
-using SpaceMonkey.Scripts.UI.Navigation.Bottom;
-using SpaceMonkey.Scripts.UI.Navigation.Core;
-using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup;
-using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
 
-namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
+namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 {
-    public class BusinessSetupCelebrationController : BasePresenterController
+    public class BusinessHubController : BasePresenterController
     {
         private readonly IconBuilderConfig _iconBuilderConfig;
         private readonly AccountService _accountService;
-        private readonly NavigationPresenterService _navigationPresenterService;
+        private readonly DashboardAssetDatabase _dashboardAssetDatabase;
 
-        public BusinessSetupCelebrationController(PresenterService presenterService,
-            IconBuilderConfig iconBuilderConfig, AccountService accountService,
-            NavigationPresenterService navigationPresenterService) : base(presenterService)
+        public BusinessHubController(PresenterService presenterService, IconBuilderConfig iconBuilderConfig,
+            AccountService accountService, DashboardAssetDatabase dashboardAssetDatabase) : base(presenterService)
         {
             _iconBuilderConfig = iconBuilderConfig;
             _accountService = accountService;
-            _navigationPresenterService = navigationPresenterService;
+            _dashboardAssetDatabase = dashboardAssetDatabase;
         }
-
+        
+        internal List<DashboardItemAsset> RetrieveIdeas()
+        {
+            return _dashboardAssetDatabase.Assets;
+        }
+        
         public Sprite ShapeSprite()
         {
             return _iconBuilderConfig.GetShapeSprite(_accountService.Account.Company.Logo.Shape);
@@ -42,18 +43,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
                 ? color
                 : Color.white;
         }
-
-        public void OnBack()
-        {
-            PresenterService.HidePreviousAndShow<BusinessSetupView>().Forget();
-        }
-
-        public void OnNext()
-        {
-            PresenterService.Hide();
-            _navigationPresenterService.Show<MainNavigation>();
-        }
-
+        
         public string GetBusinessName()
         {
             return _accountService.Account.Company.CompanyName;
