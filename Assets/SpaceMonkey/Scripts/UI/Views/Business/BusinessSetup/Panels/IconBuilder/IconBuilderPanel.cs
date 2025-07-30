@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using R3;
-using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.IconBuilder;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder.items;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
-namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
+namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder
 {
     public class IconBuilderPanel : MonoBehaviour
     {
@@ -32,7 +33,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
 
         [SerializeField] private List<ShapeItem> shapeItems;
         [SerializeField] private IconBuilderTab iconBuilderTab;
-        [SerializeField] private IconBuilderConfig iconBuilderConfig;
+
+        [Inject] private IconBuilderConfig _iconBuilderConfig;
 
         private readonly ReactiveCommand<Result> _saveCommand = new ReactiveCommand<Result>();
         public Observable<Result> SaveCommand => _saveCommand;
@@ -41,13 +43,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
         {
             for (var i = 0; i < shapeItems.Count; ++i)
             {
-                shapeItems[i].Set(iconBuilderConfig.ShapesSprites[i]);
+                shapeItems[i].Set(_iconBuilderConfig.ShapesSprites[i]);
             }
 
             shapeItems.Select(item => item.SelectedShapeSprite).Merge().Subscribe(ShapeSelected).AddTo(this);
             iconBuilderTab.IconSelected.Subscribe(IconSelected).AddTo(this);
             iconBuilderTab.ColorSelected.Subscribe(ColorSelected).AddTo(this);
-            iconBuilderTab.Initialize(iconBuilderConfig.IconSprites, iconBuilderConfig.BackgroundColors);
+            iconBuilderTab.Initialize(_iconBuilderConfig.IconSprites, _iconBuilderConfig.BackgroundColors);
             saveButton.OnClickAsObservable().Subscribe(_ => OnSaveClicked()).AddTo(this);
         }
 

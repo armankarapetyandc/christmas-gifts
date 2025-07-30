@@ -26,12 +26,17 @@ namespace SpaceMonkey.Editor.Utilities
             }
         }
 
-        [MenuItem("Space Monkey/Debug/Print Selected Object Position")]
+        [MenuItem("Space Monkey/Debug/Print Selected Object")]
         private static void WorldPosition()
         {
             GameObject obj = Selection.activeGameObject;
             string str =
                 $"Name: {obj.name} - Local Position: {obj.transform.localPosition} - Position: {obj.transform.position}";
+            if (obj.TryGetComponent(out RectTransform rt))
+            {
+                str += $" - {rt.rect.width}x{rt.rect.height}";
+            }
+
             Debug.Log(str);
         }
     }

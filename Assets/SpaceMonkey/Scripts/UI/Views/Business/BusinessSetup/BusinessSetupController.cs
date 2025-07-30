@@ -33,5 +33,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
             _accountService.Account.SetCompanyLogo(shapeSprite.name, iconSprite.name,
                 ColorUtility.ToHtmlStringRGBA(backgroundColor));
         }
+
+        public void SetCompanyHashTags(string[] tags)
+        {
+            _accountService.Account.SetTags(tags);
+        }
     }
 }

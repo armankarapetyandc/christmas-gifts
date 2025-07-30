@@ -1,12 +1,13 @@
-﻿using System;
-using R3;
+﻿using R3;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDetails.Items;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
+namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDetails
 {
     public class BusinessDetailsPanel : MonoBehaviour
     {
@@ -17,16 +18,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
         [SerializeField] private Button iconBuilderButton;
         [SerializeField] private Button hashTagPanelButton;
         [SerializeField] private TextMeshProUGUI hashtagsCountText;
-        [SerializeField] private HashtagListItem[] hashtagItems;
+        [SerializeField] private HashtagListItem hashtagListItemPrefab;
+        [SerializeField] private RectTransform hashtagsContainer;
         [SerializeField] private Button saveButton;
 
         private readonly ReactiveCommand<Unit> _saveCommand = new ReactiveCommand<Unit>();
         internal Observable<Unit> SaveCommand => _saveCommand;
         internal Observable<Unit> OnIconButtonClicked => iconBuilderButton.OnClickAsObservable();
+        internal Observable<Unit> OnHashtagButtonClicked => hashTagPanelButton.OnClickAsObservable();
 
 
         [Inject] private AccountService _accountService;
-        
+        [Inject] private HashTagsConfig _hashTagsConfig;
+
         private void Start()
         {
             saveButton.OnClickAsObservable().Subscribe(_ => SaveButtonClicked()).AddTo(this);
@@ -44,6 +48,22 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
             shapeImage.color = backgroundColor;
 
             shapeImage.gameObject.SetActive(true);
+        }
+
+        public void SetHashTags(string[] tags)
+        {
+            while (hashtagsContainer.childCount > 0)
+            {
+                Destroy(hashtagsContainer.GetChild(0).gameObject);
+            }
+
+            foreach (string hashtag in tags)
+            {
+                var item = Instantiate(hashtagListItemPrefab, hashtagsContainer);
+                item.Set(hashtag);
+            }
+
+            hashtagsCountText.text = $"{tags.Length}/{_hashTagsConfig.Tags.Length}";
         }
     }
 }

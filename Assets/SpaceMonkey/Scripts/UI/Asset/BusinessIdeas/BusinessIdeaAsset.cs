@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Asset.BusinessIdeas
 {
-    [CreateAssetMenu(fileName = "BusinessIdeas", menuName = "SpaceMonkey/Resources/BusinessIdeasAsset", order = 0)]
+    [CreateAssetMenu(fileName = "BusinessIdeas", menuName = "Space Monkey/Database/BusinessIdeasAsset", order = 0)]
     public class BusinessIdeaAsset : ScriptableAsset
     {
         [SerializeField] private Sprite businessIdeaItemSprite;
