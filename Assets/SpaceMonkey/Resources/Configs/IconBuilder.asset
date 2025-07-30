@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0930e62ab33466e8e3d8121aa4a2cdf, type: 3}
   m_Name: IconBuilder
   m_EditorClassIdentifier: 
-  ShapesSprites:
-  - {fileID: 5053220257308913019, guid: b89a87e2a499ef244b21643fadeab5ce, type: 3}
-  - {fileID: -7796536524009040009, guid: b89a87e2a499ef244b21643fadeab5ce, type: 3}
-  - {fileID: 2960165731240327890, guid: b89a87e2a499ef244b21643fadeab5ce, type: 3}
-  - {fileID: 3098562073335614494, guid: b89a87e2a499ef244b21643fadeab5ce, type: 3}
-  - {fileID: -7140826077773368548, guid: b89a87e2a499ef244b21643fadeab5ce, type: 3}
-  - {fileID: 7925014034336182238, guid: b89a87e2a499ef244b21643fadeab5ce, type: 3}
-  IconSprites:
+  <ShapesSprites>k__BackingField:
+  - {fileID: -9082291248603447866, guid: 392b01a06fdc1b24e8a90766890c6ff4, type: 3}
+  - {fileID: -2902247422746666468, guid: 392b01a06fdc1b24e8a90766890c6ff4, type: 3}
+  - {fileID: -5391527602426915064, guid: 392b01a06fdc1b24e8a90766890c6ff4, type: 3}
+  - {fileID: -8225385953719469307, guid: 392b01a06fdc1b24e8a90766890c6ff4, type: 3}
+  - {fileID: 6868685725679776305, guid: 392b01a06fdc1b24e8a90766890c6ff4, type: 3}
+  - {fileID: -5005915026814050071, guid: 392b01a06fdc1b24e8a90766890c6ff4, type: 3}
+  <IconSprites>k__BackingField:
   - {fileID: -1188201445, guid: fe2c6d178065d1e4fbc6c942cdfb5e66, type: 3}
   - {fileID: -482546266, guid: fe2c6d178065d1e4fbc6c942cdfb5e66, type: 3}
   - {fileID: 808554969, guid: fe2c6d178065d1e4fbc6c942cdfb5e66, type: 3}
@@ -56,7 +56,7 @@ MonoBehaviour:
   - {fileID: -572066782, guid: fe2c6d178065d1e4fbc6c942cdfb5e66, type: 3}
   - {fileID: 394354288, guid: fe2c6d178065d1e4fbc6c942cdfb5e66, type: 3}
   - {fileID: -43472016, guid: fe2c6d178065d1e4fbc6c942cdfb5e66, type: 3}
-  BackgroundColors:
+  <BackgroundColors>k__BackingField:
   - {r: 0.94509804, g: 0.5647059, b: 0.6, a: 1}
   - {r: 0.9764706, g: 0.7529412, b: 0.64705884, a: 1}
   - {r: 1, g: 0.9254902, b: 0.48235294, a: 1}

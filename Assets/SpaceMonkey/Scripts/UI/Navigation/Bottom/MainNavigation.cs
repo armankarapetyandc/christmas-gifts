@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using PlasticGui.WorkspaceWindow;
 using R3;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Views.Map;
 using UIService.Runtime.Core;
 using UIService.Runtime.Utilities;
 using UnityEngine;
@@ -90,6 +91,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
                 case MainNavigationType.None:
                     throw new Exception("Unable to select NONE view!");
                 case MainNavigationType.Map:
+                    await Controller.ShowPresenter<MapView>();
                     break;
                 case MainNavigationType.BusinessHub:
                     break;

@@ -1,25 +1,10 @@
 fileFormatVersion: 2
-guid: b89a87e2a499ef244b21643fadeab5ce
+guid: 5f33c691aa425462a93e23553f05dcb1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5053220257308913019
-    second: bg_shape (1)_0
-  - first:
-      213: -7796536524009040009
-    second: bg_shape (1)_1
-  - first:
-      213: 2960165731240327890
-    second: bg_shape (1)_2
-  - first:
-      213: 3098562073335614494
-    second: bg_shape (1)_3
-  - first:
-      213: -7140826077773368548
-    second: bg_shape (1)_4
-  - first:
-      213: 7925014034336182238
-    second: bg_shape (1)_5
+      213: 7181801048123617902
+    second: icn_r_medal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -61,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -141,133 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bg_shape_square
+      name: icn_r_medal_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1424
-        width: 310
-        height: 309
+        x: 1
+        y: 0
+        width: 103
+        height: 105
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b7da4b80d05a02640800000000000000
-      internalID: 5053220257308913019
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bg_shape_circle
-      rect:
-        serializedVersion: 2
-        x: 641
-        y: 1396
-        width: 338
-        height: 337
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7771518d6532dc390800000000000000
-      internalID: -7796536524009040009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bg_shape_star
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 742
-        width: 342
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2da3dd68c0f941920800000000000000
-      internalID: 2960165731240327890
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bg_shape_diamond
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 721
-        width: 342
-        height: 342
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e1ccaafe9cd400b20800000000000000
-      internalID: 3098562073335614494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bg_shape_triangle
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 86
-        width: 286
-        height: 252
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c13f8771480b6ec90800000000000000
-      internalID: -7140826077773368548
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bg_shape_pentagon
-      rect:
-        serializedVersion: 2
-        x: 663
-        y: 49
-        width: 294
-        height: 332
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: edfe794964e4bfd60800000000000000
-      internalID: 7925014034336182238
+      spriteID: e62bfe0a002eaa360800000000000000
+      internalID: 7181801048123617902
       vertices: []
       indices: 
       edges: []
@@ -276,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0c66424e8307ea848aa5ea666f3f07e9
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -286,12 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bg_shape_circle: -7796536524009040009
-      bg_shape_diamond: 3098562073335614494
-      bg_shape_pentagon: 7925014034336182238
-      bg_shape_square: 5053220257308913019
-      bg_shape_star: 2960165731240327890
-      bg_shape_triangle: -7140826077773368548
+      icn_r_medal_0: 7181801048123617902
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

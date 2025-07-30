@@ -6,9 +6,10 @@
         public uint Level { get; set; }
         public float Rating { get; set; }
 
-        public void SetCategory(string category)
+        public void SetCategory(string category, string categoryId)
         {
             Company.Category = category;
+            Company.CategoryId = categoryId;
         }
 
         public void SetCompanyName(string companyName)
@@ -40,6 +41,8 @@
     {
         public string CompanyName { get; set; }
         public string Category { get; set; }
+        
+        public string CategoryId { get; set; }
         public CompanyLogo Logo { get; set; }
         public string[] HashTags { get; set; }
     }

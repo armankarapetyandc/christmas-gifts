@@ -1,5 +1,6 @@
 ﻿using System;
 using R3;
+using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,28 +12,29 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private Image iconImage;
         [SerializeField] private Button button;
-        private IdeaInfo _ideaInfo;
+        
+        private BusinessIdeaAsset _ideaAsset;
 
-        public Observable<IdeaInfo> Selected => button.OnClickAsObservable().Select(_ => _ideaInfo);
+        public Observable<BusinessIdeaAsset> Selected => button.OnClickAsObservable().Select(_ => _ideaAsset);
 
-        public bool HasIdea => _ideaInfo != null;
+        public bool HasIdea => _ideaAsset != null;
 
 
-        internal void Set(IdeaInfo ideaInfo)
+        internal void Set(BusinessIdeaAsset ideaAsset)
         {
-            _ideaInfo = ideaInfo;
+            _ideaAsset = ideaAsset;
             UpdateUI();
         }
 
         private void UpdateUI()
         {
-            if (_ideaInfo == null)
+            if (_ideaAsset == null)
             {
                 throw new Exception("IdeaInfo is null");
             }
 
-            titleText.text = _ideaInfo.Name;
-            iconImage.sprite = _ideaInfo.Icon;
+            titleText.text = _ideaAsset.BusinessIdeaName;
+            iconImage.sprite = _ideaAsset.BusinessIdeaItemSprite;
         }
     }
 }

@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration;
 using SpaceMonkey.Scripts.UI.Views.Business.CategorySelection;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
@@ -24,7 +25,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
 
         public void OnNext()
         {
-            
+            //PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
         }
 
         public void SetCompanyLogoData(Sprite shapeSprite, Sprite iconSprite, Color backgroundColor)

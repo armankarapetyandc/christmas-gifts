@@ -9,6 +9,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
     {
         public MainNavigationController(PresenterService presenterService) : base(presenterService)
         {
+            
         }
         
         public UniTask ShowPresenter<T>(IPresenterData data = null) where T : BasePresenter

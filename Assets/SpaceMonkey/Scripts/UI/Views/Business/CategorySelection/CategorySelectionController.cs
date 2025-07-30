@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using Services.AssetDatabaseService;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup;
@@ -8,6 +9,7 @@ using SpaceMonkey.Scripts.UI.Views.Startup;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 {
@@ -23,10 +25,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
             _ideaAssetDatabase = ideaAssetDatabase;
         }
 
-        internal List<IdeaInfo> RetrieveIdeas()
+        // internal List<IdeaInfo> RetrieveIdeas()
+        // {
+        //     return _ideaAssetDatabase.Assets.Select(asset =>
+        //         new IdeaInfo(asset.BusinessIdeaName, asset.BusinessIdeaItemAsset)).ToList();
+        // }
+
+        internal List<BusinessIdeaAsset> RetrieveIdeas()
         {
-            return _ideaAssetDatabase.Assets.Select(asset =>
-                new IdeaInfo(asset.BusinessIdeaName, asset.BusinessIdeaItemAsset)).ToList();
+            return _ideaAssetDatabase.Assets;
         }
 
         public void Back()
@@ -38,10 +45,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         {
             PresenterService.HidePreviousAndShow<BusinessSetupView>().Forget();
         }
-
-        public void IdeaSelected(IdeaInfo ideaInfo)
+        
+        public void IdeaSelected(string ideaName, string ideaId)
         {
-            _accountService.Account.SetCategory(ideaInfo.Name);
+            _accountService.Account.SetCategory(ideaName, ideaId);
         }
     }
 }

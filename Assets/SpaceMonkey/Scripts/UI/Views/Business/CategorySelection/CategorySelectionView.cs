@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -74,11 +75,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
                 .AddTo(this);
         }
 
-        private void IdeaSelected(IdeaInfo ideaInfo)
+        private void IdeaSelected(BusinessIdeaAsset ideaInfo)
         {
-            Controller.IdeaSelected(ideaInfo);
-            selectedIdeaIconImage.sprite = ideaInfo.Icon;
-            selectedIdeaNameText.text = ideaInfo.Name;
+            Controller.IdeaSelected(ideaInfo.BusinessIdeaName, ideaInfo.Id);
+            selectedIdeaIconImage.sprite = ideaInfo.BusinessIdeaItemSprite;
+            selectedIdeaNameText.text = ideaInfo.BusinessIdeaName;
             categoryDetailsPanel.gameObject.SetActive(true);
             categorySelectionPanel.gameObject.SetActive(false);
         }

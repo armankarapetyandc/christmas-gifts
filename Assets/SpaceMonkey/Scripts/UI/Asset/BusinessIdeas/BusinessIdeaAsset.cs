@@ -6,10 +6,10 @@ namespace SpaceMonkey.Scripts.UI.Asset.BusinessIdeas
     [CreateAssetMenu(fileName = "BusinessIdeas", menuName = "SpaceMonkey/Resources/BusinessIdeasAsset", order = 0)]
     public class BusinessIdeaAsset : ScriptableAsset
     {
-        [SerializeField] private Sprite businessIdeaItemAsset;
+        [SerializeField] private Sprite businessIdeaItemSprite;
         [SerializeField] private string businessIdeaName;
 
-        public Sprite BusinessIdeaItemAsset => businessIdeaItemAsset;
+        public Sprite BusinessIdeaItemSprite => businessIdeaItemSprite;
         public string BusinessIdeaName => businessIdeaName;
     }
 }

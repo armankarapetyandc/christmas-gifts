@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Sports
   m_EditorClassIdentifier: 
   id: icn_r_sports
-  businessIdeaItemAsset: {fileID: 21300000, guid: 9f3a14219da854f87a880cf68f2b5ce7, type: 3}
+  businessIdeaItemSprite: {fileID: 21300000, guid: 9f3a14219da854f87a880cf68f2b5ce7, type: 3}
   businessIdeaName: Sports

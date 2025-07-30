@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Fashion
   m_EditorClassIdentifier: 
   id: icn_r_fashion
-  businessIdeaItemAsset: {fileID: 21300000, guid: 75bb548a2afa34fd0858e6d6d782779f, type: 3}
+  businessIdeaItemSprite: {fileID: 21300000, guid: 75bb548a2afa34fd0858e6d6d782779f, type: 3}
   businessIdeaName: Fashion

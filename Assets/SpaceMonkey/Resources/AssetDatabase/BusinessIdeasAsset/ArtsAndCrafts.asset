@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArtsAndCrafts
   m_EditorClassIdentifier: 
   id: icn_r_arts_crafts
-  businessIdeaItemAsset: {fileID: 21300000, guid: 91c4e145af6e1494fbe15959c9dde118, type: 3}
+  businessIdeaItemSprite: {fileID: 21300000, guid: 91c4e145af6e1494fbe15959c9dde118, type: 3}
   businessIdeaName: Arts & Crafts

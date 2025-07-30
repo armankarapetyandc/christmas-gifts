@@ -1,6 +1,5 @@
 ﻿using ContextLoaderService.Runtime;
 using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
-using SpaceMonkey.Scripts.UI.Asset.IconBuilder;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using UIService.Runtime.Installers;
@@ -17,7 +16,6 @@ namespace SpaceMonkey.Scripts.Installers.Project
         [SerializeField] private PopupPresenterView popupPresenterViewPrefab;
         [SerializeField] private NavigationPresenterView navigationPresenterViewPrefab;
         [SerializeField] private BusinessIdeaAssetDatabase businessIdeaAssetDatabase;
-        [SerializeField] private IconBuilderConfig  iconBuilderConfig;
 
         public override void InstallBindings()
         {
@@ -55,11 +53,6 @@ namespace SpaceMonkey.Scripts.Installers.Project
             Container
                 .BindInterfacesAndSelfTo<BusinessIdeaAssetDatabase>()
                 .FromInstance(businessIdeaAssetDatabase)
-                .AsSingle();
-            
-            Container
-                .BindInterfacesAndSelfTo<IconBuilderConfig>()
-                .FromInstance(iconBuilderConfig)
                 .AsSingle();
         }
 

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cooking
   m_EditorClassIdentifier: 
   id: icn_r_cooking
-  businessIdeaItemAsset: {fileID: 21300000, guid: e06b5914d4b2541dc9e296e536549c54, type: 3}
+  businessIdeaItemSprite: {fileID: 886175317221955490, guid: 99dfbc7fb559c412c939b6d01a0acae7, type: 3}
   businessIdeaName: Cooking
