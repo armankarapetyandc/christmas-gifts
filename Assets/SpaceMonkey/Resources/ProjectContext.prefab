@@ -79,4 +79,4 @@ MonoBehaviour:
   popupPresenterViewPrefab: {fileID: 530169136107966036, guid: 94410dca759a3b74bac8cc5e478f8c66, type: 3}
   navigationPresenterViewPrefab: {fileID: 7000274042814176345, guid: aefb6c610b96aea448c4c8bc6348142b, type: 3}
   businessIdeaAssetDatabase: {fileID: 11400000, guid: 933f85b67f8d845f48948530131e5bee, type: 2}
-  iconBuilderConfig: {fileID: 11400000, guid: cda9a1fb8b820402fac6ac02ab43c99b, type: 2}
+  dashboardAssetDatabase: {fileID: 11400000, guid: 907ca32ca9df647c4984591c34c3d614, type: 2}
