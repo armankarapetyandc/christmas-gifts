@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using R3;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder.items;
 using UnityEngine;
 
-namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels
+namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder
 {
     public class IconBuilderTab : MonoBehaviour
     {

@@ -35,13 +35,18 @@
             Company.Logo.Icon = iconSpriteName;
             Company.Logo.Background = backgroundColorHex;
         }
+
+        public void SetTags(string[] tags)
+        {
+            Company.HashTags = tags;
+        }
     }
 
     public class CompanyInfo
     {
         public string CompanyName { get; set; }
         public string Category { get; set; }
-        
+
         public string CategoryId { get; set; }
         public CompanyLogo Logo { get; set; }
         public string[] HashTags { get; set; }

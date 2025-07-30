@@ -25,13 +25,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
 
         public void OnNext()
         {
-            //PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
+            PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
         }
 
         public void SetCompanyLogoData(Sprite shapeSprite, Sprite iconSprite, Color backgroundColor)
         {
             _accountService.Account.SetCompanyLogo(shapeSprite.name, iconSprite.name,
                 ColorUtility.ToHtmlStringRGBA(backgroundColor));
+        }
+
+        public void SetCompanyHashTags(string[] tags)
+        {
+            _accountService.Account.SetTags(tags);
         }
     }
 }

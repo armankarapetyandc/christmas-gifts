@@ -57,6 +57,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
             //     Type = MainNavigationType.Map
             // }).Forget();
             _navigationPresenterService.Show<MainNavigation>();
+
+            _accountService.SaveAsync();
+            Debug.LogError(Application.persistentDataPath);
         }
 
         public string GetBusinessName()
