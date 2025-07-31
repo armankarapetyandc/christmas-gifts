@@ -50,11 +50,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
 
         public void OnNext()
         {
-            PresenterService.Hide();
-            _navigationPresenterService.Show<MainNavigation>();
-
-            _accountService.SaveAsync();
-            Debug.LogError(Application.persistentDataPath);
+            // _accountService.SaveAsync().Forget();
+            _navigationPresenterService.Show<MainNavigation>().Forget();
         }
 
         public string GetBusinessName()

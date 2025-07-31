@@ -6,7 +6,6 @@ using Zenject;
 
 namespace SpaceMonkey.Scripts.UI.Navigation.Core
 {
-    [RequireComponent(typeof(Canvas))]
     public abstract class NavigationPresenter : InitializablePresenter
     {
         public override UniTask Show()
@@ -21,10 +20,12 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Core
 
         public override void Disable()
         {
+            gameObject.SetActive(false);
         }
 
         public override void Enable()
         {
+            gameObject.SetActive(true);
         }
     }
 
