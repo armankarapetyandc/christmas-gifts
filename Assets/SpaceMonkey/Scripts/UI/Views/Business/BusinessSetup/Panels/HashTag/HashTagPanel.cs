@@ -4,6 +4,7 @@ using System.Linq;
 using ObservableCollections;
 using R3;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,7 +59,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
         {
             hashTagsComponent.Populate(_hashTagsConfig.Tags);
             hashTagsComponent.OnValueChanged.Subscribe(HashTagSelected).AddTo(this);
-            _selectedTags.ObserveCountChanged().Subscribe(SelectedTagsCountChanged).AddTo(this);
+            _selectedTags.ObserveCountChanged().StartWithValue(_selectedTags.Count).Subscribe(SelectedTagsCountChanged)
+                .AddTo(this);
             saveButton.OnClickAsObservable().Subscribe(_ => _saveCommand?.Execute(new Result(_selectedTags.ToArray())))
                 .AddTo(this);
         }
