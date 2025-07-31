@@ -1347,7 +1347,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57917cfb838c48978e16690263f3bf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSequence: []
+  animationSequence:
+  - animations:
+    - {fileID: 11400000, guid: fa016b951778fd644a0bfb284c26f7b5, type: 2}
   group: {fileID: 2710645030895143453}
   presenterHolder: {fileID: 6323633821264775275}
   dimmerButton: {fileID: 0}
