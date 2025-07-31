@@ -1,4 +1,5 @@
-﻿using R3;
+﻿using NameGenerator.Generators;
+using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDetails.Items;
@@ -22,6 +23,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
         [SerializeField] private RectTransform hashtagsContainer;
         [SerializeField] private Button saveButton;
 
+        private readonly GamerTagGenerator _gamerTagGenerator = new GamerTagGenerator();
+
         private readonly ReactiveCommand<Unit> _saveCommand = new ReactiveCommand<Unit>();
         internal Observable<Unit> SaveCommand => _saveCommand;
         internal Observable<Unit> OnIconButtonClicked => iconBuilderButton.OnClickAsObservable();
@@ -33,7 +36,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
 
         private void Start()
         {
+            generateBusinessNameButton.OnClickAsObservable().Subscribe(_ => GenerateName()).AddTo(this);
             saveButton.OnClickAsObservable().Subscribe(_ => SaveButtonClicked()).AddTo(this);
+        }
+
+        private void GenerateName()
+        {
+            businessNameInputField.text = _gamerTagGenerator.Generate();
         }
 
         private void SaveButtonClicked()
