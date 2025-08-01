@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: MainSceneConfigInstaller
   m_EditorClassIdentifier: 
   iconBuilderConfig: {fileID: 11400000, guid: cda9a1fb8b820402fac6ac02ab43c99b, type: 2}
+  productBuilderConfig: {fileID: 11400000, guid: a7a012e2126a6460c882c8eaa0342579, type: 2}
   hashTagsConfig: {fileID: 11400000, guid: 7011153d3c6e1454b906cbf15af82d13, type: 2}

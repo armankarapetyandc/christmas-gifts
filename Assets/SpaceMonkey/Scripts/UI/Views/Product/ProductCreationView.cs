@@ -20,8 +20,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         {
             productsPanel.OnAddButtonClicked.Subscribe(_ => NavigateToProductSetupPanel()).AddTo(this);
             productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);
-            //productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);
+            productIconBuilderPanel.SaveCommand.Subscribe(OnIconSelected).AddTo(this);
+            
             return UniTask.CompletedTask;
+        }
+        
+        private void OnIconSelected(ProductIconBuilderPanel.Result result)
+        {
+            //ToDo need to set product data in account info 
+            productSetupPanel.gameObject.SetActive(true);
+            productIconBuilderPanel.gameObject.SetActive(false);
+            productSetupPanel.SetProductIcon(result.IconSprite, result.BackgroundColor);
         }
 
         private void NavigateToProductIconBuilderPanel()

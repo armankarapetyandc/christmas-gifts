@@ -11,12 +11,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         [SerializeField] private Button iconCreationButton;
         [SerializeField] private Button saveButton;
         
+        [SerializeField] private Image iconImage;
+        [SerializeField] private Image backgroundImage;
+        
         internal Observable<Unit> OnIconButtonClicked => iconCreationButton.OnClickAsObservable();
 
-
-        private void Start()
+        public void SetProductIcon(Sprite icon, Color color)
         {
-            
+            backgroundImage.gameObject.SetActive(true);
+            backgroundImage.color = color;
+            iconImage.sprite = icon;
         }
     }
 }
