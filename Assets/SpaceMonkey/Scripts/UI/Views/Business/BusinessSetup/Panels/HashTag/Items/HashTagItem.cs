@@ -1,4 +1,6 @@
 ﻿using R3;
+using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Profile;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,12 +15,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag.Ite
         [SerializeField] private Sprite selectedStateSprite;
         [SerializeField] private Sprite deselectedStateSprite;
         [SerializeField] private TextMeshProUGUI text;
-        private string _hashtag;
+        private HashtagInfo _hashtag;
         [field: SerializeField] public RectTransform RectTransform { get; private set; }
         [field: SerializeField] public LayoutElement LayoutElement { get; private set; }
 
-        public Observable<(string, bool)> OnValueChanged =>
-            toggle.OnValueChangedAsObservable().Select(state => (_hashtag, state));
+        public Observable<(Hashtag, bool)> OnValueChanged =>
+            toggle.OnValueChangedAsObservable().Select(state => (Hashtag.FromHashtagInfo(_hashtag), state));
 
         private void Start()
         {
@@ -39,6 +41,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag.Ite
             {
                 return;
             }
+
             UpdateStateUI(toggle.isOn);
         }
 #endif
@@ -48,10 +51,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag.Ite
             image.sprite = state ? selectedStateSprite : deselectedStateSprite;
         }
 
-        public void SetText(string content)
+        public void SetText(HashtagInfo hashtag)
         {
-            _hashtag = content;
-            text.text = content;
+            _hashtag = hashtag;
+            text.text = hashtag.Tag;
         }
     }
 }

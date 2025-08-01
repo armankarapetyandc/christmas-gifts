@@ -12,4 +12,118 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06129bc55a0747adbe5829f647b96c3f, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  <Categories>k__BackingField: []
+  <Categories>k__BackingField:
+  - <Name>k__BackingField: Arts & Crafts
+    <Visual>k__BackingField: {fileID: 11400000, guid: 5062e0139ab614b4e94a7d2bf0c28d44, type: 2}
+    <Tags>k__BackingField: []
+  - <Name>k__BackingField: Cooking
+    <Visual>k__BackingField: {fileID: 11400000, guid: 5a583fd31d60e40abb7489415e520f49, type: 2}
+    <Tags>k__BackingField:
+    - <Tag>k__BackingField: '#Appetizers'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#BakedGoods'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#Breakfast'
+      <MaterialAdd>k__BackingField: 0.25
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#CatSnacks'
+      <MaterialAdd>k__BackingField: 0.3
+      <PackagingAdd>k__BackingField: -0.1
+    - <Tag>k__BackingField: '#ChocolateDreams'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0.2
+    - <Tag>k__BackingField: '#ChocolateLover'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#CookieLove'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#DairyFreeDelights'
+      <MaterialAdd>k__BackingField: -0.05
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#DarkChocolate'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#Desserts'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#DinnerTonight'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: -0.1
+    - <Tag>k__BackingField: '#DogFriendly'
+      <MaterialAdd>k__BackingField: 0.25
+      <PackagingAdd>k__BackingField: 0.2
+    - <Tag>k__BackingField: '#EatOrganic'
+      <MaterialAdd>k__BackingField: 0.3
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#FarmToTable'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#GlutenFree'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#Healthy'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#HomemadeDesserts'
+      <MaterialAdd>k__BackingField: -0.05
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#HomemadePetFood'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: -0.1
+    - <Tag>k__BackingField: '#KetoFriendly'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0.2
+    - <Tag>k__BackingField: '#MainCourse'
+      <MaterialAdd>k__BackingField: 0.25
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#Organic'
+      <MaterialAdd>k__BackingField: 0.3
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#Paleo'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#PastryPerfection'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#PetTreats'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#QuickMeals'
+      <MaterialAdd>k__BackingField: -0.05
+      <PackagingAdd>k__BackingField: -0.1
+    - <Tag>k__BackingField: '#Snacks'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0.2
+    - <Tag>k__BackingField: '#Soup'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#Spice'
+      <MaterialAdd>k__BackingField: 0.25
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#SweetTreats'
+      <MaterialAdd>k__BackingField: 0.3
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#VeganEats'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0
+    - <Tag>k__BackingField: '#Vegetarian'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: 0.1
+    - <Tag>k__BackingField: '#WholesomeFood'
+      <MaterialAdd>k__BackingField: 0
+      <PackagingAdd>k__BackingField: -0.1
+  - <Name>k__BackingField: Cosmetics
+    <Visual>k__BackingField: {fileID: 11400000, guid: 01f04df067cc6488ebd765c0c08c2ec5, type: 2}
+    <Tags>k__BackingField: []
+  - <Name>k__BackingField: Fashion
+    <Visual>k__BackingField: {fileID: 11400000, guid: 3ab1107ab869443029b110317919c6e7, type: 2}
+    <Tags>k__BackingField: []
+  - <Name>k__BackingField: Writing
+    <Visual>k__BackingField: {fileID: 11400000, guid: 74ce76a2e52a24caf87b33962389c906, type: 2}
+    <Tags>k__BackingField: []
+  - <Name>k__BackingField: Sports
+    <Visual>k__BackingField: {fileID: 11400000, guid: 7737b87ec5a5e44a7a19db891689649f, type: 2}
+    <Tags>k__BackingField: []

@@ -18,25 +18,27 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
             _accountService = accountService;
         }
 
-        public void OnBack()
+        internal void OnBack()
         {
             PresenterService.HidePreviousAndShow<CategorySelectionView>().Forget();
         }
 
-        public void OnNext()
+        internal void OnNext()
         {
             PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
         }
 
-        public void SetCompanyLogoData(Sprite shapeSprite, Sprite iconSprite, Color backgroundColor)
+        internal void SetCompanyLogoData(Sprite shapeSprite, Sprite iconSprite, Color backgroundColor)
         {
             _accountService.Account.SetCompanyLogo(shapeSprite.name, iconSprite.name,
                 ColorUtility.ToHtmlStringRGBA(backgroundColor));
         }
 
-        public void SetCompanyHashTags(string[] tags)
+        internal void SetCompanyHashTags(Hashtag[] tags)
         {
             _accountService.Account.SetTags(tags);
         }
+
+        internal string GetCurrentCategory() => _accountService.Account.Company.Category;
     }
 }

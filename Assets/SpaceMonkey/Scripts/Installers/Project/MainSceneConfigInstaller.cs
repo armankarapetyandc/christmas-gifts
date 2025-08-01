@@ -6,17 +6,15 @@ using Zenject;
 namespace SpaceMonkey.Scripts.Installers.Project
 {
     [CreateAssetMenu(fileName = "Main scene config installer", menuName = "Space Monkey/Installers/Main Scene Config")]
-
     public class MainSceneConfigInstaller : ScriptableObjectInstaller<MainSceneConfigInstaller>
     {
         [SerializeField] private IconBuilderConfig iconBuilderConfig;
-        [SerializeField] private HashTagsConfig hashTagsConfig;
+        [SerializeField] private GameConfig gameConfig;
 
         public override void InstallBindings()
         {
             Container.Bind<IconBuilderConfig>().FromInstance(iconBuilderConfig).AsSingle().NonLazy();
-            Container.Bind<HashTagsConfig>().FromInstance(hashTagsConfig).AsSingle().NonLazy();
+            Container.Bind<GameConfig>().FromInstance(gameConfig).AsSingle().NonLazy();
         }
-        
     }
 }

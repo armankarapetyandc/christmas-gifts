@@ -21,11 +21,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
         public override UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             shapeImage.sprite = Controller.ShapeSprite();
             iconImage.sprite = Controller.IconSprite();
             shapeImage.color = Controller.ShapeColor();
             businessName.text = Controller.GetBusinessName();
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             return UniTask.CompletedTask;
         }
 

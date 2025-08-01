@@ -1,4 +1,5 @@
-﻿using NameGenerator.Generators;
+﻿using System.Linq;
+using NameGenerator.Generators;
 using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
@@ -32,7 +33,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
 
 
         [Inject] private AccountService _accountService;
-        [Inject] private HashTagsConfig _hashTagsConfig;
+        [Inject] private GameConfig _gameConfig;
 
         private void Start()
         {
@@ -59,20 +60,23 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
             shapeImage.gameObject.SetActive(true);
         }
 
-        public void SetHashTags(string[] tags)
+        public void SetHashTags(string category, Hashtag[] tags)
         {
             while (hashtagsContainer.childCount > 0)
             {
                 Destroy(hashtagsContainer.GetChild(0).gameObject);
             }
 
-            foreach (string hashtag in tags)
+            var totalTagsInCategory =
+                _gameConfig.Categories.SingleOrDefault(info => info.Name == category)!.Tags.Length;
+
+            foreach (Hashtag hashtag in tags)
             {
                 var item = Instantiate(hashtagListItemPrefab, hashtagsContainer);
                 item.Set(hashtag);
             }
 
-            hashtagsCountText.text = $"{tags.Length}/{_hashTagsConfig.Tags.Length}";
+            hashtagsCountText.text = $"{tags.Length}/{totalTagsInCategory}";
         }
     }
 }

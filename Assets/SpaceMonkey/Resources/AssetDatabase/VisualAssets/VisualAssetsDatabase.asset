@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e857625d17e41979e8be31ff747c13d, type: 3}
-  m_Name: BusinessIdeasDatabase
+  m_Name: VisualAssetsDatabase
   m_EditorClassIdentifier: 
   assets:
   - {fileID: 11400000, guid: 5062e0139ab614b4e94a7d2bf0c28d44, type: 2}

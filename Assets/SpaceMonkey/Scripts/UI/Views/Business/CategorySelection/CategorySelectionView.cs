@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
-using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
+using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.UI.Asset;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -18,7 +19,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         [SerializeField] private RectTransform categoryDetailsPanel;
 
         [Header("Category Selection")] [SerializeField]
-        private IdeaItem[] ideaItems;
+        private CategoryItem[] categoryItems;
 
 
         [Header("Category Details")] [SerializeField]
@@ -33,7 +34,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
             backButton.OnClickAsObservable().Subscribe(_ => OnBackButtonClicked()).AddTo(this);
             infoButton.OnClickAsObservable().Subscribe(_ => OnInfoButtonClicked()).AddTo(this);
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
-            SetupIdeas();
+            SetupCategories();
             return UniTask.CompletedTask;
         }
 
@@ -57,29 +58,29 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
             }
         }
 
-        private void SetupIdeas()
+        private void SetupCategories()
         {
-            var ideas = Controller.RetrieveIdeas();
-            var count = Mathf.Min(ideaItems.Length, ideas.Count);
+            var categories = Controller.RetrieveIdeas();
+            var count = Mathf.Min(categoryItems.Length, categories.Length);
             for (int i = 0; i < count; i++)
             {
-                var item = ideaItems[i];
-                item.Set(ideas[i]);
+                var item = categoryItems[i];
+                item.Set(categories[i]);
             }
 
-            ideaItems
+            categoryItems
                 .Where(item => item.HasIdea)
                 .Select(item => item.Selected)
                 .Merge()
-                .Subscribe(IdeaSelected)
+                .Subscribe(CategorySelected)
                 .AddTo(this);
         }
 
-        private void IdeaSelected(BusinessIdeaAsset ideaInfo)
+        private void CategorySelected(CategoryInfo category)
         {
-            Controller.IdeaSelected(ideaInfo.BusinessIdeaName, ideaInfo.Id);
-            selectedIdeaIconImage.sprite = ideaInfo.BusinessIdeaItemSprite;
-            selectedIdeaNameText.text = ideaInfo.BusinessIdeaName;
+            Controller.IdeaSelected(category.Name);
+            selectedIdeaNameText.text = category.Name;
+            selectedIdeaIconImage.sprite = category.Visual.Sprite;
             categoryDetailsPanel.gameObject.SetActive(true);
             categorySelectionPanel.gameObject.SetActive(false);
         }

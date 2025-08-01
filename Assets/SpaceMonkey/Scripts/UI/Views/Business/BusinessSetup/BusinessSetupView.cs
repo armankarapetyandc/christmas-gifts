@@ -31,17 +31,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
             hashTagPanel.SaveCommand.Subscribe(OnHashTagsSelected).AddTo(this);
             return UniTask.CompletedTask;
         }
+        
+        private void NavigateToIconBuilderPanel()
+        {
+            detailsPanel.gameObject.SetActive(false);
+            iconBuilderPanel.gameObject.SetActive(true);
+        }
 
         private void NavigateToHashTagsPanel()
         {
             detailsPanel.gameObject.SetActive(false);
             hashTagPanel.gameObject.SetActive(true);
-        }
-
-        private void NavigateToIconBuilderPanel()
-        {
-            detailsPanel.gameObject.SetActive(false);
-            iconBuilderPanel.gameObject.SetActive(true);
         }
 
         private void OnIconSelected(IconBuilderPanel.Result result)
@@ -57,7 +57,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
             Controller.SetCompanyHashTags(result.Tags);
             hashTagPanel.gameObject.SetActive(false);
             detailsPanel.gameObject.SetActive(true);
-            detailsPanel.SetHashTags(result.Tags);
+            detailsPanel.SetHashTags(Controller.GetCurrentCategory(), result.Tags);
         }
 
         public override void Dispose()
