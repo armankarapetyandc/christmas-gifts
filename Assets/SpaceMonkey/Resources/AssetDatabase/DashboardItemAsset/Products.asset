@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f42d243e0241319a49b29956bd217c, type: 3}
   m_Name: Products
   m_EditorClassIdentifier: 
-  id: cell_icons
+  id: Product
   dashboardItemSprite: {fileID: 21300000, guid: 804351303b66a4266a44692feb2be2fc, type: 3}
   dashboardName: Products
