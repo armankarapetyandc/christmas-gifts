@@ -1,25 +1,52 @@
 fileFormatVersion: 2
-guid: 690333f1c72e5424a8f835838f1b8419
+guid: f30303f0f404f984aad33cc1e5a5899c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8230425997910418779
-    second: icn_r_cosmetics_0
+      213: 585489585357299884
+    second: spritesheet (2)_0
   - first:
-      213: 4052258930752455859
-    second: icn_r_cosmetics_1
+      213: 3213048799308102398
+    second: spritesheet (2)_1
   - first:
-      213: 1981155702645400687
-    second: icn_r_cosmetics_2
+      213: 4619062684799962818
+    second: spritesheet (2)_2
   - first:
-      213: 7775550134559011168
-    second: icn_r_cosmetics_3
+      213: -7543266853627613897
+    second: spritesheet (2)_3
   - first:
-      213: 5061283533976010603
-    second: icn_r_cosmetics_4
+      213: 7642487444960770648
+    second: spritesheet (2)_4
   - first:
-      213: 787897898379319906
-    second: icn_r_cosmetics_5
+      213: -8314218504887557038
+    second: spritesheet (2)_5
+  - first:
+      213: 4628161946674252807
+    second: spritesheet (2)_6
+  - first:
+      213: 2558845048347152661
+    second: spritesheet (2)_7
+  - first:
+      213: 6679592398122706825
+    second: spritesheet (2)_8
+  - first:
+      213: -8594432550802465286
+    second: spritesheet (2)_9
+  - first:
+      213: -4802321612694238476
+    second: spritesheet (2)_10
+  - first:
+      213: 3078060314560462942
+    second: spritesheet (2)_11
+  - first:
+      213: 3098028786718313110
+    second: spritesheet (2)_12
+  - first:
+      213: 5194832306232903171
+    second: spritesheet (2)_13
+  - first:
+      213: 5689387848350221610
+    second: spritesheet (2)_14
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -61,7 +88,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -141,133 +168,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: icn_r_cosmetics_0
+      name: categories_spritesheet_arts_and_crafts
       rect:
         serializedVersion: 2
-        x: 69
-        y: 161
-        width: 20
-        height: 20
+        x: 0
+        y: 240
+        width: 215
+        height: 224
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5aad86c5927a7cd80800000000000000
-      internalID: -8230425997910418779
+      spriteID: b010e29ab8927b14a89390fd17fdf435
+      internalID: -349116073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icn_r_cosmetics_1
+      name: categories_spritesheet_cooking
       rect:
         serializedVersion: 2
-        x: 109
-        y: 132
-        width: 64
-        height: 57
+        x: 231
+        y: 240
+        width: 215
+        height: 224
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3b4876917048c3830800000000000000
-      internalID: 4052258930752455859
+      spriteID: 471cb978311cfeb4cb8ef4bb5db4a6ec
+      internalID: -1122917346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icn_r_cosmetics_2
+      name: categories_spritesheet_sports
       rect:
         serializedVersion: 2
-        x: 11
-        y: 117
-        width: 47
-        height: 42
+        x: 462
+        y: 240
+        width: 215
+        height: 224
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f642bec6d9a7e7b10800000000000000
-      internalID: 1981155702645400687
+      spriteID: e04cbb6562d65c9438899a4587e2ed38
+      internalID: 1739921487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icn_r_cosmetics_3
+      name: categories_spritesheet_cosmetics
       rect:
         serializedVersion: 2
-        x: 11
-        y: 10
-        width: 102
-        height: 128
+        x: 0
+        y: 0
+        width: 215
+        height: 224
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 06171a796ad48eb60800000000000000
-      internalID: 7775550134559011168
+      spriteID: 0ea7635f82d4bd94e97edab595bd681d
+      internalID: -1030184729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icn_r_cosmetics_4
+      name: categories_spritesheet_fashon
       rect:
         serializedVersion: 2
-        x: 114
-        y: 38
-        width: 70
-        height: 72
+        x: 231
+        y: 0
+        width: 215
+        height: 224
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b6f7c2eee8a4d3640800000000000000
-      internalID: 5061283533976010603
+      spriteID: 9c356657dfa73ab4a8857e623427f49b
+      internalID: -176680455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icn_r_cosmetics_5
+      name: categories_spritesheet_writing
       rect:
         serializedVersion: 2
-        x: 98
-        y: 11
-        width: 20
-        height: 20
+        x: 462
+        y: 1
+        width: 215
+        height: 224
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 26a1d20d6fc2fea00800000000000000
-      internalID: 787897898379319906
+      spriteID: 5714af615512af24c90a9d9afc0472ef
+      internalID: -904301209
       vertices: []
       indices: 
       edges: []
@@ -276,7 +303,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 2387f88d21d7594469892b0c7624d297
     internalID: 0
     vertices: []
     indices: 
@@ -284,14 +311,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":2.0},"gridSpriteSize":{"x":215.0,"y":224.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":16.0,"y":16.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      icn_r_cosmetics_0: -8230425997910418779
-      icn_r_cosmetics_1: 4052258930752455859
-      icn_r_cosmetics_2: 1981155702645400687
-      icn_r_cosmetics_3: 7775550134559011168
-      icn_r_cosmetics_4: 5061283533976010603
-      icn_r_cosmetics_5: 787897898379319906
+      categories_spritesheet_arts_and_crafts: -349116073
+      categories_spritesheet_cooking: -1122917346
+      categories_spritesheet_cosmetics: -1030184729
+      categories_spritesheet_fashon: -176680455
+      categories_spritesheet_sports: 1739921487
+      categories_spritesheet_writing: -904301209
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

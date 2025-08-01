@@ -1,4 +1,7 @@
-﻿namespace SpaceMonkey.Scripts.Profile
+﻿using System;
+using SpaceMonkey.Scripts.Configs;
+
+namespace SpaceMonkey.Scripts.Profile
 {
     public class Account
     {
@@ -6,10 +9,9 @@
         public uint Level { get; set; }
         public float Rating { get; set; }
 
-        public void SetCategory(string category, string categoryId)
+        public void SetCategory(string category)
         {
             Company.Category = category;
-            Company.CategoryId = categoryId;
         }
 
         public void SetCompanyName(string companyName)
@@ -36,9 +38,9 @@
             Company.Logo.Background = backgroundColorHex;
         }
 
-        public void SetTags(string[] tags)
+        public void SetTags(Hashtag[] tags)
         {
-            Company.HashTags = tags;
+            Company.Tags = tags;
         }
     }
 
@@ -46,10 +48,8 @@
     {
         public string CompanyName { get; set; }
         public string Category { get; set; }
-
-        public string CategoryId { get; set; }
         public CompanyLogo Logo { get; set; }
-        public string[] HashTags { get; set; }
+        public Hashtag[] Tags { get; set; }
     }
 
     public class CompanyLogo
@@ -57,5 +57,44 @@
         public string Shape { get; set; }
         public string Icon { get; set; }
         public string Background { get; set; }
+    }
+
+    public class Hashtag : IEquatable<Hashtag>
+    {
+        public string Tag { get; set; }
+        public float MaterialAdd { get; set; }
+        public float PackagingAdd { get; set; }
+
+        public static Hashtag FromHashtagInfo(HashtagInfo info)
+        {
+            return new Hashtag
+            {
+                Tag = info.Tag,
+                MaterialAdd = info.MaterialAdd,
+                PackagingAdd = info.PackagingAdd
+            };
+        }
+
+        public bool Equals(Hashtag other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(this, other)) return true;
+            if (Tag == null && other.Tag == null) return true;
+            if (Tag == null || other.Tag == null) return false;
+            return Tag == other.Tag;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((Hashtag)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Tag != null ? Tag.GetHashCode() : 0;
+        }
     }
 }

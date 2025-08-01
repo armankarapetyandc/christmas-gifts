@@ -4,11 +4,13 @@ using System.Linq;
 using ObservableCollections;
 using R3;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Logger = DCLogger.Runtime.Logger;
 
 namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
 {
@@ -28,9 +30,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
 
         public class Result
         {
-            public string[] Tags { get; }
+            public Hashtag[] Tags { get; }
 
-            public Result(string[] tags)
+            public Result(Hashtag[] tags)
             {
                 Tags = tags;
             }
@@ -42,7 +44,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
         [SerializeField] private TextMeshProUGUI meterText;
         [SerializeField] private Button saveButton;
 
-        [Inject] private HashTagsConfig _hashTagsConfig;
+        [Inject] private GameConfig _gameConfig;
+        [Inject] private AccountService _accountService;
 
         private readonly Dictionary<int, MeterState> _meterMap = new Dictionary<int, MeterState>
         {
@@ -51,22 +54,30 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
             { 19, new MeterState("AWESOME!", "#01C73D") },
         };
 
-        private readonly ObservableHashSet<string> _selectedTags = new ObservableHashSet<string>();
+        private readonly ObservableHashSet<Hashtag> _selectedTags = new ObservableHashSet<Hashtag>();
         private readonly ReactiveCommand<Result> _saveCommand = new ReactiveCommand<Result>();
         internal Observable<Result> SaveCommand => _saveCommand;
 
         private void Start()
         {
-            hashTagsComponent.Populate(_hashTagsConfig.Tags);
-            hashTagsComponent.OnValueChanged.Subscribe(HashTagSelected).AddTo(this);
+            var tags = _gameConfig.Categories
+                .SingleOrDefault(info => info.Name == _accountService.Account.Company.Category)?.Tags;
             _selectedTags.ObserveCountChanged().StartWithValue(_selectedTags.Count).Subscribe(SelectedTagsCountChanged)
                 .AddTo(this);
+            _saveCommand.ChangeCanExecute(tags != null);
+            if (tags == null)
+            {
+                Logger.Log($"No tags found for the category: {_accountService.Account.Company.Category}");
+                return;
+            }
+
+            hashTagsComponent.Populate(tags).Subscribe(HashTagSelected).AddTo(this);
             saveButton.OnClickAsObservable().Subscribe(_ => _saveCommand?.Execute(new Result(_selectedTags.ToArray())))
                 .AddTo(this);
         }
 
 
-        private void HashTagSelected((string label, bool state) tuple)
+        private void HashTagSelected((Hashtag label, bool state) tuple)
         {
             if (tuple.state)
             {

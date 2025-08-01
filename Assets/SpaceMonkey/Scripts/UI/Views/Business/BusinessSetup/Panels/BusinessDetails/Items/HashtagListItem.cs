@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using SpaceMonkey.Scripts.Profile;
+using TMPro;
 using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDetails.Items
@@ -12,9 +13,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
             text = GetComponent<TextMeshProUGUI>();
         }
 
-        public void Set(string tag)
+        public void Set(Hashtag tag)
         {
-            text.text = tag;
+            text.text = tag.Tag;
         }
     }
 }

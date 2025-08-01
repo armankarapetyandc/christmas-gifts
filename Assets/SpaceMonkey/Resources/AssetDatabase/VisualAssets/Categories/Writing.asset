@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c646f9ac7a724972b80380044441b78c, type: 3}
-  m_Name: Cooking
+  m_Name: Writing
   m_EditorClassIdentifier: 
-  id: icn_r_cooking
-  businessIdeaItemSprite: {fileID: 886175317221955490, guid: 99dfbc7fb559c412c939b6d01a0acae7, type: 3}
-  businessIdeaName: Cooking
+  id: icn_r_writing
+  <Sprite>k__BackingField: {fileID: -904301209, guid: f30303f0f404f984aad33cc1e5a5899c, type: 3}

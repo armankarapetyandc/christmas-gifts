@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using R3;
+using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag.Items;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,21 +15,29 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
         [SerializeField] private RectTransform container;
         [SerializeField] private HorizontalFlowLayoutGroup flowLayoutGroup;
 
-        public Observable<(string, bool)> OnValueChanged => _items.Select(item => item.OnValueChanged).Merge();
-        
         private readonly List<HashTagItem> _items = new List<HashTagItem>();
 
         public int ItemsCount => _items.Count;
-        
-        public void Populate(string[] tags)
+
+        public Observable<(Hashtag, bool)> Populate(HashtagInfo[] tags)
         {
+            Cleanup();
             foreach (var hashtag in tags)
             {
                 var item = Instantiate(itemPrefab, container);
                 item.SetText(hashtag);
                 _items.Add(item);
             }
+
             AdjustItems();
+
+            return _items.Select(item => item.OnValueChanged).Merge();
+        }
+
+        public void Cleanup()
+        {
+            _items.ForEach(item => Destroy(item.gameObject));
+            LayoutRebuilder.ForceRebuildLayoutImmediate(container);
         }
 
         private void AdjustItems()

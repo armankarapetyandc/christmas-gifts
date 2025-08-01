@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Services.AssetDatabaseService;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
-using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
+using SpaceMonkey.Scripts.UI.Asset;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup;
 using SpaceMonkey.Scripts.UI.Views.Startup;
 using SpaceMonkey.Scripts.Utilities;
@@ -16,39 +17,32 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
     public class CategorySelectionController : BasePresenterController
     {
         private readonly AccountService _accountService;
-        private readonly BusinessIdeaAssetDatabase _ideaAssetDatabase;
+        private readonly GameConfig _gameConfig;
 
-        public CategorySelectionController(PresenterService presenterService, AccountService accountService,
-            BusinessIdeaAssetDatabase ideaAssetDatabase) : base(presenterService)
+        public CategorySelectionController(PresenterService presenterService, AccountService accountService,GameConfig gameConfig) : base(presenterService)
         {
             _accountService = accountService;
-            _ideaAssetDatabase = ideaAssetDatabase;
+            _gameConfig = gameConfig;
         }
 
-        // internal List<IdeaInfo> RetrieveIdeas()
-        // {
-        //     return _ideaAssetDatabase.Assets.Select(asset =>
-        //         new IdeaInfo(asset.BusinessIdeaName, asset.BusinessIdeaItemAsset)).ToList();
-        // }
-
-        internal List<BusinessIdeaAsset> RetrieveIdeas()
+        internal CategoryInfo[] RetrieveIdeas()
         {
-            return _ideaAssetDatabase.Assets;
+            return _gameConfig.Categories;
         }
 
-        public void Back()
+        internal void Back()
         {
             PresenterService.HidePreviousAndShow<StartupView>().Forget();
         }
 
-        public void OnNext()
+        internal void OnNext()
         {
             PresenterService.HidePreviousAndShow<BusinessSetupView>().Forget();
         }
-        
-        public void IdeaSelected(string ideaName, string ideaId)
+
+        internal void IdeaSelected(string category)
         {
-            _accountService.Account.SetCategory(ideaName, ideaId);
+            _accountService.Account.SetCategory(category);
         }
     }
 }

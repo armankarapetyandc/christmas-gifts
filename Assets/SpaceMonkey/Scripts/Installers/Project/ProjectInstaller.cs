@@ -1,11 +1,12 @@
 ﻿using ContextLoaderService.Runtime;
-using SpaceMonkey.Scripts.UI.Asset.BusinessIdeas;
+using SpaceMonkey.Scripts.UI.Asset;
 using SpaceMonkey.Scripts.UI.Asset.Dashboard;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using UIService.Runtime.Installers;
 using UIService.Runtime.Presenter;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace SpaceMonkey.Scripts.Installers.Project
@@ -16,7 +17,7 @@ namespace SpaceMonkey.Scripts.Installers.Project
         [SerializeField] private PresenterView presenterViewPrefab;
         [SerializeField] private PopupPresenterView popupPresenterViewPrefab;
         [SerializeField] private NavigationPresenterView navigationPresenterViewPrefab;
-        [SerializeField] private BusinessIdeaAssetDatabase businessIdeaAssetDatabase;
+        [FormerlySerializedAs("businessIdeaAssetDatabase")] [SerializeField] private VisualAssetDatabase visualAssetDatabase;
         [SerializeField] private DashboardAssetDatabase  dashboardAssetDatabase;
 
         public override void InstallBindings()
@@ -53,8 +54,8 @@ namespace SpaceMonkey.Scripts.Installers.Project
                 .NonLazy();
 
             Container
-                .BindInterfacesAndSelfTo<BusinessIdeaAssetDatabase>()
-                .FromInstance(businessIdeaAssetDatabase)
+                .BindInterfacesAndSelfTo<VisualAssetDatabase>()
+                .FromInstance(visualAssetDatabase)
                 .AsSingle();
             
             Container
