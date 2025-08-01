@@ -46,13 +46,13 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
                 .Where(item => item.HasItem)
                 .Select(item => item.SelectedItem)
                 .Merge()
-                .Subscribe(IteamSelected)
+                .Subscribe(ItemSelected)
                 .AddTo(this);
         }
 
-        private void IteamSelected(DashboardItemAsset item)
+        private void ItemSelected(DashboardItemAsset item)
         {
-            
+            Controller.ShowSelected(item.Id);
         }
 
         public override void Dispose()
