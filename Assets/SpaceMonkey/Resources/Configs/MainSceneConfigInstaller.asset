@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconBuilderConfig: {fileID: 11400000, guid: cda9a1fb8b820402fac6ac02ab43c99b, type: 2}
   gameConfig: {fileID: 11400000, guid: 8bd8fb9dc558ae84e9807eed23a9cea9, type: 2}
+  productIconBuilderConfig: {fileID: 11400000, guid: a7a012e2126a6460c882c8eaa0342579, type: 2}
