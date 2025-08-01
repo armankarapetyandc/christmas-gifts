@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
 using UIService.Runtime.Core;
 using UIService.Runtime.Utilities;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace SpaceMonkey.Scripts.UI.Navigation.Core
 {
@@ -34,12 +36,18 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Core
                 return activePanel;
             }
 
+            string id = Guid.NewGuid().ToString();
+
             T panelPrefab = await _asset.LoadPrefabAsync<T>(PanelPrefabsPath);
             T panel = Object.Instantiate(panelPrefab);
-            _panelShowObservable.Execute(panel);
+            panel.Disable();
             _activePanels.Add(panel);
-            panel.Initialize(data);
-            panel.Show();
+            await panel.Initialize(data);
+            _panelShowObservable.Execute(panel);
+            panel.CallBeforeShow();
+            panel.Enable();
+            await panel.Show();
+            panel.CallAfterShow();
             return panel;
         }
 

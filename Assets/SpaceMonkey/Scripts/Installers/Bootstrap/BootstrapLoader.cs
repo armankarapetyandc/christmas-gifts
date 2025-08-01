@@ -50,6 +50,7 @@ namespace SpaceMonkey.Scripts.Installers.Bootstrap
         {
             try
             {
+                Logger.Log($"Path: {Application.persistentDataPath}", SpaceMonkeyLogChannels.Default);
                 var configUnit = new ResourceLoadingUnit<BootstrapConfig>(_params.BoostrapConfigPath);
                 await _loadingService.BeginLoading(configUnit);
                 Application.targetFrameRate = configUnit.Result.TargetFrameRate;

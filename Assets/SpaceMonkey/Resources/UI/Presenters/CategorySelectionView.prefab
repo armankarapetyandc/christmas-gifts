@@ -2992,7 +2992,6 @@ MonoBehaviour:
   animationSequence:
   - animations:
     - {fileID: 11400000, guid: fa016b951778fd644a0bfb284c26f7b5, type: 2}
-    - {fileID: 11400000, guid: 681d52f69dd4ff14c9870382f6e5baf5, type: 2}
   group: {fileID: 7693603460627741350}
   presenterHolder: {fileID: 4081957406251875704}
   dimmerButton: {fileID: 0}

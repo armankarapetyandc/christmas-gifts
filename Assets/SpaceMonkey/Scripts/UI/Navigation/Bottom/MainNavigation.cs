@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using PlasticGui.WorkspaceWindow;
 using R3;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.BusinessHub;
@@ -85,6 +84,8 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
                 return;
             }
 
+            await UniTask.Yield();
+            
             _selected.Value = type;
 
             switch (type)
@@ -92,10 +93,10 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
                 case MainNavigationType.None:
                     throw new Exception("Unable to select NONE view!");
                 case MainNavigationType.Map:
-                    await Controller.ShowPresenter<MapView>();
+                    await Controller.HidePreviousAndShow<MapView>();
                     break;
                 case MainNavigationType.BusinessHub:
-                    await Controller.ShowPresenter<BusinessHubView>();
+                    await Controller.HidePreviousAndShow<BusinessHubView>();
                     break;
                 case MainNavigationType.Opportunities:
                     break;
