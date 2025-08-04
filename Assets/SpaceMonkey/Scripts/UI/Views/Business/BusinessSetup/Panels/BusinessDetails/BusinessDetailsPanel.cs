@@ -48,7 +48,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
 
         private void SaveButtonClicked()
         {
-            _accountService.Account.SetCompanyName(businessNameInputField.text);
+            _accountService.Model.Account.SetCompanyName(businessNameInputField.text);
         }
 
         internal void SetCompanyLogo(Sprite shapeSprite, Sprite iconSprite, Color backgroundColor)

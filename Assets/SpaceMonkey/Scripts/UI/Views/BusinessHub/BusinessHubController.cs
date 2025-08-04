@@ -33,24 +33,24 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         
         public Sprite ShapeSprite()
         {
-            return _iconBuilderConfig.GetShapeSprite(_accountService.Account.Company.Logo.Shape);
+            return _iconBuilderConfig.GetShapeSprite(_accountService.Model.Account.Company.Logo.Shape);
         }
 
         public Sprite IconSprite()
         {
-            return _iconBuilderConfig.GetIconSprite(_accountService.Account.Company.Logo.Icon);
+            return _iconBuilderConfig.GetIconSprite(_accountService.Model.Account.Company.Logo.Icon);
         }
 
         public Color ShapeColor()
         {
-            return ColorUtility.TryParseHtmlString("#" + _accountService.Account.Company.Logo.Background, out var color)
+            return ColorUtility.TryParseHtmlString("#" + _accountService.Model.Account.Company.Logo.Background, out var color)
                 ? color
                 : Color.white;
         }
         
         public string GetBusinessName()
         {
-            return _accountService.Account.Company.CompanyName;
+            return _accountService.Model.Account.Company.CompanyName;
         }
 
         public void ShowSelected(string selectedId)

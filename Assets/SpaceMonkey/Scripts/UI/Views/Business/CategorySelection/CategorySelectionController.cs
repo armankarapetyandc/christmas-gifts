@@ -42,7 +42,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
         internal void IdeaSelected(string category)
         {
-            _accountService.Account.SetCategory(category);
+            _accountService.Model.Account.SetCategory(category);
         }
     }
 }

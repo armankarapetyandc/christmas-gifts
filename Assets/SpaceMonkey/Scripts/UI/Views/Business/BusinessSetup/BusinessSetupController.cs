@@ -30,15 +30,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
 
         internal void SetCompanyLogoData(Sprite shapeSprite, Sprite iconSprite, Color backgroundColor)
         {
-            _accountService.Account.SetCompanyLogo(shapeSprite.name, iconSprite.name,
+            _accountService.Model.Account.SetCompanyLogo(shapeSprite.name, iconSprite.name,
                 ColorUtility.ToHtmlStringRGBA(backgroundColor));
         }
 
         internal void SetCompanyHashTags(Hashtag[] tags)
         {
-            _accountService.Account.SetTags(tags);
+            _accountService.Model.Account.SetTags(tags);
         }
 
-        internal string GetCurrentCategory() => _accountService.Account.Company.Category;
+        internal string GetCurrentCategory() => _accountService.Model.Account.Company.Category;
     }
 }

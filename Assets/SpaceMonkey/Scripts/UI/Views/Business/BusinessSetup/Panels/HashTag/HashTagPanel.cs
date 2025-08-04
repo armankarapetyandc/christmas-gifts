@@ -61,13 +61,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
         private void Start()
         {
             var tags = _gameConfig.Categories
-                .SingleOrDefault(info => info.Name == _accountService.Account.Company.Category)?.Tags;
+                .SingleOrDefault(info => info.Name == _accountService.Model.Account.Company.Category)?.Tags;
             _selectedTags.ObserveCountChanged().StartWithValue(_selectedTags.Count).Subscribe(SelectedTagsCountChanged)
                 .AddTo(this);
             _saveCommand.ChangeCanExecute(tags != null);
             if (tags == null)
             {
-                Logger.Log($"No tags found for the category: {_accountService.Account.Company.Category}");
+                Logger.Log($"No tags found for the category: {_accountService.Model.Account.Company.Category}");
                 return;
             }
 
