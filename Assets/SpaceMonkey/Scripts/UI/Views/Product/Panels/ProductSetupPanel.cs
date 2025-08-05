@@ -1,4 +1,5 @@
 using System.Linq;
+using NameGenerator.Generators;
 using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Extensions;
@@ -12,6 +13,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
     public class ProductSetupPanel : MonoBehaviour
     {
         [SerializeField] private TMP_InputField productName;
+        [SerializeField] private Button generateProductNameButton;
         [SerializeField] private Button iconCreationButton;
         [SerializeField] private Button saveButton;
         [SerializeField] private Image iconImage;
@@ -23,14 +25,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         [SerializeField] private ProductPriceSlider productPriceSlider;
         [SerializeField] private TextMeshProUGUI totalCostText;
         [SerializeField] private TextMeshProUGUI shippingCostText;
+        [SerializeField] private TextMeshProUGUI profitProductNameText;
 
         internal Observable<Unit> OnIconButtonClicked => iconCreationButton.OnClickAsObservable();
+        private readonly GamerTagGenerator _gamerTagGenerator = new GamerTagGenerator();
+
 
         [Inject] private AccountService _accountService;
 
 
         public void Start()
         {
+            generateProductNameButton.OnClickAsObservable().Subscribe(_ => GenerateProductName()).AddTo(this);
+            productName.onValueChanged.AsObservable().Subscribe(prodName => profitProductNameText.text = prodName).AddTo(this);
             timeToProductSlider.Setup(Constants.TimeToProduct, 1);
 
             bool isPriorityCategory = _accountService.Model.Account.Company.Category == "Cooking";
@@ -68,68 +75,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             }).AddTo(this);
         }
 
-
-        // public void Initialize(AccountModel accountServiceModel)
-        // {
-        //     _accountModel = accountServiceModel;
-        //     InitTtpSlider();
-        // }
-        //
-        // private void InitTtpSlider()
-        // {
-        //     timeToProductAbstractPriceSlider.value = 0;
-        //     tickMarks[(int)timeToProductAbstractPriceSlider.value].color = activeTickMarkColor;
-        //     timeToProductAbstractPriceSlider.minValue = 0;
-        //     timeToProductAbstractPriceSlider.maxValue = 4;
-        //     slowerButton.onClick.AddListener(() => ChangeStep(-1));
-        //     fasterButton.onClick.AddListener(() => ChangeStep(1));
-        //     timeToProductAbstractPriceSlider.OnValueChangedAsObservable().Subscribe(_ =>
-        //     {
-        //         slowerButton.interactable = timeToProductAbstractPriceSlider.value > 0;
-        //         fasterButton.interactable = timeToProductAbstractPriceSlider.value < 4;
-        //     });
-        // }
-        //
-        // private void ChangeStep(int direction)
-        // {
-        //     timeToProductAbstractPriceSlider.value = Mathf.Clamp(timeToProductAbstractPriceSlider.value + direction, timeToProductAbstractPriceSlider.minValue,
-        //         timeToProductAbstractPriceSlider.maxValue);
-        //     UpdateLabel();
-        // }
-        //
-        // private void UpdateLabel()
-        // {
-        //     if (timeToProductLabelText != null && timeToProductAbstractPriceSlider.value >= 0 &&
-        //         timeToProductAbstractPriceSlider.value <= timeToProductAbstractPriceSlider.maxValue)
-        //     {
-        //         var ttp = Constants.TimeToProduct.ElementAt((int)timeToProductAbstractPriceSlider.value);
-        //         timeToProductLabelText.text = ttp.Key;
-        //         tickMarks.Select((img, i) => new { img, i })
-        //             .ToList()
-        //             .ForEach(t =>
-        //                 t.img.color = (t.i == (int)timeToProductAbstractPriceSlider.value)
-        //                     ? activeTickMarkColor
-        //                     : defaultTickMarkColor);
-        //         _ttpCoefficient = ttp.Value;
-        //     }
-        // }
-        //
-        // public void SetProductIcon(Sprite icon, Color color)
-        // {
-        //     backgroundImage.gameObject.SetActive(true);
-        //     backgroundImage.color = color;
-        //     iconImage.sprite = icon;
-        // }
-        //
-        // private void CalculateTotalCost()
-        // {
-        //     _costs.TotalCost.Value = _costs.MaterialCost.Value + _costs.PackagingCost.Value + _ttpCoefficient;
-        // }
-        //
-        // private void CalculateTtpCost()
-        // {
-        //     var prodCost = _costs.MaterialCost.Value + 0.5f * _costs.PackagingCost.Value;
-        //     _costs.TtpCost.Value = _ttpCoefficient + prodCost;
-        // }
+        private void GenerateProductName()
+        {
+            var generatedName = _gamerTagGenerator.Generate();
+            productName.text = generatedName;
+            profitProductNameText.text = generatedName;
+        }
+        
+        public void SetProductIcon(Sprite icon, Color color)
+        {
+            backgroundImage.gameObject.SetActive(true);
+            backgroundImage.color = color;
+            iconImage.sprite = icon;
+        }
     }
 }

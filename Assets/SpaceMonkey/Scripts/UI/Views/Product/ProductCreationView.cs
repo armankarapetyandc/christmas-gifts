@@ -18,9 +18,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         
         public override UniTask Initialize(IPresenterData data = null)
         {
-            // productSetupPanel.Initialize(Controller.AccountService.Model);
+            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             productsPanel.OnAddButtonClicked.Subscribe(_ => NavigateToProductSetupPanel()).AddTo(this);
-            // productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);
+            productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);
             productIconBuilderPanel.SaveCommand.Subscribe(OnIconSelected).AddTo(this);
             
             return UniTask.CompletedTask;
@@ -31,7 +31,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             //ToDo need to set product data in account info 
             productSetupPanel.gameObject.SetActive(true);
             productIconBuilderPanel.gameObject.SetActive(false);
-            // productSetupPanel.SetProductIcon(result.IconSprite, result.BackgroundColor);
+            productSetupPanel.SetProductIcon(result.IconSprite, result.BackgroundColor);
         }
 
         private void NavigateToProductIconBuilderPanel()
