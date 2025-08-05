@@ -18,6 +18,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         
         public override UniTask Initialize(IPresenterData data = null)
         {
+            productSetupPanel.Initialize(Controller.AccountService.Account);
             productsPanel.OnAddButtonClicked.Subscribe(_ => NavigateToProductSetupPanel()).AddTo(this);
             productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);
             productIconBuilderPanel.SaveCommand.Subscribe(OnIconSelected).AddTo(this);
