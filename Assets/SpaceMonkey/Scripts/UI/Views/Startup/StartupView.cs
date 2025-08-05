@@ -21,7 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
         {
             Controller.UIInteractable.Subscribe(UIInteractableChanged).AddTo(this);
             startNewButton.OnClickAsObservable().Subscribe(_ => Controller.StartNewBusiness()).AddTo(this);
-            loadButton.OnClickAsObservable().Subscribe(_ => Controller.LoadCurrentBusiness()).AddTo(this);
+            loadButton.OnClickAsObservable().Subscribe(_ => Controller.LoadCurrentBusiness().Forget()).AddTo(this);
             socialButtons.Select(button => button.Selected).Merge().Subscribe(SocialPlatformSelected).AddTo(this);
             return UniTask.CompletedTask;
         }

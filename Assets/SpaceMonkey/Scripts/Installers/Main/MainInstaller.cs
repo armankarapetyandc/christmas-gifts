@@ -8,7 +8,7 @@ namespace SpaceMonkey.Scripts.Installers.Main
     {
         public override void InstallBindings()
         {
-            Container.Bind<AccountService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AccountService>().AsSingle();
             MainLoader.Installer.Install(Container);
         }
     }

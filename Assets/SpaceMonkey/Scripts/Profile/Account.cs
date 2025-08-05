@@ -8,6 +8,9 @@ namespace SpaceMonkey.Scripts.Profile
         public CompanyInfo Company { get; set; }
         public uint Level { get; set; }
         public float Rating { get; set; }
+        public float Money { get; set; }
+        public float ProductionCapacity { get; set; }
+        public float Score { get; set; }
 
         public void SetCategory(string category)
         {
@@ -26,7 +29,12 @@ namespace SpaceMonkey.Scripts.Profile
                 Company = new CompanyInfo
                 {
                     Logo = new CompanyLogo()
-                }
+                },
+                Level = 1,
+                Money = 300,
+                ProductionCapacity = 5,
+                Rating = 0,
+                Score = 0
             };
             return account;
         }

@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter;
@@ -8,8 +9,12 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
 {
     public class MainNavigationController : BasePresenterController
     {
-        public MainNavigationController(PresenterService presenterService) : base(presenterService)
+        private readonly NavigationPresenterService _navigationPresenterService;
+
+        public MainNavigationController(PresenterService presenterService,
+            NavigationPresenterService navigationPresenterService) : base(presenterService)
         {
+            _navigationPresenterService = navigationPresenterService;
         }
 
         public UniTask ShowPresenter<T>(IPresenterData data = null) where T : BasePresenter
@@ -20,6 +25,11 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
         public UniTask HidePreviousAndShow<T>(IPresenterData data = null) where T : BasePresenter
         {
             return PresenterService.HidePreviousAndShow<T>(data);
+        }
+
+        public void HideMainNavigation()
+        {
+            _navigationPresenterService.Hide<MainNavigation>();
         }
     }
 }

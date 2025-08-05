@@ -6,6 +6,7 @@ using R3;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.BusinessHub;
 using SpaceMonkey.Scripts.UI.Views.Map;
+using SpaceMonkey.Scripts.UI.Views.Startup;
 using UIService.Runtime.Core;
 using UIService.Runtime.Utilities;
 using UnityEngine;
@@ -77,7 +78,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
             SelectNavigation(defaultType);
         }
 
-        private async UniTask ShowView(MainNavigationType type)
+        private async UniTaskVoid ShowView(MainNavigationType type)
         {
             if (type == Selected.CurrentValue)
             {
@@ -85,7 +86,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
             }
 
             await UniTask.Yield();
-            
+
             _selected.Value = type;
 
             switch (type)
@@ -93,16 +94,18 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
                 case MainNavigationType.None:
                     throw new Exception("Unable to select NONE view!");
                 case MainNavigationType.Map:
-                    await Controller.HidePreviousAndShow<MapView>();
+                    Controller.HidePreviousAndShow<MapView>().Forget();
                     break;
                 case MainNavigationType.BusinessHub:
-                    await Controller.HidePreviousAndShow<BusinessHubView>();
+                    Controller.HidePreviousAndShow<BusinessHubView>().Forget();
                     break;
                 case MainNavigationType.Opportunities:
                     break;
                 case MainNavigationType.Medal:
                     break;
                 case MainNavigationType.More:
+                    Controller.HidePreviousAndShow<StartupView>().Forget();
+                    Controller.HideMainNavigation();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
