@@ -44,15 +44,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         internal Observable<Unit> OnIconButtonClicked => iconCreationButton.OnClickAsObservable();
 
         private float _ttpCoefficient;
-        private Account _account;
+        private AccountModel _accountModel;
         private Costs _costs = new Costs();
 
-        public void Initialize(Account account)
+        public void Initialize(AccountModel accountServiceModel)
         {
-            _account = account;
+            _accountModel = accountServiceModel;
             InitTtpSlider();
-            materialsSlider.Initialize(_account.Company.Tags);
-            packagingSlider.Initialize(_account.Company.Tags);
+            materialsSlider.Initialize(_accountModel.Account.Company.Tags);
+            packagingSlider.Initialize(_accountModel.Account.Company.Tags);
             materialsSlider.PriceChangeCommand.Subscribe(value =>
             {
                 _costs.MaterialCost.Value = value;
