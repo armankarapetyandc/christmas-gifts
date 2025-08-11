@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Asset.Product
@@ -11,9 +12,10 @@ namespace SpaceMonkey.Scripts.UI.Asset.Product
         
         public Sprite GetIconSprite(string iconName)
         {
+            var nameSprite = iconName.Split(' ').First();
             foreach (var sprite in IconSprites)
             {
-                if (sprite != null && sprite.name == iconName)
+                if (sprite != null && sprite.name == nameSprite)
                 {
                     return sprite;
                 }

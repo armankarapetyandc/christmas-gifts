@@ -1,3 +1,4 @@
+using System;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Product;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder;
@@ -28,6 +29,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         [SerializeField] private Image backgroundImage;
         
         [SerializeField] private IconBuilderTab iconBuilderTab;
+        [SerializeField] private Sprite defaultIconSpace;
+        [SerializeField] private Image iconHolder;
         
         [Inject] private ProductIconBuilderConfig _iconBuilderConfig;
         
@@ -58,6 +61,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         {
             backgroundImage.gameObject.SetActive(true);
             backgroundImage.color = color;
+        }
+
+        public void Reset()
+        {
+            builderIconImage.gameObject.SetActive(false);
+            iconHolder.sprite = defaultIconSpace;
+            backgroundImage.sprite = null;
+            backgroundImage.color = Color.white;
         }
     }
 }

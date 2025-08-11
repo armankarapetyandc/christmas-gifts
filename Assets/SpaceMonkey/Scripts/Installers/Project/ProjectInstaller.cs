@@ -1,6 +1,5 @@
 ﻿using ContextLoaderService.Runtime;
 using SpaceMonkey.Scripts.UI.Asset;
-using SpaceMonkey.Scripts.UI.Asset.Dashboard;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using UIService.Runtime.Installers;
@@ -18,7 +17,6 @@ namespace SpaceMonkey.Scripts.Installers.Project
         [SerializeField] private PopupPresenterView popupPresenterViewPrefab;
         [SerializeField] private NavigationPresenterView navigationPresenterViewPrefab;
         [FormerlySerializedAs("businessIdeaAssetDatabase")] [SerializeField] private VisualAssetDatabase visualAssetDatabase;
-        [SerializeField] private DashboardAssetDatabase  dashboardAssetDatabase;
 
         public override void InstallBindings()
         {
@@ -56,11 +54,6 @@ namespace SpaceMonkey.Scripts.Installers.Project
             Container
                 .BindInterfacesAndSelfTo<VisualAssetDatabase>()
                 .FromInstance(visualAssetDatabase)
-                .AsSingle();
-            
-            Container
-                .BindInterfacesAndSelfTo<DashboardAssetDatabase>()
-                .FromInstance(dashboardAssetDatabase)
                 .AsSingle();
         }
 

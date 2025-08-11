@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.UI.Views.Product;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.Profile
 {
@@ -11,6 +14,8 @@ namespace SpaceMonkey.Scripts.Profile
         public float Money { get; set; }
         public float ProductionCapacity { get; set; }
         public float Score { get; set; }
+        
+        public List<Product> Products { get; set; }
 
         public void SetCategory(string category)
         {
@@ -36,6 +41,7 @@ namespace SpaceMonkey.Scripts.Profile
                 Rating = 0,
                 Score = 0
             };
+            account.Products = new List<Product>();
             return account;
         }
 
@@ -65,6 +71,23 @@ namespace SpaceMonkey.Scripts.Profile
         public string Shape { get; set; }
         public string Icon { get; set; }
         public string Background { get; set; }
+    }
+
+    public class Product
+    {
+        public string ID { get; private set; }
+        public string Name { get; set; }
+        public string Icon { get; set; }
+        public string BackgroundColor { get; set; }
+        public float PackagingCost { get; set; }
+        public float MaterialCost { get; set; }
+        public float TotalCost { get; set; }
+        public float ShippingCost { get; set; }
+        public float Price { get; set; }
+        public float TtpCost { get; set; }
+        public float Profit {get; set;}
+        public float TimeToProduceIndex { get; set; }
+        
     }
 
     public class Hashtag : IEquatable<Hashtag>

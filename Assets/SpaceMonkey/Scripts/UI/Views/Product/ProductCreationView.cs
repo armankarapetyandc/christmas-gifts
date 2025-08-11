@@ -22,14 +22,50 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             productsPanel.OnAddButtonClicked.Subscribe(_ => NavigateToProductSetupPanel()).AddTo(this);
             productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);
             productIconBuilderPanel.SaveCommand.Subscribe(OnIconSelected).AddTo(this);
+            productSetupPanel.OnDeleteButtonClicked.Subscribe(data => DeleteSelectedProduct(data)).AddTo(this);
             
+            productSetupPanel.OnSaveButtonClicked.Subscribe(product =>
+            {
+                NavigateToProductPanel();
+                productsPanel.AddProduct(product);
+                Controller.AddNewProduct(product);
+                productIconBuilderPanel.Reset();
+            }).AddTo(this);
+            productsPanel.SelectedProductData.Subscribe(data =>
+            {
+                if (data != null)
+                {
+                    SetSetupPanel(data);
+                }
+            }).AddTo(this);
             return UniTask.CompletedTask;
         }
-        
+
+        private void DeleteSelectedProduct(ProductData data)
+        {
+            productsPanel.DeleteProduct(data);
+            Controller.DeleteDataFromAcount(data);
+            NavigateToProductPanel();
+        }
+
+        private void SetSetupPanel(ProductData productData)
+        {
+            NavigateToProductSetupPanel();
+            productSetupPanel.SetCurrentData(productData);
+        }
+
+        private void NavigateToProductPanel()
+        {
+            productSetupPanel.gameObject.SetActive(false);
+            productsPanel.gameObject.SetActive(true);
+            productSetupPanel.ChangeDeleteButtonState(false);
+        }
+
         private void OnIconSelected(ProductIconBuilderPanel.Result result)
         {
             //ToDo need to set product data in account info 
             productSetupPanel.gameObject.SetActive(true);
+            
             productIconBuilderPanel.gameObject.SetActive(false);
             productSetupPanel.SetProductIcon(result.IconSprite, result.BackgroundColor);
         }
@@ -38,15 +74,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         {
             productSetupPanel.gameObject.SetActive(false);
             productIconBuilderPanel.gameObject.SetActive(true);
+            productSetupPanel.ChangeDeleteButtonState(false);
         }
 
         private void NavigateToProductSetupPanel()
         {
             productsPanel.gameObject.SetActive(false);
             productSetupPanel.gameObject.SetActive(true);
+            productSetupPanel.ChangeDeleteButtonState(false);
         }
-
-
+        
         public override void Dispose()
         {
         }

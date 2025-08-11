@@ -21,7 +21,7 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(Account.CreateEmpty());
         }
 
-        public async UniTask SaveAsync()
+        public async UniTaskVoid SaveAsync()
         {
             if (Model?.Account == null)
             {

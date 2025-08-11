@@ -22,5 +22,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             base.Setup();
             SetSliderValue(defaultSliderValue);
         }
+ 
+        public override void Reset()
+        {
+            SetSliderValue(defaultSliderValue);
+        }
     }
 }

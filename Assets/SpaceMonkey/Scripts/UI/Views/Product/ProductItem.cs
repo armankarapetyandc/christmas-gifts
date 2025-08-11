@@ -8,29 +8,30 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
     public class ProductItem : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI productName;
-        [SerializeField] private TextMeshProUGUI productPrice;
+        [SerializeField] private TextMeshProUGUI prfitText;
         [SerializeField] private TextMeshProUGUI productDescription;
         [SerializeField] private Image backgroundImage;
         [SerializeField] private Image iconImage;
         [SerializeField] private Button button;
+
+        public ProductData ProductData { get; private set; }
         
-        private ProductData _data;
-        
-        public Observable<ProductData> Selected => button.OnClickAsObservable().Select(_ => _data);
+
+        public Observable<ProductData> Selected =>
+            button.OnClickAsObservable().Select(_ => ProductData);
 
         public void Initialize(ProductData data)
         {
-            _data = data;
+            ProductData = data;
             UpdateUI();
         }
 
         private void UpdateUI()
         {
-            productName.text = _data.ProductName;
-            productPrice.text = _data.ProductPrice;
-            productDescription.text = _data.ProductDescription;
-            backgroundImage.color = _data.BackgroundColor;
-            iconImage.sprite = _data.ProductSprite;
+            productName.text = ProductData.Name;
+            prfitText.text = $"${ProductData.Profit:F2}";
+            backgroundImage.color = ProductData.BackgroundColor;
+            iconImage.sprite = ProductData.Icon;
         }
     }
 }

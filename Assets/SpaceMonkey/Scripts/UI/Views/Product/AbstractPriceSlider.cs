@@ -1,5 +1,3 @@
-using System;
-using DG.DemiEditor.DeGUINodeSystem;
 using R3;
 using TMPro;
 using UnityEngine;
@@ -25,7 +23,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
                 _maximum.Value = max;
                 _current.Value = min; // Initialize current to minimum value
             }
-
             public void CalculateCurrent(float sliderValue)
             {
                 if (_maximum.CurrentValue <= _minimum.CurrentValue)
@@ -49,6 +46,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         [SerializeField] private float sliderStep = 5f;
 
         protected DataModel Model { get; private set; } = new();
+        public float SliderValue => slider.value;
 
         protected virtual void Setup()
         {
@@ -74,6 +72,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             slider.OnValueChangedAsObservable().Subscribe(value => Model.CalculateCurrent(value)).AddTo(this);
             increaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(sliderStep)).AddTo(this);
             decreaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(-sliderStep)).AddTo(this);
+        }
+
+        public virtual void Reset(){}
+        
+        public void SetInitValue(float value)
+        {
+            Model.CalculateCurrent(value);
         }
 
         private void ChangeSliderValue(float amount)

@@ -8,6 +8,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
     {
         [SerializeField] private TextMeshProUGUI profitText;
         [SerializeField] private float defaultSliderValue = 30f;
+        
+        private float _profit;
+        public ReadOnlyReactiveProperty<float> CurrentValue => Model.Current;
+        public float Profit => _profit;
 
         protected override void Setup()
         {
@@ -30,7 +34,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
 
         private float CalculateProfit(float currentValue)
         {
-            return currentValue - Model.Minimum.CurrentValue;
+           _profit = currentValue - Model.Minimum.CurrentValue; 
+            return _profit;
+        }
+
+        public override void Reset()
+        {
+            SetSliderValue(defaultSliderValue);
         }
     }
 }

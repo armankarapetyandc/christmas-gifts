@@ -1,12 +1,12 @@
-using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
-using SpaceMonkey.Scripts.UI.Asset.Dashboard;
+using SpaceMonkey.Scripts.Profile;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 {
@@ -18,9 +18,16 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private TextMeshProUGUI weekNumber;
         [SerializeField] private TextMeshProUGUI levelNumber;
         
-        [SerializeField] private Button startButton;
+        [SerializeField] private TextMeshProUGUI moneyText;
+        [SerializeField] private TextMeshProUGUI prodCapText;
+        [SerializeField] private TextMeshProUGUI scoreText;
         
-        [SerializeField] private DashboardItem[] dashboardItems;
+        
+        [SerializeField] private Button startButton;
+        [SerializeField] private Button productButton;
+        [SerializeField] private TextMeshProUGUI productsCountText;
+        
+        [Inject] private AccountService _accountService;
         
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -28,32 +35,16 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             iconImage.sprite = Controller.IconSprite();
             shapeImage.color = Controller.ShapeColor();
             businessName.text = Controller.GetBusinessName();
-            SetupItems();
+            levelNumber.text = $"Level {_accountService.Model.Account.Level.ToString()}";
+            moneyText.text = $"${_accountService.Model.Account.Money.ToString()}";
+            prodCapText.text = $"{_accountService.Model.ProductionCapacity.ToString()} hrs";
+            scoreText.text = _accountService.Model.Account.Score.ToString();
+            
+            productButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductView()).AddTo(this);
+            productsCountText.text = $"Products({_accountService.Model.Account.Products.Count.ToString()})";
             return UniTask.CompletedTask;
         }
-
-        private void SetupItems()
-        {
-            var items = Controller.RetrieveIdeas();
-            var count = Mathf.Min(dashboardItems.Length, items.Count);
-            for (int i = 0; i < count; i++)
-            {
-                var item = dashboardItems[i];
-                item.Set(items[i]);
-            }
-            
-            dashboardItems
-                .Where(item => item.HasItem)
-                .Select(item => item.SelectedItem)
-                .Merge()
-                .Subscribe(ItemSelected)
-                .AddTo(this);
-        }
-
-        private void ItemSelected(DashboardItemAsset item)
-        {
-            Controller.ShowSelected(item.Id);
-        }
+        
 
         public override void Dispose()
         {
