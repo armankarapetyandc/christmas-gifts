@@ -46,7 +46,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         private void DeleteSelectedProduct(ProductData data)
         {
             productsPanel.DeleteProduct(data);
-            Controller.DeleteDataFromAcount(data);
+            Controller.DeleteDataFromAccount(data);
             NavigateToProductPanel();
         }
 

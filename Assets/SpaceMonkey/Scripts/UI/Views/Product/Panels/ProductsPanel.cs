@@ -54,9 +54,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             {
                 if (productToDelete.gameObject != null)
                 {
-                    GameObject.Destroy(productToDelete.gameObject);
+                    Destroy(productToDelete.gameObject);
                 }
-                
+                    
                 _products.Remove(productToDelete);
             }
         }

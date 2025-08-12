@@ -46,7 +46,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             return newProduct.ID;
         }
 
-        public void DeleteDataFromAcount(ProductData prodData)
+        public void DeleteDataFromAccount(ProductData prodData)
         {
             var productToDelete = AccountService.Model.Account.Products.Find(data => data.ID == prodData.ID);
             if (productToDelete != null)
