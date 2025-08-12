@@ -24,9 +24,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             _navigationPresenterService.Show<MainNavigation>();
         }
 
-        public void AddNewProduct(ProductData productData)
+        public string AddNewProduct(ProductData productData)
         {
-            AccountService.Model.Account.Products.Add(new Profile.Product
+            var newProduct = new Profile.Product()
             {
                 Name = productData.Name,
                 Price = productData.Price,
@@ -38,19 +38,22 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
                 TimeToProduceIndex = productData.TimeToProduceIndex,
                 PackagingCost = productData.PackagingCost,
                 MaterialCost = productData.MaterialCost,
-                BackgroundColor = ColorUtility.ToHtmlStringRGBA(productData.BackgroundColor)
-            });
+                BackgroundColor = ColorUtility.ToHtmlStringRGBA(productData.BackgroundColor),
+            };
+            newProduct.GenerateID();
+            AccountService.Model.Account.Products.Add(newProduct);
             AccountService.SaveAsync().Forget();
+            return newProduct.ID;
         }
 
         public void DeleteDataFromAcount(ProductData prodData)
         {
-            var productToDelete = AccountService.Model.Account.Products.Find(data => data.Name == prodData.Name);
+            var productToDelete = AccountService.Model.Account.Products.Find(data => data.ID == prodData.ID);
             if (productToDelete != null)
             {
                 AccountService.Model.Account.Products.Remove(productToDelete);
             }
-
+            AccountService.SaveAsync().Forget();
         }
     }
 }

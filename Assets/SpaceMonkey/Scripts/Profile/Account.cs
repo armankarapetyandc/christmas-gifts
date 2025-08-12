@@ -87,7 +87,28 @@ namespace SpaceMonkey.Scripts.Profile
         public float TtpCost { get; set; }
         public float Profit {get; set;}
         public float TimeToProduceIndex { get; set; }
-        
+
+
+        public void GenerateID()
+        {
+            ID = Guid.NewGuid().ToString();
+        }
+
+        // public Product(ProductData productData)
+        // {
+        //     ID = Guid.NewGuid().ToString();
+        //     Name = productData.Name;
+        //     Price = productData.Price;
+        //     TtpCost = productData.TtpCost;
+        //     TotalCost = productData.TotalCost;
+        //     ShippingCost = productData.ShippingCost;
+        //     Profit = productData.Profit;
+        //     Icon = productData.Icon.ToString();
+        //     TimeToProduceIndex = productData.TimeToProduceIndex;
+        //     PackagingCost = productData.PackagingCost;
+        //     MaterialCost = productData.MaterialCost;
+        //     BackgroundColor = ColorUtility.ToHtmlStringRGBA(productData.BackgroundColor);
+        // }
     }
 
     public class Hashtag : IEquatable<Hashtag>

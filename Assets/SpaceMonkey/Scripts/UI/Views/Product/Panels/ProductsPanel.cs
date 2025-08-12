@@ -49,7 +49,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
 
         public void DeleteProduct(ProductData productData)
         {
-            var productToDelete = _products.Find(p => p.ProductData.Name == productData.Name);
+            var productToDelete = _products.Find(p => p.ProductData.ID == productData.ID);
             if (productToDelete != null)
             {
                 if (productToDelete.gameObject != null)

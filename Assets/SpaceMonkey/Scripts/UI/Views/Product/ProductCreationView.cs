@@ -27,8 +27,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             productSetupPanel.OnSaveButtonClicked.Subscribe(product =>
             {
                 NavigateToProductPanel();
+                var newProductId = Controller.AddNewProduct(product);
+                product.ID = newProductId;
                 productsPanel.AddProduct(product);
-                Controller.AddNewProduct(product);
+                
                 productIconBuilderPanel.Reset();
             }).AddTo(this);
             productsPanel.SelectedProductData.Subscribe(data =>

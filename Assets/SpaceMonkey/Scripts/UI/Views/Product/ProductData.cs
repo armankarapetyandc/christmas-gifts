@@ -4,6 +4,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
 {
     public class ProductData
     {
+        public string ID { get; set; } 
         public string Name { get; set; }
         public float TotalCost { get; set; }
         public float ShippingCost { get; set; }
