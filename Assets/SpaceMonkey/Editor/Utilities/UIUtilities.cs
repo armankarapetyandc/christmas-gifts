@@ -5,7 +5,7 @@ namespace SpaceMonkey.Editor.Utilities
 {
     public static class UIUtilities
     {
-        [MenuItem("Space Monkey/UI/Anchors to Corners %#w")]
+        [MenuItem("Space Monkey/UI/Anchors to Corners &c")]
         private static void AnchorsToCorners()
         {
             foreach (Transform transform in Selection.transforms)
