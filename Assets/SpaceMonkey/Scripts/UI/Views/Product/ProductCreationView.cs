@@ -20,9 +20,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         {
             backButton.OnClickAsObservable().Subscribe(_ =>
             {
-                Controller.OnBack();
                 if(productSetupPanel.gameObject.activeSelf) productSetupPanel.Reset();
                 if(productIconBuilderPanel.gameObject.activeSelf) productIconBuilderPanel.Reset();
+                Controller.OnBack();
             }).AddTo(this);
             productsPanel.OnAddButtonClicked.Subscribe(_ => NavigateToProductSetupPanel()).AddTo(this);
             productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);

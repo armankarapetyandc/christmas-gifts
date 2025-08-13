@@ -36,6 +36,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
         public override UniTask Initialize(IPresenterData data = null)
         {
             _data = (Data)data;
+            _selected.Value = defaultType;
             baseHolder.FitInSafeArea(FitmentType.Bottom);
             foreach (MainNavigationElement element in elements)
             {
@@ -51,8 +52,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
             }
 
             var navigateTo = _data?.Type ?? defaultType;
-            SelectNavigation(navigateTo);
-
+            ShowView(navigateTo).Forget();
             return UniTask.CompletedTask;
         }
 
@@ -80,19 +80,10 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
 
         private async UniTaskVoid ShowView(MainNavigationType type)
         {
-            if (type == Selected.CurrentValue)
-            {
-                return;
-            }
-
             await UniTask.Yield();
-
             _selected.Value = type;
-
             switch (type)
             {
-                case MainNavigationType.None:
-                    throw new Exception("Unable to select NONE view!");
                 case MainNavigationType.Map:
                     Controller.HidePreviousAndShow<MapView>().Forget();
                     break;
