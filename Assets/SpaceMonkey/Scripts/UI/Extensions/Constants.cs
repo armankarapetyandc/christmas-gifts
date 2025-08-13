@@ -17,5 +17,10 @@ namespace SpaceMonkey.Scripts.UI.Extensions
             { "Casual", 0.03f },
             { "Slipshod", 0.01f }
         };
+        
+        public static readonly List<string> PriorityCategories = new List<string>()
+        {
+            "Cooking"
+        };
     }
 }

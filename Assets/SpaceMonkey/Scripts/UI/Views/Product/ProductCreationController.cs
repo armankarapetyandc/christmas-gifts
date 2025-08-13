@@ -37,22 +37,22 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
                 TotalCost = productData.TotalCost,
                 ShippingCost = productData.ShippingCost,
                 Profit = productData.Profit,
-                Icon = productData.Icon.ToString(),
+                IconVisualAssetId = productData.Icon.ToString(),
                 TimeToProduceIndex = productData.TimeToProduceIndex,
                 PackagingCost = productData.PackagingCost,
                 MaterialCost = productData.MaterialCost,
                 BackgroundColor = ColorUtility.ToHtmlStringRGBA(productData.BackgroundColor),
             };
-            newProduct.GenerateID();
+            // newProduct.GenerateId();
             AccountService.Model.Account.Products.Add(newProduct);
             AccountService.SaveAsync().Forget();
-            return newProduct.ID;
+            return newProduct.Id;
         }
 
         public void DeleteDataFromAccount(ProductData prodData)
         {
             Debug.LogError(prodData.ID);
-            var productToDelete = AccountService.Model.Account.Products.Find(data => data.ID == prodData.ID);
+            var productToDelete = AccountService.Model.Account.Products.Find(data => data.Id == prodData.ID);
             if (productToDelete != null)
             {
                 AccountService.Model.Account.Products.Remove(productToDelete);
@@ -62,7 +62,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
 
         public void UpdateProduct(ProductData prodData)
         {
-            var productToUpdate = AccountService.Model.Account.Products.Find(data => data.ID == prodData.ID);
+            var productToUpdate = AccountService.Model.Account.Products.Find(data => data.Id == prodData.ID);
             if (productToUpdate != null)
             {
                 productToUpdate.Name = prodData.Name;
@@ -71,7 +71,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
                 productToUpdate.TotalCost = prodData.TotalCost;
                 productToUpdate.ShippingCost = prodData.ShippingCost;
                 productToUpdate.Profit = prodData.Profit;
-                productToUpdate.Icon = prodData.Icon.ToString();
+                productToUpdate.IconVisualAssetId = prodData.Icon.ToString();
                 productToUpdate.TimeToProduceIndex = prodData.TimeToProduceIndex;
                 productToUpdate.PackagingCost = prodData.PackagingCost;
                 productToUpdate.MaterialCost = prodData.MaterialCost;

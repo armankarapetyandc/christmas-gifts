@@ -17,7 +17,7 @@ namespace SpaceMonkey.Scripts.Installers.Project
         {
             Container.Bind<GameConfig>().FromInstance(gameConfig).AsSingle().NonLazy();
             Container.Bind<IconBuilderConfig>().FromInstance(iconBuilderConfig).AsSingle().NonLazy();
-            Container.Bind<ProductIconBuilderConfig>().FromInstance(productIconBuilderConfig).AsSingle().NonLazy();
+            // Container.Bind<ProductIconBuilderConfig>().FromInstance(productIconBuilderConfig).AsSingle().NonLazy();
         }
     }
 }

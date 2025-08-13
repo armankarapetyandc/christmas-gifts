@@ -75,9 +75,9 @@ namespace SpaceMonkey.Scripts.Profile
 
     public class Product
     {
-        public string ID { get; private set; }
+        public string Id { get; private set; }
         public string Name { get; set; }
-        public string Icon { get; set; }
+        public string IconVisualAssetId { get; set; }
         public string BackgroundColor { get; set; }
         public float PackagingCost { get; set; }
         public float MaterialCost { get; set; }
@@ -87,11 +87,12 @@ namespace SpaceMonkey.Scripts.Profile
         public float TtpCost { get; set; }
         public float Profit {get; set;}
         public float TimeToProduceIndex { get; set; }
-
-
-        public void GenerateID()
+        public static Product CreateEmpty()
         {
-            ID = Guid.NewGuid().ToString();
+            return new Product
+            {
+                Id = Guid.NewGuid().ToString()
+            };
         }
 
         // public Product(ProductData productData)

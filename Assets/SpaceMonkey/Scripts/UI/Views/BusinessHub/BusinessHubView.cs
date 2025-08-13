@@ -60,7 +60,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
                 firstProductBackgroundImage.color = Color.white;
                 var firstProd =  _accountService.Model.Account.Products[0];
                 firstProductBackgroundImage.color = BackgroundColor(firstProd.BackgroundColor);
-                firstProductIconImage.sprite = Icon(firstProd.Icon);
+                firstProductIconImage.sprite = Icon(firstProd.IconVisualAssetId);
             }
             else
             {

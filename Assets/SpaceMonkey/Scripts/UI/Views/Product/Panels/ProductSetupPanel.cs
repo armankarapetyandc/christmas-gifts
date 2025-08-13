@@ -127,9 +127,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             backgroundImage.gameObject.SetActive(true);
             
             SetUpSliders();
-            timeToProductSlider.SetInitValue(productData.TimeToProduceIndex);
-            materialPriceSlider.SetInitValue(productData.MaterialCost);
-            materialPackagingSlider.SetInitValue(productData.PackagingCost);
+            // timeToProductSlider.SetInitValue(productData.TimeToProduceIndex);
+            // materialPriceSlider.SetInitValue(productData.MaterialCost);
+            // materialPackagingSlider.SetInitValue(productData.PackagingCost);
             
             //InitCostTexts();
         }

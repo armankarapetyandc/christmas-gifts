@@ -1,5 +1,6 @@
 ﻿using System;
 using SpaceMonkey.Scripts.UI.Asset;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
 
 namespace SpaceMonkey.Scripts.Configs
@@ -14,7 +15,7 @@ namespace SpaceMonkey.Scripts.Configs
     public class CategoryInfo
     {
         [field: SerializeField] public string Name { get; private set; }
-        [field: SerializeField] public VisualAsset Visual { get; private set; }
+        [field: SerializeField] public SpriteVisualAsset Visual { get; private set; }
         [field: SerializeField] public HashtagInfo[] Tags { get; private set; }
     }
 

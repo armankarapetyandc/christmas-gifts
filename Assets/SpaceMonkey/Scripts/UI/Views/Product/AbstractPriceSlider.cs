@@ -76,11 +76,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
 
         public virtual void Reset(){}
         
-        public void SetInitValue(float value)
+        public void Set(float value)
         {
+            value = Mathf.Clamp(value, slider.minValue, slider.maxValue);
             SetSliderValue(value);
-            Debug.LogError($"value: {value}");
-            Model.CalculateCurrent(value);
         }
 
         private void ChangeSliderValue(float amount)
