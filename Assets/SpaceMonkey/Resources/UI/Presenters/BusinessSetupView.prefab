@@ -2798,7 +2798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6862745, g: 0.7372549, b: 0.8039216, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2834,7 +2834,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2846,15 +2846,15 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 0f12b842746b4498dbe1a95392ea1ad9, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: febdeae2670864b899578b12cd386b8a, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1248411122531471694}
   m_OnClick:
     m_PersistentCalls:
@@ -4281,6 +4281,8 @@ MonoBehaviour:
   hashtagListItemPrefab: {fileID: 3853984417075549117, guid: 28e895f0af3e52c4b8143089c3b36bd6, type: 3}
   hashtagsContainer: {fileID: 5332138015287030192}
   saveButton: {fileID: 6941167466526089148}
+  saveButtonText: {fileID: 9098868881227286420}
+  enableSaveButtonColor: {r: 0.22745098, g: 0.22745098, b: 0.22745098, a: 1}
 --- !u!1 &4754316826439292241
 GameObject:
   m_ObjectHideFlags: 0

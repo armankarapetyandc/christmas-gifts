@@ -1,6 +1,7 @@
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Product;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -23,6 +24,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         
         //[SerializeField] private Button backButton;
         [SerializeField] private Button saveButton;
+        [SerializeField] private TextMeshProUGUI saveButtonText;
+        [SerializeField] private Color selectedSaveTextColor;
      
         [SerializeField] private Image builderIconImage;
         [SerializeField] private Image backgroundImage;
@@ -54,6 +57,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         {
             builderIconImage.gameObject.SetActive(true);
             builderIconImage.sprite = sprite;
+            CheckPointsForSaveButton();
         }
         
         private void ColorSelected(Color color)
@@ -68,6 +72,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             iconHolder.sprite = defaultIconSprite;
             backgroundImage.sprite = defaultIconSprite;
             backgroundImage.color = Color.white;
+        }
+        
+        private void CheckPointsForSaveButton()
+        {
+            saveButton.interactable = builderIconImage.sprite != null;
+            saveButtonText.color = saveButton.interactable ? selectedSaveTextColor : Color.white;
+            
         }
     }
 }

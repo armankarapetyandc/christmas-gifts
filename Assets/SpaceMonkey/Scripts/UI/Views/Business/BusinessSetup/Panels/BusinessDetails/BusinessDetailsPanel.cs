@@ -23,6 +23,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
         [SerializeField] private HashtagListItem hashtagListItemPrefab;
         [SerializeField] private RectTransform hashtagsContainer;
         [SerializeField] private Button saveButton;
+        [SerializeField] private TextMeshProUGUI saveButtonText;
+        [SerializeField] private Color enableSaveButtonColor;
 
         private readonly GamerTagGenerator _gamerTagGenerator = new GamerTagGenerator();
 
@@ -39,11 +41,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
         {
             generateBusinessNameButton.OnClickAsObservable().Subscribe(_ => GenerateName()).AddTo(this);
             saveButton.OnClickAsObservable().Subscribe(_ => SaveButtonClicked()).AddTo(this);
+            businessNameInputField.onValueChanged.AsObservable().Subscribe(_ => CheckPointsForSaveButton()).AddTo(this);
         }
 
         private void GenerateName()
         {
             businessNameInputField.text = _gamerTagGenerator.Generate();
+            CheckPointsForSaveButton();
         }
 
         private void SaveButtonClicked()
@@ -58,6 +62,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
             shapeImage.color = backgroundColor;
 
             shapeImage.gameObject.SetActive(true);
+            CheckPointsForSaveButton();
         }
 
         public void SetHashTags(string category, Hashtag[] tags)
@@ -77,6 +82,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
             }
 
             hashtagsCountText.text = $"{tags.Length}/{totalTagsInCategory}";
+            CheckPointsForSaveButton();
+        }
+
+        private void CheckPointsForSaveButton()
+        {
+            saveButton.interactable = businessNameInputField.text.Length > 0 && iconImage.sprite != null &&
+                                      hashtagsContainer.childCount > 0;
+            saveButtonText.color = saveButton.interactable ? enableSaveButtonColor : Color.white;
+            
         }
     }
 }

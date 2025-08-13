@@ -59,7 +59,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             saveButton.OnClickAsObservable().Subscribe(_ => Reset()).AddTo(this);
             generateProductNameButton.OnClickAsObservable().Subscribe(_ => GenerateProductName()).AddTo(this);
             productName.onValueChanged.AsObservable().Subscribe(prodName => profitProductNameText.text = prodName).AddTo(this);
-            
+            productName.onValueChanged.AsObservable().Subscribe(_ => CheckPointsForSaveButton()).AddTo(this);
             SetUpSliders();
             InitCostTexts();
         }
@@ -90,6 +90,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             backgroundImage.gameObject.SetActive(true);
             backgroundImage.color = color;
             iconImage.sprite = icon;
+            CheckPointsForSaveButton();
         }
 
         public void ChangeDeleteButtonState(bool state)
@@ -176,6 +177,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
                 _productData.ShippingCost = shippingCost;
                 productPriceSlider.UpdateRange(totalCost, productMaxPrice);
             }).AddTo(this);
+        }
+        
+        private void CheckPointsForSaveButton()
+        {
+            saveButton.interactable = productName.text.Length > 0 && iconImage.sprite != null;
+            saveButtonText.color = saveButton.interactable ? selectedSaveTextColor : Color.white;
+            
         }
     }
 }
