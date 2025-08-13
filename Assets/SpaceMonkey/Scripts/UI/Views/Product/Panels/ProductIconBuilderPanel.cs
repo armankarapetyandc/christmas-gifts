@@ -1,9 +1,7 @@
-using System;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Product;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 

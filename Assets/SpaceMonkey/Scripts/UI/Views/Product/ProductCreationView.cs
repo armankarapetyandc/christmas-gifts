@@ -18,12 +18,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         
         public override UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ =>
-            {
-                if(productSetupPanel.gameObject.activeSelf) productSetupPanel.Reset();
-                if(productIconBuilderPanel.gameObject.activeSelf) productIconBuilderPanel.Reset();
-                // Controller.OnBack();
-            }).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ => BackButtonClicked()).AddTo(this);
             productsPanel.OnAddButtonClicked.Subscribe(_ => NavigateToProductSetupPanel()).AddTo(this);
             productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);
             productIconBuilderPanel.SaveCommand.Subscribe(OnIconSelected).AddTo(this);
@@ -98,6 +93,24 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             productsPanel.gameObject.SetActive(false);
             productSetupPanel.gameObject.SetActive(true);
             productSetupPanel.ChangeDeleteButtonState(false);
+        }
+        
+        private void BackButtonClicked()
+        {
+            if (productSetupPanel.gameObject.activeSelf)
+            {
+                NavigateToProductPanel();
+                productSetupPanel.Reset(); 
+                return;
+            }
+            if (productIconBuilderPanel.gameObject.activeSelf)
+            {
+                NavigateToProductSetupPanel();
+                productIconBuilderPanel.gameObject.SetActive(false);
+                productIconBuilderPanel.Reset();
+                return;
+            }
+            Controller.OnBack();
         }
         
         public override void Dispose()
