@@ -22,7 +22,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             {
                 if(productSetupPanel.gameObject.activeSelf) productSetupPanel.Reset();
                 if(productIconBuilderPanel.gameObject.activeSelf) productIconBuilderPanel.Reset();
-                Controller.OnBack();
+                // Controller.OnBack();
             }).AddTo(this);
             productsPanel.OnAddButtonClicked.Subscribe(_ => NavigateToProductSetupPanel()).AddTo(this);
             productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);
@@ -48,6 +48,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             }).AddTo(this);
             productsPanel.SelectedProductData.Subscribe(data =>
             {
+                Debug.LogError($"Selected product: {data?.ID}");
                 if (data != null)
                 {
                     SetSetupPanel(data);

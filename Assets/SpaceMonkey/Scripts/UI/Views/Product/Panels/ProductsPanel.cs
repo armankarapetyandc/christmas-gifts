@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ObservableCollections;
 using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Product;
@@ -16,11 +17,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         [SerializeField] private RectTransform productsContainer;
         [SerializeField] private Button addButton;
 
-        private List<ProductItem> _products = new List<ProductItem>();
-        private ReactiveProperty<ProductData> _selectedProductData = new ReactiveProperty<ProductData>();
-        
-        public ReadOnlyReactiveProperty<ProductData> SelectedProductData => _selectedProductData;
+        private readonly ObservableList<ProductItem> _products = new ObservableList<ProductItem>();
 
+        public Observable<ProductData> SelectedProductData =>
+            Observable.Merge(_products.ToObservable().Select(item => item.Selected).Merge(),
+                _products.ObserveAdd().Select(x => x.Value.Selected).Merge());
 
         internal Observable<Unit> OnAddButtonClicked => addButton.OnClickAsObservable();
         [Inject] private AccountService _accountService;
@@ -32,6 +33,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             {
                 AddProduct(new ProductData
                 {
+                    ID = product.ID,
                     Name = product.Name,
                     Price = product.Price,
                     TtpCost = product.TtpCost,
@@ -49,14 +51,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
 
         public void DeleteProduct(ProductData productData)
         {
-            var productToDelete = _products.Find(p => p.ProductData.ID == productData.ID);
+            var productToDelete = _products.FirstOrDefault(p => p.ProductData.ID == productData.ID);
             if (productToDelete != null)
             {
                 if (productToDelete.gameObject != null)
                 {
                     Destroy(productToDelete.gameObject);
                 }
-                    
+
                 _products.Remove(productToDelete);
             }
         }
@@ -73,28 +75,23 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         {
             var item = Instantiate(productPrefab, productsContainer);
             item.Initialize(productData);
-            item.Selected.Subscribe(_ =>
-            {
-                _selectedProductData.Value = productData;
-            });
             _products.Add(item);
         }
 
-            public void UpdateProduct(ProductData productData)
+        public void UpdateProduct(ProductData productData)
         {
             var product = _products.FirstOrDefault(p => p.ProductData.ID == productData.ID);
             if (product != null)
             {
                 product.Initialize(productData);
             }
-            
         }
 
         private Sprite Icon(string iconName)
         {
             try
             {
-               return _iconBuilderConfig.GetIconSprite(iconName);
+                return _iconBuilderConfig.GetIconSprite(iconName);
             }
             catch (Exception e)
             {
