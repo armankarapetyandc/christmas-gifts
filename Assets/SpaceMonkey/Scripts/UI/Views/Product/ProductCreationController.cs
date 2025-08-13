@@ -21,7 +21,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
 
         public void OnBack()
         {
-            _navigationPresenterService.Show<MainNavigation>();
+            _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+            {
+                Type = MainNavigationType.BusinessHub
+            });
         }
 
         public string AddNewProduct(ProductData productData)
@@ -48,10 +51,31 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
 
         public void DeleteDataFromAccount(ProductData prodData)
         {
+            Debug.LogError(prodData.ID);
             var productToDelete = AccountService.Model.Account.Products.Find(data => data.ID == prodData.ID);
             if (productToDelete != null)
             {
                 AccountService.Model.Account.Products.Remove(productToDelete);
+            }
+            AccountService.SaveAsync().Forget();
+        }
+
+        public void UpdateProduct(ProductData prodData)
+        {
+            var productToUpdate = AccountService.Model.Account.Products.Find(data => data.ID == prodData.ID);
+            if (productToUpdate != null)
+            {
+                productToUpdate.Name = prodData.Name;
+                productToUpdate.Price = prodData.Price;
+                productToUpdate.TtpCost = prodData.TtpCost;
+                productToUpdate.TotalCost = prodData.TotalCost;
+                productToUpdate.ShippingCost = prodData.ShippingCost;
+                productToUpdate.Profit = prodData.Profit;
+                productToUpdate.Icon = prodData.Icon.ToString();
+                productToUpdate.TimeToProduceIndex = prodData.TimeToProduceIndex;
+                productToUpdate.PackagingCost = prodData.PackagingCost;
+                productToUpdate.MaterialCost = prodData.MaterialCost;
+                productToUpdate.BackgroundColor = ColorUtility.ToHtmlStringRGBA(prodData.BackgroundColor);
             }
             AccountService.SaveAsync().Forget();
         }

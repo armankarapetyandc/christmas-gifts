@@ -18,19 +18,32 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         
         public override UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                Controller.OnBack();
+                if(productSetupPanel.gameObject.activeSelf) productSetupPanel.Reset();
+                if(productIconBuilderPanel.gameObject.activeSelf) productIconBuilderPanel.Reset();
+            }).AddTo(this);
             productsPanel.OnAddButtonClicked.Subscribe(_ => NavigateToProductSetupPanel()).AddTo(this);
             productSetupPanel.OnIconButtonClicked.Subscribe(_ => NavigateToProductIconBuilderPanel()).AddTo(this);
             productIconBuilderPanel.SaveCommand.Subscribe(OnIconSelected).AddTo(this);
             productSetupPanel.OnDeleteButtonClicked.Subscribe(data => DeleteSelectedProduct(data)).AddTo(this);
             
-            productSetupPanel.OnSaveButtonClicked.Subscribe(product =>
+            productSetupPanel.OnSaveButtonClicked.Subscribe(pair =>
             {
+                if (pair.Item1)
+                {
+                    productsPanel.UpdateProduct(pair.Item2);
+                    Controller.UpdateProduct(pair.Item2);
+                }
+                else
+                {
+                    var product = pair.Item2;
+                    var newProductId = Controller.AddNewProduct(product);
+                    product.ID = newProductId;
+                    productsPanel.AddProduct(product);
+                }
                 NavigateToProductPanel();
-                var newProductId = Controller.AddNewProduct(product);
-                product.ID = newProductId;
-                productsPanel.AddProduct(product);
-                
                 productIconBuilderPanel.Reset();
             }).AddTo(this);
             productsPanel.SelectedProductData.Subscribe(data =>

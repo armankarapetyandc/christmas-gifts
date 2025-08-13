@@ -21,7 +21,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         [SerializeField] private Image iconImage;
         [SerializeField] private Image backgroundImage;
         [SerializeField] private Image iconHolder;
-        [SerializeField] private Sprite defaultIconSpace;
+        [SerializeField] private Sprite defaultIconHolderSprite;
+        [SerializeField] private Sprite defaultIconSprite;
 
         [SerializeField] private TimeToProduceSlider timeToProductSlider;
         [SerializeField] private MaterialPriceSlider materialPriceSlider;
@@ -30,21 +31,24 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         [SerializeField] private TextMeshProUGUI totalCostText;
         [SerializeField] private TextMeshProUGUI shippingCostText;
         [SerializeField] private TextMeshProUGUI profitProductNameText;
+
+        [SerializeField] private TextMeshProUGUI saveButtonText;
+        [SerializeField] private Color selectedSaveTextColor;
         
         [SerializeField] private Button deleteButton;
         [SerializeField] private GameObject ftuePanel;
 
         internal Observable<Unit> OnIconButtonClicked => iconCreationButton.OnClickAsObservable();
 
-        internal Observable<ProductData> OnSaveButtonClicked =>
-            saveButton.OnClickAsObservable().Select(_ => CollectNewProductData());
+        internal Observable<(bool, ProductData)> OnSaveButtonClicked =>
+            saveButton.OnClickAsObservable().Select(_ => (_isExistingProduct, CollectNewProductData()));
         
         internal Observable<ProductData> OnDeleteButtonClicked => deleteButton.OnClickAsObservable().Select(_ => _productData);
 
         private readonly GamerTagGenerator _gamerTagGenerator = new GamerTagGenerator();
         private ProductData _productData;
-
-
+        private bool _isExistingProduct = false;
+        
         [Inject] private AccountService _accountService;
         [Inject] private ProductIconBuilderConfig _iconBuilderConfig;
 
@@ -55,44 +59,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             saveButton.OnClickAsObservable().Subscribe(_ => Reset()).AddTo(this);
             generateProductNameButton.OnClickAsObservable().Subscribe(_ => GenerateProductName()).AddTo(this);
             productName.onValueChanged.AsObservable().Subscribe(prodName => profitProductNameText.text = prodName).AddTo(this);
-            timeToProductSlider.Setup(Constants.TimeToProduct, 1);
             
-            bool isPriorityCategory = _accountService.Model.Account.Company.Category == "Cooking";
-            float materialAddCoefficient = _accountService.Model.Account.Company.Tags.Select(t => t.MaterialAdd).Sum();
-            materialPriceSlider.Setup(materialAddCoefficient, isPriorityCategory);
-
-            float packagingAddCoefficient =
-                _accountService.Model.Account.Company.Tags.Select(t => t.PackagingAdd).Sum();
-            materialPackagingSlider.Setup(packagingAddCoefficient, isPriorityCategory);
-
-
-            productPriceSlider.Prepare();
-
-            Observable.Merge(
-                timeToProductSlider.CurrentValue.Select(_ => Unit.Default),
-                materialPriceSlider.CurrentValue.Select(_ => Unit.Default),
-                materialPackagingSlider.CurrentValue.Select(_ => Unit.Default)
-            ).Subscribe(_ =>
-            {
-                var ttpCost = timeToProductSlider.CurrentValue.CurrentValue *
-                              (materialPriceSlider.CurrentValue.CurrentValue +
-                               materialPackagingSlider.CurrentValue.CurrentValue * 0.5f);
-
-                var totalCost = materialPriceSlider.CurrentValue.CurrentValue +
-                                materialPackagingSlider.CurrentValue.CurrentValue +
-                                ttpCost;
-
-                totalCostText.text = $"${totalCost:F2}";
-
-                var shippingCost = materialPackagingSlider.CurrentValue.CurrentValue * 0.1f + totalCost * 0.1f + 1.2f;
-                shippingCostText.text = $"+${shippingCost:F2}";
-
-                var productMaxPrice = totalCost * 3f;
-                _productData.TotalCost = totalCost;
-                _productData.TtpCost = ttpCost;
-                _productData.ShippingCost = shippingCost;
-                productPriceSlider.UpdateRange(totalCost, productMaxPrice);
-            }).AddTo(this);
+            SetUpSliders();
+            InitCostTexts();
         }
         
         private ProductData CollectNewProductData()
@@ -128,7 +97,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             deleteButton.gameObject.SetActive(state);
         }
 
-        private void Reset()
+        public void Reset()
         {
             timeToProductSlider.Reset();
             materialPackagingSlider.Reset();
@@ -136,15 +105,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             productPriceSlider.Reset();
             backgroundImage.gameObject.SetActive(false);
             iconImage.sprite = null;
-            backgroundImage.sprite = null;
-            backgroundImage.color = Color.white;
+            backgroundImage.sprite = defaultIconSprite;
             productName.text = string.Empty;
-            iconHolder.sprite = defaultIconSpace;
+            iconHolder.sprite = defaultIconHolderSprite;
            _productData.Reset();
+           _isExistingProduct = false;
         }
 
         public void SetCurrentData(ProductData productData)
         {
+            _isExistingProduct = true;
+            _productData = productData;
             ftuePanel.gameObject.SetActive(false);
             deleteButton.gameObject.SetActive(true);
             productName.text = productData.Name;
@@ -154,22 +125,57 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             iconImage.sprite = productData.Icon;
             backgroundImage.gameObject.SetActive(true);
             
+            SetUpSliders();
+            timeToProductSlider.SetInitValue(productData.TimeToProduceIndex);
+            materialPriceSlider.SetInitValue(productData.MaterialCost);
+            materialPackagingSlider.SetInitValue(productData.PackagingCost);
+            
+            //InitCostTexts();
+        }
+
+        private void SetUpSliders()
+        {
             timeToProductSlider.Setup(Constants.TimeToProduct, 1);
             
             bool isPriorityCategory = _accountService.Model.Account.Company.Category == "Cooking";
             float materialAddCoefficient = _accountService.Model.Account.Company.Tags.Select(t => t.MaterialAdd).Sum();
             materialPriceSlider.Setup(materialAddCoefficient, isPriorityCategory);
-            
+
             float packagingAddCoefficient =
                 _accountService.Model.Account.Company.Tags.Select(t => t.PackagingAdd).Sum();
             materialPackagingSlider.Setup(packagingAddCoefficient, isPriorityCategory);
-            
+
+
             productPriceSlider.Prepare();
-            
-            timeToProductSlider.SetInitValue(productData.TimeToProduceIndex);
-            materialPriceSlider.SetInitValue(productData.MaterialCost);
-            materialPackagingSlider.SetInitValue(productData.PackagingCost);
         }
-        
+
+        private void InitCostTexts()
+        {
+            Observable.Merge(
+                timeToProductSlider.CurrentValue.Select(_ => Unit.Default),
+                materialPriceSlider.CurrentValue.Select(_ => Unit.Default),
+                materialPackagingSlider.CurrentValue.Select(_ => Unit.Default)
+            ).Subscribe(_ =>
+            {
+                var ttpCost = timeToProductSlider.CurrentValue.CurrentValue *
+                              (materialPriceSlider.CurrentValue.CurrentValue +
+                               materialPackagingSlider.CurrentValue.CurrentValue * 0.5f);
+
+                var totalCost = materialPriceSlider.CurrentValue.CurrentValue +
+                                materialPackagingSlider.CurrentValue.CurrentValue +
+                                ttpCost;
+
+                totalCostText.text = $"${totalCost:F2}";
+
+                var shippingCost = materialPackagingSlider.CurrentValue.CurrentValue * 0.1f + totalCost * 0.1f + 1.2f;
+                shippingCostText.text = $"+${shippingCost:F2}";
+
+                var productMaxPrice = totalCost * 3f;
+                _productData.TotalCost = totalCost;
+                _productData.TtpCost = ttpCost;
+                _productData.ShippingCost = shippingCost;
+                productPriceSlider.UpdateRange(totalCost, productMaxPrice);
+            }).AddTo(this);
+        }
     }
 }

@@ -78,6 +78,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         
         public void SetInitValue(float value)
         {
+            SetSliderValue(value);
+            Debug.LogError($"value: {value}");
             Model.CalculateCurrent(value);
         }
 

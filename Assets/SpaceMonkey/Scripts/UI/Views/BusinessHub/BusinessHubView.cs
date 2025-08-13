@@ -1,6 +1,8 @@
+using System;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI.Asset.Product;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -26,8 +28,12 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private Button startButton;
         [SerializeField] private Button productButton;
         [SerializeField] private TextMeshProUGUI productsCountText;
+        [SerializeField] private Image firstProductBackgroundImage;
+        [SerializeField] private Image firstProductIconImage;
+        [SerializeField] private Color diselectedColor;
         
         [Inject] private AccountService _accountService;
+        [Inject] private ProductIconBuilderConfig _iconBuilderConfig;
         
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -42,7 +48,45 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             
             productButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductView()).AddTo(this);
             productsCountText.text = $"Products({_accountService.Model.Account.Products.Count.ToString()})";
+            SelectFirstProduct();
             return UniTask.CompletedTask;
+        }
+
+        private void SelectFirstProduct()
+        {
+            if (_accountService.Model.Account.Products.Count > 0)
+            {
+                firstProductIconImage.color = Color.white;
+                firstProductBackgroundImage.color = Color.white;
+                var firstProd =  _accountService.Model.Account.Products[0];
+                firstProductBackgroundImage.color = BackgroundColor(firstProd.BackgroundColor);
+                firstProductIconImage.sprite = Icon(firstProd.Icon);
+            }
+            else
+            {
+                firstProductBackgroundImage.color = diselectedColor;
+                firstProductIconImage.sprite = null;
+                firstProductIconImage.color = diselectedColor;
+            }
+        }
+        
+        private Color BackgroundColor(string backColor)
+        {
+            return ColorUtility.TryParseHtmlString("#" + backColor, out var color)
+                ? color
+                : Color.white;
+        }
+        
+        private Sprite Icon(string iconName)
+        {
+            try
+            {
+                return _iconBuilderConfig.GetIconSprite(iconName);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
         
 

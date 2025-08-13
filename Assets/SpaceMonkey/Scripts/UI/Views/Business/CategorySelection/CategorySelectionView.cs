@@ -2,7 +2,6 @@
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs;
-using SpaceMonkey.Scripts.UI.Asset;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;

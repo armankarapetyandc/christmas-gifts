@@ -43,6 +43,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder
         {
             for (var i = 0; i < shapeItems.Count; ++i)
             {
+                if (i == 0) ShapeSelected(_iconBuilderConfig.ShapesSprites[i]);
                 shapeItems[i].Set(_iconBuilderConfig.ShapesSprites[i]);
             }
 

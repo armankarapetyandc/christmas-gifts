@@ -3,6 +3,7 @@ using R3;
 using SpaceMonkey.Scripts.UI.Asset.Product;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -29,7 +30,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         [SerializeField] private Image backgroundImage;
         
         [SerializeField] private IconBuilderTab iconBuilderTab;
-        [SerializeField] private Sprite defaultIconSpace;
+        [SerializeField] private Sprite defaultIconSprite;
         [SerializeField] private Image iconHolder;
         
         [Inject] private ProductIconBuilderConfig _iconBuilderConfig;
@@ -66,8 +67,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         public void Reset()
         {
             builderIconImage.gameObject.SetActive(false);
-            iconHolder.sprite = defaultIconSpace;
-            backgroundImage.sprite = null;
+            iconHolder.sprite = defaultIconSprite;
+            backgroundImage.sprite = defaultIconSprite;
             backgroundImage.color = Color.white;
         }
     }

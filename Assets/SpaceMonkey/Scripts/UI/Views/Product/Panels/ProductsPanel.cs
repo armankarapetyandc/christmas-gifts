@@ -80,6 +80,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             _products.Add(item);
         }
 
+            public void UpdateProduct(ProductData productData)
+        {
+            var product = _products.FirstOrDefault(p => p.ProductData.ID == productData.ID);
+            if (product != null)
+            {
+                product.Initialize(productData);
+            }
+            
+        }
+
         private Sprite Icon(string iconName)
         {
             try

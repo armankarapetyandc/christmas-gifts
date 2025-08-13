@@ -48,9 +48,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
 
         private readonly Dictionary<int, MeterState> _meterMap = new Dictionary<int, MeterState>
         {
-            { 6, new MeterState("Meh...", "#FFB200") },
-            { 12, new MeterState("Warmer...", "#FFB200") },
-            { 19, new MeterState("AWESOME!", "#01C73D") },
+            { 1, new MeterState("Meh...", "#FFB200") },
+            { 2, new MeterState("Warmer...", "#FFB200") },
+            { 5, new MeterState("AWESOME!", "#01C73D") },
         };
 
         private readonly ObservableHashSet<Hashtag> _selectedTags = new ObservableHashSet<Hashtag>();
@@ -100,15 +100,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
 
             // Get the keys in ascending order
             var sortedKeys = _meterMap.Keys.OrderBy(k => k).ToList();
-
-            // Find the appropriate range
-            foreach (var key in sortedKeys)
-            {
-                if (value <= key)
-                {
-                    return (_meterMap[key], (float)value / hashTagsComponent.ItemsCount);
-                }
-            }
+            
+            if (value == 1) return (_meterMap[1], (float)value / hashTagsComponent.ItemsCount);
+            if (value >= 2 && value <= 4) return (_meterMap[2], (float)value / hashTagsComponent.ItemsCount);
+            return (_meterMap[5], (float)value / hashTagsComponent.ItemsCount);
 
             // If value is greater than the highest key (17+), return the last element
             return (_meterMap[sortedKeys.Last()], (float)value / hashTagsComponent.ItemsCount);
