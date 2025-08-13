@@ -19,9 +19,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
 
         private readonly ObservableList<ProductItem> _products = new ObservableList<ProductItem>();
 
-        public Observable<ProductData> SelectedProductData =>
-            Observable.Merge(_products.ToObservable().Select(item => item.Selected).Merge(),
-                _products.ObserveAdd().Select(x => x.Value.Selected).Merge());
+        private Observable<ProductData> _selectedProductDataObservable = Observable.Empty<ProductData>();
+        public Observable<ProductData> SelectedProductData => _selectedProductDataObservable;
 
         internal Observable<Unit> OnAddButtonClicked => addButton.OnClickAsObservable();
         [Inject] private AccountService _accountService;
@@ -76,6 +75,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
             var item = Instantiate(productPrefab, productsContainer);
             item.Initialize(productData);
             _products.Add(item);
+            _selectedProductDataObservable = Observable.Merge(_selectedProductDataObservable, item.Selected);
         }
 
         public void UpdateProduct(ProductData productData)
