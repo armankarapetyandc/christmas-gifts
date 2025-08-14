@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfeab7d1e5c4baf95cc5b04fd5922d6, type: 3}
+  m_Name: cooking_spritesheet_9_VisualAsset
+  m_EditorClassIdentifier: 
+  id: cooking_spritesheet_9
+  <Sprite>k__BackingField: {fileID: -6617243605464150304, guid: 1765857635e982c4cb77051457d65f9a, type: 3}
+  <Category>k__BackingField: Cooking

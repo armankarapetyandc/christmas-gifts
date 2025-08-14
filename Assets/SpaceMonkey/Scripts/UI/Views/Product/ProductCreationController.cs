@@ -19,65 +19,65 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             _navigationPresenterService = navigationPresenterService;
         }
 
-        public void OnBack()
-        {
-            _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
-            {
-                Type = MainNavigationType.BusinessHub
-            });
-        }
-
-        public string AddNewProduct(ProductData productData)
-        {
-            var newProduct = new Profile.Product()
-            {
-                Name = productData.Name,
-                Price = productData.Price,
-                TtpCost = productData.TtpCost,
-                TotalCost = productData.TotalCost,
-                ShippingCost = productData.ShippingCost,
-                Profit = productData.Profit,
-                IconVisualAssetId = productData.Icon.ToString(),
-                TimeToProduceIndex = productData.TimeToProduceIndex,
-                PackagingCost = productData.PackagingCost,
-                MaterialCost = productData.MaterialCost,
-                BackgroundColor = ColorUtility.ToHtmlStringRGBA(productData.BackgroundColor),
-            };
-            // newProduct.GenerateId();
-            AccountService.Model.Account.Products.Add(newProduct);
-            AccountService.SaveAsync().Forget();
-            return newProduct.Id;
-        }
-
-        public void DeleteDataFromAccount(ProductData prodData)
-        {
-            Debug.LogError(prodData.ID);
-            var productToDelete = AccountService.Model.Account.Products.Find(data => data.Id == prodData.ID);
-            if (productToDelete != null)
-            {
-                AccountService.Model.Account.Products.Remove(productToDelete);
-            }
-            AccountService.SaveAsync().Forget();
-        }
-
-        public void UpdateProduct(ProductData prodData)
-        {
-            var productToUpdate = AccountService.Model.Account.Products.Find(data => data.Id == prodData.ID);
-            if (productToUpdate != null)
-            {
-                productToUpdate.Name = prodData.Name;
-                productToUpdate.Price = prodData.Price;
-                productToUpdate.TtpCost = prodData.TtpCost;
-                productToUpdate.TotalCost = prodData.TotalCost;
-                productToUpdate.ShippingCost = prodData.ShippingCost;
-                productToUpdate.Profit = prodData.Profit;
-                productToUpdate.IconVisualAssetId = prodData.Icon.ToString();
-                productToUpdate.TimeToProduceIndex = prodData.TimeToProduceIndex;
-                productToUpdate.PackagingCost = prodData.PackagingCost;
-                productToUpdate.MaterialCost = prodData.MaterialCost;
-                productToUpdate.BackgroundColor = ColorUtility.ToHtmlStringRGBA(prodData.BackgroundColor);
-            }
-            AccountService.SaveAsync().Forget();
-        }
+        // public void OnBack()
+        // {
+        //     _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+        //     {
+        //         Type = MainNavigationType.BusinessHub
+        //     });
+        // }
+        //
+        // public string AddNewProduct(ProductData productData)
+        // {
+        //     var newProduct = new Profile.Product()
+        //     {
+        //         Name = productData.Name,
+        //         Price = productData.Price,
+        //         TtpCost = productData.TtpCost,
+        //         TotalCost = productData.TotalCost,
+        //         ShippingCost = productData.ShippingCost,
+        //         Profit = productData.Profit,
+        //         IconVisualAssetId = productData.Icon.ToString(),
+        //         TimeToProduceIndex = productData.TimeToProduceIndex,
+        //         PackagingCost = productData.PackagingCost,
+        //         MaterialCost = productData.MaterialCost,
+        //         BackgroundColor = ColorUtility.ToHtmlStringRGBA(productData.BackgroundColor),
+        //     };
+        //     // newProduct.GenerateId();
+        //     AccountService.Model.Account.Products.Add(newProduct);
+        //     AccountService.SaveAsync().Forget();
+        //     return newProduct.Id;
+        // }
+        //
+        // public void DeleteDataFromAccount(ProductData prodData)
+        // {
+        //     Debug.LogError(prodData.ID);
+        //     var productToDelete = AccountService.Model.Account.Products.Find(data => data.Id == prodData.ID);
+        //     if (productToDelete != null)
+        //     {
+        //         AccountService.Model.Account.Products.Remove(productToDelete);
+        //     }
+        //     AccountService.SaveAsync().Forget();
+        // }
+        //
+        // public void UpdateProduct(ProductData prodData)
+        // {
+        //     var productToUpdate = AccountService.Model.Account.Products.Find(data => data.Id == prodData.ID);
+        //     if (productToUpdate != null)
+        //     {
+        //         productToUpdate.Name = prodData.Name;
+        //         productToUpdate.Price = prodData.Price;
+        //         productToUpdate.TtpCost = prodData.TtpCost;
+        //         productToUpdate.TotalCost = prodData.TotalCost;
+        //         productToUpdate.ShippingCost = prodData.ShippingCost;
+        //         productToUpdate.Profit = prodData.Profit;
+        //         productToUpdate.IconVisualAssetId = prodData.Icon.ToString();
+        //         productToUpdate.TimeToProduceIndex = prodData.TimeToProduceIndex;
+        //         productToUpdate.PackagingCost = prodData.PackagingCost;
+        //         productToUpdate.MaterialCost = prodData.MaterialCost;
+        //         productToUpdate.BackgroundColor = ColorUtility.ToHtmlStringRGBA(prodData.BackgroundColor);
+        //     }
+        //     AccountService.SaveAsync().Forget();
+        // }
     }
 }

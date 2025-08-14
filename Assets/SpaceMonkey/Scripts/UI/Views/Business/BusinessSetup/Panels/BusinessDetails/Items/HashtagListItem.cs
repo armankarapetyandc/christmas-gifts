@@ -1,4 +1,4 @@
-﻿using SpaceMonkey.Scripts.Profile;
+﻿using R3;
 using TMPro;
 using UnityEngine;
 
@@ -7,15 +7,29 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
     public class HashtagListItem : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI text;
+        [SerializeField] private Color selectedColor;
+        [SerializeField] private Color deselectedColor;
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
             text = GetComponent<TextMeshProUGUI>();
+            text.color = deselectedColor;
+        }
+#endif
+        public void Set(string value)
+        {
+            text.text = value;
         }
 
-        public void Set(Hashtag tag)
+        public void Select()
         {
-            text.text = tag.Tag;
+            text.color = selectedColor;
+        }
+
+        public void Deselect()
+        {
+            text.color = deselectedColor;
         }
     }
 }

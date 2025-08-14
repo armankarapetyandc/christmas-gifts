@@ -17,7 +17,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
     {
         [SerializeField] private Button backButton;
         [SerializeField] private BusinessDetailsPanel detailsPanel;
-        [SerializeField] private IconBuilderPanel iconBuilderPanel;
         [SerializeField] private HashTagPanel hashTagPanel;
         [SerializeField] private Button saveButton;
 
@@ -27,15 +26,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
             saveButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             detailsPanel.OnIconButtonClicked.Subscribe(_ => NavigateToIconBuilderPanel()).AddTo(this);
             detailsPanel.OnHashtagButtonClicked.Subscribe(_ => NavigateToHashTagsPanel()).AddTo(this);
-            iconBuilderPanel.SaveCommand.Subscribe(OnIconSelected).AddTo(this);
+            // iconBuilderPanel.SaveCommand.Subscribe(OnIconSelected).AddTo(this);
             hashTagPanel.SaveCommand.Subscribe(OnHashTagsSelected).AddTo(this);
             return UniTask.CompletedTask;
         }
-        
+
         private void NavigateToIconBuilderPanel()
         {
             detailsPanel.gameObject.SetActive(false);
-            iconBuilderPanel.gameObject.SetActive(true);
+            // iconBuilderPanel.gameObject.SetActive(true);
         }
 
         private void NavigateToHashTagsPanel()
@@ -44,12 +43,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup
             hashTagPanel.gameObject.SetActive(true);
         }
 
-        private void OnIconSelected(IconBuilderPanel.Result result)
+        private void OnIconSelected(CompanyLogo logo)
         {
-            Controller.SetCompanyLogoData(result.ShapeSprite, result.IconSprite, result.BackgroundColor);
-            iconBuilderPanel.gameObject.SetActive(false);
-            detailsPanel.gameObject.SetActive(true);
-            detailsPanel.SetCompanyLogo(result.ShapeSprite, result.IconSprite, result.BackgroundColor);
+            // Controller.SetCompanyLogoData(result.ShapeSprite, result.IconSprite, result.BackgroundColor);
+            // iconBuilderPanel.gameObject.SetActive(false);
+            // detailsPanel.gameObject.SetActive(true);
+            // detailsPanel.SetCompanyLogo(result.ShapeSprite, result.IconSprite, result.BackgroundColor);
         }
 
         private void OnHashTagsSelected(HashTagPanel.Result result)

@@ -1,10 +1,7 @@
 using R3;
-using SpaceMonkey.Scripts.UI.Asset.Product;
-using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
 {
@@ -30,20 +27,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.Panels
         [SerializeField] private Image builderIconImage;
         [SerializeField] private Image backgroundImage;
         
-        [SerializeField] private IconBuilderTab iconBuilderTab;
+        // [SerializeField] private IconBuilderTab iconBuilderTab;
         [SerializeField] private Sprite defaultIconSprite;
         [SerializeField] private Image iconHolder;
         
-        [Inject] private ProductIconBuilderConfig _iconBuilderConfig;
         
         private readonly ReactiveCommand<Result> _saveCommand = new ReactiveCommand<Result>();
         public Observable<Result> SaveCommand => _saveCommand;
 
         private void Start()
         {
-            iconBuilderTab.Initialize(_iconBuilderConfig.IconSprites, _iconBuilderConfig.BackgroundColors);
-            iconBuilderTab.IconSelected.Subscribe(IconSelected).AddTo(this);
-            iconBuilderTab.ColorSelected.Subscribe(ColorSelected).AddTo(this);
+            // iconBuilderTab.Initialize(_iconBuilderConfig.IconSprites, _iconBuilderConfig.BackgroundColors);
+            // iconBuilderTab.IconSelected.Subscribe(IconSelected).AddTo(this);
+            // iconBuilderTab.ColorSelected.Subscribe(ColorSelected).AddTo(this);
             saveButton.OnClickAsObservable().Subscribe(_ => OnSaveClicked()).AddTo(this);
         }
         

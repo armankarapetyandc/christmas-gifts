@@ -9,13 +9,11 @@ namespace SpaceMonkey.Scripts.UI.Components
     {
         [SerializeField] private IconCollectionItemComponent iconItemPrefab;
         [SerializeField] private RectTransform content;
-        [SerializeField] private SpriteVisualAsset[] iconsAssets;
 
-
-        public Observable<SpriteVisualAsset> Setup()
+        public Observable<SpriteVisualAsset> Setup(SpriteVisualAsset[] assets)
         {
             var observables = new List<Observable<SpriteVisualAsset>>();
-            foreach (SpriteVisualAsset asset in iconsAssets)
+            foreach (SpriteVisualAsset asset in assets)
             {
                 var item = Instantiate(iconItemPrefab, content);
                 item.Setup(asset);

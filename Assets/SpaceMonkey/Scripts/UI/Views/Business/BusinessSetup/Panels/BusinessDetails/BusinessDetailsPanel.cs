@@ -78,7 +78,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
             foreach (Hashtag hashtag in tags)
             {
                 var item = Instantiate(hashtagListItemPrefab, hashtagsContainer);
-                item.Set(hashtag);
+                // item.Set(hashtag);
             }
 
             hashtagsCountText.text = $"{tags.Length}/{totalTagsInCategory}";

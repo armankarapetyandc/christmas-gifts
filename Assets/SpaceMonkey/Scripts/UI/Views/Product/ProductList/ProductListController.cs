@@ -1,9 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
-using SpaceMonkey.Scripts.UI.Asset;
 using SpaceMonkey.Scripts.UI.Asset.Database;
-using SpaceMonkey.Scripts.UI.Asset.Product;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Views.Product.NewProduct;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -34,14 +34,21 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
             return _visualAssetDatabase.GetResourceForAsset<SpriteVisualAsset>(id);
         }
 
+        internal ColorVisualAsset ResolveColorVisualAsset(string id)
+        {
+            return _visualAssetDatabase.GetResourceForAsset<ColorVisualAsset>(id);
+        }
         internal void ProductSelected(Profile.Product product)
         {
-            throw new System.NotImplementedException();
+            PresenterService.HidePreviousAndShow<ProductView>(new ProductView.Data
+            {
+                ProductId = product.Id
+            }).Forget();
         }
 
         internal void OnNewProduct()
         {
-            throw new System.NotImplementedException();
+            PresenterService.HidePreviousAndShow<ProductView>().Forget();
         }
     }
 }

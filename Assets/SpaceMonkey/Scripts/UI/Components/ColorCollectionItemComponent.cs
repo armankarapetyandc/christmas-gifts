@@ -8,6 +8,7 @@ namespace SpaceMonkey.Scripts.UI.Components
     public class ColorCollectionItemComponent : MonoBehaviour
     {
         [SerializeField] private Toggle toggle;
+        [SerializeField] private Image image;
         private ColorVisualAsset _visualAsset;
 
         public Observable<ColorVisualAsset> OnSelected =>
@@ -24,6 +25,7 @@ namespace SpaceMonkey.Scripts.UI.Components
         internal void Setup(ColorVisualAsset visualAsset)
         {
             _visualAsset = visualAsset;
+            image.color = visualAsset.Color;
         }
     }
 }

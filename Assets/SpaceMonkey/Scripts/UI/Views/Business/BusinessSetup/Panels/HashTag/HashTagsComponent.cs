@@ -25,13 +25,21 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
             foreach (var hashtag in tags)
             {
                 var item = Instantiate(itemPrefab, container);
-                item.SetText(hashtag);
+                item.Set(hashtag);
                 _items.Add(item);
             }
 
             AdjustItems();
 
             return _items.Select(item => item.OnValueChanged).Merge();
+        }
+
+        public void SetSelected(HashtagInfo[] selectedHashtags,bool state)
+        {
+            _items
+                .Where(item => selectedHashtags.Any(info => item.Tag.Tag.Equals(info.Tag)))
+                .ToList()
+                .ForEach(item => item.SetStateWithoutNotify(state));
         }
 
         public void Cleanup()

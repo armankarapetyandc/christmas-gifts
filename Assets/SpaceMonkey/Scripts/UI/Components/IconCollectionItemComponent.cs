@@ -9,6 +9,7 @@ namespace SpaceMonkey.Scripts.UI.Components
     public class IconCollectionItemComponent : MonoBehaviour
     {
         [SerializeField] private Toggle toggle;
+        [SerializeField] private Image image;
         private SpriteVisualAsset _visualAsset;
 
         public Observable<SpriteVisualAsset> OnSelected =>
@@ -25,6 +26,7 @@ namespace SpaceMonkey.Scripts.UI.Components
         internal void Setup(SpriteVisualAsset visualAsset)
         {
             _visualAsset = visualAsset;
+            image.sprite = visualAsset.Sprite;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SpaceMonkey.Scripts.Profile
         public float Money { get; set; }
         public float ProductionCapacity { get; set; }
         public float Score { get; set; }
-        
+
         public List<Product> Products { get; set; }
 
         public void SetCategory(string category)
@@ -33,23 +33,24 @@ namespace SpaceMonkey.Scripts.Profile
             {
                 Company = new CompanyInfo
                 {
-                    Logo = new CompanyLogo()
+                    Logo = new CompanyLogo(),
+                    Tags = Array.Empty<Hashtag>()
                 },
                 Level = 1,
                 Money = 300,
                 ProductionCapacity = 5,
                 Rating = 0,
-                Score = 0
+                Score = 0,
+                Products = new List<Product>()
             };
-            account.Products = new List<Product>();
             return account;
         }
 
-        public void SetCompanyLogo(string shapeSpriteName, string iconSpriteName, string backgroundColorHex)
+        public void SetCompanyLogo(CompanyLogo logo)
         {
-            Company.Logo.Shape = shapeSpriteName;
-            Company.Logo.Icon = iconSpriteName;
-            Company.Logo.Background = backgroundColorHex;
+            Company.Logo.BackgroundColorVisualAssetId = logo.BackgroundColorVisualAssetId;
+            Company.Logo.IconVisualAssetId = logo.IconVisualAssetId;
+            Company.Logo.ShapeVisualAssetId = logo.ShapeVisualAssetId;
         }
 
         public void SetTags(Hashtag[] tags)
@@ -68,9 +69,9 @@ namespace SpaceMonkey.Scripts.Profile
 
     public class CompanyLogo
     {
-        public string Shape { get; set; }
-        public string Icon { get; set; }
-        public string Background { get; set; }
+        public string ShapeVisualAssetId { get; set; }
+        public string IconVisualAssetId { get; set; }
+        public string BackgroundColorVisualAssetId { get; set; }
     }
 
     public class Product
@@ -78,15 +79,16 @@ namespace SpaceMonkey.Scripts.Profile
         public string Id { get; private set; }
         public string Name { get; set; }
         public string IconVisualAssetId { get; set; }
-        public string BackgroundColor { get; set; }
+        public string BackgroundColorVisualAssetId { get; set; }
         public float PackagingCost { get; set; }
         public float MaterialCost { get; set; }
         public float TotalCost { get; set; }
         public float ShippingCost { get; set; }
         public float Price { get; set; }
         public float TtpCost { get; set; }
-        public float Profit {get; set;}
+        public float Profit { get; set; }
         public float TimeToProduceIndex { get; set; }
+
         public static Product CreateEmpty()
         {
             return new Product
@@ -94,22 +96,6 @@ namespace SpaceMonkey.Scripts.Profile
                 Id = Guid.NewGuid().ToString()
             };
         }
-
-        // public Product(ProductData productData)
-        // {
-        //     ID = Guid.NewGuid().ToString();
-        //     Name = productData.Name;
-        //     Price = productData.Price;
-        //     TtpCost = productData.TtpCost;
-        //     TotalCost = productData.TotalCost;
-        //     ShippingCost = productData.ShippingCost;
-        //     Profit = productData.Profit;
-        //     Icon = productData.Icon.ToString();
-        //     TimeToProduceIndex = productData.TimeToProduceIndex;
-        //     PackagingCost = productData.PackagingCost;
-        //     MaterialCost = productData.MaterialCost;
-        //     BackgroundColor = ColorUtility.ToHtmlStringRGBA(productData.BackgroundColor);
-        // }
     }
 
     public class Hashtag : IEquatable<Hashtag>

@@ -5,6 +5,7 @@ using Services.AssetDatabaseService;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup;
 using SpaceMonkey.Scripts.UI.Views.Startup;
 using SpaceMonkey.Scripts.Utilities;
@@ -37,7 +38,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
         internal void OnNext()
         {
-            PresenterService.HidePreviousAndShow<BusinessSetupView>().Forget();
+            PresenterService.HidePreviousAndShow<BusinessPreviewView>().Forget();
         }
 
         internal void IdeaSelected(string category)

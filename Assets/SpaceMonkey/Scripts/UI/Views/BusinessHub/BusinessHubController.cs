@@ -1,7 +1,8 @@
+using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
-using SpaceMonkey.Scripts.UI.Asset.IconBuilder;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
-using SpaceMonkey.Scripts.UI.Views.Product;
+using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
@@ -10,14 +11,12 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 {
     public class BusinessHubController : BasePresenterController
     {
-        private readonly IconBuilderConfig _iconBuilderConfig;
         private readonly AccountService _accountService;
         private readonly NavigationPresenterService  _navigationPresenterService;
 
-        public BusinessHubController(PresenterService presenterService, IconBuilderConfig iconBuilderConfig,
+        public BusinessHubController(PresenterService presenterService,
             AccountService accountService, NavigationPresenterService navigationPresenterService) : base(presenterService)
         {
-            _iconBuilderConfig = iconBuilderConfig;
             _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
         }
@@ -25,19 +24,22 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         
         public Sprite ShapeSprite()
         {
-            return _iconBuilderConfig.GetShapeSprite(_accountService.Model.Account.Company.Logo.Shape);
+            // return _iconBuilderConfig.GetShapeSprite(_accountService.Model.Account.Company.Logo.Shape);
+            return Sprite.Create(Texture2D.blackTexture, new Rect(0, 0, 0, 0),Vector2.zero);
         }
 
         public Sprite IconSprite()
         {
-            return _iconBuilderConfig.GetIconSprite(_accountService.Model.Account.Company.Logo.Icon);
+            // return _iconBuilderConfig.GetIconSprite(_accountService.Model.Account.Company.Logo.Icon);
+            return Sprite.Create(Texture2D.blackTexture, new Rect(0, 0, 0, 0),Vector2.zero);
         }
 
         public Color ShapeColor()
         {
-            return ColorUtility.TryParseHtmlString("#" + _accountService.Model.Account.Company.Logo.Background, out var color)
-                ? color
-                : Color.white;
+            // return ColorUtility.TryParseHtmlString("#" + _accountService.Model.Account.Company.Logo.Background, out var color)
+            //     ? color
+            //     : Color.white;
+            return Color.white;
         }
         
         public string GetBusinessName()
@@ -48,7 +50,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         public void ShowProductView()
         {
             _navigationPresenterService.HideAll();
-            PresenterService.Show<ProductCreationView>();
+            PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
     }
 }

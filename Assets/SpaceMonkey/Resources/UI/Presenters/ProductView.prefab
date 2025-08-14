@@ -7452,6 +7452,7 @@ MonoBehaviour:
   shippingCostText: {fileID: 6746974225314497308}
   profitProductNameText: {fileID: 8524744093792498349}
   deleteButton: {fileID: 9146202752683293716}
+  defaultIconColorVisualAsset: {fileID: 11400000, guid: 9bcdad9336212dc4a911327e040cfd3d, type: 2}
 --- !u!114 &1615223133694935540
 MonoBehaviour:
   m_ObjectHideFlags: 0

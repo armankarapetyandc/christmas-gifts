@@ -54,7 +54,7 @@ namespace SpaceMonkey.Editor.Utilities
             string fixedName = sprite.name.Replace(" ", "_");
 
             // Force set the private 'id' field (could be in a base class)
-            SetPrivateField(asset,  "id", fixedName);
+            SetPrivateField(asset, "id", fixedName);
 
             // Save asset next to sprite
             string spritePath = AssetDatabase.GetAssetPath(sprite);

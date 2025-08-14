@@ -15,12 +15,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag.Ite
         [SerializeField] private Sprite selectedStateSprite;
         [SerializeField] private Sprite deselectedStateSprite;
         [SerializeField] private TextMeshProUGUI text;
-        private HashtagInfo _hashtag;
+        public HashtagInfo Tag { get; private set; }
         [field: SerializeField] public RectTransform RectTransform { get; private set; }
         [field: SerializeField] public LayoutElement LayoutElement { get; private set; }
 
         public Observable<(Hashtag, bool)> OnValueChanged =>
-            toggle.OnValueChangedAsObservable().Select(state => (Hashtag.FromHashtagInfo(_hashtag), state));
+            toggle.OnValueChangedAsObservable().Select(state => (Hashtag.FromHashtagInfo(Tag), state));
 
         private void Start()
         {
@@ -46,14 +46,20 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag.Ite
         }
 #endif
 
+        public void SetStateWithoutNotify(bool state)
+        {
+            UpdateStateUI(state);
+            toggle.SetIsOnWithoutNotify(state);
+        }
+        
         private void UpdateStateUI(bool state)
         {
             image.sprite = state ? selectedStateSprite : deselectedStateSprite;
         }
 
-        public void SetText(HashtagInfo hashtag)
+        public void Set(HashtagInfo hashtag)
         {
-            _hashtag = hashtag;
+            Tag = hashtag;
             text.text = hashtag.Tag;
         }
     }

@@ -28,8 +28,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
             var presenterData = data as Data;
             iconComponent.SetColor(presenterData?.Color ?? defaultColorVisualAsset);
             iconComponent.SetIcon(presenterData?.Icon);
-            iconCollectionComponent.Setup().Subscribe(OnIconSpriteAssetSelected).AddTo(this);
-            colorCollectionComponent.Setup().Subscribe(OnColorSpriteAssetSelected).AddTo(this);
+            // iconCollectionComponent.Setup().Subscribe(OnIconSpriteAssetSelected).AddTo(this);
+            // colorCollectionComponent.Setup().Subscribe(OnColorSpriteAssetSelected).AddTo(this);
             return UniTask.CompletedTask;
         }
 

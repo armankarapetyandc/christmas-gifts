@@ -9,13 +9,11 @@ namespace SpaceMonkey.Scripts.UI.Components
     {
         [SerializeField] private ColorCollectionItemComponent colorItemPrefab;
         [SerializeField] private RectTransform content;
-        [SerializeField] private ColorVisualAsset[] colorsAssets;
 
-
-        public Observable<ColorVisualAsset> Setup()
+        public Observable<ColorVisualAsset> Setup(ColorVisualAsset[] assets)
         {
             var observables = new List<Observable<ColorVisualAsset>>();
-            foreach (ColorVisualAsset asset in colorsAssets)
+            foreach (ColorVisualAsset asset in assets)
             {
                 var item = Instantiate(colorItemPrefab, content);
                 item.Setup(asset);

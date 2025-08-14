@@ -39,7 +39,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
         private ProductItem CreateProduct(Profile.Product product)
         {
             var item = Instantiate(productItemPrefab, content);
-            item.Setup(product, Controller.ResolveSpriteVisualAsset(product.IconVisualAssetId)?.Sprite);
+            item.Setup(product, Controller.ResolveSpriteVisualAsset(product.IconVisualAssetId),
+                Controller.ResolveColorVisualAsset(product.BackgroundColorVisualAssetId));
             return item;
         }
 

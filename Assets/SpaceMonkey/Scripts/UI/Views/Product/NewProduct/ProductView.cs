@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using NameGenerator.Generators;
 using R3;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Extensions;
 using TMPro;
@@ -23,7 +24,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private Button generateProductNameButton;
         [SerializeField] private Button saveButton;
-    
+
 
         [SerializeField] private TimeToProduceSlider timeToProductSlider;
         [SerializeField] private MaterialPriceSlider materialPriceSlider;
@@ -32,21 +33,27 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         [SerializeField] private TextMeshProUGUI totalCostText;
         [SerializeField] private TextMeshProUGUI shippingCostText;
         [SerializeField] private TextMeshProUGUI profitProductNameText;
-        
+
         [SerializeField] private Button deleteButton;
+        [SerializeField] private ColorVisualAsset defaultIconColorVisualAsset;
 
         private Profile.Product _product;
 
         public override async UniTask Initialize(IPresenterData data = null)
         {
             var presenterData = data as Data;
+            var account = Controller.GetAccount();
             _product = !string.IsNullOrEmpty(presenterData?.ProductId)
-                ? Controller.GetAccount().Products?.Find(p => p.Id.Equals(presenterData.ProductId))
+                ? account.Products?.Find(p => p.Id.Equals(presenterData.ProductId))
                 : null;
             saveButton.OnClickAsObservable().Subscribe(_ => Controller.SaveProduct()).AddTo(this);
             generateProductNameButton.OnClickAsObservable().Subscribe(_ => GenerateProductName()).AddTo(this);
             productNameInputField.onValueChanged.AsObservable().Subscribe(p => profitProductNameText.text = p)
                 .AddTo(this);
+
+            iconComponent.SetIcon(Controller.ResolveSpriteVisualAsset(_product?.IconVisualAssetId));
+            iconComponent.SetColor(Controller.ResolveColorVisualAsset(_product?.BackgroundColorVisualAssetId) ??
+                                   defaultIconColorVisualAsset);
             ConfigureSliders();
 
             if (_product != null)

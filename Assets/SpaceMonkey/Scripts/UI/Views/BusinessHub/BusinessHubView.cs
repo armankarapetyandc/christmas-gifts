@@ -1,8 +1,6 @@
-using System;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile;
-using SpaceMonkey.Scripts.UI.Asset.Product;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -33,7 +31,6 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private Color diselectedColor;
         
         [Inject] private AccountService _accountService;
-        [Inject] private ProductIconBuilderConfig _iconBuilderConfig;
         
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -59,8 +56,8 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
                 firstProductIconImage.color = Color.white;
                 firstProductBackgroundImage.color = Color.white;
                 var firstProd =  _accountService.Model.Account.Products[0];
-                firstProductBackgroundImage.color = BackgroundColor(firstProd.BackgroundColor);
-                firstProductIconImage.sprite = Icon(firstProd.IconVisualAssetId);
+                // firstProductBackgroundImage.color = BackgroundColor(firstProd.BackgroundColor);
+                // firstProductIconImage.sprite = Icon(firstProd.IconVisualAssetId);
             }
             else
             {
@@ -69,26 +66,6 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
                 firstProductIconImage.color = diselectedColor;
             }
         }
-        
-        private Color BackgroundColor(string backColor)
-        {
-            return ColorUtility.TryParseHtmlString("#" + backColor, out var color)
-                ? color
-                : Color.white;
-        }
-        
-        private Sprite Icon(string iconName)
-        {
-            try
-            {
-                return _iconBuilderConfig.GetIconSprite(iconName);
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        
 
         public override void Dispose()
         {
