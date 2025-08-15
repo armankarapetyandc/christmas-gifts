@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI.Components.HashTag.Items;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDetails.Items
+namespace SpaceMonkey.Scripts.UI.Components.HashTag
 {
     public class HashtagVerticalListComponent : MonoBehaviour
     {

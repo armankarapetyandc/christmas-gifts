@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using ObservableCollections;
 using R3;
 using SpaceMonkey.Scripts.Profile;
-using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag;
+using SpaceMonkey.Scripts.UI.Components.HashTag;
 using SpaceMonkey.Scripts.Utilities;
 using SpaceMonkey.Scripts.Utilities.Validation;
 using TMPro;

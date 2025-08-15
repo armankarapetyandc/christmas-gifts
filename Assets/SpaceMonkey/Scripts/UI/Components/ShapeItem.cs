@@ -3,7 +3,7 @@ using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder.items
+namespace SpaceMonkey.Scripts.UI.Components
 {
     public class ShapeItem : MonoBehaviour
     {

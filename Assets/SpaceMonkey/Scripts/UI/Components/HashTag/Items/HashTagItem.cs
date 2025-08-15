@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag.Items
+namespace SpaceMonkey.Scripts.UI.Components.HashTag.Items
 {
     [ExecuteAlways]
     public class HashTagItem : MonoBehaviour

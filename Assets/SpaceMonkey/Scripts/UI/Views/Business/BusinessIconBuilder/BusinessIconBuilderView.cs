@@ -5,7 +5,6 @@ using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
-using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder.items;
 using SpaceMonkey.Scripts.Utilities.Validation;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;

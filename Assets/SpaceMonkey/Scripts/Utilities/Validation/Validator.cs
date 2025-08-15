@@ -18,11 +18,7 @@ namespace SpaceMonkey.Scripts.Utilities.Validation
 
         public static IDisposable BindButton(this Observable<bool> validation, Button button)
         {
-            return validation.Subscribe(state =>
-            {
-                Debug.LogError($"BindButton: {state}");
-                button.interactable = state;
-            });
+            return validation.Subscribe(state => button.interactable = state);
         }
     }
 }

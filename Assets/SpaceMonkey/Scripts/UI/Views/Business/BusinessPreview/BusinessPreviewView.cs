@@ -2,7 +2,7 @@
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
-using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDetails.Items;
+using SpaceMonkey.Scripts.UI.Components.HashTag;
 using SpaceMonkey.Scripts.Utilities.Validation;
 using TMPro;
 using UIService.Runtime.Core;

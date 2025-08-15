@@ -2,7 +2,7 @@ using R3;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder.items
+namespace SpaceMonkey.Scripts.UI.Components
 {
     public class IconItem : MonoBehaviour
     {

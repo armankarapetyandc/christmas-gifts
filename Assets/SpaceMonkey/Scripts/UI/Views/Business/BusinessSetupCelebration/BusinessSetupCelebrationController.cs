@@ -3,7 +3,7 @@ using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
-using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -27,7 +27,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
 
         internal void OnBack()
         {
-            PresenterService.HidePreviousAndShow<BusinessSetupView>().Forget();
+            PresenterService.HidePreviousAndShow<BusinessPreviewView>().Forget();
         }
 
         internal Account GetAccount()
