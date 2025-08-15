@@ -17,10 +17,14 @@ namespace SpaceMonkey.Scripts.UI.Components
         public ColorVisualAsset ColorVisualAsset { get; private set; }
 
         public Observable<Unit> OnClick => button != null ? button.OnClickAsObservable() : Observable.Empty<Unit>();
-
+        
+        public Observable<bool> Fulfilled =>
+            Observable.EveryUpdate()
+                .Select(_ => SpriteVisualAsset != null && ShapeVisualAsset != null && ColorVisualAsset != null)
+                .DistinctUntilChanged();
         public void SetColor(ColorVisualAsset asset)
         {
-            if (ColorVisualAsset != null)
+            if (asset != null)
             {
                 ColorVisualAsset = asset;
                 backgroundImage.color = asset.Color;

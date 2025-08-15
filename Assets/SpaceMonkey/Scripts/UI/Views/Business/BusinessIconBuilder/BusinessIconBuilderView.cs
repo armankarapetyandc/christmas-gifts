@@ -6,6 +6,7 @@ using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.IconBuilder.items;
+using SpaceMonkey.Scripts.Utilities.Validation;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
@@ -21,14 +22,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
         [SerializeField] private List<ShapeItem> shapeItems;
         [SerializeField] private IconCollectionComponent iconCollectionComponent;
         [SerializeField] private ColorCollectionComponent colorCollectionComponent;
-
+        
         public override UniTask Initialize(IPresenterData data = null)
         {
             var account = Controller.GetAccount();
 
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             saveButton.OnClickAsObservable().Subscribe(_ => Controller.OnSave()).AddTo(this);
-            
+
             shapeItems.Select(item => item.SelectedShapeSprite).Merge().Subscribe(ShapeSelected).AddTo(this);
             iconCollectionComponent
                 .Setup(Controller
@@ -37,26 +38,32 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
                     .ToArray<SpriteVisualAsset>()).Subscribe(IconSelected).AddTo(this);
             colorCollectionComponent.Setup(Controller.ResolveVisualAssets<ColorVisualAsset>().ToArray())
                 .Subscribe(ColorSelected).AddTo(this);
-
+            
             SetupDefaults();
+
+            Validator
+                .Validate(iconComponent.Fulfilled)
+                .BindButton(saveButton)
+                .AddTo(this);
 
             return UniTask.CompletedTask;
         }
 
         private void SetupDefaults()
         {
-            var account = Controller.GetAccount();
-
             var shapeVisualAsset =
-                Controller.ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.ShapeVisualAssetId);
+                Controller.ResolveVisualAsset<SpriteVisualAsset>(Controller.CompanyLogo.ShapeVisualAssetId);
             var iconVisualAsset =
-                Controller.ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.IconVisualAssetId);
+                Controller.ResolveVisualAsset<SpriteVisualAsset>(Controller.CompanyLogo.IconVisualAssetId);
             var colorVisualAsset =
-                Controller.ResolveVisualAsset<ColorVisualAsset>(account.Company.Logo.BackgroundColorVisualAssetId);
+                Controller.ResolveVisualAsset<ColorVisualAsset>(Controller.CompanyLogo.BackgroundColorVisualAssetId);
 
             iconComponent.SetShape(shapeVisualAsset);
             iconComponent.SetIcon(iconVisualAsset);
             iconComponent.SetColor(colorVisualAsset);
+            
+            iconCollectionComponent.Select(iconVisualAsset?.Id);
+            colorCollectionComponent.Select(colorVisualAsset?.Id);
         }
 
         private void ShapeSelected(SpriteVisualAsset visualAsset)
@@ -69,13 +76,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
         private void IconSelected(SpriteVisualAsset visualAsset)
         {
             iconComponent.SetIcon(visualAsset);
-            Controller.CompanyLogo.ShapeVisualAssetId = visualAsset.Id;
+            Controller.CompanyLogo.IconVisualAssetId = visualAsset.Id;
         }
 
         private void ColorSelected(ColorVisualAsset visualAsset)
         {
             iconComponent.SetColor(visualAsset);
-            Controller.CompanyLogo.ShapeVisualAssetId = visualAsset.Id;
+            Controller.CompanyLogo.BackgroundColorVisualAssetId = visualAsset.Id;
         }
 
         public override void Dispose()

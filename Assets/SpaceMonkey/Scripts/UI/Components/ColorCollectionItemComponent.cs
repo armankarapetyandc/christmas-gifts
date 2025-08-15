@@ -9,10 +9,10 @@ namespace SpaceMonkey.Scripts.UI.Components
     {
         [SerializeField] private Toggle toggle;
         [SerializeField] private Image image;
-        private ColorVisualAsset _visualAsset;
+        public ColorVisualAsset VisualAsset { get; private set; }
 
         public Observable<ColorVisualAsset> OnSelected =>
-            toggle.OnValueChangedAsObservable().Where(b => b && _visualAsset != null).Select(_ => _visualAsset);
+            toggle.OnValueChangedAsObservable().Where(b => b && VisualAsset != null).Select(_ => VisualAsset);
 
         private void Start()
         {
@@ -24,8 +24,13 @@ namespace SpaceMonkey.Scripts.UI.Components
 
         internal void Setup(ColorVisualAsset visualAsset)
         {
-            _visualAsset = visualAsset;
+            VisualAsset = visualAsset;
             image.color = visualAsset.Color;
+        }
+        
+        public void SetStateWithoutNotify(bool state)
+        {
+            toggle.SetIsOnWithoutNotify(state);
         }
     }
 }

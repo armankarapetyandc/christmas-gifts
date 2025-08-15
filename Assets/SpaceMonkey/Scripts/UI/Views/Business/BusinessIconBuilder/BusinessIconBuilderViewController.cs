@@ -21,6 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
         {
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
+            CompanyLogo.CopyFrom(accountService.Model.Account.Company.Logo);
         }
 
         internal Account GetAccount()

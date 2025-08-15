@@ -10,6 +10,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
         [SerializeField] private Color selectedColor;
         [SerializeField] private Color deselectedColor;
 
+        private readonly ReactiveProperty<bool> _isSelected = new ReactiveProperty<bool>(false);
+        public Observable<bool> Selected => _isSelected;
+
 #if UNITY_EDITOR
         private void OnValidate()
         {
@@ -25,11 +28,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.BusinessDet
         public void Select()
         {
             text.color = selectedColor;
+            _isSelected.Value = true;
         }
 
         public void Deselect()
         {
             text.color = deselectedColor;
+            _isSelected.Value = false;
         }
     }
 }

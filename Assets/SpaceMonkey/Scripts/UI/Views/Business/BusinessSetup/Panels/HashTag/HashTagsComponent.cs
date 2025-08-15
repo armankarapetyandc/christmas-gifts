@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
@@ -19,6 +21,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
 
         public int ItemsCount => _items.Count;
 
+        private void Start()
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(container);
+        }
+
         public Observable<(Hashtag, bool)> Populate(HashtagInfo[] tags)
         {
             Cleanup();
@@ -29,12 +36,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
                 _items.Add(item);
             }
 
-            AdjustItems();
+            AdjustItems().Forget();
 
             return _items.Select(item => item.OnValueChanged).Merge();
         }
 
-        public void SetSelected(HashtagInfo[] selectedHashtags,bool state)
+        public void SetSelected(HashtagInfo[] selectedHashtags, bool state)
         {
             _items
                 .Where(item => selectedHashtags.Any(info => item.Tag.Tag.Equals(info.Tag)))
@@ -48,10 +55,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag
             LayoutRebuilder.ForceRebuildLayoutImmediate(container);
         }
 
-        private void AdjustItems()
+        private async UniTaskVoid AdjustItems()
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(container);
-
+            await UniTask.Yield();
             var contentWidth = container.rect.width;
             var horizontalSpacing = flowLayoutGroup.spacing;
 

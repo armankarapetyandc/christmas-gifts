@@ -72,6 +72,13 @@ namespace SpaceMonkey.Scripts.Profile
         public string ShapeVisualAssetId { get; set; }
         public string IconVisualAssetId { get; set; }
         public string BackgroundColorVisualAssetId { get; set; }
+
+        public void CopyFrom(CompanyLogo logo)
+        {
+            ShapeVisualAssetId = logo.ShapeVisualAssetId;
+            IconVisualAssetId = logo.IconVisualAssetId;
+            BackgroundColorVisualAssetId = logo.BackgroundColorVisualAssetId;
+        }
     }
 
     public class Product

@@ -6,6 +6,7 @@ using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup.Panels.HashTag;
 using SpaceMonkey.Scripts.Utilities;
+using SpaceMonkey.Scripts.Utilities.Validation;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -51,6 +52,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
             _selectedTags.ObserveCountChanged().StartWithValue(_selectedTags.Count).Subscribe(SelectedTagsCountChanged)
                 .AddTo(this);
             SetupDefaults();
+            Validator
+                .Validate(_selectedTags.ObserveCountChanged(true).ToValidation(count => count >= 1))
+                .BindButton(saveButton);
             return UniTask.CompletedTask;
         }
 
@@ -83,18 +87,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
 
         private (MeterState, float) GetMeterState(int value)
         {
-            if (value == 0)
+            if (value <= 0)
                 return (new MeterState(string.Empty, "#FFFFFF"), 0f);
 
-            // Get the keys in ascending order
-            var sortedKeys = _meterMap.Keys.OrderBy(k => k).ToList();
+            // Get all keys less than or equal to the value, then take the max
+            var key = _meterMap.Keys.Where(k => k <= value).DefaultIfEmpty(_meterMap.Keys.Min()).Max();
 
-            if (value == 1) return (_meterMap[1], (float)value / hashTagsComponent.ItemsCount);
-            if (value >= 2 && value <= 4) return (_meterMap[2], (float)value / hashTagsComponent.ItemsCount);
-            return (_meterMap[5], (float)value / hashTagsComponent.ItemsCount);
+            var meterState = _meterMap[key];
+            float progress = (float)value / hashTagsComponent.ItemsCount;
 
-            // If value is greater than the highest key (17+), return the last element
-            return (_meterMap[sortedKeys.Last()], (float)value / hashTagsComponent.ItemsCount);
+            return (meterState, progress);
         }
 
         private void SetMeterValue(float progress, string label, Color color)
@@ -107,7 +109,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
 
         public override void Dispose()
         {
-            throw new System.NotImplementedException();
         }
     }
 }
