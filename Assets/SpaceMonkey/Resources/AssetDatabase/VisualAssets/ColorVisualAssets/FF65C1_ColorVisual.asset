@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: FF65C1_ColorVisual
   m_EditorClassIdentifier: 
   id: FF65C1
+  <Type>k__BackingField: 6
   <Color>k__BackingField: {r: 1, g: 0.39607844, b: 0.75686276, a: 1}

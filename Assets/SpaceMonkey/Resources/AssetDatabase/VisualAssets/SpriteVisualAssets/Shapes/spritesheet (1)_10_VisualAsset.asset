@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: spritesheet (1)_10_VisualAsset
   m_EditorClassIdentifier: 
   id: spritesheet_(1)_10
+  <Type>k__BackingField: 2
   <Sprite>k__BackingField: {fileID: -5005915026814050071, guid: 392b01a06fdc1b24e8a90766890c6ff4, type: 3}

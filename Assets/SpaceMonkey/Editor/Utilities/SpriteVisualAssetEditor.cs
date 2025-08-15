@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace SpaceMonkey.Editor.Utilities
 {
-    [CustomEditor(typeof(SpriteVisualAsset))]
+    [CustomEditor(typeof(SpriteVisualAsset),true)]
+    [CanEditMultipleObjects]
     public class SpriteVisualAssetEditor : UnityEditor.Editor
     {
         public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)

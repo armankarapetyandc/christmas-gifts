@@ -3262,8 +3262,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plusRectTransform: {fileID: 4433549234127147014}
+  shapeImage: {fileID: 0}
   iconImage: {fileID: 1227057532039334909}
   backgroundImage: {fileID: 6733995129398266921}
+  requirements: 6
   button: {fileID: 3172219708079664100}
 --- !u!1 &2595881392342312568
 GameObject:
@@ -7435,7 +7437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc275cdb048432aa1adad9b6ff15c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSequence: []
+  animationSequence:
+  - animations:
+    - {fileID: 11400000, guid: 681d52f69dd4ff14c9870382f6e5baf5, type: 2}
   group: {fileID: 1997275433773616678}
   presenterHolder: {fileID: 3686225254149222452}
   dimmerButton: {fileID: 0}
@@ -7444,6 +7448,7 @@ MonoBehaviour:
   iconComponent: {fileID: 376684217215157283}
   generateProductNameButton: {fileID: 8791882570804815445}
   saveButton: {fileID: 8726542485399058861}
+  backButton: {fileID: 103394191669230521}
   timeToProductSlider: {fileID: 1455903365265621455}
   materialPriceSlider: {fileID: 3089356499160156145}
   materialPackagingSlider: {fileID: 874516183972429772}

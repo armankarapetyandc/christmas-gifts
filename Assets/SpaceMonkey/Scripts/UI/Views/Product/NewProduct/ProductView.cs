@@ -17,14 +17,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
     {
         public class Data : IPresenterData
         {
-            public string ProductId { get; set; }
+            public Profile.Product? SelectedProduct { get; set; }
         }
 
         [SerializeField] private TMP_InputField productNameInputField;
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private Button generateProductNameButton;
         [SerializeField] private Button saveButton;
-
+        [SerializeField] private Button backButton;
 
         [SerializeField] private TimeToProduceSlider timeToProductSlider;
         [SerializeField] private MaterialPriceSlider materialPriceSlider;
@@ -37,38 +37,29 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         [SerializeField] private Button deleteButton;
         [SerializeField] private ColorVisualAsset defaultIconColorVisualAsset;
 
-        private Profile.Product _product;
-
         public override async UniTask Initialize(IPresenterData data = null)
         {
             var presenterData = data as Data;
-            var account = Controller.GetAccount();
-            _product = !string.IsNullOrEmpty(presenterData?.ProductId)
-                ? account.Products?.Find(p => p.Id.Equals(presenterData.ProductId))
-                : null;
+            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             saveButton.OnClickAsObservable().Subscribe(_ => Controller.SaveProduct()).AddTo(this);
+            iconComponent.OnClick.Subscribe(_ => Controller.SelectProductIcon()).AddTo(this);
             generateProductNameButton.OnClickAsObservable().Subscribe(_ => GenerateProductName()).AddTo(this);
             productNameInputField.onValueChanged.AsObservable().Subscribe(p => profitProductNameText.text = p)
                 .AddTo(this);
+            SetupDefaults(presenterData?.SelectedProduct);
+            ListenProductChanges();
+        }
 
-            iconComponent.SetIcon(Controller.ResolveSpriteVisualAsset(_product?.IconVisualAssetId));
-            iconComponent.SetColor(Controller.ResolveColorVisualAsset(_product?.BackgroundColorVisualAssetId) ??
-                                   defaultIconColorVisualAsset);
+        private void SetupDefaults(Profile.Product? product)
+        {
+            Controller.SetProduct(product);
+            deleteButton.gameObject.SetActive(product != null);
+            productNameInputField.text = Controller.CurrentProduct.Name;
+            iconComponent.SetIcon(
+                Controller.ResolveVisualAsset<SpriteVisualAsset>(Controller.CurrentProduct.IconVisualAssetId));
+            iconComponent.SetColor(
+                Controller.ResolveVisualAsset<ColorVisualAsset>(Controller.CurrentProduct.BackgroundColorVisualAssetId));
             ConfigureSliders();
-
-            if (_product != null)
-            {
-                ListenProductChanges();
-                await UniTask.Yield();
-                timeToProductSlider.Set(_product.TimeToProduceIndex);
-                materialPriceSlider.Set(_product.MaterialCost);
-                materialPackagingSlider.Set(_product.PackagingCost);
-            }
-            else
-            {
-                _product = Profile.Product.CreateEmpty();
-                ListenProductChanges();
-            }
         }
 
         private void ConfigureSliders()
@@ -109,9 +100,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 shippingCostText.text = $"+${shippingCost:F2}";
 
                 var productMaxPrice = totalCost * 3f;
-                _product.TotalCost = totalCost;
-                _product.TtpCost = ttpCost;
-                _product.ShippingCost = shippingCost;
+                Controller.CurrentProduct.TotalCost = totalCost;
+                Controller.CurrentProduct.TtpCost = ttpCost;
+                Controller.CurrentProduct.ShippingCost = shippingCost;
                 productPriceSlider.UpdateRange(totalCost, productMaxPrice);
             }).AddTo(this);
         }

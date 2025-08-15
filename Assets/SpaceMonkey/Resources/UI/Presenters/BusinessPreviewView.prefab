@@ -1598,6 +1598,7 @@ MonoBehaviour:
   shapeImage: {fileID: 7931794862336023741}
   iconImage: {fileID: 3353829159494608190}
   backgroundImage: {fileID: 7931794862336023741}
+  requirements: -1
   button: {fileID: 8808009392682252467}
 --- !u!1 &2834724957794000116
 GameObject:

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: AFBCCD_ColorVisual
   m_EditorClassIdentifier: 
   id: AFBCCD
+  <Type>k__BackingField: 6
   <Color>k__BackingField: {r: 0.6862745, g: 0.7372549, b: 0.8039216, a: 1}

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: categories_spritesheet_writing_VisualAsset
   m_EditorClassIdentifier: 
   id: categories_spritesheet_writing
+  <Type>k__BackingField: 2
   <Sprite>k__BackingField: {fileID: -904301209, guid: f30303f0f404f984aad33cc1e5a5899c, type: 3}

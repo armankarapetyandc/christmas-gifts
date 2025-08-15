@@ -81,7 +81,7 @@ namespace SpaceMonkey.Scripts.Profile
         }
     }
 
-    public class Product
+    public struct Product
     {
         public string Id { get; private set; }
         public string Name { get; set; }

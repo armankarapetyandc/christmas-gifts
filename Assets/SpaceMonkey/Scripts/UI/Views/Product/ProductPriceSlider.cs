@@ -18,7 +18,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             base.Setup();
             Model.Current.Subscribe(value => profitText.text = $"${CalculateProfit(value):F2}").AddTo(this);
 
-            SetSliderValue(Model.Maximum.CurrentValue <= Model.Minimum.CurrentValue ? 0f : defaultSliderValue);
+            SetSliderValue(defaultSliderValue);
         }
 
         public void Prepare()
@@ -29,7 +29,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         public void UpdateRange(float min, float max)
         {
             Model.Set(min, max);
-            SetSliderValue(0f);
+            Model.CalculateCurrent(slider.value);
+            SetSliderValue(Model.CalculateSliderValue(Model.Current.CurrentValue));
         }
 
         private float CalculateProfit(float currentValue)

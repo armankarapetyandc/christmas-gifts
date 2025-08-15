@@ -1,11 +1,11 @@
 ﻿using Cysharp.Threading.Tasks;
+using ObservableCollections;
 using R3;
-using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
 {
@@ -16,36 +16,47 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
         [SerializeField] private ProductItem productItemPrefab;
         [SerializeField] private RectTransform content;
 
-        [Inject] private AccountService _accountService;
+        private readonly ObservableList<ProductItem> _items = new ObservableList<ProductItem>();
 
         public override UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
-            newProductButton.OnClickAsObservable().Subscribe(_ => Controller.OnNewProduct()).AddTo(this);
-            SetupExistingProducts();
+            newProductButton.OnClickAsObservable().Subscribe(_ => Controller.OnProduct(null)).AddTo(this);
+            _items
+                .ObserveAdd()
+                .Select(e => e.Value.Selected)
+                .Merge()
+                .Subscribe(p => Controller.OnProduct(p))
+                .AddTo(this);
+
+            SetupDefaults();
             return UniTask.CompletedTask;
         }
 
-        private void SetupExistingProducts()
+        private void SetupDefaults()
         {
-            var products = _accountService.Model.Account.Products;
-            foreach (Profile.Product product in products)
+            var account = Controller.GetAccount();
+            foreach (Profile.Product product in account.Products)
             {
                 var item = CreateProduct(product);
-                item.Selected.Subscribe(p => Controller.ProductSelected(p)).AddTo(this);
+                _items.Add(item);
             }
         }
 
         private ProductItem CreateProduct(Profile.Product product)
         {
             var item = Instantiate(productItemPrefab, content);
-            item.Setup(product, Controller.ResolveSpriteVisualAsset(product.IconVisualAssetId),
-                Controller.ResolveColorVisualAsset(product.BackgroundColorVisualAssetId));
+            item.Setup(product);
+            var iconVisualAsset = Controller.ResolveVisualAsset<SpriteVisualAsset>(product.IconVisualAssetId);
+            var colorVisualAsset =
+                Controller.ResolveVisualAsset<ColorVisualAsset>(product.BackgroundColorVisualAssetId);
+            item.SetVisual(iconVisualAsset, colorVisualAsset);
             return item;
         }
 
         public override void Dispose()
         {
+            _items.Clear();
         }
     }
 }

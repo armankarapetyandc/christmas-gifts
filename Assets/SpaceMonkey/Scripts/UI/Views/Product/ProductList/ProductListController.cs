@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
@@ -11,14 +12,26 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
 {
     public class ProductListController : BasePresenterController
     {
+        private readonly AccountService _accountService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
         private readonly NavigationPresenterService _navigationPresenterService;
 
-        public ProductListController(PresenterService presenterService, VisualAssetDatabase visualAssetDatabase,
+        public ProductListController(PresenterService presenterService, AccountService accountService,VisualAssetDatabase visualAssetDatabase,
             NavigationPresenterService navigationPresenterService) : base(presenterService)
         {
+            _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
             _navigationPresenterService = navigationPresenterService;
+        }
+
+        internal Account GetAccount()
+        {
+            return _accountService.Model.Account;
+        }
+        
+        internal T ResolveVisualAsset<T>(string id) where T : VisualAsset
+        {
+            return _visualAssetDatabase.GetResourceForAsset<T>(id);
         }
 
         internal void OnBack()
@@ -28,27 +41,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
                 Type = MainNavigationType.BusinessHub
             }).Forget();
         }
-
-        internal SpriteVisualAsset ResolveSpriteVisualAsset(string id)
-        {
-            return _visualAssetDatabase.GetResourceForAsset<SpriteVisualAsset>(id);
-        }
-
-        internal ColorVisualAsset ResolveColorVisualAsset(string id)
-        {
-            return _visualAssetDatabase.GetResourceForAsset<ColorVisualAsset>(id);
-        }
-        internal void ProductSelected(Profile.Product product)
+        
+        internal void OnProduct(Profile.Product? product)
         {
             PresenterService.HidePreviousAndShow<ProductView>(new ProductView.Data
             {
-                ProductId = product.Id
+                SelectedProduct = product
             }).Forget();
-        }
-
-        internal void OnNewProduct()
-        {
-            PresenterService.HidePreviousAndShow<ProductView>().Forget();
         }
     }
 }

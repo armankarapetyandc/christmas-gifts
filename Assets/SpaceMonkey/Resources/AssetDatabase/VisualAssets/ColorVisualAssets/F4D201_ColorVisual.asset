@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: F4D201_ColorVisual
   m_EditorClassIdentifier: 
   id: F4D201
+  <Type>k__BackingField: 6
   <Color>k__BackingField: {r: 0.95686275, g: 0.8235294, b: 0.003921569, a: 1}

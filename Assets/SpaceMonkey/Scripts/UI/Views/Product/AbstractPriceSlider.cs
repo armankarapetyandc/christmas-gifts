@@ -35,9 +35,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
                              _minimum.CurrentValue;
                 _current.Value = result;
             }
+
+            public float CalculateSliderValue(float currentValue)
+            {
+                return ((currentValue - _minimum.Value) / (_maximum.CurrentValue - _minimum.CurrentValue)) * 100f;
+            }
         }
 
-        [SerializeField] private Slider slider;
+        [SerializeField] protected Slider slider;
         [SerializeField] private Button increaseButton;
         [SerializeField] private Button decreaseButton;
         [SerializeField] private TextMeshProUGUI minText;

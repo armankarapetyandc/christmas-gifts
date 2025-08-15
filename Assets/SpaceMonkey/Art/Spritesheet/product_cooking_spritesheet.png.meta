@@ -1,0 +1,855 @@
+fileFormatVersion: 2
+guid: e25026366f546a9449a88d70bf3f05df
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9155973503689808221
+    second: product_cooking_spritesheet_0
+  - first:
+      213: 3641250081506880396
+    second: product_cooking_spritesheet_1
+  - first:
+      213: -1197036057051914925
+    second: product_cooking_spritesheet_2
+  - first:
+      213: -4801432855504130133
+    second: product_cooking_spritesheet_3
+  - first:
+      213: -4977297010992673225
+    second: product_cooking_spritesheet_4
+  - first:
+      213: -8532951040281864299
+    second: product_cooking_spritesheet_5
+  - first:
+      213: 6436309814071295418
+    second: product_cooking_spritesheet_6
+  - first:
+      213: -5788753187729832939
+    second: product_cooking_spritesheet_7
+  - first:
+      213: -923920936927832648
+    second: product_cooking_spritesheet_8
+  - first:
+      213: 389657511933943309
+    second: product_cooking_spritesheet_9
+  - first:
+      213: 878135258107433317
+    second: product_cooking_spritesheet_10
+  - first:
+      213: -1793598279620157996
+    second: product_cooking_spritesheet_11
+  - first:
+      213: -7323456228708921049
+    second: product_cooking_spritesheet_12
+  - first:
+      213: -5360645304004120404
+    second: product_cooking_spritesheet_13
+  - first:
+      213: -2827769231364993896
+    second: product_cooking_spritesheet_14
+  - first:
+      213: 8409832353591500769
+    second: product_cooking_spritesheet_15
+  - first:
+      213: 4235903019347754424
+    second: product_cooking_spritesheet_16
+  - first:
+      213: 3008297181940088263
+    second: product_cooking_spritesheet_17
+  - first:
+      213: 4211214014735839291
+    second: product_cooking_spritesheet_18
+  - first:
+      213: -842006832038636415
+    second: product_cooking_spritesheet_19
+  - first:
+      213: 5718810662726708277
+    second: product_cooking_spritesheet_20
+  - first:
+      213: -1733586311769952837
+    second: product_cooking_spritesheet_21
+  - first:
+      213: -8872571038467335757
+    second: product_cooking_spritesheet_22
+  - first:
+      213: -1522567145473223540
+    second: product_cooking_spritesheet_23
+  - first:
+      213: 8799718891682008580
+    second: product_cooking_spritesheet_24
+  - first:
+      213: 5521787434538895045
+    second: product_cooking_spritesheet_25
+  - first:
+      213: 8862957829679143508
+    second: product_cooking_spritesheet_26
+  - first:
+      213: 2492227829017145757
+    second: product_cooking_spritesheet_27
+  - first:
+      213: 6301616646362533203
+    second: product_cooking_spritesheet_28
+  - first:
+      213: -3183569945307973153
+    second: product_cooking_spritesheet_29
+  - first:
+      213: -4659793934621250579
+    second: product_cooking_spritesheet_30
+  - first:
+      213: -6192374007560380428
+    second: product_cooking_spritesheet_31
+  - first:
+      213: -594348505109720188
+    second: product_cooking_spritesheet_32
+  - first:
+      213: 7631495699202727614
+    second: product_cooking_spritesheet_33
+  - first:
+      213: 8269534339288787709
+    second: product_cooking_spritesheet_34
+  - first:
+      213: 789399917507512380
+    second: product_cooking_spritesheet_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 592
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59d154246d801f70800000000000000
+      internalID: 9155973503689808221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 592
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8b649e28a1588230800000000000000
+      internalID: 3641250081506880396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 592
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35d161c5c06436fe0800000000000000
+      internalID: -1197036057051914925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 592
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baf69cac142ed5db0800000000000000
+      internalID: -4801432855504130133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 592
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73e0b264db61deab0800000000000000
+      internalID: -4977297010992673225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 592
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59713360d3ed49980800000000000000
+      internalID: -8532951040281864299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 444
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abd7414ccad525950800000000000000
+      internalID: 6436309814071295418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 444
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51404f855a73aafa0800000000000000
+      internalID: -5788753187729832939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 444
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b5ded19dc29d23f0800000000000000
+      internalID: -923920936927832648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 444
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0e92ee4177586500800000000000000
+      internalID: 389657511933943309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 444
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5615d3c5d53cf2c00800000000000000
+      internalID: 878135258107433317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 296
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 721deaf7c5bdd5a90800000000000000
+      internalID: -7323456228708921049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 296
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca0f7f77f792b95b0800000000000000
+      internalID: -5360645304004120404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 296
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89cc5b1cddeb1c8d0800000000000000
+      internalID: -2827769231364993896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 296
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ef9868e7f9b5b470800000000000000
+      internalID: 8409832353591500769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 296
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bd3a337a53f8ca30800000000000000
+      internalID: 4235903019347754424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 148
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b30f97d95dc317a30800000000000000
+      internalID: 4211214014735839291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 148
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18492e55f379054f0800000000000000
+      internalID: -842006832038636415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 148
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53caa898ffb4d5f40800000000000000
+      internalID: 5718810662726708277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 148
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbde8733f6011f7e0800000000000000
+      internalID: -1733586311769952837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 148
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b95cbf36ab4ed480800000000000000
+      internalID: -8872571038467335757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e000685b1ee1a70800000000000000
+      internalID: 8799718891682008580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 0
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c608e08a6451ac40800000000000000
+      internalID: 5521787434538895045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 0
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45ada49203d8ffa70800000000000000
+      internalID: 8862957829679143508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 0
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d91f8ef810c269220800000000000000
+      internalID: 2492227829017145757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: product_cooking_spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 0
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35d8025d3f6d37750800000000000000
+      internalID: 6301616646362533203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 91e81220388d4594aaadbb40044e9d07
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":5.0},"gridSpriteSize":{"x":138.0,"y":143.0},"gridSpriteOffset":{"x":5.0,"y":5.0},"gridSpritePadding":{"x":10.0,"y":5.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      product_cooking_spritesheet_0: 9155973503689808221
+      product_cooking_spritesheet_1: 3641250081506880396
+      product_cooking_spritesheet_10: 878135258107433317
+      product_cooking_spritesheet_11: -1793598279620157996
+      product_cooking_spritesheet_12: -7323456228708921049
+      product_cooking_spritesheet_13: -5360645304004120404
+      product_cooking_spritesheet_14: -2827769231364993896
+      product_cooking_spritesheet_15: 8409832353591500769
+      product_cooking_spritesheet_16: 4235903019347754424
+      product_cooking_spritesheet_17: 3008297181940088263
+      product_cooking_spritesheet_18: 4211214014735839291
+      product_cooking_spritesheet_19: -842006832038636415
+      product_cooking_spritesheet_2: -1197036057051914925
+      product_cooking_spritesheet_20: 5718810662726708277
+      product_cooking_spritesheet_21: -1733586311769952837
+      product_cooking_spritesheet_22: -8872571038467335757
+      product_cooking_spritesheet_23: -1522567145473223540
+      product_cooking_spritesheet_24: 8799718891682008580
+      product_cooking_spritesheet_25: 5521787434538895045
+      product_cooking_spritesheet_26: 8862957829679143508
+      product_cooking_spritesheet_27: 2492227829017145757
+      product_cooking_spritesheet_28: 6301616646362533203
+      product_cooking_spritesheet_29: -3183569945307973153
+      product_cooking_spritesheet_3: -4801432855504130133
+      product_cooking_spritesheet_4: -4977297010992673225
+      product_cooking_spritesheet_5: -8532951040281864299
+      product_cooking_spritesheet_6: 6436309814071295418
+      product_cooking_spritesheet_7: -5788753187729832939
+      product_cooking_spritesheet_8: -923920936927832648
+      product_cooking_spritesheet_9: 389657511933943309
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

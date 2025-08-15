@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: 00B453_ColorVisual
   m_EditorClassIdentifier: 
   id: 00B453
+  <Type>k__BackingField: 6
   <Color>k__BackingField: {r: 0, g: 0.7058824, b: 0.3254902, a: 1}

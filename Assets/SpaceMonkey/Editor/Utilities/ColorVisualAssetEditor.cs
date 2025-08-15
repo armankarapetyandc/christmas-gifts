@@ -5,6 +5,7 @@ using UnityEngine;
 namespace SpaceMonkey.Editor.Utilities
 {
     [CustomEditor(typeof(ColorVisualAsset))]
+    [CanEditMultipleObjects]
     public class ColorVisualAssetEditor : UnityEditor.Editor
     {
         public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
