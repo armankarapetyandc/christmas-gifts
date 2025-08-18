@@ -58,11 +58,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
                 Controller.ResolveVisualAsset<ColorVisualAsset>(Controller.CompanyLogo.BackgroundColorVisualAssetId);
 
             iconComponent.SetShape(shapeVisualAsset);
-            iconComponent.SetIcon(iconVisualAsset);
-            iconComponent.SetColor(colorVisualAsset);
+            // iconComponent.SetIcon(iconVisualAsset);
+            // iconComponent.SetColor(colorVisualAsset);
             
-            iconCollectionComponent.Select(iconVisualAsset?.Id);
-            colorCollectionComponent.Select(colorVisualAsset?.Id);
+            iconCollectionComponent.Select(iconVisualAsset?.Id,true);
+            colorCollectionComponent.Select(colorVisualAsset?.Id,true);
         }
 
         private void ShapeSelected(SpriteVisualAsset visualAsset)

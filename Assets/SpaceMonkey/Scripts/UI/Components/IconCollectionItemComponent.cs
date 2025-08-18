@@ -33,5 +33,10 @@ namespace SpaceMonkey.Scripts.UI.Components
         {
             toggle.SetIsOnWithoutNotify(state);
         }
+        
+        public void SetState(bool state)
+        {
+            toggle.isOn = state;
+        }
     }
 }

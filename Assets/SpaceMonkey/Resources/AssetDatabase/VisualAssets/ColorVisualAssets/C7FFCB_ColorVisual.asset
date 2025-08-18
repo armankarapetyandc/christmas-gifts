@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: C7FFCB_ColorVisual
   m_EditorClassIdentifier: 
   id: C7FFCB
-  <Type>k__BackingField: 6
+  <Type>k__BackingField: -1
   <Color>k__BackingField: {r: 0.78039217, g: 1, b: 0.79607844, a: 1}

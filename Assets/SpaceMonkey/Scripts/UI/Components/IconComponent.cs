@@ -57,6 +57,8 @@ namespace SpaceMonkey.Scripts.UI.Components
                 ColorVisualAsset = asset;
                 backgroundImage.color = asset.Color;
             }
+
+            backgroundImage.gameObject.SetActive(asset != null);
         }
 
         public void SetIcon(SpriteVisualAsset asset)

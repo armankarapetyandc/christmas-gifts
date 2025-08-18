@@ -15,6 +15,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
         private readonly AccountService _accountService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
 
+        internal Profile.Product Product;
+
+        
         public ProductIconBuilderController(PresenterService presenterService, AccountService accountService,VisualAssetDatabase visualAssetDatabase)
             : base(presenterService)
         {

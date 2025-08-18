@@ -24,12 +24,12 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private TextMeshProUGUI scoreText;
 
         [SerializeField] private Button startButton;
-        [SerializeField] private Button productButton;
+        [SerializeField] private IconComponent productComponent;
         [SerializeField] private TextMeshProUGUI productsCountText;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            productButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductView()).AddTo(this);
+            productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
             SetupDefaults();
             return UniTask.CompletedTask;
         }
@@ -56,25 +56,27 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             iconComponent.SetShape(shapeVisualAsset);
             iconComponent.SetIcon(iconVisualAsset);
             iconComponent.SetColor(colorVisualAsset);
+
+            PreviewProductAtIndexIfExists(0);
         }
 
-        // private void SelectFirstProduct()
-        // {
-        //     if (_accountService.Model.Account.Products.Count > 0)
-        //     {
-        //         firstProductIconImage.color = Color.white;
-        //         firstProductBackgroundImage.color = Color.white;
-        //         var firstProd = _accountService.Model.Account.Products[0];
-        //         // firstProductBackgroundImage.color = BackgroundColor(firstProd.BackgroundColor);
-        //         // firstProductIconImage.sprite = Icon(firstProd.IconVisualAssetId);
-        //     }
-        //     else
-        //     {
-        //         firstProductBackgroundImage.color = diselectedColor;
-        //         firstProductIconImage.sprite = null;
-        //         firstProductIconImage.color = diselectedColor;
-        //     }
-        // }
+        private void PreviewProductAtIndexIfExists(int index)
+        {
+            var account = Controller.GetAccount();
+            if (account.Products == null || account.Products.Count == 0 || index >= account.Products.Count)
+            {
+                return;
+            }
+
+            var product = account.Products[index];
+
+            var iconVisualAsset = Controller.ResolveVisualAsset<SpriteVisualAsset>(product.IconVisualAssetId);
+            var colorVisualAsset =
+                Controller.ResolveVisualAsset<ColorVisualAsset>(product.BackgroundColorVisualAssetId);
+
+            productComponent.SetIcon(iconVisualAsset);
+            productComponent.SetColor(colorVisualAsset);
+        }
 
         public override void Dispose()
         {

@@ -5,6 +5,7 @@ using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Extensions;
+using SpaceMonkey.Scripts.Utilities.Validation;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -41,13 +42,25 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         {
             var presenterData = data as Data;
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
-            saveButton.OnClickAsObservable().Subscribe(_ => Controller.SaveProduct()).AddTo(this);
+            saveButton.OnClickAsObservable().Subscribe(_ => Controller.SaveProduct().Forget()).AddTo(this);
+            deleteButton.OnClickAsObservable().Subscribe(_ => Controller.DeleteProduct().Forget()).AddTo(this);
             iconComponent.OnClick.Subscribe(_ => Controller.SelectProductIcon()).AddTo(this);
             generateProductNameButton.OnClickAsObservable().Subscribe(_ => GenerateProductName()).AddTo(this);
-            productNameInputField.onValueChanged.AsObservable().Subscribe(p => profitProductNameText.text = p)
+            productNameInputField.onValueChanged.AsObservable().Subscribe(p =>
+                {
+                    profitProductNameText.text = p;
+                    Controller.CurrentProduct.Name = p;
+                })
                 .AddTo(this);
             SetupDefaults(presenterData?.SelectedProduct);
             ListenProductChanges();
+            Validator
+                .Validate(
+                    iconComponent.Fulfilled, productNameInputField.NotEmpty(),
+                    productNameInputField.MinLength(6)
+                )
+                .BindButton(saveButton)
+                .AddTo(this);
         }
 
         private void SetupDefaults(Profile.Product? product)
@@ -58,22 +71,26 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             iconComponent.SetIcon(
                 Controller.ResolveVisualAsset<SpriteVisualAsset>(Controller.CurrentProduct.IconVisualAssetId));
             iconComponent.SetColor(
-                Controller.ResolveVisualAsset<ColorVisualAsset>(Controller.CurrentProduct.BackgroundColorVisualAssetId));
+                Controller.ResolveVisualAsset<ColorVisualAsset>(Controller.CurrentProduct
+                    .BackgroundColorVisualAssetId));
             ConfigureSliders();
         }
 
         private void ConfigureSliders()
         {
-            timeToProductSlider.Setup(Constants.TimeToProduct, 1);
+            timeToProductSlider.Setup(Constants.TimeToProduct, Controller.CurrentProduct.TimeToProduceIndex);
 
             var account = Controller.GetAccount();
 
             bool isPriorityCategory = Constants.PriorityCategories.Contains(account.Company.Category);
             float materialAddCoefficient = account.Company.Tags.Select(t => t.MaterialAdd).Sum();
-            materialPriceSlider.Setup(materialAddCoefficient, isPriorityCategory);
+            materialPriceSlider.Setup(materialAddCoefficient, isPriorityCategory,
+                Controller.CurrentProduct.MaterialPrice);
+
 
             float packagingAddCoefficient = account.Company.Tags.Select(t => t.PackagingAdd).Sum();
-            materialPackagingSlider.Setup(packagingAddCoefficient, isPriorityCategory);
+            materialPackagingSlider.Setup(packagingAddCoefficient, isPriorityCategory,
+                Controller.CurrentProduct.MaterialPackagingPrice);
 
             productPriceSlider.Prepare();
         }
@@ -100,10 +117,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 shippingCostText.text = $"+${shippingCost:F2}";
 
                 var productMaxPrice = totalCost * 3f;
-                Controller.CurrentProduct.TotalCost = totalCost;
-                Controller.CurrentProduct.TtpCost = ttpCost;
-                Controller.CurrentProduct.ShippingCost = shippingCost;
+                // Controller.CurrentProduct.TotalCost = totalCost;
+                // Controller.CurrentProduct.TtpCost = ttpCost;
+                // Controller.CurrentProduct.ShippingCost = shippingCost;
+
+                Controller.CurrentProduct.TimeToProduceIndex =
+                    Mathf.RoundToInt(timeToProductSlider.CurrentValue.CurrentValue);
+                Controller.CurrentProduct.MaterialPrice = materialPriceSlider.CurrentValue.CurrentValue;
+                Controller.CurrentProduct.MaterialPackagingPrice =
+                    materialPackagingSlider.CurrentValue.CurrentValue;
                 productPriceSlider.UpdateRange(totalCost, productMaxPrice);
+                Controller.CurrentProduct.ProductPrice = productPriceSlider.CurrentValue.CurrentValue;
+                Controller.CurrentProduct.MinProductPrice = totalCost;
+                Controller.CurrentProduct.MaxProductPrice = productMaxPrice;
             }).AddTo(this);
         }
 

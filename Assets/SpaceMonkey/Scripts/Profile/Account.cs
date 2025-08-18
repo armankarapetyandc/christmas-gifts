@@ -58,6 +58,19 @@ namespace SpaceMonkey.Scripts.Profile
             Company.Tags = tags;
         }
 
+        public void SetProduct(Product product)
+        {
+            int index = Products.FindIndex(p => p.Id.Equals(product.Id));
+            if (index < 0)
+            {
+                Products.Add(product);
+            }
+            else
+            {
+                Products[index] = product;
+            }
+        }
+
         public void Reset()
         {
             Company?.Reset();
@@ -66,7 +79,11 @@ namespace SpaceMonkey.Scripts.Profile
             ProductionCapacity = 0;
             Score = 0;
             Products = new List<Product>();
-            
+        }
+
+        public void DeleteProduct(string productId)
+        {
+            Products.RemoveAll(p => p.Id.Equals(productId));
         }
     }
 
@@ -106,24 +123,24 @@ namespace SpaceMonkey.Scripts.Profile
 
     public struct Product
     {
-        public string Id { get; private set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string IconVisualAssetId { get; set; }
         public string BackgroundColorVisualAssetId { get; set; }
-        public float PackagingCost { get; set; }
-        public float MaterialCost { get; set; }
-        public float TotalCost { get; set; }
-        public float ShippingCost { get; set; }
-        public float Price { get; set; }
-        public float TtpCost { get; set; }
-        public float Profit { get; set; }
-        public float TimeToProduceIndex { get; set; }
+
+        public int TimeToProduceIndex { get; set; }
+        public float? MaterialPrice { get; set; }
+        public float? MaterialPackagingPrice { get; set; }
+        public float? MinProductPrice { get; set; }
+        public float? MaxProductPrice { get; set; }
+        public float? ProductPrice { get; set; }
 
         public static Product CreateEmpty()
         {
             return new Product
             {
-                Id = Guid.NewGuid().ToString()
+                Id = Guid.NewGuid().ToString(),
+                TimeToProduceIndex = 1,
             };
         }
     }

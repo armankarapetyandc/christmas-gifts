@@ -34,7 +34,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
 
             backButton.OnClickAsObservable().Subscribe(_ => Controller.ReturnProductView(_data!.Product))
                 .AddTo(this);
-            saveButton.OnClickAsObservable().Subscribe(_ => Controller.ReturnProductView(_data!.Product)).AddTo(this);
+            saveButton.OnClickAsObservable().Subscribe(_ => Controller.ReturnProductView(Controller.Product)).AddTo(this);
 
             iconCollectionComponent
                 .Setup(Controller
@@ -58,29 +58,30 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
 
         private void SetupDefaults()
         {
+            Controller.Product = _data.Product;
+            
             var iconVisualAsset =
-                Controller.ResolveVisualAsset<SpriteVisualAsset>(_data.Product.IconVisualAssetId);
+                Controller.ResolveVisualAsset<SpriteVisualAsset>(Controller.Product.IconVisualAssetId);
             var colorVisualAsset =
-                Controller.ResolveVisualAsset<ColorVisualAsset>(_data.Product.BackgroundColorVisualAssetId) ??
+                Controller.ResolveVisualAsset<ColorVisualAsset>(Controller.Product.BackgroundColorVisualAssetId) ??
                 defaultColorVisualAsset;
 
-            iconComponent.SetIcon(iconVisualAsset);
-            iconComponent.SetColor(colorVisualAsset);
-
-            iconCollectionComponent.Select(iconVisualAsset?.Id);
-            colorCollectionComponent.Select(colorVisualAsset?.Id);
+            iconCollectionComponent.Select(iconVisualAsset?.Id,true);
+            colorCollectionComponent.Select(colorVisualAsset?.Id,true);
+            
+            
         }
 
         private void IconSelected(SpriteVisualAsset visualAsset)
         {
             iconComponent.SetIcon(visualAsset);
-            _data.Product.IconVisualAssetId = visualAsset.Id;
+            Controller.Product.IconVisualAssetId = visualAsset.Id;
         }
 
         private void ColorSelected(ColorVisualAsset visualAsset)
         {
             iconComponent.SetColor(visualAsset);
-            _data.Product.BackgroundColorVisualAssetId = visualAsset.Id;
+            Controller.Product.BackgroundColorVisualAssetId = visualAsset.Id;
         }
 
         public override void Dispose()

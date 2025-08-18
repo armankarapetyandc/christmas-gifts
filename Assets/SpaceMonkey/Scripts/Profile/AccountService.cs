@@ -9,7 +9,7 @@ namespace SpaceMonkey.Scripts.Profile
 {
     public class AccountService : IDisposable
     {
-        private const string FILENAME = "Account";
+        private const string FILENAME = "Account.spacemonkey";
         private static readonly string _path = Path.Combine(Application.persistentDataPath, FILENAME);
 
         public AccountModel Model { get; private set; }
@@ -21,7 +21,7 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(Account.CreateEmpty());
         }
 
-        public async UniTaskVoid SaveAsync()
+        public async UniTask SaveAsync()
         {
             if (Model?.Account == null)
             {

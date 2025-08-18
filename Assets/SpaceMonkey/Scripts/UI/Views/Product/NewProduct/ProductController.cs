@@ -38,11 +38,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         {
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
-
-        internal void SaveProduct()
+        public async UniTaskVoid DeleteProduct()
         {
-            _accountService.Model.Account.Products.Add(CurrentProduct);
-            _accountService.SaveAsync().Forget();
+            _accountService.Model.Account.DeleteProduct(CurrentProduct.Id);
+            await _accountService.SaveAsync();
+            PresenterService.HidePreviousAndShow<ProductListView>().Forget();
+        }
+        internal async UniTaskVoid SaveProduct()
+        {
+            _accountService.Model.Account.SetProduct(CurrentProduct);
+            await _accountService.SaveAsync();
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
 
@@ -58,5 +63,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 Product = CurrentProduct
             }).Forget();
         }
+
+       
     }
 }

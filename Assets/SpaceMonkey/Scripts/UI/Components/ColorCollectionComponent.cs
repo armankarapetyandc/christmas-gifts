@@ -31,7 +31,7 @@ namespace SpaceMonkey.Scripts.UI.Components
             return observables.Merge();
         }
 
-        public void Select(string visualAssetId)
+        public void Select(string visualAssetId, bool forceNotify)
         {
             if (string.IsNullOrWhiteSpace(visualAssetId))
             {
@@ -41,7 +41,14 @@ namespace SpaceMonkey.Scripts.UI.Components
             var item = _items.Find(i => i.VisualAsset.Id.Equals(visualAssetId));
             if (item != null)
             {
-                item.SetStateWithoutNotify(true);
+                if (forceNotify)
+                {
+                    item.SetState(true);
+                }
+                else
+                {
+                    item.SetStateWithoutNotify(true);
+                }
             }
         }
     }
