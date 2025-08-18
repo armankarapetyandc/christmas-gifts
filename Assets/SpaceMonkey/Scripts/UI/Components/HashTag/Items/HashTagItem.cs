@@ -51,7 +51,10 @@ namespace SpaceMonkey.Scripts.UI.Components.HashTag.Items
             UpdateStateUI(state);
             toggle.SetIsOnWithoutNotify(state);
         }
-        
+        public void SetState(bool state)
+        {
+            toggle.isOn = state;
+        }
         private void UpdateStateUI(bool state)
         {
             image.sprite = state ? selectedStateSprite : deselectedStateSprite;

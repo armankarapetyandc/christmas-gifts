@@ -57,6 +57,17 @@ namespace SpaceMonkey.Scripts.Profile
         {
             Company.Tags = tags;
         }
+
+        public void Reset()
+        {
+            Company?.Reset();
+            Level = 0;
+            Money = 0;
+            ProductionCapacity = 0;
+            Score = 0;
+            Products = new List<Product>();
+            
+        }
     }
 
     public class CompanyInfo
@@ -65,6 +76,13 @@ namespace SpaceMonkey.Scripts.Profile
         public string Category { get; set; }
         public CompanyLogo Logo { get; set; }
         public Hashtag[] Tags { get; set; }
+
+        public void Reset()
+        {
+            CompanyName = Category = null;
+            Logo?.Reset();
+            Tags = Array.Empty<Hashtag>();
+        }
     }
 
     public class CompanyLogo
@@ -78,6 +96,11 @@ namespace SpaceMonkey.Scripts.Profile
             ShapeVisualAssetId = logo.ShapeVisualAssetId;
             IconVisualAssetId = logo.IconVisualAssetId;
             BackgroundColorVisualAssetId = logo.BackgroundColorVisualAssetId;
+        }
+
+        public void Reset()
+        {
+            ShapeVisualAssetId = IconVisualAssetId = BackgroundColorVisualAssetId = null;
         }
     }
 

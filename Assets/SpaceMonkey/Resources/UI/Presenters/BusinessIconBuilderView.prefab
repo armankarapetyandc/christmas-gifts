@@ -3244,6 +3244,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8897002254852891914}
     m_Modifications:
+    - target: {fileID: 1074497309779026603, guid: b9f8ed72ed18ca740bd2b830850dcb87, type: 3}
+      propertyPath: requirements
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 1122011637108393856, guid: b9f8ed72ed18ca740bd2b830850dcb87, type: 3}
       propertyPath: m_Name
       value: IconHolder

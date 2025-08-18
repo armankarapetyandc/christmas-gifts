@@ -45,7 +45,7 @@ namespace SpaceMonkey.Scripts.UI.Components.HashTag
             _items
                 .Where(item => selectedHashtags.Any(info => item.Tag.Tag.Equals(info.Tag)))
                 .ToList()
-                .ForEach(item => item.SetStateWithoutNotify(state));
+                .ForEach(item => item.SetState(state));
         }
 
         public void Cleanup()

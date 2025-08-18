@@ -51,8 +51,18 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
                     .AddTo(this);
             }
 
-            var navigateTo = _data?.Type ?? defaultType;
-            ShowView(navigateTo).Forget();
+            if (_data != null && _elementsDict.TryGetValue(_data.Type, out var selectedElement))
+            {
+                selectedElement.Select();
+            }
+            else
+            {
+                ShowView(defaultType).Forget();
+            }
+
+
+            // var navigateTo = _data?.Type ?? defaultType;
+            // ShowView(navigateTo).Forget();
             return UniTask.CompletedTask;
         }
 

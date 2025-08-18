@@ -14,7 +14,8 @@ namespace SpaceMonkey.Scripts.UI.Components
             None = 0,
             Shape = 1 << 0, // 1
             Icon = 1 << 1, // 2
-            Color = 1 << 2 // 4
+            Color = 1 << 2, // 4
+            All = Shape | Icon | Color
         }
 
         [SerializeField] private RectTransform plusRectTransform;
@@ -44,7 +45,8 @@ namespace SpaceMonkey.Scripts.UI.Components
                     if (ColorVisualAsset != null)
                         current |= Requirements.Color;
                     
-                    return (current & requirements) == requirements;
+                    var required = requirements & Requirements.All;
+                    return (current & required) == required;
                 })
                 .DistinctUntilChanged();
 

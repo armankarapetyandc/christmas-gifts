@@ -44,6 +44,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
 
         internal void OnBack()
         {
+            _accountService.Model.Account.Reset();
             PresenterService.HidePreviousAndShow<CategorySelectionView>().Forget();
         }
 
