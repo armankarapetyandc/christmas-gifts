@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2d925f4deb17a48d387bf96e19722037
+guid: f2027f82f988541b182673cbf5c4ac9a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1844228924760574553
-    second: empty_state 1_0
+      213: 6513161873988794130
+    second: bt_more_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: empty_state 1_0
+      name: bt_more_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 300
-        height: 300
+        width: 61
+        height: 61
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 54, y: 54, z: 54, w: 54}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 95acad89f64089910800000000000000
-      internalID: 1844228924760574553
+      spriteID: 21738b75736636a50800000000000000
+      internalID: 6513161873988794130
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2897d32f5772c42c1838a1557c5a4886
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      empty_state 1_0: 1844228924760574553
+      bt_more_0: 6513161873988794130
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
