@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cdf2b6941d8f14ce5b117606efb75092
+guid: 4a5f860f4695240c1963bcdf00a640c9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6265136392211227296
-    second: Frame 16_0
+      213: -7369300380829668262
+    second: orangeWhiteButton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Frame 16_0
+      name: orangeWhiteButton_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1125
-        height: 2436
+        width: 133
+        height: 126
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 26, y: 24, z: 22, w: 26}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 06d90e835a3cd09a0800000000000000
-      internalID: -6265136392211227296
+      spriteID: a5c2f7d095cfab990800000000000000
+      internalID: -7369300380829668262
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5876b0899b7454509972a812435806f9
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Frame 16_0: -6265136392211227296
+      orangeWhiteButton_0: -7369300380829668262
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
