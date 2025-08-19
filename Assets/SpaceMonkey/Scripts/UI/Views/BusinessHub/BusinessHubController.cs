@@ -4,6 +4,7 @@ using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.Orders;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
+using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -43,10 +44,17 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
 
+
         internal void StartWeek()
         {
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<OrdersView>().Forget();
+        }
+
+        internal void ShowProductionView()
+        {
+            _navigationPresenterService.HideAll();
+            PresenterService.HidePreviousAndShow<ProductionCapacityView>().Forget();
         }
     }
 }

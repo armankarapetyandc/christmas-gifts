@@ -9,6 +9,7 @@ namespace SpaceMonkey.Scripts.Configs
     public class GameConfig : ScriptableObject
     {
         [field: SerializeField] public CategoryInfo[] Categories { get; private set; }
+        [field: SerializeField] public ProductionLevelInfo[] ProductionLevels { get; private set; }
     }
 
     [Serializable]
@@ -25,5 +26,13 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public string Tag { get; private set; }
         [field: SerializeField] public float MaterialAdd { get; private set; }
         [field: SerializeField] public float PackagingAdd { get; private set; }
+    }
+
+    [Serializable]
+    public class ProductionLevelInfo
+    {
+        [field: SerializeField] public int Index { get; private set; }
+        [field: SerializeField] public float ProdCapAdd { get; private set; }
+        [field: SerializeField] public float ProdCapCost { get; private set; }
     }
 }

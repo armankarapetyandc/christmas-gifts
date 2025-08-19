@@ -26,11 +26,14 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private Button startButton;
         [SerializeField] private IconComponent productComponent;
         [SerializeField] private TextMeshProUGUI productsCountText;
+        
+        [SerializeField] private Button productionButton;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
             productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
             startButton.OnClickAsObservable().Subscribe(_ => Controller.StartWeek()).AddTo(this);
+            productionButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductionView()).AddTo(this);
             SetupDefaults();
             return UniTask.CompletedTask;
         }
