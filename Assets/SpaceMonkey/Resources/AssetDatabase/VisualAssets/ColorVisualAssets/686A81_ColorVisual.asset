@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 686A81_ColorVisual
   m_EditorClassIdentifier: 
   id: 686A81
-  <Type>k__BackingField: 6
+  <Type>k__BackingField: 2
   <Color>k__BackingField: {r: 0.40784314, g: 0.41568628, b: 0.5058824, a: 1}

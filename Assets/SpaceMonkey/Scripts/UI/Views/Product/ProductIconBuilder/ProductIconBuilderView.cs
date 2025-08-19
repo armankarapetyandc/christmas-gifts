@@ -23,7 +23,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private IconCollectionComponent iconCollectionComponent;
         [SerializeField] private ColorCollectionComponent colorCollectionComponent;
-        [SerializeField] private ColorVisualAsset defaultColorVisualAsset;
 
         private Data _data;
 
@@ -34,7 +33,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
 
             backButton.OnClickAsObservable().Subscribe(_ => Controller.ReturnProductView(_data!.Product))
                 .AddTo(this);
-            saveButton.OnClickAsObservable().Subscribe(_ => Controller.ReturnProductView(Controller.Product)).AddTo(this);
+            saveButton.OnClickAsObservable().Subscribe(_ => Controller.ReturnProductView(Controller.Product))
+                .AddTo(this);
 
             iconCollectionComponent
                 .Setup(Controller
@@ -59,17 +59,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
         private void SetupDefaults()
         {
             Controller.Product = _data.Product;
-            
+
             var iconVisualAsset =
                 Controller.ResolveVisualAsset<SpriteVisualAsset>(Controller.Product.IconVisualAssetId);
             var colorVisualAsset =
                 Controller.ResolveVisualAsset<ColorVisualAsset>(Controller.Product.BackgroundColorVisualAssetId) ??
-                defaultColorVisualAsset;
+                Controller.GetDefaultColorVisualAssetInSequence();
 
-            iconCollectionComponent.Select(iconVisualAsset?.Id,true);
-            colorCollectionComponent.Select(colorVisualAsset?.Id,true);
-            
-            
+            iconCollectionComponent.Select(iconVisualAsset?.Id, true);
+            colorCollectionComponent.Select(colorVisualAsset?.Id, true);
         }
 
         private void IconSelected(SpriteVisualAsset visualAsset)

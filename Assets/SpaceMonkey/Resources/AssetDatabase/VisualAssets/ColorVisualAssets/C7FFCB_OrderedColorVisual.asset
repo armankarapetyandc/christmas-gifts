@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49c2c214f034a35a9ca84f856728e2b, type: 3}
-  m_Name: C7FFCB_ColorVisual
+  m_Script: {fileID: 11500000, guid: 4efe0602242a4cac9d3204a03006a8a3, type: 3}
+  m_Name: C7FFCB_OrderedColorVisual
   m_EditorClassIdentifier: 
   id: C7FFCB
-  <Type>k__BackingField: -1
+  <Type>k__BackingField: 4
   <Color>k__BackingField: {r: 0.78039217, g: 1, b: 0.79607844, a: 1}
+  <Order>k__BackingField: 0

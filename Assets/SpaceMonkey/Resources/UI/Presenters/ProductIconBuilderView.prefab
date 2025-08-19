@@ -817,7 +817,10 @@ MonoBehaviour:
   iconComponent: {fileID: 9155190981002765093}
   iconCollectionComponent: {fileID: 9178579018222599827}
   colorCollectionComponent: {fileID: 3096057455247463077}
-  defaultColorVisualAsset: {fileID: 11400000, guid: 9bcdad9336212dc4a911327e040cfd3d, type: 2}
+  defaultColorVisualAssets:
+  - {fileID: 11400000, guid: 9bcdad9336212dc4a911327e040cfd3d, type: 2}
+  - {fileID: 11400000, guid: 23dacd38b138f734ba1fbfa8af9183e3, type: 2}
+  - {fileID: 11400000, guid: af550534bf7532146ace93a411d9dbf3, type: 2}
 --- !u!114 &3371902822350106398
 MonoBehaviour:
   m_ObjectHideFlags: 0

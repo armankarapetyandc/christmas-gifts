@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -17,17 +18,33 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
 
         internal Profile.Product Product;
 
-        
-        public ProductIconBuilderController(PresenterService presenterService, AccountService accountService,VisualAssetDatabase visualAssetDatabase)
+
+        public ProductIconBuilderController(PresenterService presenterService, AccountService accountService,
+            VisualAssetDatabase visualAssetDatabase)
             : base(presenterService)
         {
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
         }
+
         internal Account GetAccount()
         {
             return _accountService.Model.Account;
         }
+
+        internal ColorVisualAsset GetDefaultColorVisualAssetInSequence()
+        {
+            var account = GetAccount();
+            
+            var colorVisualAssets =
+                ResolveVisualAssets<OrderedColorVisualAsset>(asset => asset.Type.HasFlag(VisualAssetType.Product))
+                    .OrderBy(asset => asset.Order)
+                    .Cast<ColorVisualAsset>()
+                    .ToList();
+            var safeIndex = account.Products.Count % colorVisualAssets.Count;
+            return colorVisualAssets[safeIndex];
+        }
+
         internal T ResolveVisualAsset<T>(string id) where T : VisualAsset
         {
             return _visualAssetDatabase.GetResourceForAsset<T>(id);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpaceMonkey.Editor.Utilities
 {
-    [CustomEditor(typeof(ColorVisualAsset))]
+    [CustomEditor(typeof(ColorVisualAsset),true)]
     [CanEditMultipleObjects]
     public class ColorVisualAssetEditor : UnityEditor.Editor
     {

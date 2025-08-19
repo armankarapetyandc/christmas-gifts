@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ABABAB_ColorVisual
   m_EditorClassIdentifier: 
   id: ABABAB
-  <Type>k__BackingField: 6
+  <Type>k__BackingField: 2
   <Color>k__BackingField: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
