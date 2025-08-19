@@ -127,3 +127,16 @@ MonoBehaviour:
   - <Name>k__BackingField: Sports
     <Visual>k__BackingField: {fileID: 11400000, guid: 9d18268e7e016664f839a4458575e9fb, type: 2}
     <Tags>k__BackingField: []
+  <ProductionLevels>k__BackingField:
+  - <Index>k__BackingField: 0
+    <ProdCapAdd>k__BackingField: 10
+    <ProdCapCost>k__BackingField: 0
+  - <Index>k__BackingField: 1
+    <ProdCapAdd>k__BackingField: 20
+    <ProdCapCost>k__BackingField: 500
+  - <Index>k__BackingField: 2
+    <ProdCapAdd>k__BackingField: 40
+    <ProdCapCost>k__BackingField: 1200
+  - <Index>k__BackingField: 3
+    <ProdCapAdd>k__BackingField: 60
+    <ProdCapCost>k__BackingField: 2100
