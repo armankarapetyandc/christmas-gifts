@@ -92,7 +92,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             materialPackagingSlider.Setup(packagingAddCoefficient, isPriorityCategory,
                 Controller.CurrentProduct.MaterialPackagingPrice);
 
-            productPriceSlider.Prepare();
+            // productPriceSlider.Prepare();
+            productPriceSlider.Prepare(Controller.CurrentProduct.MinProductPrice,Controller.CurrentProduct.MaxProductPrice,Controller.CurrentProduct.ProductPrice);
         }
 
         private void ListenProductChanges()
@@ -127,10 +128,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 Controller.CurrentProduct.MaterialPackagingPrice =
                     materialPackagingSlider.CurrentValue.CurrentValue;
                 productPriceSlider.UpdateRange(totalCost, productMaxPrice);
-                Controller.CurrentProduct.ProductPrice = productPriceSlider.CurrentValue.CurrentValue;
                 Controller.CurrentProduct.MinProductPrice = totalCost;
                 Controller.CurrentProduct.MaxProductPrice = productMaxPrice;
             }).AddTo(this);
+
+            productPriceSlider.CurrentValue.DistinctUntilChanged()
+                .Subscribe(value => Controller.CurrentProduct.ProductPrice = value).AddTo(this);
         }
 
 
