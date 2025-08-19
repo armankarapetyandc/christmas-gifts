@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Views.Orders;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
@@ -40,6 +41,12 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         {
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
+        }
+
+        internal void StartWeek()
+        {
+            _navigationPresenterService.HideAll();
+            PresenterService.HidePreviousAndShow<OrdersView>().Forget();
         }
     }
 }

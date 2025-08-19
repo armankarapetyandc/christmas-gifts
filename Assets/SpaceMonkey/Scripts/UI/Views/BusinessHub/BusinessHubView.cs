@@ -30,6 +30,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         public override UniTask Initialize(IPresenterData data = null)
         {
             productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
+            startButton.OnClickAsObservable().Subscribe(_ => Controller.StartWeek()).AddTo(this);
             SetupDefaults();
             return UniTask.CompletedTask;
         }
@@ -42,6 +43,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             moneyText.text = $"${account.Money.ToString()}";
             prodCapText.text = $"{account.ProductionCapacity} hrs";
             scoreText.text = $"${account.Score.ToString()}";
+            weekNumber.text = account.Week.ToString();
             productsCountText.text = account.Products.Count == 0
                 ? "Products"
                 : $"Products({account.Products.Count.ToString()})";

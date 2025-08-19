@@ -11,6 +11,7 @@ namespace SpaceMonkey.Scripts.Profile
     {
         public CompanyInfo Company { get; set; }
         public uint Level { get; set; }
+        public uint Week { get; set; }
         public float Rating { get; set; }
         public float Money { get; set; }
         public float ProductionCapacity { get; set; }
@@ -38,6 +39,7 @@ namespace SpaceMonkey.Scripts.Profile
                     Tags = Array.Empty<Hashtag>()
                 },
                 Level = 1,
+                Week = 1,
                 Money = 300,
                 ProductionCapacity = 5,
                 Rating = 0,
