@@ -1,16 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
 using Cysharp.Threading.Tasks;
-using Services.AssetDatabaseService;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
-using SpaceMonkey.Scripts.UI.Asset;
-using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview;
 using SpaceMonkey.Scripts.UI.Views.Startup;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
-using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 {
@@ -19,7 +14,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         private readonly AccountService _accountService;
         private readonly GameConfig _gameConfig;
 
-        public CategorySelectionController(PresenterService presenterService, AccountService accountService,GameConfig gameConfig) : base(presenterService)
+        public CategorySelectionController(PresenterService presenterService, AccountService accountService,
+            GameConfig gameConfig) : base(presenterService)
         {
             _accountService = accountService;
             _gameConfig = gameConfig;
@@ -37,7 +33,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
         internal void OnNext()
         {
-            PresenterService.HidePreviousAndShow<BusinessSetupView>().Forget();
+            PresenterService.HidePreviousAndShow<BusinessPreviewView>().Forget();
         }
 
         internal void IdeaSelected(string category)

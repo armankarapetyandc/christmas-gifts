@@ -35,9 +35,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
                              _minimum.CurrentValue;
                 _current.Value = result;
             }
+
+            public float CalculateSliderValue(float currentValue)
+            {
+                return ((currentValue - _minimum.Value) / (_maximum.CurrentValue - _minimum.CurrentValue)) * 100f;
+            }
         }
 
-        [SerializeField] private Slider slider;
+        [SerializeField] protected Slider slider;
         [SerializeField] private Button increaseButton;
         [SerializeField] private Button decreaseButton;
         [SerializeField] private TextMeshProUGUI minText;
@@ -76,11 +81,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
 
         public virtual void Reset(){}
         
-        public void SetInitValue(float value)
+        public void Set(float value)
         {
+            value = Mathf.Clamp(value, slider.minValue, slider.maxValue);
             SetSliderValue(value);
-            Debug.LogError($"value: {value}");
-            Model.CalculateCurrent(value);
         }
 
         private void ChangeSliderValue(float amount)

@@ -1,0 +1,13 @@
+﻿using System;
+
+namespace SpaceMonkey.Scripts.UI.Asset.Database
+{
+    [Flags]
+    public enum VisualAssetType
+    {
+        None = 0,
+        Generic = 1 << 0, // 1
+        Company = 1 << 1, // 2
+        Product = 1 << 2 // 4
+    }
+}

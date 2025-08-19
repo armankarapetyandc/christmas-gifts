@@ -1,7 +1,9 @@
+using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
-using SpaceMonkey.Scripts.UI.Asset.IconBuilder;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
-using SpaceMonkey.Scripts.UI.Views.Product;
+using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
@@ -10,45 +12,34 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 {
     public class BusinessHubController : BasePresenterController
     {
-        private readonly IconBuilderConfig _iconBuilderConfig;
         private readonly AccountService _accountService;
+        private readonly VisualAssetDatabase _visualAssetDatabase;
         private readonly NavigationPresenterService  _navigationPresenterService;
 
-        public BusinessHubController(PresenterService presenterService, IconBuilderConfig iconBuilderConfig,
-            AccountService accountService, NavigationPresenterService navigationPresenterService) : base(presenterService)
+        public BusinessHubController(PresenterService presenterService,
+            AccountService accountService, VisualAssetDatabase visualAssetDatabase, NavigationPresenterService navigationPresenterService) : base(presenterService)
         {
-            _iconBuilderConfig = iconBuilderConfig;
             _accountService = accountService;
+            _visualAssetDatabase = visualAssetDatabase;
             _navigationPresenterService = navigationPresenterService;
         }
 
         
-        public Sprite ShapeSprite()
+        internal T ResolveVisualAsset<T>(string id) where T : VisualAsset
         {
-            return _iconBuilderConfig.GetShapeSprite(_accountService.Model.Account.Company.Logo.Shape);
+            return _visualAssetDatabase.GetResourceForAsset<T>(id);
         }
 
-        public Sprite IconSprite()
-        {
-            return _iconBuilderConfig.GetIconSprite(_accountService.Model.Account.Company.Logo.Icon);
-        }
-
-        public Color ShapeColor()
-        {
-            return ColorUtility.TryParseHtmlString("#" + _accountService.Model.Account.Company.Logo.Background, out var color)
-                ? color
-                : Color.white;
-        }
         
-        public string GetBusinessName()
+        internal Account GetAccount()
         {
-            return _accountService.Model.Account.Company.CompanyName;
+            return _accountService.Model.Account;
         }
 
-        public void ShowProductView()
+        internal void ShowProductView()
         {
             _navigationPresenterService.HideAll();
-            PresenterService.Show<ProductCreationView>();
+            PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
     }
 }

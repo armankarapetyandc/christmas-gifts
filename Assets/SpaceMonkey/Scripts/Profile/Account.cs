@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.UI.Views.Product;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace SpaceMonkey.Scripts.Profile
         public float Money { get; set; }
         public float ProductionCapacity { get; set; }
         public float Score { get; set; }
-        
+
         public List<Product> Products { get; set; }
 
         public void SetCategory(string category)
@@ -33,28 +34,57 @@ namespace SpaceMonkey.Scripts.Profile
             {
                 Company = new CompanyInfo
                 {
-                    Logo = new CompanyLogo()
+                    Logo = new CompanyLogo(),
+                    Tags = Array.Empty<Hashtag>()
                 },
                 Level = 1,
                 Money = 300,
                 ProductionCapacity = 5,
                 Rating = 0,
-                Score = 0
+                Score = 0,
+                Products = new List<Product>()
             };
-            account.Products = new List<Product>();
             return account;
         }
 
-        public void SetCompanyLogo(string shapeSpriteName, string iconSpriteName, string backgroundColorHex)
+        public void SetCompanyLogo(CompanyLogo logo)
         {
-            Company.Logo.Shape = shapeSpriteName;
-            Company.Logo.Icon = iconSpriteName;
-            Company.Logo.Background = backgroundColorHex;
+            Company.Logo.BackgroundColorVisualAssetId = logo.BackgroundColorVisualAssetId;
+            Company.Logo.IconVisualAssetId = logo.IconVisualAssetId;
+            Company.Logo.ShapeVisualAssetId = logo.ShapeVisualAssetId;
         }
 
         public void SetTags(Hashtag[] tags)
         {
             Company.Tags = tags;
+        }
+
+        public void SetProduct(Product product)
+        {
+            int index = Products.FindIndex(p => p.Id.Equals(product.Id));
+            if (index < 0)
+            {
+                Products.Add(product);
+            }
+            else
+            {
+                Products[index] = product;
+            }
+        }
+
+        public void Reset()
+        {
+            Company?.Reset();
+            Level = 0;
+            Money = 0;
+            ProductionCapacity = 0;
+            Score = 0;
+            Products = new List<Product>();
+        }
+
+        public void DeleteProduct(string productId)
+        {
+            Products.RemoveAll(p => p.Id.Equals(productId));
         }
     }
 
@@ -64,51 +94,65 @@ namespace SpaceMonkey.Scripts.Profile
         public string Category { get; set; }
         public CompanyLogo Logo { get; set; }
         public Hashtag[] Tags { get; set; }
+
+        public void Reset()
+        {
+            CompanyName = Category = null;
+            Logo?.Reset();
+            Tags = Array.Empty<Hashtag>();
+        }
     }
 
     public class CompanyLogo
     {
-        public string Shape { get; set; }
-        public string Icon { get; set; }
-        public string Background { get; set; }
-    }
+        public string ShapeVisualAssetId { get; set; }
+        public string IconVisualAssetId { get; set; }
+        public string BackgroundColorVisualAssetId { get; set; }
 
-    public class Product
-    {
-        public string ID { get; private set; }
-        public string Name { get; set; }
-        public string Icon { get; set; }
-        public string BackgroundColor { get; set; }
-        public float PackagingCost { get; set; }
-        public float MaterialCost { get; set; }
-        public float TotalCost { get; set; }
-        public float ShippingCost { get; set; }
-        public float Price { get; set; }
-        public float TtpCost { get; set; }
-        public float Profit {get; set;}
-        public float TimeToProduceIndex { get; set; }
-
-
-        public void GenerateID()
+        public void CopyFrom(CompanyLogo logo)
         {
-            ID = Guid.NewGuid().ToString();
+            ShapeVisualAssetId = logo.ShapeVisualAssetId;
+            IconVisualAssetId = logo.IconVisualAssetId;
+            BackgroundColorVisualAssetId = logo.BackgroundColorVisualAssetId;
         }
 
-        // public Product(ProductData productData)
-        // {
-        //     ID = Guid.NewGuid().ToString();
-        //     Name = productData.Name;
-        //     Price = productData.Price;
-        //     TtpCost = productData.TtpCost;
-        //     TotalCost = productData.TotalCost;
-        //     ShippingCost = productData.ShippingCost;
-        //     Profit = productData.Profit;
-        //     Icon = productData.Icon.ToString();
-        //     TimeToProduceIndex = productData.TimeToProduceIndex;
-        //     PackagingCost = productData.PackagingCost;
-        //     MaterialCost = productData.MaterialCost;
-        //     BackgroundColor = ColorUtility.ToHtmlStringRGBA(productData.BackgroundColor);
-        // }
+        public void Reset()
+        {
+            ShapeVisualAssetId = IconVisualAssetId = BackgroundColorVisualAssetId = null;
+        }
+    }
+
+    public struct Product
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string IconVisualAssetId { get; set; }
+        public string BackgroundColorVisualAssetId { get; set; }
+
+        public int TimeToProduceIndex { get; set; }
+        public float? MaterialPrice { get; set; }
+        public float? MaterialPackagingPrice { get; set; }
+        public float? MinProductPrice { get; set; }
+        public float? MaxProductPrice { get; set; }
+        public float? ProductPrice { get; set; }
+
+        public float? ShippingCost { get; set; }
+        public float? Profit { get; set; }
+
+        [JsonIgnore] public bool IsValid => !string.IsNullOrWhiteSpace(Id);
+
+        public static Product CreateEmpty()
+        {
+            return new Product
+            {
+                TimeToProduceIndex = 1,
+            };
+        }
+
+        public void AssignId()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
 
     public class Hashtag : IEquatable<Hashtag>

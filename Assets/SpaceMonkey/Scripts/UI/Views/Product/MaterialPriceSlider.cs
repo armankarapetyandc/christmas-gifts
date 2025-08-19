@@ -9,19 +9,21 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
 
         public ReadOnlyReactiveProperty<float> CurrentValue => Model.Current;
 
-        public void Setup(float materialAddCoefficient, bool isPriorityCategory)
+        public void Setup(float materialAddCoefficient, bool isPriorityCategory,float? currentValue=null)
         {
             float minPrice = materialAddCoefficient * 0.35f + (isPriorityCategory ? 0.35f : 0f);
             float maxPrice = materialAddCoefficient * 5.5f + (isPriorityCategory ? 5.5f : 0f);
             Model.Set(minPrice, maxPrice);
+            Model.CalculateCurrent(slider.value);
             Setup();
+            SetSliderValue(currentValue == null ? defaultSliderValue : Model.CalculateSliderValue(currentValue.Value));
         }
 
-        protected override void Setup()
-        {
-            base.Setup();
-            SetSliderValue(defaultSliderValue);
-        }
+        // protected override void Setup()
+        // {
+        //     base.Setup();
+        //     SetSliderValue(defaultSliderValue);
+        // }
  
         public override void Reset()
         {

@@ -1,8 +1,8 @@
-using System;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile;
-using SpaceMonkey.Scripts.UI.Asset.Product;
+using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -14,81 +14,69 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 {
     public class BusinessHubView : BasePresenterWithController<BusinessHubController>
     {
-        [SerializeField] private Image shapeImage;
-        [SerializeField] private Image iconImage;
+        [SerializeField] private IconComponent iconComponent;
         [SerializeField] private TextMeshProUGUI businessName;
         [SerializeField] private TextMeshProUGUI weekNumber;
         [SerializeField] private TextMeshProUGUI levelNumber;
-        
+
         [SerializeField] private TextMeshProUGUI moneyText;
         [SerializeField] private TextMeshProUGUI prodCapText;
         [SerializeField] private TextMeshProUGUI scoreText;
-        
-        
+
         [SerializeField] private Button startButton;
-        [SerializeField] private Button productButton;
+        [SerializeField] private IconComponent productComponent;
         [SerializeField] private TextMeshProUGUI productsCountText;
-        [SerializeField] private Image firstProductBackgroundImage;
-        [SerializeField] private Image firstProductIconImage;
-        [SerializeField] private Color diselectedColor;
-        
-        [Inject] private AccountService _accountService;
-        [Inject] private ProductIconBuilderConfig _iconBuilderConfig;
-        
+
         public override UniTask Initialize(IPresenterData data = null)
         {
-            shapeImage.sprite = Controller.ShapeSprite();
-            iconImage.sprite = Controller.IconSprite();
-            shapeImage.color = Controller.ShapeColor();
-            businessName.text = Controller.GetBusinessName();
-            levelNumber.text = $"Level {_accountService.Model.Account.Level.ToString()}";
-            moneyText.text = $"${_accountService.Model.Account.Money.ToString()}";
-            prodCapText.text = $"{_accountService.Model.ProductionCapacity.ToString()} hrs";
-            scoreText.text = _accountService.Model.Account.Score.ToString();
-            
-            productButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductView()).AddTo(this);
-            productsCountText.text = $"Products({_accountService.Model.Account.Products.Count.ToString()})";
-            SelectFirstProduct();
+            productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
+            SetupDefaults();
             return UniTask.CompletedTask;
         }
 
-        private void SelectFirstProduct()
+        private void SetupDefaults()
         {
-            if (_accountService.Model.Account.Products.Count > 0)
-            {
-                firstProductIconImage.color = Color.white;
-                firstProductBackgroundImage.color = Color.white;
-                var firstProd =  _accountService.Model.Account.Products[0];
-                firstProductBackgroundImage.color = BackgroundColor(firstProd.BackgroundColor);
-                firstProductIconImage.sprite = Icon(firstProd.Icon);
-            }
-            else
-            {
-                firstProductBackgroundImage.color = diselectedColor;
-                firstProductIconImage.sprite = null;
-                firstProductIconImage.color = diselectedColor;
-            }
+            var account = Controller.GetAccount();
+            businessName.text = account.Company.CompanyName;
+            levelNumber.text = $"Level {account.Level.ToString()}";
+            moneyText.text = $"${account.Money.ToString()}";
+            prodCapText.text = $"{account.ProductionCapacity} hrs";
+            scoreText.text = $"${account.Score.ToString()}";
+            productsCountText.text = account.Products.Count == 0
+                ? "Products"
+                : $"Products({account.Products.Count.ToString()})";
+
+            var shapeVisualAsset =
+                Controller.ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.ShapeVisualAssetId);
+            var iconVisualAsset =
+                Controller.ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.IconVisualAssetId);
+            var colorVisualAsset =
+                Controller.ResolveVisualAsset<ColorVisualAsset>(account.Company.Logo.BackgroundColorVisualAssetId);
+
+            iconComponent.SetShape(shapeVisualAsset);
+            iconComponent.SetIcon(iconVisualAsset);
+            iconComponent.SetColor(colorVisualAsset);
+
+            PreviewProductAtIndexIfExists(0);
         }
-        
-        private Color BackgroundColor(string backColor)
+
+        private void PreviewProductAtIndexIfExists(int index)
         {
-            return ColorUtility.TryParseHtmlString("#" + backColor, out var color)
-                ? color
-                : Color.white;
-        }
-        
-        private Sprite Icon(string iconName)
-        {
-            try
+            var account = Controller.GetAccount();
+            if (account.Products == null || account.Products.Count == 0 || index >= account.Products.Count)
             {
-                return _iconBuilderConfig.GetIconSprite(iconName);
+                return;
             }
-            catch (Exception e)
-            {
-                return null;
-            }
+
+            var product = account.Products[index];
+
+            var iconVisualAsset = Controller.ResolveVisualAsset<SpriteVisualAsset>(product.IconVisualAssetId);
+            var colorVisualAsset =
+                Controller.ResolveVisualAsset<ColorVisualAsset>(product.BackgroundColorVisualAssetId);
+
+            productComponent.SetIcon(iconVisualAsset);
+            productComponent.SetColor(colorVisualAsset);
         }
-        
 
         public override void Dispose()
         {

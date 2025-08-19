@@ -1,64 +1,48 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
-using SpaceMonkey.Scripts.UI.Asset.IconBuilder;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
-using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetup;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
-using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
 {
     public class BusinessSetupCelebrationController : BasePresenterController
     {
-        private readonly IconBuilderConfig _iconBuilderConfig;
         private readonly AccountService _accountService;
+        private readonly VisualAssetDatabase _visualAssetDatabase;
         private readonly NavigationPresenterService _navigationPresenterService;
 
-        public BusinessSetupCelebrationController(PresenterService presenterService,
-            IconBuilderConfig iconBuilderConfig, AccountService accountService,
+        public BusinessSetupCelebrationController(PresenterService presenterService, AccountService accountService,
+            VisualAssetDatabase visualAssetDatabase,
             NavigationPresenterService navigationPresenterService) : base(presenterService)
         {
-            _iconBuilderConfig = iconBuilderConfig;
             _accountService = accountService;
+            _visualAssetDatabase = visualAssetDatabase;
             _navigationPresenterService = navigationPresenterService;
         }
 
-        public Sprite ShapeSprite()
+        internal void OnBack()
         {
-            return _iconBuilderConfig.GetShapeSprite(_accountService.Model.Account.Company.Logo.Shape);
+            PresenterService.HidePreviousAndShow<BusinessPreviewView>().Forget();
         }
 
-        public Sprite IconSprite()
+        internal Account GetAccount()
         {
-            return _iconBuilderConfig.GetIconSprite(_accountService.Model.Account.Company.Logo.Icon);
+            return _accountService.Model.Account;
+        }
+        internal T ResolveVisualAsset<T>(string id) where T : VisualAsset
+        {
+            return _visualAssetDatabase.GetResourceForAsset<T>(id);
         }
 
-        public Color ShapeColor()
-        {
-            return ColorUtility.TryParseHtmlString("#" + _accountService.Model.Account.Company.Logo.Background, out var color)
-                ? color
-                : Color.white;
-        }
-
-        public void OnBack()
-        {
-            PresenterService.HidePreviousAndShow<BusinessSetupView>().Forget();
-        }
-
-        public void OnNext()
+        internal void OnNext()
         {
             PresenterService.Hide();
-            _navigationPresenterService.Show<MainNavigation>();
-
-            _accountService.SaveAsync();
-        }
-
-        public string GetBusinessName()
-        {
-            return _accountService.Model.Account.Company.CompanyName;
+            _navigationPresenterService.Show<MainNavigation>().Forget();
         }
     }
 }

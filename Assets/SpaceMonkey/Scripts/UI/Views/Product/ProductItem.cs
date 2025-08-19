@@ -1,4 +1,7 @@
+using System;
 using R3;
+using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,30 +11,29 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
     public class ProductItem : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI productName;
-        [SerializeField] private TextMeshProUGUI prfitText;
+        [SerializeField] private TextMeshProUGUI profitText;
+
         [SerializeField] private TextMeshProUGUI productDescription;
-        [SerializeField] private Image backgroundImage;
-        [SerializeField] private Image iconImage;
+        [SerializeField] private IconComponent iconComponent;
+
         [SerializeField] private Button button;
+        private Profile.Product _product;
+        private SpriteVisualAsset _spriteVisualAsset;
+        private ColorVisualAsset _colorVisualAsset;
 
-        public ProductData ProductData { get; private set; }
-        
+        public Observable<Profile.Product> Selected => button.OnClickAsObservable().Select(_ => _product);
 
-        public Observable<ProductData> Selected =>
-            button.OnClickAsObservable().Select(_ => ProductData);
-
-        public void Initialize(ProductData data)
+        public void Setup(Profile.Product product)
         {
-            ProductData = data;
-            UpdateUI();
+            _product = product;
+            productName.text = _product.Name;
+            profitText.text = $"${_product.Profit:F2}";
         }
 
-        private void UpdateUI()
+        public void SetVisual(SpriteVisualAsset iconVisualAsset, ColorVisualAsset colorVisualAsset)
         {
-            productName.text = ProductData.Name;
-            prfitText.text = $"${ProductData.Profit:F2}";
-            backgroundImage.color = ProductData.BackgroundColor;
-            iconImage.sprite = ProductData.Icon;
+            iconComponent.SetIcon(iconVisualAsset);
+            iconComponent.SetColor(colorVisualAsset);
         }
     }
 }
