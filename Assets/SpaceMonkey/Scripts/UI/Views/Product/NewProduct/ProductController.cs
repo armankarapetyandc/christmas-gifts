@@ -46,7 +46,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         }
         internal async UniTaskVoid SaveProduct()
         {
-            CurrentProduct.AssignId();
+            if (!CurrentProduct.IsValid)
+            {
+                CurrentProduct.AssignId();    
+            }
             _accountService.Model.Account.SetProduct(CurrentProduct);
             await _accountService.SaveAsync();
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
