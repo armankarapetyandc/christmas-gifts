@@ -1359,7 +1359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSequence:
   - animations:
-    - {fileID: 11400000, guid: 681d52f69dd4ff14c9870382f6e5baf5, type: 2}
+    - {fileID: 11400000, guid: e67a19552ca47b14a95e740bca1a0d3c, type: 2}
   group: {fileID: 5701906736341915759}
   presenterHolder: {fileID: 2427432385069536618}
   dimmerButton: {fileID: 0}

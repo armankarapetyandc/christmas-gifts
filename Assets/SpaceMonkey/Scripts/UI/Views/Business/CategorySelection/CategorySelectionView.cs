@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using R3;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Utilities;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -20,12 +22,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         [Header("Category Selection")] [SerializeField]
         private CategoryItem[] categoryItems;
 
+        [SerializeField] private CanvasGroup categorySelectionCanvasGroup;
+
 
         [Header("Category Details")] [SerializeField]
         private Image selectedIdeaIconImage;
 
         [SerializeField] private TextMeshProUGUI selectedIdeaNameText;
         [SerializeField] private Button nextButton;
+        [SerializeField] private CanvasGroup categoryDetailsCanvasGroup;
 
 
         public override UniTask Initialize(IPresenterData data = null)
@@ -52,10 +57,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
             if (categoryDetailsPanel.gameObject.activeSelf)
             {
-                categoryDetailsPanel.gameObject.SetActive(false);
-                categorySelectionPanel.gameObject.SetActive(true);
+                categoryDetailsCanvasGroup.DOCrossfade(categorySelectionCanvasGroup, 0.5f, Ease.InOutQuad).Forget();
             }
         }
+
 
         private void SetupCategories()
         {
@@ -80,8 +85,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
             Controller.IdeaSelected(category.Name);
             selectedIdeaNameText.text = category.Name;
             selectedIdeaIconImage.sprite = category.Visual.Sprite;
-            categoryDetailsPanel.gameObject.SetActive(true);
-            categorySelectionPanel.gameObject.SetActive(false);
+            categorySelectionCanvasGroup.DOCrossfade(categoryDetailsCanvasGroup, 0.5f, Ease.InOutQuad).Forget();
         }
 
         public override void Dispose()

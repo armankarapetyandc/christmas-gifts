@@ -41,7 +41,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
 
         internal void OnBack()
         {
-            PresenterService.HidePreviousAndShow<BusinessPreviewView>().Forget();
+            // PresenterService.HidePreviousAndShow<BusinessPreviewView>().Forget();
+            PresenterService.Show<BusinessPreviewView>().Forget();
         }
 
         internal void OnSave()

@@ -93,7 +93,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 Controller.CurrentProduct.MaterialPackagingPrice);
 
             // productPriceSlider.Prepare();
-            productPriceSlider.Prepare(Controller.CurrentProduct.MinProductPrice,Controller.CurrentProduct.MaxProductPrice,Controller.CurrentProduct.ProductPrice);
+            productPriceSlider.Prepare(Controller.CurrentProduct.MinProductPrice,
+                Controller.CurrentProduct.MaxProductPrice, Controller.CurrentProduct.ProductPrice);
         }
 
         private void ListenProductChanges()
@@ -121,7 +122,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 // Controller.CurrentProduct.TotalCost = totalCost;
                 // Controller.CurrentProduct.TtpCost = ttpCost;
                 // Controller.CurrentProduct.ShippingCost = shippingCost;
-
+                Controller.CurrentProduct.ShippingCost = shippingCost;
                 Controller.CurrentProduct.TimeToProduceIndex =
                     Mathf.RoundToInt(timeToProductSlider.CurrentValue.CurrentValue);
                 Controller.CurrentProduct.MaterialPrice = materialPriceSlider.CurrentValue.CurrentValue;
@@ -133,7 +134,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             }).AddTo(this);
 
             productPriceSlider.CurrentValue.DistinctUntilChanged()
-                .Subscribe(value => Controller.CurrentProduct.ProductPrice = value).AddTo(this);
+                .Subscribe(value =>
+                {
+                    Controller.CurrentProduct.ProductPrice = value;
+                    Controller.CurrentProduct.Profit = productPriceSlider.CalculateCurrentProfit();
+                }).AddTo(this);
         }
 
 

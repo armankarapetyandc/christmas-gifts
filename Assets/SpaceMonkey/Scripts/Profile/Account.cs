@@ -134,6 +134,9 @@ namespace SpaceMonkey.Scripts.Profile
         public float? MinProductPrice { get; set; }
         public float? MaxProductPrice { get; set; }
         public float? ProductPrice { get; set; }
+        
+        public float? ShippingCost { get; set; }
+        public float? Profit { get; set; }
 
         public static Product CreateEmpty()
         {

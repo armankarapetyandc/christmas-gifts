@@ -46,6 +46,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             SetSliderValue(Model.CalculateSliderValue(Model.Current.CurrentValue));
         }
 
+        public float CalculateCurrentProfit()
+        {
+            return Model.Current.CurrentValue - Model.Minimum.CurrentValue;
+        }
+        
         private float CalculateProfit(float currentValue)
         {
             _profit = currentValue - Model.Minimum.CurrentValue;

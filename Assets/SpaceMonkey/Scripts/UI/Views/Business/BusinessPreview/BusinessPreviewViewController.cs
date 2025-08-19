@@ -50,12 +50,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
 
         internal void BuildLogo()
         {
-            PresenterService.HidePreviousAndShow<BusinessIconBuilderView>().Forget();
+            // PresenterService.HidePreviousAndShow<BusinessIconBuilderView>().Forget();
+            PresenterService.Show<BusinessIconBuilderView>().Forget();
         }
 
         internal void SelectMoreTags()
         {
-            PresenterService.HidePreviousAndShow<BusinessHashtagsSelectionView>().Forget();
+            // PresenterService.HidePreviousAndShow<BusinessHashtagsSelectionView>().Forget();
+            PresenterService.Show<BusinessHashtagsSelectionView>().Forget();
         }
 
         internal void OnSave()

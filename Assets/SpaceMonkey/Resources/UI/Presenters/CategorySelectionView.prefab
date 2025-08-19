@@ -2548,6 +2548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5753283704460107291}
+  - component: {fileID: 1339814866986612501}
   m_Layer: 5
   m_Name: CategoryDetailsPanel
   m_TagString: Untagged
@@ -2578,6 +2579,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!225 &1339814866986612501
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5273286327942095184}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5464233330926962338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3007,9 +3020,11 @@ MonoBehaviour:
   - {fileID: 1493263256563711274}
   - {fileID: 3634415618085329240}
   - {fileID: 6828702288611579459}
+  categorySelectionCanvasGroup: {fileID: 98431353562558645}
   selectedIdeaIconImage: {fileID: 5167686575700934552}
   selectedIdeaNameText: {fileID: 8642847521781890547}
   nextButton: {fileID: 4449900160445837278}
+  categoryDetailsCanvasGroup: {fileID: 1339814866986612501}
 --- !u!114 &4559004520994828465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3815,6 +3830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5673058547748941231}
+  - component: {fileID: 98431353562558645}
   m_Layer: 5
   m_Name: CategorySelectionPanel
   m_TagString: Untagged
@@ -3844,6 +3860,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!225 &98431353562558645
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8299409893304385801}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8312097051392972221
 GameObject:
   m_ObjectHideFlags: 0
