@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.UI.Views.Product;
 using UnityEngine;
@@ -134,17 +135,23 @@ namespace SpaceMonkey.Scripts.Profile
         public float? MinProductPrice { get; set; }
         public float? MaxProductPrice { get; set; }
         public float? ProductPrice { get; set; }
-        
+
         public float? ShippingCost { get; set; }
         public float? Profit { get; set; }
+
+        [JsonIgnore] public bool IsValid => !string.IsNullOrWhiteSpace(Id);
 
         public static Product CreateEmpty()
         {
             return new Product
             {
-                Id = Guid.NewGuid().ToString(),
                 TimeToProduceIndex = 1,
             };
+        }
+
+        public void AssignId()
+        {
+            Id = Guid.NewGuid().ToString();
         }
     }
 

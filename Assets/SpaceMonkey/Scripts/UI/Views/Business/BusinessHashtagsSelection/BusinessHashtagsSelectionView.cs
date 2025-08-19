@@ -39,7 +39,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
         private readonly Dictionary<int, MeterState> _meterMap = new Dictionary<int, MeterState>
         {
             { 1, new MeterState("Meh...", "#FFB200") },
-            { 4, new MeterState("Warmer...", "#FFB200") },
+            { 2, new MeterState("Warmer...", "#FFB200") },
             { 5, new MeterState("AWESOME!", "#01C73D") },
         };
 

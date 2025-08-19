@@ -66,7 +66,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         private void SetupDefaults(Profile.Product? product)
         {
             Controller.SetProduct(product);
-            deleteButton.gameObject.SetActive(product != null);
+            deleteButton.gameObject.SetActive(product?.IsValid ?? false);
             productNameInputField.text = Controller.CurrentProduct.Name;
             iconComponent.SetIcon(
                 Controller.ResolveVisualAsset<SpriteVisualAsset>(Controller.CurrentProduct.IconVisualAssetId));
