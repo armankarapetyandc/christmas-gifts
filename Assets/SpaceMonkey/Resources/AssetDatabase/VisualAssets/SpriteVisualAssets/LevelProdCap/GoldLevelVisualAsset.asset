@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GoldLevelVisualAsset
   m_EditorClassIdentifier: 
   id: gold
-  <Type>k__BackingField: -1
+  <Type>k__BackingField: 2
   <LevelIconSprite>k__BackingField: {fileID: 2788568348960109317, guid: f8ed460d5c9f24917bad88a707563bac, type: 3}
   <BrokenLevelIconSprite>k__BackingField: {fileID: 226702753830753226, guid: f8ed460d5c9f24917bad88a707563bac, type: 3}
