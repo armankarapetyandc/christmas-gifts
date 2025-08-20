@@ -7,5 +7,6 @@ namespace SpaceMonkey.Scripts.UI.Asset.Database
     {
         [field: SerializeField] public Sprite LevelIconSprite { get; private set; }
         [field: SerializeField] public Sprite BrokenLevelIconSprite { get; private set; }
+        [field: SerializeField] public Color BackgroundColor { get; private set; }
     }
 }

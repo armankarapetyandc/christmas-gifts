@@ -44,7 +44,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             businessName.text = account.Company.CompanyName;
             levelNumber.text = $"Level {account.Level.ToString()}";
             moneyText.text = $"${account.Money.ToString()}";
-            prodCapText.text = $"{account.ProductionCapacity} hrs";
+            prodCapText.text = $"{account.GetProductionCapacity()} hrs";
             scoreText.text = $"${account.Score.ToString()}";
             weekNumber.text = account.Week.ToString();
             productsCountText.text = account.Products.Count == 0

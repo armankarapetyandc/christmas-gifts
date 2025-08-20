@@ -14,7 +14,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private TextMeshProUGUI weekText;
         [SerializeField] private TextMeshProUGUI moneyText;
         [SerializeField] private TextMeshProUGUI productionCapacityText;
-        // [SerializeField] private TextMeshProUGUI productionCapacityText;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -39,7 +38,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
             weekText.text = account.Week.ToString();
             moneyText.text = $"${account.Money:C}";
-            productionCapacityText.text = $"${account.ProductionCapacity} hrs";
+            productionCapacityText.text = $"${account.GetProductionCapacity()} hrs";
         }
 
         public override void Dispose()

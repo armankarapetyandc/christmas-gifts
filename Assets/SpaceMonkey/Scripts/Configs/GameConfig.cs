@@ -1,5 +1,4 @@
 ﻿using System;
-using SpaceMonkey.Scripts.UI.Asset;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
 
@@ -31,8 +30,8 @@ namespace SpaceMonkey.Scripts.Configs
     [Serializable]
     public class ProductionLevelInfo
     {
-        [field: SerializeField] public int Index { get; private set; }
-        [field: SerializeField] public float ProdCapAdd { get; private set; }
-        [field: SerializeField] public float ProdCapCost { get; private set; }
+        [field: SerializeField] public int Id { get; private set; }
+        [field: SerializeField] public int ProdCapAdd { get; private set; }
+        [field: SerializeField] public int ProdCapCost { get; private set; }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using R3;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
 
@@ -10,31 +11,32 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
     {
         [SerializeField] private LevelItemComponent levelItemPrefab;
         [SerializeField] private RectTransform content;
-        
-        private readonly List<LevelItemComponent> _levelItems = new List<LevelItemComponent>();
-        
-        public void Setup(LevelVisualAsset[] assets, ProductionLevelInfo[]  levels)
+
+        public List<LevelItemComponent> LevelItems { get; } = new List<LevelItemComponent>();
+
+        public Observable<LevelProdCap> Setup(LevelVisualAsset[] assets, LevelProdCap[]  levels)
         {
-            while (_levelItems.Count > 0)
+            while (LevelItems.Count > 0)
             {
-                Destroy(_levelItems[0].gameObject);
+                Destroy(LevelItems[0].gameObject);
             }
 
-            _levelItems.Clear();
-            
+            LevelItems.Clear();
+            var observables = new List<Observable<LevelProdCap>>();
             for (var i = 0; i < levels.Length; i++)
             {
-                var levelInfo = levels[i];
+                var level = levels[i];
                 var item = Instantiate(levelItemPrefab, content);
-                item.Setup(assets[0],levelInfo);
-                _levelItems.Add(item);
+                int assetIndex = i / assets.Length;
+                item.Setup(assets[assetIndex], level, i);
+                observables.Add(item.OnSelected);
+                LevelItems.Add(item);
             }
+
+            return observables.Merge();
         }
 
-        private void SetAssetsDictionary(LevelVisualAsset[] assets, int count)
-        {
-            
-        }
+        
         
     }
 }

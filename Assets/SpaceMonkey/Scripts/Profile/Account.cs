@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using SpaceMonkey.Scripts.Configs;
-using SpaceMonkey.Scripts.UI.Views.Product;
-using UnityEngine;
 
 namespace SpaceMonkey.Scripts.Profile
 {
@@ -14,10 +13,10 @@ namespace SpaceMonkey.Scripts.Profile
         public uint Week { get; set; }
         public float Rating { get; set; }
         public float Money { get; set; }
-        public float ProductionCapacity { get; set; }
         public float Score { get; set; }
 
         public List<Product> Products { get; set; }
+        public List<LevelProdCap> LevelProdCaps { get; set; }
 
         public void SetCategory(string category)
         {
@@ -41,10 +40,10 @@ namespace SpaceMonkey.Scripts.Profile
                 Level = 1,
                 Week = 1,
                 Money = 300,
-                ProductionCapacity = 5,
                 Rating = 0,
                 Score = 0,
-                Products = new List<Product>()
+                Products = new List<Product>(),
+                LevelProdCaps = new List<LevelProdCap>()
             };
             return account;
         }
@@ -74,19 +73,39 @@ namespace SpaceMonkey.Scripts.Profile
             }
         }
 
+        public void SetLevel(LevelProdCap level)
+        {
+            int index = LevelProdCaps.FindIndex(p => p.Id.Equals(level.Id));
+            if (index < 0)
+            {
+                LevelProdCaps.Add(level);
+            }
+            else
+            {
+                LevelProdCaps[index] = level;
+            }
+        }
+
         public void Reset()
         {
             Company?.Reset();
             Level = 0;
             Money = 0;
-            ProductionCapacity = 0;
             Score = 0;
             Products = new List<Product>();
+            LevelProdCaps = new List<LevelProdCap>();
         }
 
         public void DeleteProduct(string productId)
         {
             Products.RemoveAll(p => p.Id.Equals(productId));
+        }
+
+        public int GetProductionCapacity()
+        {
+            return LevelProdCaps
+                .Where(l => !l.IsLocked)
+                .Sum(l => l.ProdCapAdd);
         }
     }
 
@@ -126,7 +145,7 @@ namespace SpaceMonkey.Scripts.Profile
 
     public struct Product
     {
-        public string Id { get; set; }
+        public string Id { get; private set; }
         public string Name { get; set; }
         public string IconVisualAssetId { get; set; }
         public string BackgroundColorVisualAssetId { get; set; }
@@ -151,6 +170,19 @@ namespace SpaceMonkey.Scripts.Profile
             };
         }
 
+        public void AssignId()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+    }
+
+    public struct LevelProdCap
+    {
+        public string Id { get; private set; }
+        public int ProdCapAdd {get; set;}
+        public int ProdCapCost {get; set;}
+        public bool IsLocked {get; set;}
+        
         public void AssignId()
         {
             Id = Guid.NewGuid().ToString();

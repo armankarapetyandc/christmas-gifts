@@ -6,7 +6,6 @@ using Zenject;
 
 namespace SpaceMonkey.Scripts.UI.Popups.Core
 {
-    [RequireComponent(typeof(Canvas))]
     public abstract class PopupPresenter : InitializablePresenter
     {
         public override UniTask Show()

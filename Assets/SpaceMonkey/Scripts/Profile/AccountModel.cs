@@ -19,7 +19,6 @@ namespace SpaceMonkey.Scripts.Profile
         {
             _money.Value = account.Money;
             _score.Value = account.Score;
-            _productionCapacity.Value = account.ProductionCapacity;
             Account = account;
         }
 
@@ -45,7 +44,6 @@ namespace SpaceMonkey.Scripts.Profile
         public void AddProductionCapacity(float amount)
         {
             _productionCapacity.Value += amount;
-            Account.ProductionCapacity += amount;
         }
 
         public void Dispose()

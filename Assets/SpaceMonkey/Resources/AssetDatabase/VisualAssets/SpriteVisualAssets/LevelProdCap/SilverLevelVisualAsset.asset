@@ -16,3 +16,4 @@ MonoBehaviour:
   <Type>k__BackingField: -1
   <LevelIconSprite>k__BackingField: {fileID: -5962389079421231736, guid: f8ed460d5c9f24917bad88a707563bac, type: 3}
   <BrokenLevelIconSprite>k__BackingField: {fileID: -1370661682523340017, guid: f8ed460d5c9f24917bad88a707563bac, type: 3}
+  <BackgroundColor>k__BackingField: {r: 0.89411765, g: 0.972549, b: 1, a: 1}

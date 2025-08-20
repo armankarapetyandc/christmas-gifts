@@ -1,3 +1,4 @@
+using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using TMPro;
@@ -6,24 +7,43 @@ using UnityEngine.UI;
 
 namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
 {
-    public class LevelItemComponent :MonoBehaviour
+    public class LevelItemComponent : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI levelIndexText;
         [SerializeField] private Image levelIcon;
         [SerializeField] private TextMeshProUGUI levelText;
         [SerializeField] private Image lockImage;
-        
-        private ProductionLevelInfo _levelInfo;
+        [SerializeField] private Toggle toggle;
 
         private LevelVisualAsset _visualAsset;
+        private Profile.LevelProdCap _level;
+        
+        public Color BackgroundColor => _visualAsset.BackgroundColor;
 
-        internal void Setup(LevelVisualAsset visualAsset, ProductionLevelInfo levelInfo)
+        public Observable<Profile.LevelProdCap> OnSelected =>
+            toggle.OnValueChangedAsObservable().Where(b => b && _visualAsset).Select(_ => _level);
+
+        private void Start()
+        {
+            if (transform.parent.TryGetComponent<ToggleGroup>(out var toggleGroup))
+            {
+                toggle.group = toggleGroup;
+            }
+        }
+
+        public void ChangeState()
+        {
+            toggle.isOn = !toggle.isOn;
+        }
+
+        internal void Setup(LevelVisualAsset visualAsset, Profile.LevelProdCap levelInfo, int index)
         {
             _visualAsset = visualAsset;
+            _level = levelInfo;
             levelIcon.sprite = visualAsset.LevelIconSprite;
-            SetLock(levelInfo.Index != 0);
-            levelIndexText.text = levelInfo.Index.ToString();
-            levelText.text = $"Level {levelInfo.Index}";
+            levelIndexText.text = (index + 1).ToString();
+            levelText.text = $"Level {index + 1}";
+            SetLock(levelInfo.IsLocked);
         }
 
         public void SetLock(bool locked)
@@ -35,6 +55,5 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         {
             levelIcon.sprite = isBroken ? _visualAsset.BrokenLevelIconSprite : _visualAsset.LevelIconSprite;
         }
-
     }
 }
