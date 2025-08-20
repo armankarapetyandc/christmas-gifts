@@ -829,7 +829,7 @@ GameObject:
   - component: {fileID: 2324299751945092389}
   - component: {fileID: 7073992192562924437}
   m_Layer: 5
-  m_Name: OrdersView
+  m_Name: OrdersView_old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

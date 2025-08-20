@@ -8,6 +8,7 @@ namespace SpaceMonkey.Scripts.UI.Asset.Database
         None = 0,
         Generic = 1 << 0, // 1
         Company = 1 << 1, // 2
-        Product = 1 << 2 // 4
+        Product = 1 << 2, // 4
+        Customer = 1 << 3 // 8
     }
 }

@@ -14,6 +14,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private TextMeshProUGUI weekText;
         [SerializeField] private TextMeshProUGUI moneyText;
         [SerializeField] private TextMeshProUGUI productionCapacityText;
+        [SerializeField] private OrderItem orderItemPrefab;
+
 
         public override UniTask Initialize(IPresenterData data = null)
         {
