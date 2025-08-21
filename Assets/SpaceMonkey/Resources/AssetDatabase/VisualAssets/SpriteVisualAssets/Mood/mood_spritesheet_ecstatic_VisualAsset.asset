@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abdd03f7641647d5ba2e3069e0209e07, type: 3}
+  m_Script: {fileID: 11500000, guid: 1129bb82fbce417fbd3959ee03a70999, type: 3}
   m_Name: mood_spritesheet_ecstatic_VisualAsset
   m_EditorClassIdentifier: 
   id: mood_spritesheet_ecstatic
   <Type>k__BackingField: 8
   <Sprite>k__BackingField: {fileID: 6538138210475584340, guid: f5e768533c9d5224db6aeb24db9c95b9, type: 3}
+  <MoodValue>k__BackingField: 100

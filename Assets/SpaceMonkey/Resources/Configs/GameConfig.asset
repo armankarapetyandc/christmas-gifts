@@ -155,3 +155,18 @@ MonoBehaviour:
   - <Id>k__BackingField: 0
     <ProdCapAdd>k__BackingField: 160
     <ProdCapCost>k__BackingField: 25000
+  <Characters>k__BackingField:
+  - {fileID: 11400000, guid: fe0320438545bdc4dbcaaa2e7c635dda, type: 2}
+  - {fileID: 11400000, guid: c9ab0fe92348a864ba10aee44d704b3f, type: 2}
+  - {fileID: 11400000, guid: df4d467ff49f26d4d8489e515e8636bb, type: 2}
+  - {fileID: 11400000, guid: 92f23923ef499f14782d84752ec1c6d2, type: 2}
+  <SimulationInfo>k__BackingField:
+    <CustomersMin>k__BackingField: 1
+    <CustomersMax>k__BackingField: 3
+    <MoodMin>k__BackingField: 55
+    <MoodMax>k__BackingField: 75
+    <CustomerMoodThreshold>k__BackingField: 30
+    <OrderQuantityMin>k__BackingField: 1
+    <OrderQuantityMax>k__BackingField: 3
+    <NewCustomersMin>k__BackingField: 1
+    <NewCustomersMax>k__BackingField: 2

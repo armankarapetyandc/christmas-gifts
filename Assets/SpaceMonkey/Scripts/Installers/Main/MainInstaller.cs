@@ -1,4 +1,5 @@
 ﻿using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.Utilities;
 using UnityEngine;
 using Zenject;
@@ -12,6 +13,7 @@ namespace SpaceMonkey.Scripts.Installers.Main
         {
             Container.Bind<CameraHolder>().FromInstance(cameraHolder).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AccountService>().AsSingle();
+            WeekSimulationInstaller.Install(Container);
             MainLoader.Installer.Install(Container);
         }
     }

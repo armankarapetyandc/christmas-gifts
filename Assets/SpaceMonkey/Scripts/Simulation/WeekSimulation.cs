@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Utilities;
-using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace SpaceMonkey.Scripts.Simulation
 {
@@ -34,29 +35,29 @@ namespace SpaceMonkey.Scripts.Simulation
         }
     }
 
-    public class WeekSimulation
+    public class WeekSimulation : IDisposable
     {
         private readonly GameConfig _gameConfig;
         private readonly SimulationInfo _simulationInfo;
         private readonly Account _account;
 
-        private readonly List<Customer> _customers;
+        public List<Customer> Customers { get; private set; }
 
         public WeekSimulation(GameConfig gameConfig, AccountService accountService)
         {
             _gameConfig = gameConfig;
             _simulationInfo = gameConfig.SimulationInfo;
             _account = accountService.Model.Account;
-            _customers = new List<Customer>();
         }
 
         public void Prepare()
         {
+            Customers = new List<Customer>();
             var customersCount = Random.Range(_simulationInfo.CustomersMin, _simulationInfo.CustomersMax + 1);
             for (int i = 0; i < customersCount; i++)
             {
                 var customer = PickCustomer();
-                _customers.Add(customer);
+                Customers.Add(customer);
             }
         }
 
@@ -73,6 +74,11 @@ namespace SpaceMonkey.Scripts.Simulation
         }
 
         public void Run()
+        {
+        }
+
+
+        public void Dispose()
         {
         }
 

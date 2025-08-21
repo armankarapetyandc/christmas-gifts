@@ -26,7 +26,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private Button startButton;
         [SerializeField] private IconComponent productComponent;
         [SerializeField] private TextMeshProUGUI productsCountText;
-        
+
         [SerializeField] private Button productionButton;
 
         public override UniTask Initialize(IPresenterData data = null)
