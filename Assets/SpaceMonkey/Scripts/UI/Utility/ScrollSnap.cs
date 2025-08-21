@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using R3;
+using SpaceMonkey.Scripts.UI.Views.Product;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,18 +11,21 @@ namespace SpaceMonkey.Scripts.UI.Utility
     public class ScrollSnap : MonoBehaviour,  IBeginDragHandler, IEndDragHandler
     {
         [SerializeField] private ScrollRect scrollRect;
-        [SerializeField] private  float snapSpeed = 10f;
+        [SerializeField] private Slider prodCapSlider;
+        [SerializeField] private  float snapSpeed = 5f;
         [SerializeField] private Image background;
         
         private float[] _points;       
         private int _currentPage;
         private bool _isDragging;
+        private float _velocity;
         private List<LevelItemComponent> _levelItems;
 
         public void Initialize(List<LevelItemComponent> levelItems)
         {
             _levelItems = levelItems;
             _points = new float[_levelItems.Count];
+            prodCapSlider.value = 0;
             
             float step = 1f / (levelItems.Count - 1);
 
@@ -32,8 +37,13 @@ namespace SpaceMonkey.Scripts.UI.Utility
         {
             if (!_isDragging && _points.Length > 0)
             {
-                scrollRect.horizontalNormalizedPosition = 
-                    Mathf.Lerp(scrollRect.horizontalNormalizedPosition, _points[_currentPage], Time.deltaTime * snapSpeed);
+                scrollRect.horizontalNormalizedPosition =
+                    Mathf.SmoothDamp(
+                        scrollRect.horizontalNormalizedPosition,
+                        _points[_currentPage],
+                        ref _velocity,
+                        1f / snapSpeed 
+                    );
             }
         }
 
@@ -67,6 +77,7 @@ namespace SpaceMonkey.Scripts.UI.Utility
             {
                 _currentPage = closestPage;
                 _levelItems[_currentPage].ChangeState();
+                prodCapSlider.value = _currentPage;
                 background.color = _levelItems[_currentPage].BackgroundColor;
             }
         }

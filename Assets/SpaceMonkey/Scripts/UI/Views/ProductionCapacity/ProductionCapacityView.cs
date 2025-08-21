@@ -22,6 +22,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         [SerializeField] private ScrollSnap scroll;
         [SerializeField] private TextMeshProUGUI availableCashText;
         [SerializeField] private TextMeshProUGUI prodCapText;
+        [SerializeField] private Image dimmerBackground;
 
         private Account _account;
 
@@ -39,7 +40,10 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             ).Subscribe(UpdateUi).AddTo(this);
             
             scroll.Initialize(equipmentComponent.LevelItems);
-            upgratedLevelCapComponent.OnUpgradedLevelUp.Subscribe(Controller.OpenUpgradeEquipmentPopup).AddTo(this);
+            upgratedLevelCapComponent.OnUpgradedLevelUp.Subscribe(level =>
+            {
+                Controller.OpenUpgradeEquipmentPopup(level);
+            }).AddTo(this);
             
             return UniTask.CompletedTask;
         }

@@ -12,7 +12,12 @@ namespace SpaceMonkey.Scripts.UI.Asset.Database
     {
         public TAsset GetResourceForAsset<TAsset>(string id) where TAsset : VisualAsset
         {
+            if(string.IsNullOrEmpty(id)) return null;
             var resource = GetResource(id);
+            if (resource ==  null)
+            {
+                return null;
+            }
             return resource != null && resource is TAsset asset ? asset : null;
         }
 

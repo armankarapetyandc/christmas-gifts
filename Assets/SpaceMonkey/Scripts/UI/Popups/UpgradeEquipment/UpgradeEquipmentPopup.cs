@@ -3,7 +3,6 @@ using R3;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using TMPro;
 using UIService.Runtime.Core;
-using UIService.Runtime.Presenter.Base;
 using UnityEngine;
 using UnityEngine.UI;
 

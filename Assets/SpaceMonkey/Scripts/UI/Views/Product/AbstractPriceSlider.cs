@@ -51,7 +51,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         [SerializeField] private float sliderStep = 5f;
 
         protected DataModel Model { get; private set; } = new();
-        public float SliderValue => slider.value;
 
         protected virtual void Setup()
         {
@@ -75,17 +74,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             }
 
             slider.OnValueChangedAsObservable().Subscribe(value => Model.CalculateCurrent(value)).AddTo(this);
-            increaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(sliderStep)).AddTo(this);
-            decreaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(-sliderStep)).AddTo(this);
+            if(increaseButton != null) increaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(sliderStep)).AddTo(this);
+            if(decreaseButton != null) decreaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(-sliderStep)).AddTo(this);
         }
 
         public virtual void Reset(){}
-        
-        public void Set(float value)
-        {
-            value = Mathf.Clamp(value, slider.minValue, slider.maxValue);
-            SetSliderValue(value);
-        }
 
         private void ChangeSliderValue(float amount)
         {

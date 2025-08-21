@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using R3;
-using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
