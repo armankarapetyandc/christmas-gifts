@@ -992,6 +992,7 @@ MonoBehaviour:
   moneyText: {fileID: 526242344476638010}
   productionCapacityText: {fileID: 7558865889352162972}
   orderItemPrefab: {fileID: 4803790423376535109, guid: 1b0960aa482414f93a13dc59d0d12db5, type: 3}
+  container: {fileID: 5151950368066302031}
 --- !u!114 &4506039195565084732
 MonoBehaviour:
   m_ObjectHideFlags: 0

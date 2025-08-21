@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.Orders;
@@ -16,23 +17,27 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
     {
         private readonly AccountService _accountService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
-        private readonly NavigationPresenterService  _navigationPresenterService;
+        private readonly NavigationPresenterService _navigationPresenterService;
+        private readonly WeekSimulationContext _weekSimulationContext;
 
         public BusinessHubController(PresenterService presenterService,
-            AccountService accountService, VisualAssetDatabase visualAssetDatabase, NavigationPresenterService navigationPresenterService) : base(presenterService)
+            AccountService accountService, VisualAssetDatabase visualAssetDatabase,
+            NavigationPresenterService navigationPresenterService,
+            WeekSimulationContext weekSimulationContext) : base(presenterService)
         {
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
             _navigationPresenterService = navigationPresenterService;
+            _weekSimulationContext = weekSimulationContext;
         }
 
-        
+
         internal T ResolveVisualAsset<T>(string id) where T : VisualAsset
         {
             return _visualAssetDatabase.GetResourceForAsset<T>(id);
         }
 
-        
+
         internal Account GetAccount()
         {
             return _accountService.Model.Account;
@@ -47,8 +52,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         internal void StartWeek()
         {
-            _navigationPresenterService.HideAll();
-            PresenterService.HidePreviousAndShow<OrdersView>().Forget();
+            _weekSimulationContext.Run();
         }
 
         internal void ShowProductionView()
