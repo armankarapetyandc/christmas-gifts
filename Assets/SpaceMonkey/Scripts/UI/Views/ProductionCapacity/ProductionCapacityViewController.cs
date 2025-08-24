@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -33,9 +33,15 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             _popupPresenterService = popupPresenterService;
         }
 
-        internal void OpenUpgradeEquipmentPopup(LevelProdCap level)
+        internal async UniTask<LevelProdCap> OpenUpgradeEquipmentPopup(LevelProdCap level)
         {
-            _popupPresenterService.Show<UpgradeEquipmentPopup>();
+            var tcs = new UniTaskCompletionSource<LevelProdCap>();
+            _popupPresenterService.Show<UpgradeEquipmentPopup>(new UpgradeEquipmentPopup.Data
+            {
+                UpgradeLevelProdCap = level,
+                Result = tcs
+            });
+            return await tcs.Task;;
         }
 
         internal Account GetAccount()

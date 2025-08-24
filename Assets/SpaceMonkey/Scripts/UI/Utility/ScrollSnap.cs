@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using R3;
-using SpaceMonkey.Scripts.UI.Views.Product;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,6 +18,8 @@ namespace SpaceMonkey.Scripts.UI.Utility
         private bool _isDragging;
         private float _velocity;
         private List<LevelItemComponent> _levelItems;
+        
+        public LevelItemComponent SelectedLevelItem => _levelItems[_currentPage];
 
         public void Initialize(List<LevelItemComponent> levelItems)
         {

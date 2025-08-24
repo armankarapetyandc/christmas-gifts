@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs;
@@ -30,69 +31,51 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             _account = Controller.GetAccount();
-            var prodCaps = (_account.LevelProdCaps == null || _account.LevelProdCaps.Count == 0)
-                ? GetLevelProdCapData()
-                : _account.LevelProdCaps.ToArray();
 
             equipmentComponent.Setup(
-                Controller.ResolveVisualAssets<LevelVisualAsset>().ToArray(),
-                prodCaps.ToArray()
+                 Controller.ResolveVisualAssets<LevelVisualAsset>().ToArray()
             ).Subscribe(UpdateUi).AddTo(this);
-            
+            UpdateUi(_account.LevelProdCaps[0]);
             scroll.Initialize(equipmentComponent.LevelItems);
-            upgratedLevelCapComponent.OnUpgradedLevelUp.Subscribe(level =>
+            upgratedLevelCapComponent.OnUpgradedLevelUp.Subscribe(level=>
             {
-                Controller.OpenUpgradeEquipmentPopup(level);
+                UpgradedLevelUIUpdate(level).Forget();
             }).AddTo(this);
-            
+            prodCapText.text = $"{_account.GetProductionCapacity():F2}";
+            availableCashText.text = $"{_account.Money:F2}";
             return UniTask.CompletedTask;
         }
 
-        private LevelProdCap[] GetLevelProdCapData()
+        private async UniTask UpgradedLevelUIUpdate(LevelProdCap level)
         {
-            var levels = Controller.RetrieveInfo();
-
-            return levels
-                .Select(SetLevel)
-                .ToArray();
-        }
-
-        private void UpdateAvailableCashText(float value)
-        {
-            availableCashText.text = $"{value:F2}";
-        }
-
-        private void UpdateProdCapText(float value)
-        {
-            prodCapText.text = $"{value:F2}";
-        }
-
-        private LevelProdCap SetLevel(ProductionLevelInfo levelInfo, int levelIndex)
-        {
-            LevelProdCap level = default;
-            level.AssignId();
-            level.ProdCapAdd = levelInfo.ProdCapAdd;
-            level.ProdCapCost = levelInfo.ProdCapCost;
-            level.IsLocked = levelIndex != 0;
-            _account.SetLevel(level);
-            return level;
+            dimmerBackground.gameObject.SetActive(true);
+            var updateLevel =await Controller.OpenUpgradeEquipmentPopup(level);
+            scroll.SelectedLevelItem.UpdateLevelUi();
+            prodCapText.text = $"{_account.GetProductionCapacity():F2}";
+            availableCashText.text = $"{_account.Money:F2}";
+            UpdateUi(updateLevel);
+            dimmerBackground.gameObject.SetActive(false);
         }
 
         private void UpdateUi(LevelProdCap level)
         {
-            if (string.IsNullOrEmpty(level.Id)) return;
-            if (level.IsLocked)
+            bool exists = _account.LevelProdCaps.Any(prodCap => prodCap.Id == level.Id);
+            if (exists && !level.NeedRepair)
+            {
+                upgratedLevelCapComponent.gameObject.SetActive(false);
+                currentLevelCapComponent.UpdateUi(_account.GetProductionCapacity());
+                currentLevelCapComponent.gameObject.SetActive(true);
+            }
+            else if (exists && level.NeedRepair)
+            {
+                Debug.LogError("log");
+            }
+            else
             {
                 currentLevelCapComponent.gameObject.SetActive(false);
                 upgratedLevelCapComponent.UpdateUi(level, _account.GetProductionCapacity()
                 );
                 upgratedLevelCapComponent.gameObject.SetActive(true);
-            }
-            else
-            {
-                upgratedLevelCapComponent.gameObject.SetActive(false);
-                currentLevelCapComponent.UpdateUi(_account.GetProductionCapacity());
-                currentLevelCapComponent.gameObject.SetActive(true);
             }
         }
 

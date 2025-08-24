@@ -28,7 +28,7 @@ namespace SpaceMonkey.Scripts.Profile
             Company.CompanyName = companyName;
         }
 
-        public static Account CreateEmpty()
+        public static Account CreateEmpty(ProductionLevelInfo initialProdCap)
         {
             var account = new Account
             {
@@ -39,11 +39,20 @@ namespace SpaceMonkey.Scripts.Profile
                 },
                 Level = 1,
                 Week = 1,
-                Money = 300,
+                Money = 30000,
                 Rating = 0,
                 Score = 0,
                 Products = new List<Product>(),
                 LevelProdCaps = new List<LevelProdCap>()
+                {
+                    new()
+                    {
+                        Id = initialProdCap.Id,
+                        NeedRepair = false,
+                        ProdCapCost = initialProdCap.ProdCapCost,
+                        ProdCapAdd = initialProdCap.ProdCapAdd
+                    }
+                }
             };
             return account;
         }
@@ -104,7 +113,7 @@ namespace SpaceMonkey.Scripts.Profile
         public int GetProductionCapacity()
         {
             return LevelProdCaps
-                .Where(l => !l.IsLocked)
+                .Where(l => !l.NeedRepair)
                 .Sum(l => l.ProdCapAdd);
         }
     }
@@ -145,7 +154,7 @@ namespace SpaceMonkey.Scripts.Profile
 
     public struct Product
     {
-        public string Id { get; private set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string IconVisualAssetId { get; set; }
         public string BackgroundColorVisualAssetId { get; set; }
@@ -178,15 +187,10 @@ namespace SpaceMonkey.Scripts.Profile
 
     public struct LevelProdCap
     {
-        public string Id { get; private set; }
+        public string Id { get; set; }
         public int ProdCapAdd {get; set;}
         public int ProdCapCost {get; set;}
-        public bool IsLocked {get; set;}
-        
-        public void AssignId()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
+        public bool NeedRepair { get; set; }
     }
 
     public class Hashtag : IEquatable<Hashtag>

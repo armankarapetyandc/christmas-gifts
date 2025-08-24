@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
+using SpaceMonkey.Scripts.Configs;
 using UnityEngine;
 using Logger = DCLogger.Runtime.Logger;
 
@@ -9,6 +11,7 @@ namespace SpaceMonkey.Scripts.Profile
 {
     public class AccountService : IDisposable
     {
+        private readonly GameConfig _gameConfig;
         private const string FILENAME = "Account.spacemonkey";
         private static readonly string _path = Path.Combine(Application.persistentDataPath, FILENAME);
 
@@ -16,9 +19,15 @@ namespace SpaceMonkey.Scripts.Profile
 
         public bool IsFreshAccount => !File.Exists(_path);
 
+        public AccountService(GameConfig gameConfig)
+        {
+            _gameConfig = gameConfig;
+        }
+
         public void CreateNewAccount()
         {
-            Model = new AccountModel(Account.CreateEmpty());
+            var freeProdCap = _gameConfig.ProductionLevels.Single(info => info.ProdCapCost == 0);
+            Model = new AccountModel(Account.CreateEmpty(freeProdCap));
         }
 
         public async UniTask SaveAsync()

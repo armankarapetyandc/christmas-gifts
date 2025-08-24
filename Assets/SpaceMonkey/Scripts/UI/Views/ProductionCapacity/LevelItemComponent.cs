@@ -1,5 +1,4 @@
 using R3;
-using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using TMPro;
 using UnityEngine;
@@ -36,19 +35,19 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             toggle.isOn = !toggle.isOn;
         }
 
-        internal void Setup(LevelVisualAsset visualAsset, Profile.LevelProdCap levelInfo, int index)
+        internal void Setup(LevelVisualAsset visualAsset, Profile.LevelProdCap levelInfo, int index, bool isLocked)
         {
             _visualAsset = visualAsset;
             _level = levelInfo;
             levelIcon.sprite = visualAsset.LevelIconSprite;
             levelIndexText.text = (index + 1).ToString();
             levelText.text = $"Level {index + 1}";
-            SetLock(levelInfo.IsLocked);
+            lockImage.gameObject.SetActive(isLocked);
         }
 
-        public void SetLock(bool locked)
+        public void UpdateLevelUi()
         {
-            lockImage.gameObject.SetActive(locked);
+            lockImage.gameObject.SetActive(false);
         }
 
         public void UpdateLevelIconSprite(bool isBroken)
