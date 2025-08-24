@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.UI.Popups.Core;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 namespace SpaceMonkey.Scripts.UI.Popups.Alert
 {
-    public class AlertPopup : BasePresenterWithController<AlertPopupController>
+    public class AlertPopup : PopupPresenterWithController<AlertPopupController>
     {
         [SerializeField] private Button okButton;
         [SerializeField] private Button cancelButton;
@@ -64,10 +65,6 @@ namespace SpaceMonkey.Scripts.UI.Popups.Alert
             closeButton.gameObject.SetActive(_data.OnCancel != null || _data.Result != null);
             appInfoText.text = $"v{Application.version}";
             return UniTask.CompletedTask;
-        }
-
-        public override void Dispose()
-        {
         }
 
 
