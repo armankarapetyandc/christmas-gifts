@@ -33,7 +33,7 @@ namespace SpaceMonkey.Scripts.Configs
     [Serializable]
     public class ProductionLevelInfo
     {
-        [field: SerializeField] public int Id { get; private set; }
+        [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public int ProdCapAdd { get; private set; }
         [field: SerializeField] public int ProdCapCost { get; private set; }
     }
