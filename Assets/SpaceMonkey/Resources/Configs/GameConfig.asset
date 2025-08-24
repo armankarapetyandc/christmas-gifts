@@ -131,28 +131,28 @@ MonoBehaviour:
   - <Id>k__BackingField: 0
     <ProdCapAdd>k__BackingField: 10
     <ProdCapCost>k__BackingField: 0
-  - <Id>k__BackingField: 0
+  - <Id>k__BackingField: 1
     <ProdCapAdd>k__BackingField: 20
     <ProdCapCost>k__BackingField: 500
-  - <Id>k__BackingField: 0
+  - <Id>k__BackingField: 2
     <ProdCapAdd>k__BackingField: 40
     <ProdCapCost>k__BackingField: 1200
-  - <Id>k__BackingField: 0
+  - <Id>k__BackingField: 3
     <ProdCapAdd>k__BackingField: 60
     <ProdCapCost>k__BackingField: 2100
-  - <Id>k__BackingField: 0
+  - <Id>k__BackingField: 4
     <ProdCapAdd>k__BackingField: 80
     <ProdCapCost>k__BackingField: 4500
-  - <Id>k__BackingField: 0
+  - <Id>k__BackingField: 5
     <ProdCapAdd>k__BackingField: 100
     <ProdCapCost>k__BackingField: 9700
-  - <Id>k__BackingField: 0
+  - <Id>k__BackingField: 6
     <ProdCapAdd>k__BackingField: 120
     <ProdCapCost>k__BackingField: 16500
-  - <Id>k__BackingField: 0
+  - <Id>k__BackingField: 7
     <ProdCapAdd>k__BackingField: 140
     <ProdCapCost>k__BackingField: 21000
-  - <Id>k__BackingField: 0
+  - <Id>k__BackingField: 8
     <ProdCapAdd>k__BackingField: 160
     <ProdCapCost>k__BackingField: 25000
   <Characters>k__BackingField:
