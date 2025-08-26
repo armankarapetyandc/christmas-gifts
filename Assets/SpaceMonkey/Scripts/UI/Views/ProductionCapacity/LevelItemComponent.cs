@@ -46,9 +46,9 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             lockImage.gameObject.SetActive(isLocked);
         }
 
-        public void UpdateLevelUi()
+        public void UpdateLevelUi(bool state)
         {
-            lockImage.gameObject.SetActive(false);
+            lockImage.gameObject.SetActive(!state);
         }
 
         public void UpdateLevelIconSprite(bool isBroken)

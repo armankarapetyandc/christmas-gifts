@@ -50,7 +50,8 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         {
             dimmerBackground.gameObject.SetActive(true);
             var updateLevel =await Controller.OpenUpgradeEquipmentPopup(level);
-            scroll.SelectedLevelItem.UpdateLevelUi();
+            bool exists = _account.LevelProdCaps.Any(prodCap => prodCap.Id == level.Id);
+            scroll.SelectedLevelItem.UpdateLevelUi(exists);
             prodCapText.text = $"{_account.GetProductionCapacity():F2}";
             availableCashText.text = $"{_account.Money:F2}";
             UpdateUi(updateLevel);
