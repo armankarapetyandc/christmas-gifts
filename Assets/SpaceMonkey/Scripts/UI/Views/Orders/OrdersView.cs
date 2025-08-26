@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -7,6 +8,7 @@ using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
+using R3;
 
 namespace SpaceMonkey.Scripts.UI.Views.Orders
 {
@@ -19,6 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private OrderItem orderItemPrefab;
         [SerializeField] private RectTransform container;
 
+        private readonly List<OrderItem> _orders = new List<OrderItem>();
 
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -56,7 +59,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             foreach (Customer customer in customers)
             {
                 var orderItem = Instantiate(orderItemPrefab, container);
-                orderItem.SetCustomerName(customer.Character.Name);
+                orderItem.SetCustomer(customer);
+                orderItem.ShipOrder.Subscribe(ShipOrder).AddTo(this);
                 orderItem.SetCharacterVisual(customer.Character.Sprite, customer.Character.BackgroundColor);
                 var moodAsset = moodVisualAssets.FirstOrDefault(asset => customer.Mood <= asset.MoodValue);
                 orderItem.SetMood(customer.Mood, moodAsset);
@@ -74,7 +78,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 }).ToList();
 
                 orderItem.SetProducts(products);
+                _orders.Add(orderItem);
             }
+        }
+
+        private void ShipOrder(Customer customer)
+        {
+    
         }
 
         public override void Dispose()
