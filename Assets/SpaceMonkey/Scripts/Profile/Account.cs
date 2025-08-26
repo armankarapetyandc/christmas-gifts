@@ -173,6 +173,7 @@ namespace SpaceMonkey.Scripts.Profile
 
         public float? ShippingCost { get; set; }
         public float? Profit { get; set; }
+        public float? ProdCapCost { get; set; }
 
         [JsonIgnore] public bool IsValid => !string.IsNullOrWhiteSpace(Id);
 

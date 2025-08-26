@@ -35,7 +35,10 @@ namespace SpaceMonkey.Scripts.Simulation
             _presenterService.HidePreviousAndShow<OrdersView>().Forget();
         }
 
-
+        public bool TryShipOrder(Customer customer)
+        {
+            return WeekSimulation.TryShipOrder(customer);
+        }
         public void Dispose()
         {
             WeekSimulation?.Dispose();

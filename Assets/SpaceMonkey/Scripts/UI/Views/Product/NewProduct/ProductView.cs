@@ -131,6 +131,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 productPriceSlider.UpdateRange(totalCost, productMaxPrice);
                 Controller.CurrentProduct.MinProductPrice = totalCost;
                 Controller.CurrentProduct.MaxProductPrice = productMaxPrice;
+                Controller.CurrentProduct.ProdCapCost = CalculateProdCapCost();
             }).AddTo(this);
 
             productPriceSlider.CurrentValue.DistinctUntilChanged()
@@ -141,6 +142,23 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 }).AddTo(this);
         }
 
+        private float CalculateProdCapCost()
+        {
+            var timeProdCapAdd = Constants.TimeToProduct.Count - timeToProductSlider.CurrentValue.CurrentValue;
+            var matProdCapAdd = materialPriceSlider.GetSliderValue() switch
+            {
+                >= 66f => 2f,
+                > 33f => 1f,
+                _ => 0f
+            };
+            var packProdCapAdd = materialPackagingSlider.GetSliderValue() switch
+            {
+                >= 66f => 2f,
+                > 33f => 1f,
+                _ => 0.6f
+            };
+            return (timeProdCapAdd + matProdCapAdd + packProdCapAdd) / 3f;
+        }
 
         private void GenerateProductName()
         {

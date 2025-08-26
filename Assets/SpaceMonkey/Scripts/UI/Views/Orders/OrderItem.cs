@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using R3;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
@@ -16,8 +18,21 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private TextMeshProUGUI productionCapacityText;
         [SerializeField] private Slider moodSlider;
         [SerializeField] private Button moreButton;
+        [SerializeField] private Button shipButton;
         [SerializeField] private RectTransform productsContainer;
         [SerializeField] private OrderProductItem orderProductItemPrefab;
+        private Customer _customer;
+
+        public Observable<Customer> ShipOrder => shipButton.OnClickAsObservable().Select(_ => _customer);
+        
+        public int ProductionCapCost { get; private set; }
+        public float Profit { get; private set; }
+
+        public void SetCustomer(Customer customer)
+        {
+            _customer = customer;
+            customerName.text = customer.Character.Name;
+        }
 
         public void SetCharacterVisual(SpriteVisualAsset characterVisual = null,
             ColorVisualAsset baseColorVisual = null)
@@ -26,24 +41,39 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             iconComponent.SetColor(baseColorVisual);
         }
 
-        public void SetCustomerName(string name)
-        {
-            customerName.text = name;
-        }
-
         public void SetMood(float value, SpriteVisualAsset moodVisual)
         {
             iconComponent.SetMoodIcon(moodVisual);
             moodSlider.value = value;
         }
 
-        public void SetProducts(List<(ProductOrder productOrder, Profile.Product product, SpriteVisualAsset iconVisualAsset, ColorVisualAsset colorVisualAsset)> products)
+        public void SetProducts(
+            List<(ProductOrder productOrder, Profile.Product product, SpriteVisualAsset iconVisualAsset,
+                ColorVisualAsset colorVisualAsset)> products)
         {
             foreach (var product in products)
             {
                 var item = Instantiate(orderProductItemPrefab, productsContainer);
                 item.Setup(product.iconVisualAsset, product.colorVisualAsset, product.productOrder.Quantity);
             }
+
+            Calculate(products.Select(tuple => (tuple.product, tuple.productOrder.Quantity)).ToList());
+        }
+
+        private void Calculate(List<(Profile.Product product, int Quantity)> products)
+        {
+            float totalProdCapCost = 0f;
+            float totalProfit = 0f;
+            foreach (var tuple in products)
+            {
+                totalProdCapCost += tuple.product.ProdCapCost!.Value * tuple.Quantity;
+                totalProfit += tuple.product.Profit!.Value * tuple.Quantity;
+            }
+
+            ProductionCapCost = Mathf.RoundToInt(totalProdCapCost);
+            Profit = totalProfit;
+            productionCapacityText.text = $"-{Mathf.Round(ProductionCapCost)} hr";
+            moneyText.text = $"+${Profit:F2}";
         }
     }
 }

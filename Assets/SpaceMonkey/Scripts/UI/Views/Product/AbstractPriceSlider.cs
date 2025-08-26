@@ -89,5 +89,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         {
             slider.value = value;
         }
+
+        public float GetSliderValue()
+        {
+            return slider.value;
+        }
     }
 }
