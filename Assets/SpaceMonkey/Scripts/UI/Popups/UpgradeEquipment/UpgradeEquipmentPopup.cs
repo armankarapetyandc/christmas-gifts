@@ -44,9 +44,9 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
 
         private void UpgradeLevel()
         {
-            if (CanUpgrade())
+            if (_account.CanAfford(_data.UpgradeLevelProdCap.ProdCapCost))
             {
-                _account.Money -= _data.UpgradeLevelProdCap.ProdCapCost;
+                _account.Buy(_data.UpgradeLevelProdCap.ProdCapCost);
                 var upgradedLevel = Controller.UpgradeLevel(_data.UpgradeLevelProdCap);
                 _data.Result?.TrySetResult(upgradedLevel.Result);
             }
@@ -54,11 +54,6 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             {
                 Debug.LogError($"Is not enough money to upgrade {_data.UpgradeLevelProdCap}");
             }
-        }
-
-        private bool CanUpgrade()
-        {
-            return (_account.Money - _data.UpgradeLevelProdCap.ProdCapCost > 0);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -25,6 +26,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         public override UniTask Initialize(IPresenterData data = null)
         {
+            Controller.GetAvailableProdCapObservable()
+                .Subscribe(value => productionCapacityText.text = $"{value} hrs").AddTo(this);
+            Controller.GetMoneyObservable()
+                .Subscribe(value => moneyText.text = $"${value}").AddTo(this);
             SetupDefaults();
             SetupCustomers();
             return UniTask.CompletedTask;
@@ -46,8 +51,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             companyIconComponent.SetColor(companyColorVisualAsset);
 
             weekText.text = account.Week.ToString();
-            moneyText.text = $"${account.Money}";
-            productionCapacityText.text = $"{account.GetProductionCapacity()} hrs";
         }
 
         private void SetupCustomers()
@@ -60,20 +63,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             {
                 var orderItem = Instantiate(orderItemPrefab, container);
                 orderItem.SetCustomer(customer);
-                orderItem.ShipOrder.Subscribe(ShipOrder).AddTo(this);
+                orderItem.ShipOrder.Subscribe(item => ShipOrder(item).Forget()).AddTo(this);
                 orderItem.SetCharacterVisual(customer.Character.Sprite, customer.Character.BackgroundColor);
                 var moodAsset = moodVisualAssets.FirstOrDefault(asset => customer.Mood <= asset.MoodValue);
                 orderItem.SetMood(customer.Mood, moodAsset);
 
                 var products = customer.Orders.Select(o =>
                 {
-                    var product = account.GetProduct(o.ProductId);
                     return (
                         productOrder: o,
-                        product: product,
-                        iconVisualAsset: Controller.ResolveVisualAsset<SpriteVisualAsset>(product.IconVisualAssetId),
+                        iconVisualAsset: Controller.ResolveVisualAsset<SpriteVisualAsset>(o.Product.IconVisualAssetId),
                         colorVisualAsset:
-                        Controller.ResolveVisualAsset<ColorVisualAsset>(product.BackgroundColorVisualAssetId)
+                        Controller.ResolveVisualAsset<ColorVisualAsset>(o.Product.BackgroundColorVisualAssetId)
                     );
                 }).ToList();
 
@@ -82,9 +83,22 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             }
         }
 
-        private void ShipOrder(Customer customer)
+        private async UniTaskVoid ShipOrder(OrderItem item)
         {
-    
+            var isShipped = await Controller.TryShipOrder(item.Customer);
+            if (!isShipped)
+            {
+                Controller.FinishWeek();
+                return;
+            }
+
+            _orders.Remove(item);
+            Destroy(item.gameObject);
+
+            if (_orders.Count==0)
+            {
+                Controller.FinishWeek();
+            }
         }
 
         public override void Dispose()

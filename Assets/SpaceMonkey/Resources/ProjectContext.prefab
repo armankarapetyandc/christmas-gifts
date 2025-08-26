@@ -78,5 +78,5 @@ MonoBehaviour:
   presenterViewPrefab: {fileID: -2898863111937682877, guid: dd64275d80474db4dbf06504110d27da, type: 3}
   popupPresenterViewPrefab: {fileID: 530169136107966036, guid: 94410dca759a3b74bac8cc5e478f8c66, type: 3}
   navigationPresenterViewPrefab: {fileID: 7000274042814176345, guid: aefb6c610b96aea448c4c8bc6348142b, type: 3}
-  businessIdeaAssetDatabase: {fileID: 11400000, guid: 933f85b67f8d845f48948530131e5bee, type: 2}
-  dashboardAssetDatabase: {fileID: 11400000, guid: 907ca32ca9df647c4984591c34c3d614, type: 2}
+  debugLogManagerPrefab: {fileID: 8221431974822133984, guid: 1bf3fe7d912bf7e4eb7044ef75499e68, type: 3}
+  visualAssetDatabase: {fileID: 11400000, guid: 933f85b67f8d845f48948530131e5bee, type: 2}

@@ -39,6 +39,14 @@ namespace SpaceMonkey.Scripts.UI.Popups.Core
             return panel;
         }
 
+        public void HideLast()
+        {
+            PopupPresenter panel = _activePanels[^1];
+            panel.Hide();
+            _activePanels.Remove(panel);
+            Object.Destroy(panel.gameObject);
+        }
+
         public void Hide<T>() where T : PopupPresenter
         {
             PopupPresenter panel = _activePanels.FirstOrDefault(panel => panel is T);

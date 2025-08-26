@@ -17,15 +17,31 @@ namespace SpaceMonkey.Scripts.UI.Popups.ProductionAlert
         public override UniTask Initialize(IPresenterData data = null)
         {
             _data = data as Data;
-            closeButton.OnClickAsObservable().Subscribe(_ => _data.OnClose?.Invoke()).AddTo(this);
-            endWeekButton.OnClickAsObservable().Subscribe(_ => _data.OnEndWeek?.Invoke()).AddTo(this);
+            closeButton.OnClickAsObservable()
+                .Subscribe(_ =>
+                {
+                    _data.CompletionSource.TrySetResult(Data.CloseResult.Close);
+                    Controller.Close();
+                }).AddTo(this);
+            endWeekButton.OnClickAsObservable()
+                .Subscribe(_ =>
+                {
+                    _data.CompletionSource.TrySetResult(Data.CloseResult.EndWeek);
+                    Controller.Close();
+                }).AddTo(this);
             return UniTask.CompletedTask;
         }
 
         public class Data : IPresenterData
         {
-            public Action OnClose;
-            public Action OnEndWeek;
+            public enum CloseResult
+            {
+                EndWeek,
+                Close
+            }
+
+            public UniTaskCompletionSource<CloseResult> CompletionSource { get; } =
+                new UniTaskCompletionSource<CloseResult>();
         }
     }
 }

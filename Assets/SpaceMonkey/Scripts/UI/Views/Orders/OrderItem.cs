@@ -21,16 +21,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private Button shipButton;
         [SerializeField] private RectTransform productsContainer;
         [SerializeField] private OrderProductItem orderProductItemPrefab;
-        private Customer _customer;
+        
+        public Customer Customer { get; private set; }
 
-        public Observable<Customer> ShipOrder => shipButton.OnClickAsObservable().Select(_ => _customer);
+        public Observable<OrderItem> ShipOrder => shipButton.OnClickAsObservable().Select(_ => this);
         
         public int ProductionCapCost { get; private set; }
         public float Profit { get; private set; }
 
         public void SetCustomer(Customer customer)
         {
-            _customer = customer;
+            Customer = customer;
             customerName.text = customer.Character.Name;
         }
 
@@ -48,8 +49,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         }
 
         public void SetProducts(
-            List<(ProductOrder productOrder, Profile.Product product, SpriteVisualAsset iconVisualAsset,
-                ColorVisualAsset colorVisualAsset)> products)
+            List<(ProductOrder productOrder, SpriteVisualAsset iconVisualAsset, ColorVisualAsset colorVisualAsset)> products)
         {
             foreach (var product in products)
             {
@@ -57,7 +57,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 item.Setup(product.iconVisualAsset, product.colorVisualAsset, product.productOrder.Quantity);
             }
 
-            Calculate(products.Select(tuple => (tuple.product, tuple.productOrder.Quantity)).ToList());
+            Calculate(products.Select(tuple => (tuple.productOrder.Product, tuple.productOrder.Quantity)).ToList());
         }
 
         private void Calculate(List<(Profile.Product product, int Quantity)> products)

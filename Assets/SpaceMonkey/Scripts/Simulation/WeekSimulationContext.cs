@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.Orders;
+using SpaceMonkey.Scripts.UI.Views.WeekReview;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 
@@ -42,6 +43,12 @@ namespace SpaceMonkey.Scripts.Simulation
         public void Dispose()
         {
             WeekSimulation?.Dispose();
+        }
+
+        public void Finish()
+        {
+            WeekSimulation?.Finish();
+            _presenterService.HidePreviousAndShow<WeekReviewView>().Forget();
         }
     }
 }

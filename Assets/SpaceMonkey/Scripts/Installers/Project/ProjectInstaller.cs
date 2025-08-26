@@ -1,12 +1,11 @@
 ﻿using ContextLoaderService.Runtime;
-using SpaceMonkey.Scripts.UI.Asset;
+using IngameDebugConsole;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using UIService.Runtime.Installers;
 using UIService.Runtime.Presenter;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace SpaceMonkey.Scripts.Installers.Project
@@ -17,7 +16,8 @@ namespace SpaceMonkey.Scripts.Installers.Project
         [SerializeField] private PresenterView presenterViewPrefab;
         [SerializeField] private PopupPresenterView popupPresenterViewPrefab;
         [SerializeField] private NavigationPresenterView navigationPresenterViewPrefab;
-        [FormerlySerializedAs("businessIdeaAssetDatabase")] [SerializeField] private VisualAssetDatabase visualAssetDatabase;
+        [SerializeField] private DebugLogManager debugLogManagerPrefab;
+        [SerializeField] private VisualAssetDatabase visualAssetDatabase;
 
         public override void InstallBindings()
         {
@@ -53,9 +53,23 @@ namespace SpaceMonkey.Scripts.Installers.Project
                 .NonLazy();
 
             Container
+                .BindInterfacesAndSelfTo<DebugLogManager>()
+                .FromMethod(GetDebugLogManagerInstance)
+                .AsSingle()
+                .NonLazy();
+            
+            Container
                 .BindInterfacesAndSelfTo<VisualAssetDatabase>()
                 .FromInstance(visualAssetDatabase)
                 .AsSingle();
+
+        }
+
+        private DebugLogManager GetDebugLogManagerInstance(InjectContext ctx)
+        {
+            var a= Instantiate(debugLogManagerPrefab);
+            Debug.LogError(a.name);
+            return a;
         }
 
         private PresenterView GetPresenterInstance(InjectContext ctx)

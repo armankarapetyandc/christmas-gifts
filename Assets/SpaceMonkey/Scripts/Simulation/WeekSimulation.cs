@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
@@ -28,14 +29,12 @@ namespace SpaceMonkey.Scripts.Simulation
 
     public class ProductOrder
     {
-        public string ProductId { get; private set; }
+        public Product Product { get; private set; }
         public int Quantity { get; private set; }
-        public float ProdCapCost { get; private set; }
 
-        public ProductOrder(string productId, float prodCapCost, int quantity)
+        public ProductOrder(Product product, int quantity)
         {
-            ProductId = productId;
-            ProdCapCost = prodCapCost;
+            Product = product;
             Quantity = quantity;
         }
     }
@@ -43,20 +42,25 @@ namespace SpaceMonkey.Scripts.Simulation
     public class WeekSimulation : IDisposable
     {
         private readonly GameConfig _gameConfig;
+        private readonly AccountService _accountService;
         private readonly SimulationInfo _simulationInfo;
         private readonly Account _account;
 
         public List<Customer> Customers { get; private set; }
         private readonly ReactiveProperty<int> _availableProdCap;
+        private readonly ReactiveProperty<float> _money;
 
         public ReadOnlyReactiveProperty<int> AvailableProdCap => _availableProdCap;
+        public ReadOnlyReactiveProperty<float> Money => _money;
 
         public WeekSimulation(GameConfig gameConfig, AccountService accountService)
         {
             _gameConfig = gameConfig;
+            _accountService = accountService;
             _simulationInfo = gameConfig.SimulationInfo;
             _account = accountService.Model.Account;
             _availableProdCap = new ReactiveProperty<int>(_account.GetProductionCapacity());
+            _money = new ReactiveProperty<float>(_account.Money);
         }
 
         public void Prepare()
@@ -77,7 +81,7 @@ namespace SpaceMonkey.Scripts.Simulation
             var productsQuantity = Random.Range(_simulationInfo.OrderQuantityMin, _simulationInfo.OrderQuantityMax);
 
             var orders = _account.Products.PickRandomElements(productsQuantity)
-                .Select(p => new ProductOrder(p.Id, p.ProdCapCost!.Value, Random.Range(1, 18) * 2)).ToArray();
+                .Select(p => new ProductOrder(p, Random.Range(1, 18) * 2)).ToArray();
 
             var customer = new Customer(character, mood, orders);
             return customer;
@@ -89,14 +93,23 @@ namespace SpaceMonkey.Scripts.Simulation
 
         public bool TryShipOrder(Customer customer)
         {
-            var neededProdCap = Mathf.RoundToInt(customer.Orders.Sum(order => order.ProdCapCost * order.Quantity));
+            var neededProdCap = Mathf.RoundToInt(customer.Orders.Sum(order => order.Product.ProdCapCost!.Value * order.Quantity));
             if (neededProdCap > _availableProdCap.Value)
             {
                 return false;
             }
 
             _availableProdCap.Value -= neededProdCap;
+            var profit = customer.Orders.Sum(order => order.Product.Profit * order.Quantity)!.Value;
+            _account.Earn(profit);
             return true;
+        }
+
+        public void Finish()
+        {
+            //collect not shipped customers 
+            _account.IncreaseWeek();
+            _accountService.SaveAsync().Forget();
         }
 
         public void Dispose()
