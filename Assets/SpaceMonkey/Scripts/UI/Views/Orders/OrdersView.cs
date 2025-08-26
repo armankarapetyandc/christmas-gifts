@@ -44,8 +44,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             moneyText.text = $"{account.Money:C}";
             productionCapacityText.text = $"{account.GetProductionCapacity()} hrs";
         }
+
         private void SetupCustomers()
         {
+            var account = Controller.GetAccount();
             var customers = Controller.GetSimulationCustomers();
             var moodVisualAssets = Controller.ResolveVisualAssets<MoodVisualAsset>().OrderBy(asset => asset.MoodValue)
                 .ToList();
@@ -53,12 +55,26 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             {
                 var orderItem = Instantiate(orderItemPrefab, container);
                 orderItem.SetCustomerName(customer.Character.Name);
-                orderItem.SetCharacterVisual(customer.Character.Sprite,customer.Character.BackgroundColor);
-                Debug.LogError(customer.Mood);
+                orderItem.SetCharacterVisual(customer.Character.Sprite, customer.Character.BackgroundColor);
                 var moodAsset = moodVisualAssets.FirstOrDefault(asset => customer.Mood <= asset.MoodValue);
                 orderItem.SetMood(customer.Mood, moodAsset);
+
+                var products = customer.Orders.Select(o =>
+                {
+                    var product = account.GetProduct(o.ProductId);
+                    return (
+                        productOrder: o,
+                        product: product,
+                        iconVisualAsset: Controller.ResolveVisualAsset<SpriteVisualAsset>(product.IconVisualAssetId),
+                        colorVisualAsset:
+                        Controller.ResolveVisualAsset<ColorVisualAsset>(product.BackgroundColorVisualAssetId)
+                    );
+                }).ToList();
+
+                orderItem.SetProducts(products);
             }
         }
+
         public override void Dispose()
         {
         }

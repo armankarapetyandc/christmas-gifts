@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile;
@@ -52,24 +53,25 @@ namespace SpaceMonkey.Scripts.Simulation
 
         public void Prepare()
         {
-            Customers = new List<Customer>();
             var customersCount = Random.Range(_simulationInfo.CustomersMin, _simulationInfo.CustomersMax + 1);
+            Customers = new List<Customer>(customersCount);
+            var characters = _gameConfig.Characters.PickRandomElements(customersCount);
             for (int i = 0; i < customersCount; i++)
             {
-                var customer = PickCustomer();
+                var customer = PickCustomer(characters[i]);
                 Customers.Add(customer);
             }
         }
 
-        private Customer PickCustomer()
+        private Customer PickCustomer(CharacterConfig character)
         {
-            var character = _gameConfig.Characters.PickRandomElement();
             var mood = Random.Range(_simulationInfo.MoodMin, _simulationInfo.MoodMax + 1);
-            var product = _account.Products[0]; //For now we just use for all customers our first product
-            var quantity = Random.Range(_simulationInfo.OrderQuantityMin, _simulationInfo.OrderQuantityMax);
-            var order = new ProductOrder(product.Id, quantity);
+            var productsQuantity = Random.Range(_simulationInfo.OrderQuantityMin, _simulationInfo.OrderQuantityMax);
 
-            var customer = new Customer(character, mood, order);
+            var orders = _account.Products.PickRandomElements(productsQuantity)
+                .Select(p => new ProductOrder(p.Id, Random.Range(1, 18) * 2)).ToArray();
+            
+            var customer = new Customer(character, mood, orders);
             return customer;
         }
 

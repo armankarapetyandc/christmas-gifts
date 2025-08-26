@@ -1,4 +1,6 @@
-﻿using SpaceMonkey.Scripts.UI.Asset.Database;
+﻿using System.Collections.Generic;
+using SpaceMonkey.Scripts.Simulation;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
 using UnityEngine;
@@ -14,6 +16,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private TextMeshProUGUI productionCapacityText;
         [SerializeField] private Slider moodSlider;
         [SerializeField] private Button moreButton;
+        [SerializeField] private RectTransform productsContainer;
+        [SerializeField] private OrderProductItem orderProductItemPrefab;
 
         public void SetCharacterVisual(SpriteVisualAsset characterVisual = null,
             ColorVisualAsset baseColorVisual = null)
@@ -31,6 +35,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         {
             iconComponent.SetMoodIcon(moodVisual);
             moodSlider.value = value;
+        }
+
+        public void SetProducts(List<(ProductOrder productOrder, Profile.Product product, SpriteVisualAsset iconVisualAsset, ColorVisualAsset colorVisualAsset)> products)
+        {
+            foreach (var product in products)
+            {
+                var item = Instantiate(orderProductItemPrefab, productsContainer);
+                item.Setup(product.iconVisualAsset, product.colorVisualAsset, product.productOrder.Quantity);
+            }
         }
     }
 }

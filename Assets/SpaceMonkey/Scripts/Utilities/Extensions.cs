@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SpaceMonkey.Scripts.Utilities
 {
@@ -34,6 +35,30 @@ namespace SpaceMonkey.Scripts.Utilities
             }
 
             return chosen;
+        }
+
+        public static List<T> PickRandomElements<T>(this IEnumerable<T> source, int count)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
+            // Materialize to a list for indexing
+            var list = source as IList<T> ?? source.ToList();
+
+            if (list.Count == 0)
+                throw new InvalidOperationException("Sequence contains no elements.");
+
+            // Clamp count
+            count = Math.Min(count, list.Count);
+
+            // Fisher-Yates shuffle on a copy
+            var temp = new List<T>(list);
+            for (int i = 0; i < temp.Count; i++)
+            {
+                int j = UnityEngine.Random.Range(i, temp.Count); // UnityEngine RNG
+                (temp[i], temp[j]) = (temp[j], temp[i]);
+            }
+
+            return temp.GetRange(0, count);
         }
     }
 }

@@ -116,6 +116,11 @@ namespace SpaceMonkey.Scripts.Profile
                 .Where(l => !l.NeedRepair)
                 .Sum(l => l.ProdCapAdd);
         }
+
+        public Product GetProduct(string id)
+        {
+            return Products.Find(p => p.Id.Equals(id));
+        }
     }
 
     public class CompanyInfo
