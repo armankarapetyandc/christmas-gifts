@@ -13,6 +13,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         [SerializeField] private TextMeshProUGUI levelText;
         [SerializeField] private Image lockImage;
         [SerializeField] private Toggle toggle;
+        [SerializeField] private Image alertImage;
 
         private LevelVisualAsset _visualAsset;
         private Profile.LevelProdCap _level;
@@ -53,6 +54,8 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         public void UpdateLevelIconSprite(bool isBroken)
         {
             levelIcon.sprite = isBroken ? _visualAsset.BrokenLevelIconSprite : _visualAsset.LevelIconSprite;
+            levelIndexText.text = isBroken ? "Broken" : levelIndexText.text;
+            alertImage.gameObject.SetActive(isBroken);
         }
     }
 }
