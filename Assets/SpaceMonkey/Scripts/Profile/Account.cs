@@ -57,6 +57,31 @@ namespace SpaceMonkey.Scripts.Profile
             return account;
         }
 
+        public void IncreaseWeek()
+        {
+            Week++;
+        }
+
+        public bool CanAfford(float cost)
+        {
+            return Money >= cost;
+        }
+
+        public void Buy(float cost)
+        {
+            if (!CanAfford(cost))
+            {
+                throw new Exception("Not enough money");
+            }
+
+            Money -= cost;
+        }
+
+        public void Earn(float amount)
+        {
+            Money += amount;
+        }
+
         public void SetCompanyLogo(CompanyLogo logo)
         {
             Company.Logo.BackgroundColorVisualAssetId = logo.BackgroundColorVisualAssetId;
@@ -194,8 +219,8 @@ namespace SpaceMonkey.Scripts.Profile
     public struct LevelProdCap
     {
         public string Id { get; set; }
-        public int ProdCapAdd {get; set;}
-        public int ProdCapCost {get; set;}
+        public int ProdCapAdd { get; set; }
+        public int ProdCapCost { get; set; }
         public bool NeedRepair { get; set; }
     }
 
