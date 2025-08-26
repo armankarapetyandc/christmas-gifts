@@ -1,3 +1,4 @@
+using R3;
 using SpaceMonkey.Scripts.UI.Views.Product;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
     {
         [SerializeField] private GameObject fillArea;
         [SerializeField] private GameObject handleSlideArea;
+        
+        public ReadOnlyReactiveProperty<float> CurrentValue => Model.Current;
 
         public void ChangeSliderActivation(bool isActive)
         {

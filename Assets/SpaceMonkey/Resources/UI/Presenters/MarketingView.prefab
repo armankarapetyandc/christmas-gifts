@@ -1973,7 +1973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3091398481025301086, guid: 30ea2eda0252b4101a68b53a578d9c9d, type: 3}
       propertyPath: m_text
-      value: $25.0067
+      value: $25.00
       objectReference: {fileID: 0}
     - target: {fileID: 5407688188885687786, guid: 30ea2eda0252b4101a68b53a578d9c9d, type: 3}
       propertyPath: m_AnchorMax.x

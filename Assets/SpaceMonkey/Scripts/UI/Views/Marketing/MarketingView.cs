@@ -21,7 +21,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
         
         public override UniTask Initialize(IPresenterData data = null)
         {
+            var account = Controller.GetAccount();
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            moneyText.text = $"${account.Money.ToString():f2}";
+            weekNumberText.text = $"Week {account.Week.ToString()}";
             return UniTask.CompletedTask;
         }
 
