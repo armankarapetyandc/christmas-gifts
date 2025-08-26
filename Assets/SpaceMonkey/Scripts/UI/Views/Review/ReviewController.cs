@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation;
+using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Views.ProfitAndLoss;
+using UIService.Runtime.Presenter;
+using UIService.Runtime.Presenter.Base;
+
+namespace SpaceMonkey.Scripts.UI.Views.Review
+{
+    public class ReviewController : BasePresenterController
+    {
+        private readonly PresenterService _presenterService;
+        private readonly VisualAssetDatabase _visualAssetDatabase;
+        private readonly AccountService _accountService;
+        private readonly WeekSimulationContext _weekSimulationContext;
+
+        public ReviewController(PresenterService presenterService, VisualAssetDatabase visualAssetDatabase,
+            AccountService accountService,WeekSimulationContext weekSimulationContext) : base(
+            presenterService)
+        {
+            _presenterService = presenterService;
+            _visualAssetDatabase = visualAssetDatabase;
+            _accountService = accountService;
+            _weekSimulationContext = weekSimulationContext;
+        }
+
+        internal T ResolveVisualAsset<T>(string id) where T : VisualAsset
+        {
+            return _visualAssetDatabase.GetResourceForAsset<T>(id);
+        }
+
+        internal Account GetAccount()
+        {
+            return _accountService.Model.Account;
+        }
+        
+        internal List<Customer> GetSimulationCustomers()
+        {
+            return _weekSimulationContext.WeekSimulation.Customers;
+        }
+        
+        internal IEnumerable<T> ResolveVisualAssets<T>(Predicate<T> predicate = null) where T : VisualAsset
+        {
+            return _visualAssetDatabase.GetResourcesForAsset(predicate);
+        }
+
+        internal void OnNext()
+        {
+            _presenterService.Show<ProfitView>().Forget();
+        }
+    }
+}

@@ -7,7 +7,6 @@ using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
-
 namespace SpaceMonkey.Scripts.UI.Views.Orders
 {
     public class OrdersView : BasePresenterWithController<OrdersViewController>
@@ -18,7 +17,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private TextMeshProUGUI productionCapacityText;
         [SerializeField] private OrderItem orderItemPrefab;
         [SerializeField] private RectTransform container;
-
 
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -43,8 +41,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             companyIconComponent.SetColor(companyColorVisualAsset);
 
             weekText.text = account.Week.ToString();
-            moneyText.text = $"${account.Money:C}";
-            productionCapacityText.text = $"${account.GetProductionCapacity()} hrs";
+            moneyText.text = $"{account.Money:C}";
+            productionCapacityText.text = $"{account.GetProductionCapacity()} hrs";
         }
         private void SetupCustomers()
         {
