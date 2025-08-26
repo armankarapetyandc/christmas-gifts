@@ -3,6 +3,7 @@ using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Views.Marketing;
 using SpaceMonkey.Scripts.UI.Views.Orders;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
@@ -59,6 +60,12 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         {
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<ProductionCapacityView>().Forget();
+        }
+
+        public void ShowMarketingView()
+        {
+            _navigationPresenterService.HideAll();
+            PresenterService.HidePreviousAndShow<MarketingView>().Forget();
         }
     }
 }

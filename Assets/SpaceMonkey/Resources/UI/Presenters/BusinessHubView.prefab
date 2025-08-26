@@ -1949,6 +1949,7 @@ MonoBehaviour:
   productComponent: {fileID: 7591280952295700012}
   productsCountText: {fileID: 5633905486719189454}
   productionButton: {fileID: 3337978667445576170}
+  marketingButton: {fileID: 5509658334340901470}
 --- !u!114 &3690061935181294210
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,10 +28,12 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private TextMeshProUGUI productsCountText;
 
         [SerializeField] private Button productionButton;
+        [SerializeField] private Button marketingButton;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
             productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
+            marketingButton.OnClickAsObservable().Subscribe(_ => Controller.ShowMarketingView()).AddTo(this);
             startButton.OnClickAsObservable().Subscribe(_ => Controller.StartWeek()).AddTo(this);
             productionButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductionView()).AddTo(this);
             SetupDefaults();
