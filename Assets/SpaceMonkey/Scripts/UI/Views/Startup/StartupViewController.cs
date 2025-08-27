@@ -13,7 +13,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
 {
     public class StartupViewController : BasePresenterController
     {
-        private readonly AccountService _accountService;
+        internal readonly AccountService AccountService;
         private readonly LoadingService _loadingService;
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly ReactiveProperty<bool> _uiInteractableProperty = new ReactiveProperty<bool>(true);
@@ -24,7 +24,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
             LoadingService loadingService, NavigationPresenterService navigationPresenterService) : base(
             presenterService)
         {
-            _accountService = accountService;
+            AccountService = accountService;
             _loadingService = loadingService;
             _navigationPresenterService = navigationPresenterService;
         }
@@ -32,14 +32,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
         public void StartNewBusiness()
         {
             _uiInteractableProperty.Value = false;
-            _accountService.CreateNewAccount();
+            AccountService.CreateNewAccount();
             PresenterService.HidePreviousAndShow<CategorySelectionView>().Forget();
         }
 
         public async UniTaskVoid LoadCurrentBusiness()
         {
             _uiInteractableProperty.Value = false;
-            await _loadingService.BeginLoading(_accountService.LoadAsync().ToLoadingUnit(),
+            await _loadingService.BeginLoading(AccountService.LoadAsync().ToLoadingUnit(),
                 _navigationPresenterService.Show<MainNavigation>().ToLoadingUnit());
             _uiInteractableProperty.Value = true;
         }

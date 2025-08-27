@@ -34,6 +34,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
             titleText.text = _categoryInfo.Name;
             iconImage.sprite = _categoryInfo.Visual.Sprite;
+            button.interactable = _categoryInfo.Enabled;
         }
     }
 }

@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.Utilities;
+using SpaceMonkey.Scripts.Utilities.Validation;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
@@ -23,6 +24,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
             startNewButton.OnClickAsObservable().Subscribe(_ => Controller.StartNewBusiness()).AddTo(this);
             loadButton.OnClickAsObservable().Subscribe(_ => Controller.LoadCurrentBusiness().Forget()).AddTo(this);
             socialButtons.Select(button => button.Selected).Merge().Subscribe(SocialPlatformSelected).AddTo(this);
+
+            Validator
+                .Validate(Observable.Return(!Controller.AccountService.IsFreshAccount))
+                .BindButton(loadButton);
             return UniTask.CompletedTask;
         }
 

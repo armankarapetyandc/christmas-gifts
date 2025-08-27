@@ -20,6 +20,7 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public SpriteVisualAsset Visual { get; private set; }
         [field: SerializeField] public HashtagInfo[] Tags { get; private set; }
+        [field: SerializeField] public bool Enabled { get; private set; }
     }
 
     [Serializable]
