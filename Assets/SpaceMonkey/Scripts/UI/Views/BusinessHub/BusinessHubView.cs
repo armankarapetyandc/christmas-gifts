@@ -3,6 +3,7 @@ using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
+using SpaceMonkey.Scripts.Utilities.Validation;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -36,6 +37,9 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             marketingButton.OnClickAsObservable().Subscribe(_ => Controller.ShowMarketingView()).AddTo(this);
             startButton.OnClickAsObservable().Subscribe(_ => Controller.StartWeek()).AddTo(this);
             productionButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductionView()).AddTo(this);
+            
+     
+            
             SetupDefaults();
             return UniTask.CompletedTask;
         }
@@ -51,7 +55,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             weekNumber.text = account.Week.ToString();
             productsCountText.text = account.Products.Count == 0
                 ? "Products"
-                : $"Products({account.Products.Count.ToString()})";
+                : $"Products ({account.Products.Count.ToString()})";
 
             var shapeVisualAsset =
                 Controller.ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.ShapeVisualAssetId);
@@ -65,6 +69,11 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             iconComponent.SetColor(colorVisualAsset);
 
             PreviewProductAtIndexIfExists(0);
+
+            Validator
+                .Validate(Observable.Return(account.Products.Count > 0))
+                .BindButton(startButton)
+                .AddTo(this);
         }
 
         private void PreviewProductAtIndexIfExists(int index)

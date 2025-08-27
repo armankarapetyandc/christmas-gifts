@@ -27,7 +27,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
 
             Validator
                 .Validate(Observable.Return(!Controller.AccountService.IsFreshAccount))
-                .BindButton(loadButton);
+                .BindButton(loadButton)
+                .AddTo(this);
             return UniTask.CompletedTask;
         }
 
