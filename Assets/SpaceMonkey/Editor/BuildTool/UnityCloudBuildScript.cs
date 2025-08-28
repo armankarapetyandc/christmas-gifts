@@ -7,13 +7,16 @@ namespace SpaceMonkey.Editor.BuildTool
 {
     public class UnityCloudBuildScript
     {
+        private const string APP_VERSION_KEY = "APP_VERSION";
+        private const string APP_BUILD_NUMBER_KEY = "APP_BUILD_NUMBER";
+
         public static void Build()
         {
             try
             {
                 Log("Running custom build script...");
-                var version = GetEnvironmentVariable("APP_VERSION");
-                var buildNumber = GetEnvironmentVariable("BUILD_NUMBER");
+                var version = GetEnvironmentVariable(APP_VERSION_KEY);
+                var buildNumber = GetEnvironmentVariable(APP_BUILD_NUMBER_KEY);
                 Log($"Version: {version}, Build Number: {buildNumber}");
 
                 PlayerSettings.bundleVersion = version;
