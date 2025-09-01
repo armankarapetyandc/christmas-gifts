@@ -18,6 +18,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
             handleSlideArea.SetActive(isActive);
             slider.value = isActive ? defaultSliderValue : 0;
             if (!isActive) ResetCurrentValueText();
+            slider.interactable = isActive;
         }
 
         public void Setup(float min, float max, float? currentValue)
