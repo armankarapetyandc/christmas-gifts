@@ -1,5 +1,4 @@
 using R3;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,14 +9,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
         [SerializeField] private Toggle toggle;
         [SerializeField] private MarketingSlider marketingSlider;
         
+        public MarketingSlider MarketingSlider => marketingSlider;
+        public bool IsSelected => toggle.isOn;
+
         private void Start()
         {
-            toggle.OnValueChangedAsObservable().Subscribe(SliderValueChanged).AddTo(this);
+            if (toggle != null)
+                toggle.OnValueChangedAsObservable().Subscribe(SliderValueChanged).AddTo(this);
         }
 
         private void SliderValueChanged(bool selected)
         {
-            marketingSlider.ChangeSliderActivation(selected);
+            if (marketingSlider != null)
+                marketingSlider.ChangeSliderActivation(selected);
         }
     }
 }

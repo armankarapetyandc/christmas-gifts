@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
@@ -24,12 +24,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
             _accountService = accountService;
         }
 
-        internal void OnBack()
+        private void OnBack()
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
                 Type = MainNavigationType.BusinessHub
             }).Forget();
+        }
+
+        internal void UpdateMarketingFeatures(List<MarketingFeature> marketingFeatures)
+        {
+            _accountService.Model.Account.UpdateMarketingFeatures(marketingFeatures);
+            _accountService.SaveAsync().Forget();
+            OnBack();
         }
 
         internal Account GetAccount()
