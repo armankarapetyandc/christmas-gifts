@@ -51,5 +51,6 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int OrderQuantityMax { get; private set; } = 3;
         [field: SerializeField] public int NewCustomersMin { get; private set; } = 1;
         [field: SerializeField] public int NewCustomersMax { get; private set; } = 2;
+        [field: SerializeField] public float PriceSensitivity { get; private set; } = 0.3f;
     }
 }

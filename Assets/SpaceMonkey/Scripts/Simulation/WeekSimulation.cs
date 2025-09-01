@@ -104,13 +104,29 @@ namespace SpaceMonkey.Scripts.Simulation
         private Customer PickCustomer(CharacterConfig character)
         {
             var mood = Random.Range(_simulationInfo.MoodMin, _simulationInfo.MoodMax + 1);
-            var productsQuantity = Random.Range(_simulationInfo.OrderQuantityMin, _simulationInfo.OrderQuantityMax);
+            var orderQuantity = Random.Range(_simulationInfo.OrderQuantityMin, _simulationInfo.OrderQuantityMax);
 
-            var orders = _account.Products.PickRandomElements(productsQuantity)
-                .Select(p => new ProductOrder(p, Random.Range(1, 18) * 2)).ToArray();
+            var orders = _account.Products.PickRandomElements(orderQuantity)
+                .Select(p => new ProductOrder(p, DetermineProductQuantity(character.Id, p))).ToArray();
 
             var customer = new Customer(character, mood, orders);
             return customer;
+        }
+
+        private int DetermineProductQuantity(string characterId, Product product)
+        {
+            if (_account.Weeks.Count == 0)
+            {
+                return Random.Range(1, 18) * 2;
+            }
+
+            var lastWeek = _account.Weeks.LastOrDefault();
+            var orderInfo = lastWeek.Orders.FirstOrDefault(order => order.CharacterId.Equals(characterId));
+            var productOrderInfo = orderInfo.Products.FirstOrDefault(o => o.Product.Id.Equals(product.Id));
+            var deltaPercent = -((product.ProductPrice!.Value - productOrderInfo.Product.ProductPrice!.Value) /
+                productOrderInfo.Product.ProductPrice!.Value * _gameConfig.SimulationInfo.PriceSensitivity);
+            var nextOrderQuantity = productOrderInfo.Quantity + productOrderInfo.Quantity * deltaPercent;
+            return Mathf.RoundToInt(nextOrderQuantity);
         }
 
         public void Run()
