@@ -78,6 +78,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             if(decreaseButton != null) decreaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(-sliderStep)).AddTo(this);
         }
 
+        internal void ResetCurrentValueText()
+        {
+            currentValueText.text = "$0.00";
+        }
+
         public virtual void Reset(){}
 
         private void ChangeSliderValue(float amount)

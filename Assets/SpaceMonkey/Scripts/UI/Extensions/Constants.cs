@@ -12,10 +12,18 @@ namespace SpaceMonkey.Scripts.UI.Extensions
             { "Casual", 0.03f },
             { "Slipshod", 0.01f }
         };
-        
+
         public static readonly List<string> PriorityCategories = new List<string>()
         {
             "Cooking"
         };
+
+        public static readonly Dictionary<int, (float, float)> MarketingSliderInit =
+            new Dictionary<int, (float, float)>()
+            {
+                { 0, (2.00f, 25.00f) },
+                { 1, (10.00f, 200.00f) },
+                { 2, (8.00f, 75.00f) }
+            };
     }
 }

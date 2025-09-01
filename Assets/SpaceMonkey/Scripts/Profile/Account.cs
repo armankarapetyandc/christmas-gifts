@@ -19,6 +19,7 @@ namespace SpaceMonkey.Scripts.Profile
         public List<Product> Products { get; set; }
         public List<LevelProdCap> LevelProdCaps { get; set; }
         public List<WeekInfo> Weeks { get; set; }
+        public List<MarketingFeature>  MarketingFeatures { get; set; }
 
         public void SetCategory(string category)
         {
@@ -54,7 +55,8 @@ namespace SpaceMonkey.Scripts.Profile
                         ProdCapCost = initialProdCap.ProdCapCost,
                         ProdCapAdd = initialProdCap.ProdCapAdd
                     }
-                }
+                },
+                MarketingFeatures = new List<MarketingFeature>()
             };
             return account;
         }
@@ -148,6 +150,13 @@ namespace SpaceMonkey.Scripts.Profile
         {
             return Products.Find(p => p.Id.Equals(id));
         }
+
+        public void UpdateMarketingFeatures(List<MarketingFeature> marketingFeatures)
+        {
+            if(marketingFeatures == null) return;
+            MarketingFeatures.Clear();
+            MarketingFeatures = marketingFeatures;
+        }
     }
 
     public class CompanyInfo
@@ -224,6 +233,13 @@ namespace SpaceMonkey.Scripts.Profile
         public int ProdCapAdd { get; set; }
         public int ProdCapCost { get; set; }
         public bool NeedRepair { get; set; }
+    }
+
+    public struct MarketingFeature
+    {
+        public float MinPrice { get; set; }
+        public float MaxPrice { get; set; }
+        public float CurrentPrice { get; set; }
     }
 
     public class Hashtag : IEquatable<Hashtag>
