@@ -6,6 +6,7 @@ using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Profile.Simulation;
 using SpaceMonkey.Scripts.Utilities;
 using UnityEngine;
 using Zenject;
@@ -46,6 +47,8 @@ namespace SpaceMonkey.Scripts.Simulation
         private readonly SimulationInfo _simulationInfo;
         private readonly Account _account;
 
+        private WeekInfo _weekInfo;
+
         public List<Customer> Customers { get; private set; }
         private readonly ReactiveProperty<int> _availableProdCap;
         private readonly ReactiveProperty<float> _money;
@@ -73,6 +76,29 @@ namespace SpaceMonkey.Scripts.Simulation
                 var customer = PickCustomer(characters[i]);
                 Customers.Add(customer);
             }
+
+            ConfigureWeekInfo();
+        }
+
+        private void ConfigureWeekInfo()
+        {
+            _weekInfo = new WeekInfo
+            {
+                Id = Guid.NewGuid().ToString(),
+                Week = _account.Week,
+                NeededCap = Mathf.RoundToInt(Customers.Select(customer =>
+                    customer.Orders.Sum(order => order.Product.ProdCapCost!.Value * order.Quantity)).Sum()),
+                Orders = Customers.Select(customer => new OrderInfo
+                {
+                    CharacterId = customer.Character.Id,
+                    Mood = customer.Mood,
+                    Products = customer.Orders.Select(order => new ProductOrderInfo()
+                    {
+                        Product = order.Product,
+                        Quantity = order.Quantity
+                    }).ToArray()
+                }).ToArray()
+            };
         }
 
         private Customer PickCustomer(CharacterConfig character)
@@ -93,7 +119,8 @@ namespace SpaceMonkey.Scripts.Simulation
 
         public bool TryShipOrder(Customer customer)
         {
-            var neededProdCap = Mathf.RoundToInt(customer.Orders.Sum(order => order.Product.ProdCapCost!.Value * order.Quantity));
+            var neededProdCap =
+                Mathf.RoundToInt(customer.Orders.Sum(order => order.Product.ProdCapCost!.Value * order.Quantity));
             if (neededProdCap > _availableProdCap.Value)
             {
                 return false;
@@ -101,14 +128,15 @@ namespace SpaceMonkey.Scripts.Simulation
 
             _availableProdCap.Value -= neededProdCap;
             var profit = customer.Orders.Sum(order => order.Product.Profit * order.Quantity)!.Value;
-            _account.Earn(profit);
+            _money.Value += profit;
             return true;
         }
 
         public void Finish()
         {
-            //collect not shipped customers 
-            _account.IncreaseWeek();
+            //collect not shipped customers
+            _account.PushFinishedWeek(_weekInfo);
+            _account.Money = _money.Value;
             _accountService.SaveAsync().Forget();
         }
 

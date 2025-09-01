@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Profile.Simulation;
 
 namespace SpaceMonkey.Scripts.Profile
 {
@@ -10,14 +11,14 @@ namespace SpaceMonkey.Scripts.Profile
     {
         public CompanyInfo Company { get; set; }
         public uint Level { get; set; }
-        public uint Week { get; set; }
+        public int Week => Weeks.Count + 1;
         public float Rating { get; set; }
         public float Money { get; set; }
         public float Score { get; set; }
 
         public List<Product> Products { get; set; }
         public List<LevelProdCap> LevelProdCaps { get; set; }
-        
+        public List<WeekInfo> Weeks { get; set; }
         public List<MarketingFeature>  MarketingFeatures { get; set; }
 
         public void SetCategory(string category)
@@ -40,11 +41,11 @@ namespace SpaceMonkey.Scripts.Profile
                     Tags = Array.Empty<Hashtag>()
                 },
                 Level = 1,
-                Week = 1,
                 Money = 30000,
                 Rating = 0,
                 Score = 0,
                 Products = new List<Product>(),
+                Weeks = new List<WeekInfo>(),
                 LevelProdCaps = new List<LevelProdCap>()
                 {
                     new()
@@ -60,9 +61,9 @@ namespace SpaceMonkey.Scripts.Profile
             return account;
         }
 
-        public void IncreaseWeek()
+        public void PushFinishedWeek(WeekInfo info)
         {
-            Week++;
+            Weeks.Add(info);
         }
 
         public bool CanAfford(float cost)
