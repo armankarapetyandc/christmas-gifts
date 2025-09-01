@@ -166,6 +166,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9ab0fe92348a864ba10aee44d704b3f, type: 2}
   - {fileID: 11400000, guid: df4d467ff49f26d4d8489e515e8636bb, type: 2}
   - {fileID: 11400000, guid: 92f23923ef499f14782d84752ec1c6d2, type: 2}
+  <MarketingInfos>k__BackingField:
+  - <Id>k__BackingField: Flyer
+    <MinMult>k__BackingField: 2
+    <MaxMult>k__BackingField: 15
+    <Div>k__BackingField: 10
+    <Unlock>k__BackingField: 500
+  - <Id>k__BackingField: Social
+    <MinMult>k__BackingField: 10
+    <MaxMult>k__BackingField: 200
+    <Div>k__BackingField: 9
+    <Unlock>k__BackingField: 500
+  - <Id>k__BackingField: Email
+    <MinMult>k__BackingField: 8
+    <MaxMult>k__BackingField: 75
+    <Div>k__BackingField: 8
+    <Unlock>k__BackingField: 800
   <SimulationInfo>k__BackingField:
     <CustomersMin>k__BackingField: 1
     <CustomersMax>k__BackingField: 3

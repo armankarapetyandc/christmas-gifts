@@ -19,7 +19,7 @@ namespace SpaceMonkey.Scripts.Profile
         public List<Product> Products { get; set; }
         public List<LevelProdCap> LevelProdCaps { get; set; }
         public List<WeekInfo> Weeks { get; set; }
-        public List<MarketingFeature>  MarketingFeatures { get; set; }
+        public List<MarketingFeature> MarketingFeatures { get; set; }
 
         public void SetCategory(string category)
         {
@@ -132,6 +132,7 @@ namespace SpaceMonkey.Scripts.Profile
             Score = 0;
             Products = new List<Product>();
             LevelProdCaps = new List<LevelProdCap>();
+            MarketingFeatures = new List<MarketingFeature>();
         }
 
         public void DeleteProduct(string productId)
@@ -146,6 +147,12 @@ namespace SpaceMonkey.Scripts.Profile
                 .Sum(l => l.ProdCapAdd);
         }
 
+        public float GetMarketingCustAdd()
+        {
+            return MarketingFeatures
+                .Sum(feature => feature.GetCustAdd());
+        }
+
         public Product GetProduct(string id)
         {
             return Products.Find(p => p.Id.Equals(id));
@@ -153,9 +160,27 @@ namespace SpaceMonkey.Scripts.Profile
 
         public void UpdateMarketingFeatures(List<MarketingFeature> marketingFeatures)
         {
-            if(marketingFeatures == null) return;
-            MarketingFeatures.Clear();
-            MarketingFeatures = marketingFeatures;
+            if (marketingFeatures == null) return;
+            
+            MarketingFeatures.RemoveAll(f => marketingFeatures.All(nf => nf.Id != f.Id));
+
+
+            foreach (var feature in marketingFeatures)
+            {
+                var index = MarketingFeatures.FindIndex(f => f.Id == feature.Id);
+
+                if (index == -1)
+                {
+                    MarketingFeatures.Add(feature);
+                }
+                else
+                {
+                    if (!MarketingFeatures[index].Equals(feature))
+                    {
+                        MarketingFeatures[index] = feature;
+                    }
+                }
+            }
         }
     }
 
@@ -235,11 +260,37 @@ namespace SpaceMonkey.Scripts.Profile
         public bool NeedRepair { get; set; }
     }
 
-    public struct MarketingFeature
+    public struct MarketingFeature : IEquatable<MarketingFeature>
     {
-        public float MinPrice { get; set; }
-        public float MaxPrice { get; set; }
+        public string Id { get; set; }
+        public float MinMult { get; set; }
+        public float MaxMult { get; set; }
         public float CurrentPrice { get; set; }
+        public int Division { get; set; }
+        public int Unlock { get; set; }
+        private float _custAdd;
+
+        public bool Equals(MarketingFeature other)
+        {
+            return Id == other.Id && MinMult.Equals(other.MinMult) && MaxMult.Equals(other.MaxMult) &&
+                   CurrentPrice.Equals(other.CurrentPrice) && Division == other.Division;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is MarketingFeature other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, MinMult, MaxMult, CurrentPrice, Division);
+        }
+
+        public float GetCustAdd()
+        {
+            _custAdd = CurrentPrice / Division;
+            return _custAdd;
+        }
     }
 
     public class Hashtag : IEquatable<Hashtag>

@@ -17,13 +17,5 @@ namespace SpaceMonkey.Scripts.UI.Extensions
         {
             "Cooking"
         };
-
-        public static readonly Dictionary<int, (float, float)> MarketingSliderInit =
-            new Dictionary<int, (float, float)>()
-            {
-                { 0, (2.00f, 25.00f) },
-                { 1, (10.00f, 200.00f) },
-                { 2, (8.00f, 75.00f) }
-            };
     }
 }

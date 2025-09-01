@@ -11,6 +11,7 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public CategoryInfo[] Categories { get; private set; }
         [field: SerializeField] public ProductionLevelInfo[] ProductionLevels { get; private set; }
         [field: SerializeField] public CharacterConfig[] Characters { get; private set; }
+        [field: SerializeField] public MarketingInfo[] MarketingInfos { get; private set; }
         [field: SerializeField] public SimulationInfo SimulationInfo { get; private set; }
     }
 
@@ -37,6 +38,17 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public int ProdCapAdd { get; private set; }
         [field: SerializeField] public int ProdCapCost { get; private set; }
+    }
+
+    [Serializable]
+    public class MarketingInfo
+    {
+        [field: SerializeField] public string Id { get; private set; }
+        [field: SerializeField] public int MinMult { get; private set; }
+        [field: SerializeField] public int MaxMult { get; private set; }
+        [field: SerializeField] public int Div { get; private set; }
+        [field: SerializeField] public int Unlock { get; private set; }
+        
     }
 
     [Serializable]

@@ -1,3 +1,4 @@
+using System;
 using R3;
 using SpaceMonkey.Scripts.UI.Views.Product;
 using UnityEngine;
@@ -16,17 +17,34 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
         {
             fillArea.SetActive(isActive);
             handleSlideArea.SetActive(isActive);
-            slider.value = isActive ? defaultSliderValue : 0;
-            if (!isActive) ResetCurrentValueText();
+            if (!isActive)
+            {
+                ResetCurrentValueText();
+            }
             slider.interactable = isActive;
         }
 
-        public void Setup(float min, float max, float? currentValue)
+        public void Setup(float minMult, float maxMult, uint level, string sliderType, float? currentValue)
         {
+            var (min, max) = sliderType switch
+            {
+                "Flyer"  => (minMult * level, maxMult * level),
+                "Social" => (minMult * level, maxMult * (level * level)),
+                "Email"  => (minMult * (level * 1.5f), maxMult * (level * 1.5f)),
+                _        => throw new ArgumentException($"Unknown slider type: {sliderType}")
+            };
+
             Model.Set(min, max);
             Model.CalculateCurrent(slider.value);
+
             Setup();
-            SetSliderValue(currentValue == null ? defaultSliderValue : Model.CalculateSliderValue(currentValue.Value));
+
+            var valueToSet = currentValue.HasValue 
+                ? Model.CalculateSliderValue(currentValue.Value) 
+                : defaultSliderValue;
+
+            SetSliderValue(valueToSet);
         }
+
     }
 }

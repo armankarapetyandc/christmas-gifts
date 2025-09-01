@@ -49,11 +49,6 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             return _accountService.Model.Account;
         }
 
-        internal ProductionLevelInfo[] RetrieveInfo()
-        {
-            return _gameConfig.ProductionLevels;
-        }
-
         internal IEnumerable<T> ResolveVisualAssets<T>(Predicate<T> predicate = null) where T : VisualAsset
         {
             return _visualAssetDatabase.GetResourcesForAsset(predicate);

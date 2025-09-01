@@ -3,12 +3,12 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile;
-using SpaceMonkey.Scripts.UI.Extensions;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace SpaceMonkey.Scripts.UI.Views.Marketing
 {
@@ -22,6 +22,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
         [field: SerializeField] private List<MarketingItem> Items { get; set; }
         private float _totalCost = 0f;
 
+        [Inject] private AccountService _accountService;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -30,11 +31,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
             moneyText.text = $"${account.Money:f2}";
             weekNumberText.text = $"Week {account.Week.ToString()}";
             totalCostText.text = "$0.00";
+            var marketingInfos = Controller.GetMarketingInfos();
             for (var i = 0; i < Items.Count; i++)
             {
                 var item = Items[i];
-                var values = Constants.MarketingSliderInit[i];
-                item.MarketingSlider.Setup(values.Item1, values.Item2, null);
+                var marketingInfo = marketingInfos[i];
+                var index = _accountService.Model.Account.MarketingFeatures.FindIndex(f => f.Id == marketingInfo.Id);
+
+                item.Initialize(marketingInfo, _accountService.Model.Account.Level,
+                    index == -1 ? new MarketingFeature()  : _accountService.Model.Account.MarketingFeatures[index]);
             }
 
             Items.Select(item => item.MarketingSlider.CurrentValue.Select(_ => Unit.Default)).Merge().Subscribe(_ =>
@@ -55,19 +60,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
 
         private void OnBack()
         {
-            var marketingFeatures = new List<MarketingFeature>();
-            for (var i = 0; i < Items.Count; i++)
-            {
-                if (!Items[i].IsSelected) continue;
-                var prices = Constants.MarketingSliderInit[i];
-                var marketingFeature = new MarketingFeature()
+            var marketingFeatures = (from item in Items
+                where item.IsSelected
+                select new MarketingFeature()
                 {
-                    MinPrice = prices.Item1,
-                    MaxPrice = prices.Item2,
-                    CurrentPrice = Items[i].MarketingSlider.CurrentValue.CurrentValue,
-                };
-                marketingFeatures.Add(marketingFeature);
-            }
+                    Id = item.MarketingItemInfo.Id,
+                    MinMult = item.MarketingItemInfo.MinMult,
+                    MaxMult = item.MarketingItemInfo.MaxMult,
+                    Division = item.MarketingItemInfo.Div,
+                    CurrentPrice = item.MarketingSlider.CurrentValue.CurrentValue,
+                    Unlock = item.MarketingItemInfo.Unlock,
+                }).ToList();
             Controller.UpdateMarketingFeatures(marketingFeatures);
         }
 
