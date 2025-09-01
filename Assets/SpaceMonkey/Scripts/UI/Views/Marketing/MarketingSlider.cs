@@ -17,6 +17,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
         {
             fillArea.SetActive(isActive);
             handleSlideArea.SetActive(isActive);
+            slider.value = isActive ? defaultSliderValue : 0;
             if (!isActive)
             {
                 ResetCurrentValueText();
@@ -24,7 +25,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
             slider.interactable = isActive;
         }
 
-        public void Setup(float minMult, float maxMult, uint level, string sliderType, float? currentValue)
+        public void Setup(float minMult, float maxMult, uint level, string sliderType, float? currentValue, bool isActive = true)
         {
             var (min, max) = sliderType switch
             {
@@ -44,6 +45,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
                 : defaultSliderValue;
 
             SetSliderValue(valueToSet);
+            if(!isActive) ResetCurrentValueText();
         }
 
     }

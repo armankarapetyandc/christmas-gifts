@@ -17,14 +17,23 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
 
         public MarketingInfo MarketingItemInfo { get; private set; }
 
+        private MarketingFeature _marketingFeature;
+
         public void Initialize(MarketingInfo info,uint level, MarketingFeature feature)
         {
+            _marketingFeature = feature;
             MarketingItemInfo = info;
-            marketingSlider.Setup(MarketingItemInfo.MinMult, MarketingItemInfo.MaxMult,
-                level, MarketingItemInfo.Id, feature.CurrentPrice);
+            if (feature.Id != null)
+            {
+                toggle.isOn = true;
+            }
+            
             if (toggle != null)
                 toggle.OnValueChangedAsObservable().Subscribe(SliderValueChanged).AddTo(this);
-            if (feature.Id != null) toggle.isOn = true;
+            
+            marketingSlider.Setup(MarketingItemInfo.MinMult, MarketingItemInfo.MaxMult,
+                level, MarketingItemInfo.Id, feature.CurrentPrice, feature.Id != null );
+            
         }
 
         private void SliderValueChanged(bool selected)
