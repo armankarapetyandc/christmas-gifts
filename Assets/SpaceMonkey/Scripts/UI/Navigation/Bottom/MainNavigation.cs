@@ -6,6 +6,7 @@ using R3;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.BusinessHub;
 using SpaceMonkey.Scripts.UI.Views.Map;
+using SpaceMonkey.Scripts.UI.Views.Opportunities;
 using SpaceMonkey.Scripts.UI.Views.Startup;
 using UIService.Runtime.Core;
 using UIService.Runtime.Utilities;
@@ -101,6 +102,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
                     Controller.HidePreviousAndShow<BusinessHubView>().Forget();
                     break;
                 case MainNavigationType.Opportunities:
+                    Controller.HidePreviousAndShow<OpportunitiesView>().Forget();
                     break;
                 case MainNavigationType.Medal:
                     break;

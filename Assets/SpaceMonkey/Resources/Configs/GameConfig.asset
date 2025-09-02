@@ -192,3 +192,4 @@ MonoBehaviour:
     <OrderQuantityMax>k__BackingField: 3
     <NewCustomersMin>k__BackingField: 1
     <NewCustomersMax>k__BackingField: 2
+    <PriceSensitivity>k__BackingField: 0.3
