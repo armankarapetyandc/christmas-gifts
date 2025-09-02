@@ -25,15 +25,15 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         public override UniTask Initialize(IPresenterData data = null)
         {
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
-            InitializeInfoPanel();
+            SetupDefaults();
             return UniTask.CompletedTask;
         }
         
-        private void InitializeInfoPanel()
+        private void SetupDefaults()
         {
             var account = Controller.GetAccount();
             businessName.text = account.Company.CompanyName;
-
+            weekNumberText.text = account.Week.ToString();
             var shapeVisualAsset =
                 Controller.ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.ShapeVisualAssetId);
             var iconVisualAsset =
@@ -44,9 +44,14 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             iconComponent.SetShape(shapeVisualAsset);
             iconComponent.SetIcon(iconVisualAsset);
             iconComponent.SetColor(colorVisualAsset);
-            expensesComponent.Initialize();
-            revenueComponent.Initialize();
+            expensesComponent.Initialize(Controller.GetTotalQuantitiesByProduct());
+            revenueComponent.Initialize(Controller.GetTotalQuantitiesByProduct());
             //overallTotalsComponent.SetTotals(0f, revenueComponent.TotalCash.CurrentValue, 0f);
+            var totalExpense = Controller.GetWeekTotalExpenses();
+            var totalRevenue = Controller.GetWeekRevenue();
+            var totalProfit = Controller.GetWeekProfit();
+
+            overallTotalsComponent.SetTotals(totalExpense, totalRevenue, totalProfit);
         }
 
         public override void Dispose()

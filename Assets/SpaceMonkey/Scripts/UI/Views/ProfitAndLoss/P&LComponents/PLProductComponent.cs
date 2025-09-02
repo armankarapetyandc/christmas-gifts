@@ -1,14 +1,16 @@
+using System.Collections.Generic;
+
 namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss.P_LComponents
 {
     public class PlProductComponent : PlComponent
     {
         public override void SetData(object data)
         {
-            var product = (Profile.Product)data;
-            SetComponentName(product.Name);
-            ItemsList[0].SetItemData(1, product.MaterialPrice);
-            ItemsList[1].SetItemData(1, product.MaterialPackagingPrice);
-            ItemsList[2].SetItemData(1, product.ShippingCost);
+            var pair = (KeyValuePair<Profile.Product, int>)data;
+            SetComponentName(pair.Key.Name);
+            ItemsList[0].SetItemData(pair.Value, pair.Key.MaterialPrice);
+            ItemsList[1].SetItemData(pair.Value, pair.Key.MaterialPackagingPrice);
+            ItemsList[2].SetItemData(pair.Value, pair.Key.ShippingCost);
             base.SetData(data);
         }
     }

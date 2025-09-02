@@ -18,12 +18,12 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         
         private readonly List<PlProductComponent> _productComponents =  new List<PlProductComponent>();
 
-        public void Initialize()
+        public void Initialize(Dictionary<Profile.Product, int> weekExpenses)
         {
-            foreach (var product in _accountService.Model.Account.Products)
+            foreach (KeyValuePair<Profile.Product, int> pair in weekExpenses)
             {
                 var productComponent = Instantiate(productComponentPrefab, container);
-                productComponent.SetData(product);
+                productComponent.SetData(pair);
                 _productComponents.Add(productComponent);
             }
             

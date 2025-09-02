@@ -57,7 +57,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             Validator
                 .Validate(
                     iconComponent.Fulfilled, productNameInputField.NotEmpty(),
-                    productNameInputField.MinLength(6)
+                    productNameInputField.MinLength(4)
                 )
                 .BindButton(saveButton)
                 .AddTo(this);
