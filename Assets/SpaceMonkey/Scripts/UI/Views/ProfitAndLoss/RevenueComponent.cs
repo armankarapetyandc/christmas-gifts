@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Views.ProfitAndLoss.P_LComponents;
@@ -17,16 +18,17 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
 
         private PlProductComponent _productComponents;
 
-        public void Initialize()
+        public void Initialize(Dictionary<Profile.Product, int> week)
         {
             _productComponents = Instantiate(productComponentPrefab, container);
             _productComponents.ResetItemsList();
-            foreach (var product in _accountService.Model.Account.Products)
+
+            foreach (KeyValuePair<Profile.Product, int> pair in week)
             {
-                _productComponents.AddItem(1, product.ProductPrice, product.Name);
+                _productComponents.AddItem(pair.Value, pair.Key.ProductPrice, pair.Key.Name);
             }
             _productComponents.TotalCost.Subscribe(total =>
-                totalCashText.text = $"{total:F2}");
+                totalCashText.text = $"{total:F2}").AddTo(this);
         }
     }
 }

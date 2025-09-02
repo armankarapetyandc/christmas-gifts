@@ -108,6 +108,28 @@ namespace SpaceMonkey.Scripts.Profile
             else
             {
                 Products[index] = product;
+                // Cascade update into Weeks -> Orders -> Products
+                for (int w = 0; w < Weeks.Count; w++)
+                {
+                    var week = Weeks[w]; // struct copy
+                    for (int o = 0; o < week.Orders.Length; o++)
+                    {
+                        var order = week.Orders[o]; // struct copy
+                        for (int p = 0; p < order.Products.Length; p++)
+                        {
+                            var poi = order.Products[p]; // struct copy
+                            if (poi.Product.Id == product.Id)
+                            {
+                                poi.Product = product; // update
+                                order.Products[p] = poi; // put back
+                            }
+                        }
+
+                        week.Orders[o] = order; // put back
+                    }
+
+                    Weeks[w] = week; // put back
+                }
             }
         }
 
@@ -161,7 +183,7 @@ namespace SpaceMonkey.Scripts.Profile
         public void UpdateMarketingFeatures(List<MarketingFeature> marketingFeatures)
         {
             if (marketingFeatures == null) return;
-            
+
             MarketingFeatures.RemoveAll(f => marketingFeatures.All(nf => nf.Id != f.Id));
 
 
@@ -218,7 +240,7 @@ namespace SpaceMonkey.Scripts.Profile
         }
     }
 
-    public struct Product
+    public struct Product : IEquatable<Product>
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -250,6 +272,17 @@ namespace SpaceMonkey.Scripts.Profile
         {
             Id = Guid.NewGuid().ToString();
         }
+
+        // ✅ Equality based only on Id
+        public bool Equals(Product other) => string.Equals(Id, other.Id, StringComparison.Ordinal);
+
+        public override bool Equals(object obj) => obj is Product other && Equals(other);
+
+        public override int GetHashCode() => (Id != null ? Id.GetHashCode() : 0);
+
+        public static bool operator ==(Product left, Product right) => left.Equals(right);
+
+        public static bool operator !=(Product left, Product right) => !left.Equals(right);
     }
 
     public struct LevelProdCap

@@ -12,6 +12,7 @@
     {
         public string CharacterId { get; set; }
         public int Mood { get; set; }
+        public bool Shipped { get; set; }
         public ProductOrderInfo[]  Products { get; set; }
     }
 

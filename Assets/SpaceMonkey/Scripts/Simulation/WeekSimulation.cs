@@ -119,14 +119,31 @@ namespace SpaceMonkey.Scripts.Simulation
             {
                 return Random.Range(1, 18) * 2;
             }
-
+            
             var lastWeek = _account.Weeks.LastOrDefault();
+            if (!lastWeek.Orders.Any(o => o.CharacterId.Equals(characterId)))
+            {
+                return Random.Range(1, 18) * 2;
+            }
             var orderInfo = lastWeek.Orders.FirstOrDefault(order => order.CharacterId.Equals(characterId));
+            if (!orderInfo.Products.Any(o => o.Product.Id.Equals(product.Id)))
+            {
+                return Random.Range(1, 18) * 2;
+            }
             var productOrderInfo = orderInfo.Products.FirstOrDefault(o => o.Product.Id.Equals(product.Id));
             var deltaPercent = -((product.ProductPrice!.Value - productOrderInfo.Product.ProductPrice!.Value) /
                 productOrderInfo.Product.ProductPrice!.Value * _gameConfig.SimulationInfo.PriceSensitivity);
             var nextOrderQuantity = productOrderInfo.Quantity + productOrderInfo.Quantity * deltaPercent;
             return Mathf.RoundToInt(nextOrderQuantity);
+        }
+
+        public Dictionary<Product, int> GetTotalQuantitiesByProduct()
+        {
+            return _weekInfo.Orders
+                .Where(o => o.Shipped)
+                .SelectMany(o => o.Products)
+                .GroupBy(p => p.Product)
+                .ToDictionary(g => g.Key, g => g.Sum(o => o.Quantity));
         }
 
         public void Run()
@@ -145,6 +162,17 @@ namespace SpaceMonkey.Scripts.Simulation
             _availableProdCap.Value -= neededProdCap;
             var profit = customer.Orders.Sum(order => order.Product.Profit * order.Quantity)!.Value;
             _money.Value += profit;
+            
+            for (int i = 0; i < _weekInfo.Orders.Length; i++)
+            {
+                ref OrderInfo orderInfo = ref _weekInfo.Orders[i];
+                if (orderInfo.CharacterId.Equals(customer.Character.Id))
+                {
+                    orderInfo.Shipped = true; // direct update
+                    break;
+                }
+            }
+
             return true;
         }
 
