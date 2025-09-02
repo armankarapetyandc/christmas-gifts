@@ -182,6 +182,21 @@ MonoBehaviour:
     <MaxMult>k__BackingField: 75
     <Div>k__BackingField: 8
     <Unlock>k__BackingField: 800
+  <Staffs>k__BackingField:
+  - <Profession>k__BackingField: 0
+    <StaffName>k__BackingField: Brandon G.
+    <PayrollText>k__BackingField: 35
+    <CapacityText>k__BackingField: 20
+    <Speed>k__BackingField: 5
+    <Experience>k__BackingField: 5
+    <Character>k__BackingField: {fileID: 11400000, guid: fe0320438545bdc4dbcaaa2e7c635dda, type: 2}
+  - <Profession>k__BackingField: 0
+    <StaffName>k__BackingField: Skimmy T.
+    <PayrollText>k__BackingField: 35
+    <CapacityText>k__BackingField: 20
+    <Speed>k__BackingField: 5
+    <Experience>k__BackingField: 5
+    <Character>k__BackingField: {fileID: 11400000, guid: 92f23923ef499f14782d84752ec1c6d2, type: 2}
   <SimulationInfo>k__BackingField:
     <CustomersMin>k__BackingField: 1
     <CustomersMax>k__BackingField: 3

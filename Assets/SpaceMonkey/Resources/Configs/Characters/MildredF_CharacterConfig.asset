@@ -15,6 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: mildred_f
   <Name>k__BackingField: Mildred F.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 0d05fcd3b0ec2ec4e80afd5c5c479d83, type: 2}
+  <FullBodySprite>k__BackingField: {fileID: 11400000, guid: 27a2f622aa2f34e4989cd1ce5d8610ae, type: 2}
   <BackgroundColor>k__BackingField: {fileID: 11400000, guid: 58fdc79821129c34d9b20199ca878eed, type: 2}
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100

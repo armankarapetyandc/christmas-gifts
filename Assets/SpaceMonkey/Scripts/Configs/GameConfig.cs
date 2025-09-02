@@ -12,6 +12,8 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public ProductionLevelInfo[] ProductionLevels { get; private set; }
         [field: SerializeField] public CharacterConfig[] Characters { get; private set; }
         [field: SerializeField] public MarketingInfo[] MarketingInfos { get; private set; }
+        
+        [field: SerializeField] public Staff[] Staffs { get; private set; }
         [field: SerializeField] public SimulationInfo SimulationInfo { get; private set; }
     }
 
@@ -48,6 +50,19 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int MaxMult { get; private set; }
         [field: SerializeField] public int Div { get; private set; }
         [field: SerializeField] public int Unlock { get; private set; }
+        
+    }
+    
+    [Serializable]
+    public class Staff
+    {
+        [field: SerializeField] public StaffType Profession { get; private set; }
+        [field: SerializeField] public string StaffName { get; private set; }
+        [field: SerializeField] public string PayrollText{ get; private set; }
+        [field: SerializeField] public string CapacityText{ get; private set; }
+        [field: SerializeField] public int Speed{ get; private set; }
+        [field: SerializeField] public int Experience{ get; private set; }
+        [field: SerializeField] public CharacterConfig Character { get; private set; }
         
     }
 

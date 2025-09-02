@@ -15,6 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: skimmy_t
   <Name>k__BackingField: Skimmy T.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 249356ed724f9254cbb14e323d6c6f63, type: 2}
+  <FullBodySprite>k__BackingField: {fileID: 11400000, guid: 31d9286a3c9b24837b517b4a45078dfd, type: 2}
   <BackgroundColor>k__BackingField: {fileID: 11400000, guid: 58fdc79821129c34d9b20199ca878eed, type: 2}
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100

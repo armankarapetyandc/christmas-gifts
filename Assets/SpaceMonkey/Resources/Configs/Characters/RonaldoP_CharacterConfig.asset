@@ -15,6 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: ronaldo_p
   <Name>k__BackingField: Ronaldo P.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 1ebfe2faf4919f54e8b1143d2964c76b, type: 2}
+  <FullBodySprite>k__BackingField: {fileID: 11400000, guid: 764e1e59b2f8047b888e3ac28690a521, type: 2}
   <BackgroundColor>k__BackingField: {fileID: 11400000, guid: 58fdc79821129c34d9b20199ca878eed, type: 2}
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100

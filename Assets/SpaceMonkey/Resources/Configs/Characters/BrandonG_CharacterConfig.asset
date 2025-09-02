@@ -15,6 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: brandon_g
   <Name>k__BackingField: Brandon G.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 44f49e663d16e494fb6d903c70475ce5, type: 2}
+  <FullBodySprite>k__BackingField: {fileID: 11400000, guid: 53f6235f46d6842a6a2497a795e2cab9, type: 2}
   <BackgroundColor>k__BackingField: {fileID: 11400000, guid: 58fdc79821129c34d9b20199ca878eed, type: 2}
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100

@@ -7,6 +7,7 @@ using SpaceMonkey.Scripts.UI.Views.Marketing;
 using SpaceMonkey.Scripts.UI.Views.Orders;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
+using SpaceMonkey.Scripts.UI.Views.Staff;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -66,6 +67,12 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         {
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<MarketingView>().Forget();
+        }
+        
+        public void ShowStaffView()
+        {
+            _navigationPresenterService.HideAll();
+            PresenterService.HidePreviousAndShow<StaffView>().Forget();
         }
     }
 }

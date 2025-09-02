@@ -9,6 +9,7 @@ namespace SpaceMonkey.Scripts.Configs.Characters
         [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public SpriteVisualAsset Sprite { get; private set; }
+        [field: SerializeField] public SpriteVisualAsset FullBodySprite { get; private set; }
         [field: SerializeField] public ColorVisualAsset BackgroundColor { get; private set; }
         [field: SerializeField] public float MoodMin { get; private set; }
         [field: SerializeField] public float MoodMax { get; private set; }
