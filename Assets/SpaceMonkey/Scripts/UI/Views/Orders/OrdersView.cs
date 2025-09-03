@@ -55,7 +55,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         private void SetupCustomers()
         {
-            var account = Controller.GetAccount();
             var customers = Controller.GetSimulationCustomers();
             var moodVisualAssets = Controller.ResolveVisualAssets<MoodVisualAsset>().OrderBy(asset => asset.MoodValue)
                 .ToList();
@@ -68,15 +67,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 var moodAsset = moodVisualAssets.FirstOrDefault(asset => customer.Mood <= asset.MoodValue);
                 orderItem.SetMood(customer.Mood, moodAsset);
 
-                var products = customer.Orders.Select(o =>
-                {
-                    return (
-                        productOrder: o,
-                        iconVisualAsset: Controller.ResolveVisualAsset<SpriteVisualAsset>(o.Product.IconVisualAssetId),
-                        colorVisualAsset:
-                        Controller.ResolveVisualAsset<ColorVisualAsset>(o.Product.BackgroundColorVisualAssetId)
-                    );
-                }).ToList();
+                var products = customer.Orders.Select(o => (
+                    productOrder: o,
+                    iconVisualAsset: Controller.ResolveVisualAsset<SpriteVisualAsset>(o.Product.IconVisualAssetId),
+                    colorVisualAsset:
+                    Controller.ResolveVisualAsset<ColorVisualAsset>(o.Product.BackgroundColorVisualAssetId)
+                )).ToList();
 
                 orderItem.SetProducts(products);
                 _orders.Add(orderItem);

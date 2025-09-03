@@ -68,7 +68,10 @@ namespace SpaceMonkey.Scripts.Simulation
 
         public void Prepare()
         {
-            var customersCount = Random.Range(_simulationInfo.CustomersMin, _simulationInfo.CustomersMax + 1);
+            var customersCount = _account.Week == 0
+                ? Random.Range(_simulationInfo.CustomersMin, _simulationInfo.CustomersMax + 1)
+                : Mathf.RoundToInt(Random.Range(_simulationInfo.NewCustomersMin,
+                    _simulationInfo.NewCustomersMax + _account.GetMarketingCustAdd()));
             Customers = new List<Customer>(customersCount);
             var characters = _gameConfig.Characters.PickRandomElements(customersCount);
             for (int i = 0; i < customersCount; i++)

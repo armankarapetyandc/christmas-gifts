@@ -301,7 +301,6 @@ namespace SpaceMonkey.Scripts.Profile
         public float CurrentPrice { get; set; }
         public int Division { get; set; }
         public int Unlock { get; set; }
-        private float _custAdd;
 
         public bool Equals(MarketingFeature other)
         {
@@ -321,8 +320,7 @@ namespace SpaceMonkey.Scripts.Profile
 
         public float GetCustAdd()
         {
-            _custAdd = CurrentPrice / Division;
-            return _custAdd;
+            return CurrentPrice / Division;
         }
     }
 
