@@ -1,6 +1,7 @@
 ﻿using System;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Views.Staff;
 using UnityEngine;
 
 namespace SpaceMonkey.Scripts.Configs
@@ -56,7 +57,7 @@ namespace SpaceMonkey.Scripts.Configs
     [Serializable]
     public class Staff
     {
-        [field: SerializeField] public StaffType Profession { get; private set; }
+        [field: SerializeField] public StaffProfessionEnum Profession { get; private set; }
         [field: SerializeField] public string StaffName { get; private set; }
         [field: SerializeField] public string PayrollText{ get; private set; }
         [field: SerializeField] public string CapacityText{ get; private set; }
