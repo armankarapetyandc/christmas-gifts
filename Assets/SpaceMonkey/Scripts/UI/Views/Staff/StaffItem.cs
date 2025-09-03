@@ -1,7 +1,4 @@
-using SpaceMonkey.Scripts.Configs.Characters;
-using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
-using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,8 +13,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff
         [SerializeField] private Image characterImage;
         [SerializeField] private TextMeshProUGUI payrollText;
         [SerializeField] private TextMeshProUGUI capacityText;
-        [SerializeField] private Slider speedSlider;
-        [SerializeField] private Slider experienceSlider;
+        [SerializeField] private Image[] speed;
+        [SerializeField] private Image[] experience;
+        [SerializeField] private Sprite emptyStar;
+        [SerializeField] private Sprite filledStar; 
 
         public Configs.Staff Staff { get; private set; }
 
@@ -33,8 +32,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff
             staffName.text = Staff.StaffName;
             payrollText.text = $"-${Staff.PayrollText}/week";
             capacityText.text = $"+{Staff.CapacityText} hrs/week";
-            experienceSlider.value = Staff.Experience;
-            speedSlider.value = Staff.Speed;
+            SetRating(Staff.Speed, speed);
+            SetRating(Staff.Experience, experience);
             SetIcon(Staff.Character.Sprite);
         }
 
@@ -44,8 +43,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff
             {
                 iconImage.sprite = asset.Sprite;
             }
-
+            
             iconImage.gameObject.SetActive(asset != null);
+        }
+        
+        private void SetRating(int rating, Image[]  stars)
+        {
+            for (int i = 0; i < stars.Length; i++)
+            {
+                stars[i].sprite = i < rating ? filledStar : emptyStar;
+            }
         }
         
     }
