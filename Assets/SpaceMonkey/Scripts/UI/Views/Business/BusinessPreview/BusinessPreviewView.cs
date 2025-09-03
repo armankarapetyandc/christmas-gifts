@@ -36,7 +36,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
             Validator
                 .Validate(
                     nameInputField.NotEmpty(),
-                    nameInputField.MinLength(5),
                     iconComponent.Fulfilled,
                     hashtagVerticalList.Fulfilled
                 )

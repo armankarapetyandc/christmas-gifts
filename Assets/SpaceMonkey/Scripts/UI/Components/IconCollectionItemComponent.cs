@@ -14,13 +14,10 @@ namespace SpaceMonkey.Scripts.UI.Components
 
         public Observable<SpriteVisualAsset> OnSelected =>
             toggle.OnValueChangedAsObservable().Where(b => b && VisualAsset != null).Select(_ => VisualAsset);
-
-        private void Start()
+        
+        public void SetToggleGroup(ToggleGroup group)
         {
-            if (transform.parent.TryGetComponent<ToggleGroup>(out var toggleGroup))
-            {
-                toggle.group = toggleGroup;
-            }
+            toggle.group = group;
         }
 
         internal void Setup(SpriteVisualAsset visualAsset)

@@ -14,14 +14,10 @@ namespace SpaceMonkey.Scripts.UI.Components
         public Observable<ColorVisualAsset> OnSelected =>
             toggle.OnValueChangedAsObservable().Where(b => b && VisualAsset != null).Select(_ => VisualAsset);
 
-        private void Start()
+        internal void SetToggleGroup(ToggleGroup group)
         {
-            if (transform.parent.TryGetComponent<ToggleGroup>(out var toggleGroup))
-            {
-                toggle.group = toggleGroup;
-            }
+            toggle.group = group;
         }
-
         internal void Setup(ColorVisualAsset visualAsset)
         {
             VisualAsset = visualAsset;

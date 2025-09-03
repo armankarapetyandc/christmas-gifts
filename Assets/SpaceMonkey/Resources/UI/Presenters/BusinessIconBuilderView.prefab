@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 1
+  m_AllowSwitchOff: 0
 --- !u!114 &3962646930908527616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1857,7 +1857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5501643270493522314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1935,6 +1935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorItemPrefab: {fileID: 5862156351541459377, guid: aea540b88f4b59844b3a626439a58f45, type: 3}
   content: {fileID: 5275169760750739650}
+  toggleGroup: {fileID: 4632330806233409920}
 --- !u!1 &5473510045331711013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,6 +2218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconItemPrefab: {fileID: 3589630620097949661, guid: db5a58096081e89479df9ecb7feb36b7, type: 3}
   content: {fileID: 3091051894125290128}
+  toggleGroup: {fileID: 8509691449802208996}
 --- !u!1 &5891098225800005766
 GameObject:
   m_ObjectHideFlags: 0

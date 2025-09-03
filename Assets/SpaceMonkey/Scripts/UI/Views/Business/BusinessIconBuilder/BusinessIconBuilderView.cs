@@ -44,7 +44,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
                 .Validate(iconComponent.Fulfilled)
                 .BindButton(saveButton)
                 .AddTo(this);
-
+  
             return UniTask.CompletedTask;
         }
 
