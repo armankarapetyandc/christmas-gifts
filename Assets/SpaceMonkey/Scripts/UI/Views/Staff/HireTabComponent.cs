@@ -30,7 +30,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff
             var staffs = _gameConfig.Staffs;
             foreach (var staff in staffs)
             {
-                if (CheckStaffExists(staff.Character.Id)) continue;
+                if (CheckStaffExists(staff.Id)) continue;
                 var staffItem = Instantiate(staffItemPrefab, container);
                 staffItem.Set(staff);
                 _staffItems.Add(staffItem);
@@ -58,7 +58,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff
 
         private bool CheckStaffExists(string staffId)
         {
-            return _accountService.Model.Account.Employees.Any(employee => employee.CharacterId == staffId);
+            return _accountService.Model.Account.Employees.Any(employee => employee.Id == staffId);
         }
     }
 }

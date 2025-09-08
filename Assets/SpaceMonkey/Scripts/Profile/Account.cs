@@ -153,7 +153,7 @@ namespace SpaceMonkey.Scripts.Profile
         
         public void SetEmployee(Employee employee)
         {
-            int index = Employees.FindIndex(p => p.CharacterId.Equals(employee.CharacterId));
+            int index = Employees.FindIndex(p => p.Id.Equals(employee.Id));
             if (index < 0)
             {
                 Employees.Add(employee);
@@ -166,7 +166,7 @@ namespace SpaceMonkey.Scripts.Profile
 
         public void FireEmployee(string firedEmployeeId)
         {
-            Employees.RemoveAll(e => e.CharacterId == firedEmployeeId);
+            Employees.RemoveAll(e => e.Id == firedEmployeeId);
         }
 
         public void Reset()
@@ -350,6 +350,7 @@ namespace SpaceMonkey.Scripts.Profile
 
     public class Employee
     {
+        public string Id { get; set; }
         public EmployeeProfession Profession { get; set; }
         public string Payroll { get; set; }
         public string Capacity { get; set; }

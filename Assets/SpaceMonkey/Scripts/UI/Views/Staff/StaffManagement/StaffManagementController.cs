@@ -31,7 +31,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
                 Capacity = hireStaff.Capacity,
                 Speed = hireStaff.Speed,
                 Experience = hireStaff.Experience,
-                CharacterId = hireStaff.Character.Id
+                CharacterId = hireStaff.Character.Id,
+                Id = hireStaff.Id
             };
             _accountService.Model.Account.SetEmployee(newEmployee);
             _accountService.SaveAsync();

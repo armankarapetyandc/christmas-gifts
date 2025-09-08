@@ -57,6 +57,7 @@ namespace SpaceMonkey.Scripts.Configs
     [Serializable]
     public class Staff
     {
+        [field:  SerializeField] public string Id { get; private set; }
         [field: SerializeField] public EmployeeProfession Profession { get; private set; }
         [field: SerializeField] public string Payroll{ get; private set; }
         [field: SerializeField] public string Capacity{ get; private set; }

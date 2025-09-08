@@ -52,11 +52,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.HiredStaff
             manageItem.Set(_data.Employee, _characterConfig, true);
             headCharactersScrollComponent
                 .Setup(_accountService.Model.Account.Employees.Where(employee =>
-                    employee.Profession == _data.Profession && CheckStaffExists(employee.CharacterId)).ToArray())
+                    employee.Profession == _data.Profession && CheckStaffExists(employee.Id)).ToArray())
                 .Subscribe(UpdateUi)
                 .AddTo(this);
             fireButton.OnClickAsObservable().Subscribe(_ =>
-                    Controller.OnFireButtonCLicked(_data.Employee.CharacterId, _data.Profession))
+                    Controller.OnFireButtonCLicked(_data.Employee.Id, _data.Profession))
                 .AddTo(this);
             return UniTask.CompletedTask;
         }
@@ -67,7 +67,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.HiredStaff
             _data.Employee = employee;
             _characterConfig = GetCharacter(_data.Employee.CharacterId);
             manageItem.Set(_data.Employee, _characterConfig, true);
-            var exists = CheckStaffExists(_data.Employee.CharacterId);
         }
 
         private CharacterConfig GetCharacter(string selectedId)
