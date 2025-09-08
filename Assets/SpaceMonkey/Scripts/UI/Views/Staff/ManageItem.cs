@@ -1,12 +1,17 @@
+using System.Linq;
 using R3;
+using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Configs.Characters;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace SpaceMonkey.Scripts.UI.Views.Staff
 {
-    public class StaffItem : MonoBehaviour
+    public class ManageItem : MonoBehaviour
     {
         [SerializeField] private Image iconImage;
         [SerializeField] private TextMeshProUGUI staffName;
@@ -20,28 +25,31 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff
         [SerializeField] private Sprite filledStar;
 
         private bool _isFullBody = false;
-        
-        public Configs.Staff Staff { get; private set; }
+        private CharacterConfig _character;
+         
+        public Employee Employee { get; private set; }
 
-        public Observable<Configs.Staff> OnMoreButtonClick => moreButton.OnClickAsObservable().Select(_ => Staff);
+        public Observable<Employee> OnMoreButtonClick => moreButton.OnClickAsObservable().Select(_ => Employee);
 
-        public void Set(Configs.Staff staff, bool isFullBody = false)
+        public void Set(Employee staff,CharacterConfig character, bool isFullBody = false)
         {
-            Staff = staff;
+            Employee = staff;
             _isFullBody = isFullBody;
+            _character = character;
             UpdateUI();
         }
 
         private void UpdateUI()
         {
-            if (Staff == null) return;
-            staffName.text = Staff.Character.Name;
-            professionText.text = Staff.Profession.ToString();
-            payrollText.text = $"-${Staff.Payroll}/week";
-            capacityText.text = $"+{Staff.Capacity} hrs/week";
-            SetRating(Staff.Speed, speed);
-            SetRating(Staff.Experience, experience);
-            SetIcon(_isFullBody ? Staff.Character.FullBodySprite : Staff.Character.Sprite);
+            if (Employee == null) return;
+            if (_character == null) return;
+            staffName.text = _character.Name;
+            professionText.text = Employee.Profession.ToString();
+            payrollText.text = $"-${Employee.Payroll}/week";
+            capacityText.text = $"+{Employee.Capacity} hrs/week";
+            SetRating(Employee.Speed, speed);
+            SetRating(Employee.Experience, experience);
+            SetIcon(_isFullBody ? _character.FullBodySprite : _character.Sprite);
         }
 
         private void SetIcon(SpriteVisualAsset asset)

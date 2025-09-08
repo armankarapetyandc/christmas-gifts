@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile.Simulation;
+using SpaceMonkey.Scripts.UI.Views.Staff;
 
 namespace SpaceMonkey.Scripts.Profile
 {
@@ -20,6 +22,8 @@ namespace SpaceMonkey.Scripts.Profile
         public List<LevelProdCap> LevelProdCaps { get; set; }
         public List<WeekInfo> Weeks { get; set; }
         public List<MarketingFeature> MarketingFeatures { get; set; }
+
+        public List<Employee> Employees { get; set; }
 
         public void SetCategory(string category)
         {
@@ -56,7 +60,8 @@ namespace SpaceMonkey.Scripts.Profile
                         ProdCapAdd = initialProdCap.ProdCapAdd
                     }
                 },
-                MarketingFeatures = new List<MarketingFeature>()
+                MarketingFeatures = new List<MarketingFeature>(),
+                Employees = new List<Employee>()
             };
             return account;
         }
@@ -145,6 +150,19 @@ namespace SpaceMonkey.Scripts.Profile
                 LevelProdCaps[index] = level;
             }
         }
+        
+        public void SetEmployee(Employee employee)
+        {
+            int index = Employees.FindIndex(p => p.CharacterId.Equals(employee.CharacterId));
+            if (index < 0)
+            {
+                Employees.Add(employee);
+            }
+            else
+            {
+                Employees[index] = employee;
+            }
+        }
 
         public void Reset()
         {
@@ -155,6 +173,7 @@ namespace SpaceMonkey.Scripts.Profile
             Products = new List<Product>();
             LevelProdCaps = new List<LevelProdCap>();
             MarketingFeatures = new List<MarketingFeature>();
+            Employees = new List<Employee>();
         }
 
         public void DeleteProduct(string productId)
@@ -322,6 +341,16 @@ namespace SpaceMonkey.Scripts.Profile
         {
             return CurrentPrice / Division;
         }
+    }
+
+    public class Employee
+    {
+        public EmployeeProfession Profession { get; set; }
+        public string Payroll { get; set; }
+        public string Capacity { get; set; }
+        public int Speed { get; set; }
+        public int Experience { get; set; }
+        public string CharacterId { get; set; }
     }
 
     public class Hashtag : IEquatable<Hashtag>

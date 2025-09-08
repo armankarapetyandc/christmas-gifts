@@ -3,6 +3,7 @@ using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Views.Staff;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SpaceMonkey.Scripts.Configs
 {
@@ -13,7 +14,6 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public ProductionLevelInfo[] ProductionLevels { get; private set; }
         [field: SerializeField] public CharacterConfig[] Characters { get; private set; }
         [field: SerializeField] public MarketingInfo[] MarketingInfos { get; private set; }
-        
         [field: SerializeField] public Staff[] Staffs { get; private set; }
         [field: SerializeField] public SimulationInfo SimulationInfo { get; private set; }
     }
@@ -57,13 +57,12 @@ namespace SpaceMonkey.Scripts.Configs
     [Serializable]
     public class Staff
     {
-        [field: SerializeField] public StaffProfessionEnum Profession { get; private set; }
-        [field: SerializeField] public string StaffName { get; private set; }
-        [field: SerializeField] public string PayrollText{ get; private set; }
-        [field: SerializeField] public string CapacityText{ get; private set; }
+        [field: SerializeField] public EmployeeProfession Profession { get; private set; }
+        [field: SerializeField] public string Payroll{ get; private set; }
+        [field: SerializeField] public string Capacity{ get; private set; }
         [field: SerializeField] public int Speed{ get; private set; }
         [field: SerializeField] public int Experience{ get; private set; }
-        [field: SerializeField] public CharacterConfig Character { get; private set; }
+        [field: SerializeField] public CharacterConfig Character { get; internal set; }
         
     }
 

@@ -22,7 +22,7 @@ namespace SpaceMonkey.Scripts.UI.Components
                 _items.RemoveAt(0);
             }
 
-            var observables = new List<Observable<SpriteVisualAsset>>();
+            var observables = new List<Observable<SpriteVisualAsset>>(); 
             foreach (SpriteVisualAsset asset in assets)
             {
                 var item = Instantiate(iconItemPrefab, content);

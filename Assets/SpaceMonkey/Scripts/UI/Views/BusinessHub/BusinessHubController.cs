@@ -72,7 +72,10 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         public void ShowStaffView()
         {
             _navigationPresenterService.HideAll();
-            PresenterService.HidePreviousAndShow<StaffView>().Forget();
+            PresenterService.HidePreviousAndShow<StaffView>(new StaffView.Data()
+            {
+                Profession = EmployeeProfession.All
+            }).Forget();
         }
     }
 }

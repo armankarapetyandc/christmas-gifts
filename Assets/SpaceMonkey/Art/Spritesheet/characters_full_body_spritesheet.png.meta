@@ -153,8 +153,8 @@ TextureImporter:
       name: characters_full_body_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 25
+        x: 7
+        y: 32
         width: 231
         height: 794
       alignment: 0
@@ -175,8 +175,8 @@ TextureImporter:
       name: characters_full_body_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 231
-        y: 15
+        x: 252
+        y: 22
         width: 265
         height: 804
       alignment: 0
@@ -197,10 +197,10 @@ TextureImporter:
       name: characters_full_body_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 496
-        y: 53
-        width: 232
-        height: 766
+        x: 531
+        y: 36
+        width: 231
+        height: 790
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,10 +219,10 @@ TextureImporter:
       name: characters_full_body_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 728
-        y: 26
-        width: 261
-        height: 793
+        x: 776
+        y: 60
+        width: 232
+        height: 766
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,10 +241,10 @@ TextureImporter:
       name: characters_full_body_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 989
-        y: 28
-        width: 233
-        height: 791
+        x: 1022
+        y: 33
+        width: 261
+        height: 793
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,10 +263,10 @@ TextureImporter:
       name: characters_full_body_spritesheet_5
       rect:
         serializedVersion: 2
-        x: 1222
-        y: 30
-        width: 255
-        height: 789
+        x: 1297
+        y: 7
+        width: 264
+        height: 819
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -285,10 +285,10 @@ TextureImporter:
       name: characters_full_body_spritesheet_6
       rect:
         serializedVersion: 2
-        x: 1477
-        y: 29
-        width: 231
-        height: 790
+        x: 1575
+        y: 35
+        width: 233
+        height: 791
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,10 +307,10 @@ TextureImporter:
       name: characters_full_body_spritesheet_7
       rect:
         serializedVersion: 2
-        x: 1708
-        y: 0
-        width: 264
-        height: 819
+        x: 1822
+        y: 37
+        width: 255
+        height: 789
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -329,8 +329,8 @@ TextureImporter:
       name: characters_full_body_spritesheet_8
       rect:
         serializedVersion: 2
-        x: 1972
-        y: 37
+        x: 2091
+        y: 44
         width: 232
         height: 782
       alignment: 0
