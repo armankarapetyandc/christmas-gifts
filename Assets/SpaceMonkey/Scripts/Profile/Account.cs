@@ -164,6 +164,11 @@ namespace SpaceMonkey.Scripts.Profile
             }
         }
 
+        public void FireEmployee(string firedEmployeeId)
+        {
+            Employees.RemoveAll(e => e.CharacterId == firedEmployeeId);
+        }
+
         public void Reset()
         {
             Company?.Reset();

@@ -231,6 +231,24 @@ MonoBehaviour:
     <Speed>k__BackingField: 4
     <Experience>k__BackingField: 4
     <Character>k__BackingField: {fileID: 11400000, guid: df4d467ff49f26d4d8489e515e8636bb, type: 2}
+  - <Profession>k__BackingField: 0
+    <Payroll>k__BackingField: 35
+    <Capacity>k__BackingField: 30
+    <Speed>k__BackingField: 5
+    <Experience>k__BackingField: 4
+    <Character>k__BackingField: {fileID: 11400000, guid: df4d467ff49f26d4d8489e515e8636bb, type: 2}
+  - <Profession>k__BackingField: 1
+    <Payroll>k__BackingField: 25
+    <Capacity>k__BackingField: 25
+    <Speed>k__BackingField: 3
+    <Experience>k__BackingField: 3
+    <Character>k__BackingField: {fileID: 11400000, guid: c9ab0fe92348a864ba10aee44d704b3f, type: 2}
+  - <Profession>k__BackingField: 0
+    <Payroll>k__BackingField: 35
+    <Capacity>k__BackingField: 30
+    <Speed>k__BackingField: 5
+    <Experience>k__BackingField: 4
+    <Character>k__BackingField: {fileID: 11400000, guid: df4d467ff49f26d4d8489e515e8636bb, type: 2}
   <SimulationInfo>k__BackingField:
     <CustomersMin>k__BackingField: 1
     <CustomersMax>k__BackingField: 3

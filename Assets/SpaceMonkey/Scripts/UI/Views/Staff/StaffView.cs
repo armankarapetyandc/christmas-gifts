@@ -28,11 +28,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff
         public override UniTask Initialize(IPresenterData data = null)
         {
             _data = data as Data;
-            staffTabs
-                .Where(staff => staff.EmployeeProfession == _data.Profession)
-                .ToList()
-                .ForEach(staff => staff.toggle.isOn = true);
-
             
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             staffTabs
@@ -54,6 +49,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff
                     _employee?.Subscribe(employee => Controller.OnEmployeeSelected(employee, selected));
                 })
                 .AddTo(this);
+            
+            staffTabs
+                .Where(staff => staff.EmployeeProfession == _data.Profession)
+                .ToList()
+                .ForEach(staff => staff.toggle.isOn = true);
             
             return UniTask.CompletedTask;
         }

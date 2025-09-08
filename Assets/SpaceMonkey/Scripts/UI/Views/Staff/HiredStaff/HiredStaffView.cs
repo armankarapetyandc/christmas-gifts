@@ -55,6 +55,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.HiredStaff
                     employee.Profession == _data.Profession && CheckStaffExists(employee.CharacterId)).ToArray())
                 .Subscribe(UpdateUi)
                 .AddTo(this);
+            fireButton.OnClickAsObservable().Subscribe(_ =>
+                    Controller.OnFireButtonCLicked(_data.Employee.CharacterId, _data.Profession))
+                .AddTo(this);
             return UniTask.CompletedTask;
         }
 
