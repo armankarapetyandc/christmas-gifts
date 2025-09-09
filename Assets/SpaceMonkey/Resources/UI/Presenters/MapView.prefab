@@ -104,7 +104,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4314658813384996762}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
@@ -145,8 +145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5624, y: 7308.345}
+  m_AnchoredPosition: {x: 0, y: -0.00024414062}
+  m_SizeDelta: {x: 5624, y: 7308.3457}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8059953075816577400
 CanvasRenderer:
@@ -292,6 +292,8 @@ MonoBehaviour:
   panZoom: {fileID: 7188865951154666934}
   defaultMapZoom: 1.5
   defaultMapPosition: {x: 0, y: 1120}
+  placeItem: {fileID: 4783032270565465510, guid: 8a47501b495458441a99adcb3e382f07, type: 3}
+  placesContainer: {fileID: 8982166029243276538}
 --- !u!114 &7293794525630134304
 MonoBehaviour:
   m_ObjectHideFlags: 0

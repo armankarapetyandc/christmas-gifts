@@ -11,11 +11,27 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         [SerializeField] private CanvasPanZoom panZoom;
         [SerializeField] private float defaultMapZoom;
         [SerializeField] private Vector2 defaultMapPosition;
+        [SerializeField] private MapPlaceItem placeItem;
+        [SerializeField] private RectTransform placesContainer;
+
         public override async UniTask Initialize(IPresenterData data = null)
         {
             await UniTask.Yield();
             panZoom.SetZoom(defaultMapZoom);
             panZoom.SetPosition(defaultMapPosition);
+
+            PopulatePlaces();
+        }
+
+        private void PopulatePlaces()
+        {
+            var places = Controller.GetMapPlaces();
+            foreach (var place in places)
+            {
+                var item = Instantiate(placeItem, placesContainer);
+                item.SetPlaceName(place.Name);
+                item.SetPosition(place.Position);
+            }
         }
 
         public override void Dispose()
