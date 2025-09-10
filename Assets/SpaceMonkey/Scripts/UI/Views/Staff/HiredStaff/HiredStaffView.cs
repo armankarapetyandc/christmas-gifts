@@ -52,7 +52,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.HiredStaff
             manageItem.Set(_data.Employee, _characterConfig, true);
             headCharactersScrollComponent
                 .Setup(_accountService.Model.Account.Employees.Where(employee =>
-                    employee.Profession == _data.Profession && CheckStaffExists(employee.Id)).ToArray())
+                    (_data.Profession == EmployeeProfession.All || employee.Profession == _data.Profession) &&
+                    CheckStaffExists(employee.Id)).ToArray())
                 .Subscribe(UpdateUi)
                 .AddTo(this);
             fireButton.OnClickAsObservable().Subscribe(_ =>
@@ -77,7 +78,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.HiredStaff
 
         private bool CheckStaffExists(string staffId)
         {
-            return _accountService.Model.Account.Employees.Any(employee => employee.CharacterId == staffId);
+            foreach (var employee in _accountService.Model.Account.Employees)
+            {
+                if (employee.Id == staffId) return true;
+            }
+
+            return false;
         }
 
         public override void Dispose()

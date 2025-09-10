@@ -45,7 +45,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
             staffItem.Set(_data.Staff, true);
             headCharactersScrollComponent
                 .Setup(_gameConfig.Staffs.Where(staff =>
-                    staff.Profession == _data.Profession && !CheckStaffExists(staff.Id)).ToArray())
+                    (_data.Profession == EmployeeProfession.All || staff.Profession == _data.Profession) &&
+                    !CheckStaffExists(staff.Id)).ToArray())
                 .Subscribe(UpdateUi)
                 .AddTo(this);
             hireButton.OnClickAsObservable().Subscribe(_ => OnHireClicked()).AddTo(this);
@@ -70,7 +71,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
 
         private bool CheckStaffExists(string staffId)
         {
-            return _accountService.Model.Account.Employees.Any(employee => employee.CharacterId == staffId);
+            foreach (var employee in _accountService.Model.Account.Employees)
+            {
+                if (employee.Id == staffId) return true;
+            }
+
+            return false;
         }
 
 
