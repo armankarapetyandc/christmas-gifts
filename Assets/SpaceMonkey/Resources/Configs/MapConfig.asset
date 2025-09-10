@@ -16,40 +16,145 @@ MonoBehaviour:
   - <Name>k__BackingField: For Rent
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 1174, y: -597}
-    <IconSprite>k__BackingField: {fileID: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
     <Locked>k__BackingField: 1
   - <Name>k__BackingField: Jarnall Bank
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 1010, y: -948}
-    <IconSprite>k__BackingField: {fileID: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <Locked>k__BackingField: 0
   - <Name>k__BackingField: For Rent
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 1658, y: -961}
-    <IconSprite>k__BackingField: {fileID: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
     <Locked>k__BackingField: 1
   - <Name>k__BackingField: For Rent
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 1174, y: -1305}
-    <IconSprite>k__BackingField: {fileID: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
     <Locked>k__BackingField: 1
   - <Name>k__BackingField: Jarnal Bank
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 271, y: -1365}
-    <IconSprite>k__BackingField: {fileID: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <Locked>k__BackingField: 0
   - <Name>k__BackingField: For Rent
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 595, y: -1842}
-    <IconSprite>k__BackingField: {fileID: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
     <Locked>k__BackingField: 1
   - <Name>k__BackingField: Jarnall Bank
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 958, y: -1761}
-    <IconSprite>k__BackingField: {fileID: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <Locked>k__BackingField: 0
   - <Name>k__BackingField: Jarnall Bank
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 1444, y: -1654}
-    <IconSprite>k__BackingField: {fileID: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <Locked>k__BackingField: 0
+  - <Name>k__BackingField: Jarnall Bank
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3185, y: -21}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3442, y: -216}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: Jarnall Bank
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3184, y: -475}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3024, y: -690}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3942, y: -658}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 4407, y: -873}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 4968, y: -475}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: Jarnall Bank
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 4806, y: -1002}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 2380, y: -1416}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: Jarnall Bank
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 2780, y: -1674}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3172, y: -1976}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: Jarnall Bank
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3092, y: -1688}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: Jarnall Bank
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3820, y: -2257}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 4325, y: -2679}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3037, y: -2901}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 2298, y: -3233}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: Jarnall Bank
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3442, y: -3085}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 4080, y: -3686}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 3685, y: -3897}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 4793, y: -4006}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 2942, y: -4637}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1

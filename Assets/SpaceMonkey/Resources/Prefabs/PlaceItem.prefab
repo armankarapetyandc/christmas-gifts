@@ -445,6 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 6862384332244376074}
   nameText: {fileID: 7408259407178351797}
+  lockedIcon: {fileID: 2303658635155955023, guid: 129687a2b682b4c89a7b91407bb23889, type: 3}
   iconImage: {fileID: 8013940556080331928}
   button: {fileID: 1439686781759271551}
 --- !u!114 &1439686781759271551

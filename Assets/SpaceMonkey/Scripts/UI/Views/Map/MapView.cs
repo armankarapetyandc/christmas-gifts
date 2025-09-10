@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -31,6 +32,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 var item = Instantiate(placeItem, placesContainer);
                 item.SetPlaceName(place.Name);
                 item.SetPosition(place.Position);
+                item.SetIcon(place.IconVisualAsset);
+                item.SetLocked(place.Locked);
             }
         }
 
