@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.MutualFunds;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -20,6 +21,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
         {
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<MutualFundsView>().Forget();
+        }
+
+        public void OnCreditCardButtonClicked()
+        {
+            _navigationPresenterService.HideAll();
+            PresenterService.HidePreviousAndShow<CreditCardView>().Forget();
         }
     }
 }

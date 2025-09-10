@@ -19,6 +19,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
         public override UniTask Initialize(IPresenterData data = null)
         {
             mutualFundsButton.OnClickAsObservable().Subscribe(_=>Controller.OnMutualFundsButtonClicked()).AddTo(this);
+            creditCardButton.OnClickAsObservable().Subscribe(_=>Controller.OnCreditCardButtonClicked()).AddTo(this);
             return UniTask.CompletedTask;
         }
 
