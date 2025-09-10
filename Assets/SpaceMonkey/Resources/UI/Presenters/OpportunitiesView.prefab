@@ -4081,6 +4081,12 @@ MonoBehaviour:
   presenterHolder: {fileID: 3286712549288661208}
   dimmerButton: {fileID: 0}
   <AutoFitSupported>k__BackingField: 1
+  bankAccountButton: {fileID: 8377403845986661665}
+  creditCardButton: {fileID: 5666269238116728915}
+  investmentButton: {fileID: 5963628909950210988}
+  insuranceButton: {fileID: 2772369690765277122}
+  mutualFundsButton: {fileID: 5653919375327683620}
+  taxesButton: {fileID: 448373289823316798}
 --- !u!114 &5484118104040067769
 MonoBehaviour:
   m_ObjectHideFlags: 0

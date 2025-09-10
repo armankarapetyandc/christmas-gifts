@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: a92a642ebdc00fd4b8b831867d758d16
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4542666546656665111
+    second: logo_fidelity_2_0
+  - first:
+      213: -7700884355593765698
+    second: logo_fidelity_2_1
+  - first:
+      213: -1124966732294567797
+    second: logo_fidelity_2_2
+  - first:
+      213: 6382998046667912794
+    second: logo_fidelity_2_3
+  - first:
+      213: 4682191916997899854
+    second: logo_fidelity_2_4
+  - first:
+      213: 6397050605861556826
+    second: logo_fidelity_2_5
+  - first:
+      213: -1223402017131601296
+    second: logo_fidelity_2_6
+  - first:
+      213: 1049482345154523228
+    second: logo_fidelity_2_7
+  - first:
+      213: -7184212875835620703
+    second: logo_fidelity_2_8
+  - first:
+      213: 2050523161741756968
+    second: logo_fidelity_2_9
+  - first:
+      213: -8520371564971223927
+    second: logo_fidelity_2_10
+  - first:
+      213: 4700928289174410054
+    second: logo_fidelity_2_11
+  - first:
+      213: 7747209504706631382
+    second: logo_fidelity_2_12
+  - first:
+      213: -374824157282496890
+    second: logo_fidelity_2_13
+  - first:
+      213: 3309456878454749249
+    second: logo_fidelity_2_14
+  - first:
+      213: 290585132972807898
+    second: logo_fidelity_2_15
+  - first:
+      213: 1021765446379470840
+    second: logo_fidelity_2_16
+  - first:
+      213: 4266773214621109694
+    second: logo_fidelity_2_17
+  - first:
+      213: 2554465292513252533
+    second: logo_fidelity_2_18
+  - first:
+      213: 7242388425607223209
+    second: logo_fidelity_2_19
+  - first:
+      213: -8715799802207817855
+    second: logo_fidelity_2_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: logo_fidelity_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9
+        width: 122
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e5586f72bca0f30800000000000000
+      internalID: 4542666546656665111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 23
+        width: 84
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebc7878ca76f02590800000000000000
+      internalID: -7700884355593765698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_2
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 89
+        width: 36
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b884371a7b05360f0800000000000000
+      internalID: -1124966732294567797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_3
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 22
+        width: 88
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5637a5a7e6f49850800000000000000
+      internalID: 6382998046667912794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_4
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 23
+        width: 55
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e467ddebdbc7af040800000000000000
+      internalID: 4682191916997899854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_5
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 89
+        width: 36
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a52539c02a3e6c850800000000000000
+      internalID: 6397050605861556826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_6
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 072ef57e85a950fe0800000000000000
+      internalID: -1223402017131601296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_7
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 23
+        width: 48
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c50bafce1a2809e00800000000000000
+      internalID: 1049482345154523228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_8
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 22
+        width: 73
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a2c709f37c8c4c90800000000000000
+      internalID: -7184212875835620703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_9
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 23
+        width: 48
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82a045393fbe47c10800000000000000
+      internalID: 2050523161741756968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_10
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 0
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9841d8b543f81c980800000000000000
+      internalID: -8520371564971223927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_11
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 0
+        width: 30
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64353d65f5d0d3140800000000000000
+      internalID: 4700928289174410054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_12
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 0
+        width: 26
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d691908ffd938b60800000000000000
+      internalID: 7747209504706631382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_13
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 0
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68e01f33a6b5ccaf0800000000000000
+      internalID: -374824157282496890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_14
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 25
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 148b4c72f7d8ded20800000000000000
+      internalID: 3309456878454749249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_15
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad69adb83ad580400800000000000000
+      internalID: 290585132972807898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_16
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 0
+        width: 36
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ff773b824a0e2e00800000000000000
+      internalID: 1021765446379470840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_17
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 0
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebd84a2e1af963b30800000000000000
+      internalID: 4266773214621109694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_18
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 0
+        width: 29
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b4115f36a8437320800000000000000
+      internalID: 2554465292513252533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_19
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 0
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a718b9b6e1228460800000000000000
+      internalID: 7242388425607223209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_fidelity_2_20
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 25
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18fabf712424b0780800000000000000
+      internalID: -8715799802207817855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      logo_fidelity_2_0: 4542666546656665111
+      logo_fidelity_2_1: -7700884355593765698
+      logo_fidelity_2_10: -8520371564971223927
+      logo_fidelity_2_11: 4700928289174410054
+      logo_fidelity_2_12: 7747209504706631382
+      logo_fidelity_2_13: -374824157282496890
+      logo_fidelity_2_14: 3309456878454749249
+      logo_fidelity_2_15: 290585132972807898
+      logo_fidelity_2_16: 1021765446379470840
+      logo_fidelity_2_17: 4266773214621109694
+      logo_fidelity_2_18: 2554465292513252533
+      logo_fidelity_2_19: 7242388425607223209
+      logo_fidelity_2_2: -1124966732294567797
+      logo_fidelity_2_20: -8715799802207817855
+      logo_fidelity_2_3: 6382998046667912794
+      logo_fidelity_2_4: 4682191916997899854
+      logo_fidelity_2_5: 6397050605861556826
+      logo_fidelity_2_6: -1223402017131601296
+      logo_fidelity_2_7: 1049482345154523228
+      logo_fidelity_2_8: -7184212875835620703
+      logo_fidelity_2_9: 2050523161741756968
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
