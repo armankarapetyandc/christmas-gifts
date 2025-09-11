@@ -1648,6 +1648,7 @@ MonoBehaviour:
   dimmerButton: {fileID: 0}
   <AutoFitSupported>k__BackingField: 1
   backButton: {fileID: 6248737661291890632}
+  applyButton: {fileID: 3878185828892326880}
 --- !u!114 &6925702423607126938
 MonoBehaviour:
   m_ObjectHideFlags: 0
