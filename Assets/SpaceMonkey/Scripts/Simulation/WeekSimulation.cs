@@ -77,6 +77,10 @@ namespace SpaceMonkey.Scripts.Simulation
             for (int i = 0; i < customersCount; i++)
             {
                 var customer = PickCustomer(characters[i]);
+                if (customer == null)
+                {
+                    continue;
+                }
                 Customers.Add(customer);
             }
 
@@ -95,7 +99,7 @@ namespace SpaceMonkey.Scripts.Simulation
                 {
                     CharacterId = customer.Character.Id,
                     Mood = customer.Mood,
-                    Products = customer.Orders.Select(order => new ProductOrderInfo()
+                    Products = customer.Orders.Select(order => new ProductOrderInfo
                     {
                         Product = order.Product,
                         Quantity = order.Quantity
@@ -106,12 +110,16 @@ namespace SpaceMonkey.Scripts.Simulation
 
         private Customer PickCustomer(CharacterConfig character)
         {
-            var mood = Random.Range(_simulationInfo.MoodMin, _simulationInfo.MoodMax + 1);
             var orderQuantity = Random.Range(_simulationInfo.OrderQuantityMin, _simulationInfo.OrderQuantityMax);
 
             var orders = _account.Products.PickRandomElements(orderQuantity)
                 .Select(p => new ProductOrder(p, DetermineProductQuantity(character.Id, p))).ToArray();
 
+            var mood = orders.Select(order => DetermineCustomerMood(character.Id, order.Product)).Sum();
+            if (mood<_simulationInfo.MoodLeave)
+            {
+                return null;
+            }
             var customer = new Customer(character, mood, orders);
             return customer;
         }
@@ -122,22 +130,60 @@ namespace SpaceMonkey.Scripts.Simulation
             {
                 return Random.Range(1, 18) * 2;
             }
-            
+
             var lastWeek = _account.Weeks.LastOrDefault();
             if (!lastWeek.Orders.Any(o => o.CharacterId.Equals(characterId)))
             {
                 return Random.Range(1, 18) * 2;
             }
+
             var orderInfo = lastWeek.Orders.FirstOrDefault(order => order.CharacterId.Equals(characterId));
             if (!orderInfo.Products.Any(o => o.Product.Id.Equals(product.Id)))
             {
                 return Random.Range(1, 18) * 2;
             }
+
             var productOrderInfo = orderInfo.Products.FirstOrDefault(o => o.Product.Id.Equals(product.Id));
             var deltaPercent = -((product.ProductPrice!.Value - productOrderInfo.Product.ProductPrice!.Value) /
                 productOrderInfo.Product.ProductPrice!.Value * _gameConfig.SimulationInfo.PriceSensitivity);
             var nextOrderQuantity = productOrderInfo.Quantity + productOrderInfo.Quantity * deltaPercent;
             return Mathf.RoundToInt(nextOrderQuantity);
+        }
+
+        private int DetermineCustomerMood(string characterId, Product product)
+        {
+            if (_account.Weeks.Count == 0)
+            {
+                return Random.Range(_simulationInfo.MoodMin, _simulationInfo.MoodMax + 1);
+            }
+
+            var lastWeek = _account.Weeks.LastOrDefault();
+            if (!lastWeek.Orders.Any(o => o.CharacterId.Equals(characterId)))
+            {
+                return Random.Range(_simulationInfo.MoodMin, _simulationInfo.MoodMax + 1);
+            }
+
+            var orderInfo = lastWeek.Orders.FirstOrDefault(order => order.CharacterId.Equals(characterId));
+            if (!orderInfo.Products.Any(o => o.Product.Id.Equals(product.Id)))
+            {
+                return Random.Range(_simulationInfo.MoodMin, _simulationInfo.MoodMax + 1);
+            }
+
+            var productOrderInfo = orderInfo.Products.FirstOrDefault(o => o.Product.Id.Equals(product.Id));
+
+            var ttpDeltaPercent =
+                ((product.TimeToProduceIndex + 1) - (productOrderInfo.Product.TimeToProduceIndex + 1)) *
+                _gameConfig.SimulationInfo.MoodTtpCoefficient;
+            var materialDeltaPercent =
+                (product.MaterialPrice!.Value - productOrderInfo.Product.MaterialPrice!.Value) *
+                _gameConfig.SimulationInfo.MoodMaterialCoefficient;
+            var packagingDeltaPercent =
+                (product.MaterialPackagingPrice!.Value - productOrderInfo.Product.MaterialPackagingPrice!.Value) *
+                _gameConfig.SimulationInfo.MoodPackagingCoefficient;
+
+            var moodDeltaPercent = ttpDeltaPercent + materialDeltaPercent + packagingDeltaPercent;
+            var mood = orderInfo.Mood + orderInfo.Mood * moodDeltaPercent;
+            return Mathf.RoundToInt(mood);
         }
 
         public Dictionary<Product, int> GetTotalQuantitiesByProduct()
@@ -165,7 +211,7 @@ namespace SpaceMonkey.Scripts.Simulation
             _availableProdCap.Value -= neededProdCap;
             var profit = customer.Orders.Sum(order => order.Product.Profit * order.Quantity)!.Value;
             _money.Value += profit;
-            
+
             for (int i = 0; i < _weekInfo.Orders.Length; i++)
             {
                 ref OrderInfo orderInfo = ref _weekInfo.Orders[i];

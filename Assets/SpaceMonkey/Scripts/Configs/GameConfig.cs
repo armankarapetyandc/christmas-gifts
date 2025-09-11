@@ -74,6 +74,12 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int CustomersMax { get; private set; } = 3;
         [field: SerializeField] public int MoodMin { get; private set; } = 55;
         [field: SerializeField] public int MoodMax { get; private set; } = 75;
+        [field: SerializeField] public int MoodLeave{ get; private set; } = 30;
+        [field: SerializeField] public float MoodTtpCoefficient { get; private set; } = 2.5f;
+        [field: SerializeField] public float MoodMaterialCoefficient { get; private set; } = 10f;
+        [field: SerializeField] public float MoodPackagingCoefficient { get; private set; } = 10f;
+        [field: SerializeField] public float MoodOrderFulfillmentCoefficient { get; private set; } = 10f;
+        [field: SerializeField] public float MoodOrderNotFulfillmentCoefficient { get; private set; } = -15f;
         [field: SerializeField] public int CustomerMoodThreshold { get; private set; } = 30;
         [field: SerializeField] public int OrderQuantityMin { get; private set; } = 1;
         [field: SerializeField] public int OrderQuantityMax { get; private set; } = 3;
