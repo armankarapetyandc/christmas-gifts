@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Popups.DeleteProduct;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using SpaceMonkey.Scripts.Utilities;
@@ -11,14 +13,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
 {
     public class ProductController : BasePresenterController
     {
+        private readonly PopupPresenterService _popupPresenterService;
         private readonly AccountService _accountService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
 
         internal Profile.Product CurrentProduct;
 
-        public ProductController(PresenterService presenterService, AccountService accountService,
+        public ProductController(PresenterService presenterService, PopupPresenterService popupPresenterService,AccountService accountService,
             VisualAssetDatabase visualAssetDatabase) : base(presenterService)
         {
+            _popupPresenterService = popupPresenterService;
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
         }
@@ -40,8 +44,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         }
         public async UniTaskVoid DeleteProduct()
         {
-            _accountService.Model.Account.DeleteProduct(CurrentProduct.Id);
-            await _accountService.SaveAsync();
+            var deleteProductPopupPresenterData = new DeleteProductPopup.Data();
+            _popupPresenterService.Show<DeleteProductPopup>(deleteProductPopupPresenterData).Forget();
+
+            var result = await deleteProductPopupPresenterData.GetAwaiter();
+            if (result)
+            {
+                _accountService.Model.Account.DeleteProduct(CurrentProduct.Id);
+                await _accountService.SaveAsync();
+            }
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
         internal async UniTaskVoid SaveProduct()
