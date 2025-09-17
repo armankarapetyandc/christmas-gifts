@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace SpaceMonkey.Scripts.UI.Views.MutualFunds
+namespace SpaceMonkey.Scripts.UI.Views.Opportunities.MutualFunds
 {
     public class MutualFundsViewInstaller : MonoInstaller
     {

@@ -5,7 +5,7 @@ using UIService.Runtime.Presenter.Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceMonkey.Scripts.UI.Views.MutualFunds
+namespace SpaceMonkey.Scripts.UI.Views.Opportunities.MutualFunds
 {
     public class MutualFundsView : BasePresenterWithController<MutualFundsViewController>
     {
@@ -15,7 +15,7 @@ namespace SpaceMonkey.Scripts.UI.Views.MutualFunds
         public override UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
-            
+            investButton.OnClickAsObservable().Subscribe(_ => Controller.OnInvest()).AddTo(this);
             return UniTask.CompletedTask;
         }
 
