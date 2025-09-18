@@ -183,7 +183,7 @@ namespace SpaceMonkey.Scripts.Simulation
 
             var moodDeltaPercent = ttpDeltaPercent + materialDeltaPercent + packagingDeltaPercent;
             var mood = orderInfo.Mood + orderInfo.Mood * moodDeltaPercent;
-            return Mathf.RoundToInt(mood);
+            return Mathf.Clamp(Mathf.RoundToInt(mood), 1, 100);
         }
 
         public Dictionary<Product, int> GetTotalQuantitiesByProduct()

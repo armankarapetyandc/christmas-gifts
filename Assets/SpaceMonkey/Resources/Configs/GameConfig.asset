@@ -265,7 +265,24 @@ MonoBehaviour:
     <CustomersMax>k__BackingField: 3
     <MoodMin>k__BackingField: 55
     <MoodMax>k__BackingField: 75
+    <MoodLeave>k__BackingField: 30
+    <MoodTtpCoefficient>k__BackingField: 2.5
+    <MoodMaterialCoefficient>k__BackingField: 10
+    <MoodPackagingCoefficient>k__BackingField: 10
+    <MoodOrderFulfillmentCoefficient>k__BackingField: 10
+    <MoodOrderNotFulfillmentCoefficient>k__BackingField: -15
     <CustomerMoodThreshold>k__BackingField: 30
+    <MoodRanges>k__BackingField:
+    - <Min>k__BackingField: 1
+      <Max>k__BackingField: 43
+    - <Min>k__BackingField: 44
+      <Max>k__BackingField: 57
+    - <Min>k__BackingField: 58
+      <Max>k__BackingField: 71
+    - <Min>k__BackingField: 72
+      <Max>k__BackingField: 85
+    - <Min>k__BackingField: 86
+      <Max>k__BackingField: 100
     <OrderQuantityMin>k__BackingField: 1
     <OrderQuantityMax>k__BackingField: 3
     <NewCustomersMin>k__BackingField: 1

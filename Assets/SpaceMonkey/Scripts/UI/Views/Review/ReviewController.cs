@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -14,15 +15,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
     {
         private readonly PresenterService _presenterService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
+        private readonly GameConfig _gameConfig;
         private readonly AccountService _accountService;
         private readonly WeekSimulationContext _weekSimulationContext;
 
-        public ReviewController(PresenterService presenterService, VisualAssetDatabase visualAssetDatabase,
+        public ReviewController(PresenterService presenterService, VisualAssetDatabase visualAssetDatabase,GameConfig gameConfig,
             AccountService accountService,WeekSimulationContext weekSimulationContext) : base(
             presenterService)
         {
             _presenterService = presenterService;
             _visualAssetDatabase = visualAssetDatabase;
+            _gameConfig = gameConfig;
             _accountService = accountService;
             _weekSimulationContext = weekSimulationContext;
         }
@@ -50,6 +53,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         internal void OnNext()
         {
             _presenterService.Show<ProfitView>().Forget();
+        }
+
+        internal float CalculateCompanyRating()
+        {
+            return GetAccount().CalculateCompanyRating(_gameConfig.SimulationInfo.MoodRanges);
         }
     }
 }

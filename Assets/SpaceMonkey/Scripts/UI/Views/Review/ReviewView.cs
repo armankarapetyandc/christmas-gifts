@@ -35,8 +35,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         private void InitializeInfoPanel()
         {
             var account = Controller.GetAccount();
+            var companyRating = Controller.CalculateCompanyRating();
             businessName.text = account.Company.CompanyName;
-            ratingText.text = $"{account.Rating:F1}";
+            ratingText.text = $"{companyRating:F1}";
 
             var shapeVisualAsset =
                 Controller.ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.ShapeVisualAssetId);

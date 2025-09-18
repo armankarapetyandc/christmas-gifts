@@ -2,6 +2,7 @@
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Views.Staff;
+using SpaceMonkey.Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -51,20 +52,18 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int MaxMult { get; private set; }
         [field: SerializeField] public int Div { get; private set; }
         [field: SerializeField] public int Unlock { get; private set; }
-        
     }
-    
+
     [Serializable]
     public class Staff
     {
-        [field:  SerializeField] public string Id { get; private set; }
+        [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public EmployeeProfession Profession { get; private set; }
-        [field: SerializeField] public string Payroll{ get; private set; }
-        [field: SerializeField] public string Capacity{ get; private set; }
-        [field: SerializeField] public int Speed{ get; private set; }
-        [field: SerializeField] public int Experience{ get; private set; }
+        [field: SerializeField] public string Payroll { get; private set; }
+        [field: SerializeField] public string Capacity { get; private set; }
+        [field: SerializeField] public int Speed { get; private set; }
+        [field: SerializeField] public int Experience { get; private set; }
         [field: SerializeField] public CharacterConfig Character { get; internal set; }
-        
     }
 
     [Serializable]
@@ -74,13 +73,14 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int CustomersMax { get; private set; } = 3;
         [field: SerializeField] public int MoodMin { get; private set; } = 55;
         [field: SerializeField] public int MoodMax { get; private set; } = 75;
-        [field: SerializeField] public int MoodLeave{ get; private set; } = 30;
+        [field: SerializeField] public int MoodLeave { get; private set; } = 30;
         [field: SerializeField] public float MoodTtpCoefficient { get; private set; } = 2.5f;
         [field: SerializeField] public float MoodMaterialCoefficient { get; private set; } = 10f;
         [field: SerializeField] public float MoodPackagingCoefficient { get; private set; } = 10f;
         [field: SerializeField] public float MoodOrderFulfillmentCoefficient { get; private set; } = 10f;
         [field: SerializeField] public float MoodOrderNotFulfillmentCoefficient { get; private set; } = -15f;
         [field: SerializeField] public int CustomerMoodThreshold { get; private set; } = 30;
+        [field: SerializeField] public RangeValue[] MoodRanges { get; private set; }
         [field: SerializeField] public int OrderQuantityMin { get; private set; } = 1;
         [field: SerializeField] public int OrderQuantityMax { get; private set; } = 3;
         [field: SerializeField] public int NewCustomersMin { get; private set; } = 1;

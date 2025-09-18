@@ -6,6 +6,7 @@ using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile.Simulation;
 using SpaceMonkey.Scripts.UI.Views.Staff;
+using SpaceMonkey.Scripts.Utilities;
 
 namespace SpaceMonkey.Scripts.Profile
 {
@@ -14,7 +15,6 @@ namespace SpaceMonkey.Scripts.Profile
         public CompanyInfo Company { get; set; }
         public uint Level { get; set; }
         public int Week => Weeks.Count + 1;
-        public float Rating { get; set; }
         public float Money { get; set; }
         public float Score { get; set; }
 
@@ -35,6 +35,24 @@ namespace SpaceMonkey.Scripts.Profile
             Company.CompanyName = companyName;
         }
 
+        public float CalculateCompanyRating(RangeValue[] values)
+        {
+            return Weeks
+                .SelectMany(w => w.Orders)
+                .Select(o =>
+                {
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        if (o.Mood >= values[i].Min && o.Mood <= values[i].Max)
+                        {
+                            return i + 1f;
+                        }
+                    }
+
+                    throw new ArgumentOutOfRangeException(nameof(o.Mood), "Mood value must be between 1 and 100.");
+                }).Average();
+        }
+
         public static Account CreateEmpty(ProductionLevelInfo initialProdCap)
         {
             var account = new Account
@@ -46,7 +64,6 @@ namespace SpaceMonkey.Scripts.Profile
                 },
                 Level = 1,
                 Money = 30000,
-                Rating = 0,
                 Score = 0,
                 Products = new List<Product>(),
                 Weeks = new List<WeekInfo>(),
@@ -150,7 +167,7 @@ namespace SpaceMonkey.Scripts.Profile
                 LevelProdCaps[index] = level;
             }
         }
-        
+
         public void SetEmployee(Employee employee)
         {
             int index = Employees.FindIndex(p => p.Id.Equals(employee.Id));
