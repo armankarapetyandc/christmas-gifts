@@ -1,3 +1,4 @@
+using System;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
@@ -9,8 +10,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
     public class ReviewItem : MonoBehaviour
     {
         [SerializeField] private CharacterIconComponent iconComponent;
+        [SerializeField] private LayoutElement layoutElement;
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI commentText;
+        [SerializeField] private RectTransform commentTextRect;
         [SerializeField] private Slider moodSlider;
         [SerializeField] private Slider ratingSlider;
         
@@ -35,6 +38,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         public void SetRating(float value)
         {
             ratingSlider.value = value;
+        }
+
+        private void Update()
+        {
+            layoutElement.preferredHeight =
+                Mathf.Abs(commentTextRect.anchoredPosition.y) + commentTextRect.rect.height + 90f;
         }
     }
 }

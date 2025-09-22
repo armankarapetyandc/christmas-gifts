@@ -21,5 +21,13 @@
         public Product Product { get; set; }
         public int Quantity { get; set; }
     }
+
+    public struct CustomerReviewInfo
+    {
+        public string WeekId { get; set; }
+        public string CharacterId { get; set; }
+        public string ProductId { get; set; }
+        public string Message { get; set; }
+    }
 }
 

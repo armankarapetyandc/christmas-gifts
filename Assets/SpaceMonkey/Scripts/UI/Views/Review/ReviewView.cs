@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.Profile.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
@@ -26,9 +27,25 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             InitializeInfoPanel();
             var customers = Controller.GetSimulationCustomers();
-            var reviewItem = Instantiate(reviewItemPrefab, container);
-            reviewItem.SetCharacterVisual(customers[0].Character.Sprite,customers[0].Character.BackgroundColor);
-            reviewItem.SetMood(50f);
+
+            var reviews = Controller.GetReviews();
+
+            foreach (CustomerReviewInfo reviewInfo in reviews)
+            {
+                var customer = customers.Find(c => c.Character.Id.Equals(reviewInfo.CharacterId));
+                if (customer==null)
+                {
+                    continue;
+                }
+
+                var reviewItem = Instantiate(reviewItemPrefab, container);
+                reviewItem.SetCharacterVisual(customer.Character.Sprite, customer.Character.BackgroundColor);
+                reviewItem.SetMood(customer.Mood);
+                reviewItem.SetTextData(customer.Character.Name, reviewInfo.Message);
+                reviewItem.SetRating(Controller.GetRatingByCustomerMood(customer.Mood));
+            }
+            
+            
             return UniTask.CompletedTask;
         }
 

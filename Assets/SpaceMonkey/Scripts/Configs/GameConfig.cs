@@ -86,5 +86,18 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int NewCustomersMin { get; private set; } = 1;
         [field: SerializeField] public int NewCustomersMax { get; private set; } = 2;
         [field: SerializeField] public float PriceSensitivity { get; private set; } = 0.3f;
+
+        [field: SerializeField]
+        [Range(0, 100f)]
+        public float ReviewChance { get; private set; } = 75f;
+        [field: SerializeField]
+        [Range(0, 100f)]
+        public float BigProductChange { get; private set; } = 40f;
+        [field: SerializeField]
+        [Range(0, 100f)]
+        public float ExtremeSettingHigh { get; private set; } = 80f;
+        [field: SerializeField]
+        [Range(0, 100f)]
+        public float ExtremeSettingLow { get; private set; } = 20f;
     }
 }

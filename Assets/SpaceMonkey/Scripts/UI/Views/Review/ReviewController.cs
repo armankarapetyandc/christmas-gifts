@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Profile.Simulation;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Views.ProfitAndLoss;
@@ -58,6 +60,26 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         internal float CalculateCompanyRating()
         {
             return GetAccount().CalculateCompanyRating(_gameConfig.SimulationInfo.MoodRanges);
+        }
+
+        internal float GetRatingByCustomerMood(int value)
+        {
+            var moodRanges = _gameConfig.SimulationInfo.MoodRanges;
+            for (int i = 0; i < moodRanges.Length; i++)
+            {
+                if (value >= moodRanges[i].Min && value<= moodRanges[i].Max)
+                {
+                    return i + 1f;
+                }
+            }
+
+            throw new ArgumentOutOfRangeException(nameof(value), "Mood value must be between 1 and 100.");
+        }
+
+        internal IEnumerable<CustomerReviewInfo> GetReviews()
+        {
+            var account = GetAccount();
+            return account.Reviews.Where(info => info.WeekId.Equals(_weekSimulationContext.WeekSimulation.WeekInfo.Id));
         }
     }
 }

@@ -21,6 +21,7 @@ namespace SpaceMonkey.Scripts.Profile
         public List<Product> Products { get; set; }
         public List<LevelProdCap> LevelProdCaps { get; set; }
         public List<WeekInfo> Weeks { get; set; }
+        public List<CustomerReviewInfo> Reviews { get; set; }
         public List<MarketingFeature> MarketingFeatures { get; set; }
 
         public List<Employee> Employees { get; set; }
@@ -67,6 +68,7 @@ namespace SpaceMonkey.Scripts.Profile
                 Score = 0,
                 Products = new List<Product>(),
                 Weeks = new List<WeekInfo>(),
+                Reviews = new List<CustomerReviewInfo>(),
                 LevelProdCaps = new List<LevelProdCap>()
                 {
                     new()

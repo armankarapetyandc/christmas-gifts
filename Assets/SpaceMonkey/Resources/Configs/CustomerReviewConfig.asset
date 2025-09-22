@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb717c446574bac83f42153bd1803e6, type: 3}
+  m_Name: CustomerReviewConfig
+  m_EditorClassIdentifier: 
+  <Reviews>k__BackingField:
+  - <Type>k__BackingField: 0
+    <Message>k__BackingField: It tasted fine, but the overall texture felt cheap,
+      like they skimped on the ingredients.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 0
+    <Message>k__BackingField: I was hoping for something more substantial, but the
+      ingredients used clearly weren't the best, leaving a disappointing aftertaste.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 0
+    <Message>k__BackingField: The flavor was acceptable, but the components felt
+      low-quality, and it just didn't have that 'premium' feel.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 1
+    <Message>k__BackingField: You could really taste the quality of the ingredients;
+      everything felt fresh and high-grade.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 1
+    <Message>k__BackingField: I was impressed by the richness and depth of flavor,
+      a testament to the excellent ingredients they used.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 1
+    <Message>k__BackingField: The texture was just perfect, clearly made with top-notch
+      materials that made a real difference.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 2
+    <Message>k__BackingField: The packaging felt flimsy and cheap, and the item arrived
+      slightly damaged. It didn't give me a sense of quality.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 2
+    <Message>k__BackingField: While the product was okay, the packaging was incredibly
+      wasteful and difficult to open, which was frustrating.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 2
+    <Message>k__BackingField: The labeling was blurry and hard to read, and the overall
+      presentation felt very unprofessional.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 3
+    <Message>k__BackingField: The packaging was beautiful and practical, keeping
+      the product fresh and looking great.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 3
+    <Message>k__BackingField: I loved the attention to detail in the packaging; it
+      was sturdy, elegant, and clearly designed with care.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 3
+    <Message>k__BackingField: Attractive and also environmentally friendly packaging! 
+      Much appreciated.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 4
+    <Message>k__BackingField: For the quality received, the price was simply too
+      high. I felt like I overpaid significantly.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 4
+    <Message>k__BackingField: It was an okay product, but the price point didn't
+      match the value. It felt overpriced compared to similar items.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 4
+    <Message>k__BackingField: I was expecting more for the cost. The price didn't
+      justify the overall experience.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 5
+    <Message>k__BackingField: The price was very reasonable. I felt like I got excellent
+      value for my money.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 5
+    <Message>k__BackingField: The price was surprisingly fair. I might buy even more
+      next time!
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 5
+    <Message>k__BackingField: I was happy to pay such a low price. Keep it up!
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 6
+    <Message>k__BackingField: It tasted rushed, like minimal effort was put into
+      it. I expected more attention to detail.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 6
+    <Message>k__BackingField: It lacked the finesse I associate with handcrafted
+      goods. It felt mass-produced and impersonal.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 6
+    <Message>k__BackingField: The presentation was sloppy, and it just didn't feel
+      like a product made with care.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 7
+    <Message>k__BackingField: You could tell a lot of time and care went into making
+      this. It tasted like it was made with passion.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 7
+    <Message>k__BackingField: The intricate details and perfect texture showed a
+      real dedication to the craft. It was evident they took their time.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 7
+    <Message>k__BackingField: It felt like a labor of love. The quality and flavor
+      were a testament to the effort put into it.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 8
+    <Message>k__BackingField: The increase in quality is truly impressive. Keep up
+      the fine work, [company name]!
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 10
+    <Message>k__BackingField: The increase in quality is truly impressive. Keep up
+      the fine work, [company name]!
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 8
+    <Message>k__BackingField: "I wasn't crazy about this product the first time,
+      but it's just about perfect now \u2013 clearly, they haven't compromised on
+      anything."
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 10
+    <Message>k__BackingField: "I wasn't crazy about this product the first time,
+      but it's just about perfect now \u2013 clearly, they haven't compromised on
+      anything."
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 8
+    <Message>k__BackingField: My previous experience with [product name] was less
+      than stellar. I decided to give it another chance and BOY am I glad I did!
+      So much better this time around.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 10
+    <Message>k__BackingField: My previous experience with [product name] was less
+      than stellar. I decided to give it another chance and BOY am I glad I did!
+      So much better this time around.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 8
+    <Message>k__BackingField: I wasn't overly impressed with my previous purchase,
+      but this time it was absolutely delicious; they've clearly made some improvements.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 10
+    <Message>k__BackingField: I wasn't overly impressed with my previous purchase,
+      but this time it was absolutely delicious; they've clearly made some improvements.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 8
+    <Message>k__BackingField: I was hesitant to try it again after my initial experience,
+      but I'm so glad I did; it was a complete turnaround.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 10
+    <Message>k__BackingField: I was hesitant to try it again after my initial experience,
+      but I'm so glad I did; it was a complete turnaround.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 8
+    <Message>k__BackingField: My last impression wasn't great, but this recent purchase
+      of [product name] has completely changed my mind; I'm now a fan.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 10
+    <Message>k__BackingField: My last impression wasn't great, but this recent purchase
+      of [product name] has completely changed my mind; I'm now a fan.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 8
+    <Message>k__BackingField: '[product name] was fantastic last time, but this recent
+      purchase just didn''t taste the same; I''m not sure what changed.'
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 10
+    <Message>k__BackingField: '[product name] was fantastic last time, but this recent
+      purchase just didn''t taste the same; I''m not sure what changed.'
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 8
+    <Message>k__BackingField: I raved about [product name] after my last order, but
+      this time, it was noticeably different and unfortunately, not in a good way.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 10
+    <Message>k__BackingField: I raved about [product name] after my last order, but
+      this time, it was noticeably different and unfortunately, not in a good way.
+    <NeedFormating>k__BackingField: 0
+  - <Type>k__BackingField: 9
+    <Message>k__BackingField: I was so excited when I received my [product name]
+      again after how much I enjoyed it before, but this batch was a real letdown.
+    <NeedFormating>k__BackingField: 0

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs;
@@ -43,6 +44,7 @@ namespace SpaceMonkey.Scripts.Simulation
     public class WeekSimulation : IDisposable
     {
         private readonly GameConfig _gameConfig;
+        private readonly CustomerReviewConfig _customerReviewConfig;
         private readonly AccountService _accountService;
         private readonly SimulationInfo _simulationInfo;
         private readonly Account _account;
@@ -56,9 +58,13 @@ namespace SpaceMonkey.Scripts.Simulation
         public ReadOnlyReactiveProperty<int> AvailableProdCap => _availableProdCap;
         public ReadOnlyReactiveProperty<float> Money => _money;
 
-        public WeekSimulation(GameConfig gameConfig, AccountService accountService)
+        public WeekInfo WeekInfo => _weekInfo;
+
+        public WeekSimulation(GameConfig gameConfig, CustomerReviewConfig customerReviewConfig,
+            AccountService accountService)
         {
             _gameConfig = gameConfig;
+            _customerReviewConfig = customerReviewConfig;
             _accountService = accountService;
             _simulationInfo = gameConfig.SimulationInfo;
             _account = accountService.Model.Account;
@@ -81,6 +87,7 @@ namespace SpaceMonkey.Scripts.Simulation
                 {
                     continue;
                 }
+
                 Customers.Add(customer);
             }
 
@@ -116,10 +123,11 @@ namespace SpaceMonkey.Scripts.Simulation
                 .Select(p => new ProductOrder(p, DetermineProductQuantity(character.Id, p))).ToArray();
 
             var mood = orders.Select(order => DetermineCustomerMood(character.Id, order.Product)).Sum();
-            if (mood<_simulationInfo.MoodLeave)
+            if (mood < _simulationInfo.MoodLeave)
             {
                 return null;
             }
+
             var customer = new Customer(character, mood, orders);
             return customer;
         }
@@ -228,9 +236,165 @@ namespace SpaceMonkey.Scripts.Simulation
         public void Finish()
         {
             //collect not shipped customers
+
+            var reviews = DetermineCustomerReviewsV2();
+            foreach ((Customer, Product, string) tuple in reviews)
+            {
+                Debug.Log($" {tuple.Item1.Character.Name}, {tuple.Item2.Name}, {tuple.Item3} ");
+                _account.Reviews ??= new List<CustomerReviewInfo>();
+                _account.Reviews.Add( new CustomerReviewInfo
+                {
+                    WeekId = _weekInfo.Id,
+                    CharacterId = tuple.Item1.Character.Id,
+                    ProductId = tuple.Item2.Id,
+                    Message = tuple.Item3
+                });
+            }
+            
             _account.PushFinishedWeek(_weekInfo);
             _account.Money = _money.Value;
             _accountService.SaveAsync().Forget();
+        }
+
+        private List<(Customer, Product, string)> DetermineCustomerReviewsV2()
+        {
+            var reviews = new List<(Customer, Product, string)>();
+            var previousWeek = _account.Weeks.LastOrDefault();
+
+            var candidate =
+                from customer in Customers
+                let canReview = Random.Range(0, 100) <= _gameConfig.SimulationInfo.ReviewChance
+                where canReview
+                let hasPrevious = previousWeek.Orders.Any(o => o.CharacterId.Equals(customer.Character.Id))
+                where hasPrevious
+                let currentOrder = _weekInfo.Orders.First(o => o.CharacterId.Equals(customer.Character.Id))
+                let previousOrder = previousWeek.Orders.First(o => o.CharacterId.Equals(customer.Character.Id))
+                from currentProduct in currentOrder.Products
+                let hasPreviousProduct = previousOrder.Products.Any(p => p.Product.Id.Equals(currentProduct.Product.Id))
+                where hasPreviousProduct
+                let previousProduct = previousOrder.Products.First(p => p.Product.Id.Equals(currentProduct.Product.Id))
+                select new
+                {
+                    Customer = customer,
+                    Current = currentProduct,
+                    Previous = previousProduct,
+                    ProductPriceDelta = (currentProduct.Product.ProductPrice!.Value -
+                                         previousProduct.Product.ProductPrice!.Value) /
+                                        previousProduct.Product.ProductPrice!.Value,
+                    MaterialPackagingPriceDelta =
+                        (currentProduct.Product.MaterialPackagingPrice!.Value -
+                         previousProduct.Product.MaterialPackagingPrice!.Value) /
+                        previousProduct.Product.MaterialPackagingPrice!.Value,
+                    MaterialPriceDelta =
+                        (currentProduct.Product.MaterialPrice!.Value - previousProduct.Product.MaterialPrice!.Value) /
+                        previousProduct.Product.MaterialPrice!.Value,
+                    TimeToProduceDelta =
+                        ((currentProduct.Product.TimeToProduceIndex + 1) -
+                         (previousProduct.Product.TimeToProduceIndex + 1)) /
+                        (previousProduct.Product.TimeToProduceIndex + 1)
+                };
+
+            foreach (var item in candidate)
+            {
+                var ttpAbs = Mathf.Abs(item.TimeToProduceDelta);
+                var materialPriceAbs = Mathf.Abs(item.MaterialPriceDelta);
+                var materialPackagingPriceAbs = Mathf.Abs(item.MaterialPackagingPriceDelta);
+                var productPriceAbs = Mathf.Abs(item.ProductPriceDelta);
+
+                var stringBuilder = new StringBuilder();
+
+                if (ttpAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
+                {
+                    var review = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeSlipshodTTP)
+                        .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+
+                if (ttpAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeDiligentTTP)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+
+                if (materialPriceAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeLowMaterial)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+
+                if (materialPriceAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeHighMaterial)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+
+
+                if (materialPackagingPriceAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeLowPackaging)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+
+                if (materialPackagingPriceAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeHighPackaging)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+
+                if (productPriceAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeLowPrice)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+
+                if (productPriceAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeHighPrice)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+
+                if (ttpAbs > _gameConfig.SimulationInfo.BigProductChange)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.BigChangeTTP)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+                
+                if (materialPriceAbs > _gameConfig.SimulationInfo.BigProductChange)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.BigChangeMaterial)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+                
+                if (materialPackagingPriceAbs > _gameConfig.SimulationInfo.BigProductChange)
+                {
+                    var review =
+                        _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.BigChangePackaging)
+                            .PickRandomElement();
+                    stringBuilder.AppendLine(review.GetMessage(item.Current.Product.Name));
+                }
+
+                reviews.Add((item.Customer, item.Current.Product, stringBuilder.ToString()));
+            }
+
+            return reviews;
         }
 
         public void Dispose()
