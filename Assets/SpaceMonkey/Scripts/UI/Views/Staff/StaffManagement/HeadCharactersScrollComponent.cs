@@ -20,7 +20,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
 
         private List<CharacterHeadItem> _headItems = new List<CharacterHeadItem>();
         
-        public Observable<Configs.Staff> Setup(Configs.Staff[] staffs)
+        public Observable<Configs.Staff> Setup(Configs.Staff[] staffs, string selectedId)
         {
             while (_headItems.Count > 0)
             {
@@ -33,10 +33,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
             {
                 var item = Instantiate(headItemPrefab, container);
                 item.Set(staff, group);
+                item.SelectForce(selectedId == staff.Id);
                 _headItems.Add(item);
                 observables.Add(item.OnSelected);
                 
             }
+            
+            
             return observables.Merge();
         }
         

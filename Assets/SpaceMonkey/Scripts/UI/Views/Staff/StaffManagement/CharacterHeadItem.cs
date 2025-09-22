@@ -74,5 +74,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
 
             characterImage.gameObject.SetActive(asset != null);
         }
+
+        public void SelectForce(bool state)
+        {
+            toggle.isOn = state;
+        }
     }
 }

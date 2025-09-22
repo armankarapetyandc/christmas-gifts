@@ -42,11 +42,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
             _data = data as Data;
             moneyText.text = $"${_accountService.Model.Money:F2}";
             playerCapacityText.text = $"{_accountService.Model.Money:F2} hr";
-            staffItem.Set(_data.Staff, true);
             headCharactersScrollComponent
                 .Setup(_gameConfig.Staffs.Where(staff =>
                     (_data.Profession == EmployeeProfession.All || staff.Profession == _data.Profession) &&
-                    !CheckStaffExists(staff.Id)).ToArray())
+                    !CheckStaffExists(staff.Id)).ToArray(), _data.Staff.Id)
                 .Subscribe(UpdateUi)
                 .AddTo(this);
             hireButton.OnClickAsObservable().Subscribe(_ => OnHireClicked()).AddTo(this);

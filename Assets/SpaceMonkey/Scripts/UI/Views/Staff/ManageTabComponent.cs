@@ -20,7 +20,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff
         [Inject] private AccountService _accountService;
         [Inject] private GameConfig _gameConfig;
         
-        private void Start()
+        public void Init()
         {
             foreach (var manageItem in _employeeItems)
             {
