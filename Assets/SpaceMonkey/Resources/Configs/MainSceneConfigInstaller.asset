@@ -15,3 +15,4 @@ MonoBehaviour:
   gameConfig: {fileID: 11400000, guid: 8bd8fb9dc558ae84e9807eed23a9cea9, type: 2}
   mapConfig: {fileID: 11400000, guid: fac87ece154e6c34681d1aca6b29c1b2, type: 2}
   customerReviewConfig: {fileID: 11400000, guid: 937df261889f4d142adf4f69515f6cc6, type: 2}
+  scoresConfigs: {fileID: 11400000, guid: d3ca870119cee4c839bd1a186d8c3e94, type: 2}

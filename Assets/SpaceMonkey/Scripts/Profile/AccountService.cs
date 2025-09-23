@@ -26,6 +26,7 @@ namespace SpaceMonkey.Scripts.Profile
 
         public void CreateNewAccount()
         {
+            PlayerPrefs.DeleteAll();
             var freeProdCap = _gameConfig.ProductionLevels.Single(info => info.ProdCapCost == 0);
             Model = new AccountModel(Account.CreateEmpty(freeProdCap));
         }
