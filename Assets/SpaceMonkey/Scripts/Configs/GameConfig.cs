@@ -60,10 +60,11 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public EmployeeProfession Profession { get; private set; }
         [field: SerializeField] public string Payroll { get; private set; }
-        [field: SerializeField] public string Capacity { get; private set; }
+        [field: SerializeField] public int Capacity { get; private set; }
         [field: SerializeField] public int Speed { get; private set; }
         [field: SerializeField] public int Experience { get; private set; }
         [field: SerializeField] public CharacterConfig Character { get; internal set; }
+        
     }
 
     [Serializable]
