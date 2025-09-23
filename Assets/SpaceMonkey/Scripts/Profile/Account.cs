@@ -17,6 +17,8 @@ namespace SpaceMonkey.Scripts.Profile
         public int Week => Weeks.Count + 1;
         public float Money { get; set; }
         public float Score { get; set; }
+        
+        
 
         public List<Product> Products { get; set; }
         public List<LevelProdCap> LevelProdCaps { get; set; }
@@ -207,9 +209,11 @@ namespace SpaceMonkey.Scripts.Profile
 
         public int GetProductionCapacity()
         {
-            return LevelProdCaps
+            var employeeCapacity = Employees.Sum(e => e.Capacity);
+            var prodCap = LevelProdCaps
                 .Where(l => !l.NeedRepair)
                 .Sum(l => l.ProdCapAdd);
+            return employeeCapacity + prodCap;
         }
 
         public float GetMarketingCustAdd()
@@ -371,8 +375,8 @@ namespace SpaceMonkey.Scripts.Profile
     {
         public string Id { get; set; }
         public EmployeeProfession Profession { get; set; }
-        public string Payroll { get; set; }
-        public string Capacity { get; set; }
+        public int Payroll { get; set; }
+        public int Capacity { get; set; }
         public int Speed { get; set; }
         public int Experience { get; set; }
         public string CharacterId { get; set; }

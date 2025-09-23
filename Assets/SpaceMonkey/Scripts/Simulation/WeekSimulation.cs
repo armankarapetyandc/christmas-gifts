@@ -260,7 +260,11 @@ namespace SpaceMonkey.Scripts.Simulation
         {
             var reviews = new List<(Customer, Product, string)>();
             var previousWeek = _account.Weeks.LastOrDefault();
-
+            if (previousWeek.Orders == null)
+            {
+                // No previous week, return an empty list
+                return reviews;
+            }
             var candidate =
                 from customer in Customers
                 let canReview = Random.Range(0, 100) <= _gameConfig.SimulationInfo.ReviewChance
