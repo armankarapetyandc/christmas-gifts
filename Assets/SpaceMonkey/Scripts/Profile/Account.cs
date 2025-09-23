@@ -375,7 +375,7 @@ namespace SpaceMonkey.Scripts.Profile
     {
         public string Id { get; set; }
         public EmployeeProfession Profession { get; set; }
-        public string Payroll { get; set; }
+        public int Payroll { get; set; }
         public int Capacity { get; set; }
         public int Speed { get; set; }
         public int Experience { get; set; }

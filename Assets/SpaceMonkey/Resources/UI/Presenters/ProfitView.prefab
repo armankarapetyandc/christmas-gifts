@@ -3192,6 +3192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productComponentPrefab: {fileID: 2061919509220683374, guid: 35480bd5367ea48168830ecf423cac77, type: 3}
+  payRollComponentPrefab: {fileID: 8422487787768462065, guid: 0da1ff6abf3c446e8b225ebdf3218dce, type: 3}
   container: {fileID: 1107095520766254388}
   totalCashText: {fileID: 8802694326680165717}
 --- !u!1 &4583773906353317711
