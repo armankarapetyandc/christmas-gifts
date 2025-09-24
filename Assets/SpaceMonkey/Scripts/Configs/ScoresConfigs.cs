@@ -14,11 +14,20 @@ namespace SpaceMonkey.Scripts.Configs
         public int CalculateScoreConfigByKey(string key)
         {
             ScoreConfig scoreConfig = scoresConfigs.FirstOrDefault(config =>
-                string.Equals(config.Key, key, StringComparison.CurrentCultureIgnoreCase));
+                string.Equals(config.Key, key, StringComparison.OrdinalIgnoreCase));
          
             if (scoreConfig != null)
             {
+                if (scoreConfig.AvailableActionsCount == -1)
+                {
+                    return scoreConfig.Score;
+                }
                 int availableActionsCount = PlayerPrefs.GetInt(key,scoreConfig.AvailableActionsCount);
+                if (availableActionsCount <= 0)
+                {
+                    return 0;
+                }
+
                 availableActionsCount--;
                 PlayerPrefs.SetInt(key, availableActionsCount);
                 return scoreConfig.Score;

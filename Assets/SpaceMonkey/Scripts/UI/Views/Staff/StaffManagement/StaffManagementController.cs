@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -8,9 +9,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
     public class StaffManagementController : BasePresenterController
     {
         private readonly AccountService _accountService;
+        private ScoresConfigs _scoresConfigs;
 
-        public StaffManagementController(PresenterService presenterService, AccountService accountService) : base(presenterService)
+        public StaffManagementController(PresenterService presenterService, AccountService accountService,ScoresConfigs scoresConfigs) : base(presenterService)
         {
+            _scoresConfigs = scoresConfigs;
             _accountService = accountService;
         }
 
@@ -35,6 +38,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
                 Id = hireStaff.Id
             };
             _accountService.Model.Account.SetEmployee(newEmployee);
+            _accountService.Model.Account.Score+= _scoresConfigs.CalculateScoreConfigByKey("HireStaff");
             _accountService.SaveAsync();
         }
     }

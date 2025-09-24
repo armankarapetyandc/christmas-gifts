@@ -15,3 +15,11 @@ MonoBehaviour:
   scoresConfigs:
   - {fileID: 11400000, guid: f767dd4b40d81491d9b2699bca0ea80f, type: 2}
   - {fileID: 11400000, guid: acb68f8b0365746e1a3e25fb969e55cf, type: 2}
+  - {fileID: 11400000, guid: a6a9ce4d8fbeb4788b34781991b45448, type: 2}
+  - {fileID: 11400000, guid: dfb4e26651e3440d8ab44c2ed3a9663f, type: 2}
+  - {fileID: 11400000, guid: ed50242fd6bab46ea99a974f50f41542, type: 2}
+  - {fileID: 11400000, guid: 8bf99741bb3c0469184204e1e89066fe, type: 2}
+  - {fileID: 11400000, guid: de28fb36a912a4b7b949917c7f2ac6f7, type: 2}
+  - {fileID: 11400000, guid: f1c96a8aaed1f4f36b370fc53d26b441, type: 2}
+  - {fileID: 11400000, guid: 20730a3e1c5e14fd89e10f79f97a955c, type: 2}
+  - {fileID: 11400000, guid: 4e2aa68d320c94886a3b93f904aab857, type: 2}

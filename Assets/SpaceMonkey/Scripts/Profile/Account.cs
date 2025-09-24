@@ -157,6 +157,7 @@ namespace SpaceMonkey.Scripts.Profile
                     Weeks[w] = week; // put back
                 }
             }
+            
         }
 
         public void SetLevel(LevelProdCap level)

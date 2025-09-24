@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5ed9f2d6f347579dae5d2b79d32717, type: 3}
   m_Name: ScoreConfig 2
   m_EditorClassIdentifier: 
+  key: savelogo
+  score: 3
+  availableActionsCount: 1
