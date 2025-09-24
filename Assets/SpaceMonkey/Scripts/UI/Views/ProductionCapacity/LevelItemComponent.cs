@@ -41,6 +41,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             _visualAsset = visualAsset;
             _level = levelInfo;
             levelIcon.sprite = visualAsset.LevelIconSprite;
+            levelIndexText.font = visualAsset.FontAsset;
             levelIndexText.text = (index + 1).ToString();
             levelText.text = $"Level {index + 1}";
             lockImage.gameObject.SetActive(isLocked);

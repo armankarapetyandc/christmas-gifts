@@ -33,6 +33,24 @@ namespace SpaceMonkey.Scripts.UI.Utility
                 _points[i] = step * i;
         }
         
+        public void SnapToIndex(int index)
+        {
+            if (_points == null || _points.Length == 0)
+                return;
+
+            if (index < 0 || index >= _points.Length)
+                return;
+
+            _currentPage = index;
+
+            scrollRect.horizontalNormalizedPosition = _points[_currentPage];
+            prodCapSlider.value = _currentPage;
+            background.color = _levelItems[_currentPage].BackgroundColor;
+
+            _levelItems[_currentPage].ChangeState();
+        }
+
+        
         private void Update()
         {
             if (!_isDragging && _points.Length > 0)

@@ -9,8 +9,11 @@ using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment;
+using SpaceMonkey.Scripts.UI.Views.LevelUpdate;
+using TMPro;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
 {
@@ -60,6 +63,17 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             {
                 Type = MainNavigationType.BusinessHub
             }).Forget();
+        }
+
+        public void UpgradeLevel(int levelNumber, Sprite levelSprite, TMP_FontAsset levelFontAsset)
+        {
+            PresenterService.Show<LevelUpdateView>(new LevelUpdateView.Data
+            {
+                LevelNumber = levelNumber,
+                LevelSprite = levelSprite,
+                IsUpgraded = true,
+                FontAsset = levelFontAsset
+            });
         }
     }
 }

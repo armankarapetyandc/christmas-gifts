@@ -22,18 +22,21 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
         [SerializeField] private TextMeshProUGUI availableCashText;
         [SerializeField] private Button useCashButton;
         [SerializeField] private Button useCreditButton;
+        [SerializeField] private Image dimmerBackground;
         private Data _data;
         private Account _account;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
             _data = data as Data;
+            dimmerBackground.gameObject.SetActive(true);
             _account = Controller.GetAccount();
             availableCashText.text = $"${_account.Money}";
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _data.Result?.TrySetResult(_data.UpgradeLevelProdCap);
                 Controller.OnClose();
+                dimmerBackground.gameObject.SetActive(false);
             }).AddTo(this);
             useCashButton.OnClickAsObservable()
                 .Subscribe(_ => UpgradeLevel())
