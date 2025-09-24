@@ -14,6 +14,11 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
 {
     public class ProductionCapacityView : BasePresenterWithController<ProductionCapacityViewController>
     {
+        public class Data : IPresenterData
+        {
+            public int LevelNumber { get; internal set; }
+        }
+
         [SerializeField] private Button backButton;
         [SerializeField] private EquipmentComponent equipmentComponent;
         [SerializeField] private CurrentLevelCapComponent currentLevelCapComponent;
@@ -21,24 +26,26 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         [SerializeField] private ScrollSnap scroll;
         [SerializeField] private TextMeshProUGUI availableCashText;
         [SerializeField] private TextMeshProUGUI prodCapText;
-        [SerializeField] private Image dimmerBackground;
 
         private Account _account;
+        private Data _data;
+        private LevelVisualAsset[] _levelVisualAssets;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
+            _data = data as Data;
+            _levelVisualAssets = Controller.ResolveVisualAssets<LevelVisualAsset>().ToArray();
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             _account = Controller.GetAccount();
 
             equipmentComponent.Setup(
-                 Controller.ResolveVisualAssets<LevelVisualAsset>().ToArray()
+                _levelVisualAssets
             ).Subscribe(UpdateUi).AddTo(this);
-            UpdateUi(_account.LevelProdCaps[0]);
             scroll.Initialize(equipmentComponent.LevelItems);
-            upgratedLevelCapComponent.OnUpgradedLevelUp.Subscribe(level=>
-            {
-                UpgradedLevelUIUpdate(level).Forget();
-            }).AddTo(this);
+            scroll.SnapToIndex(_data?.LevelNumber ?? 0);
+            UpdateUi(_data == null ? _account.LevelProdCaps[0] : _account.LevelProdCaps[_data.LevelNumber]);
+            upgratedLevelCapComponent.OnUpgradedLevelUp.Subscribe(level => { UpgradedLevelUIUpdate(level).Forget(); })
+                .AddTo(this);
             prodCapText.text = $"{_account.GetProductionCapacity():F2}";
             availableCashText.text = $"{_account.Money:F2}";
             return UniTask.CompletedTask;
@@ -46,14 +53,18 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
 
         private async UniTask UpgradedLevelUIUpdate(LevelProdCap level)
         {
-            dimmerBackground.gameObject.SetActive(true);
-            var updateLevel =await Controller.OpenUpgradeEquipmentPopup(level);
-            bool exists = _account.LevelProdCaps.Any(prodCap => prodCap.Id == level.Id);
-            scroll.SelectedLevelItem.UpdateLevelUi(exists);
+            var updateLevel = await Controller.OpenUpgradeEquipmentPopup(level);
+            int index = _account.LevelProdCaps.FindIndex(prodCap => prodCap.Id == level.Id);
+            scroll.SelectedLevelItem.UpdateLevelUi(index != -1);
             prodCapText.text = $"{_account.GetProductionCapacity():F2}";
             availableCashText.text = $"{_account.Money:F2}";
             UpdateUi(updateLevel);
-            dimmerBackground.gameObject.SetActive(false);
+            if (index != -1)
+            {
+                int assetIndex = index / _levelVisualAssets.Length;
+                var visualAsset = _levelVisualAssets[assetIndex];
+                Controller.UpgradeLevel(index,visualAsset.LevelIconSprite, visualAsset.FontAsset);
+            }
         }
 
         private void UpdateUi(LevelProdCap level)

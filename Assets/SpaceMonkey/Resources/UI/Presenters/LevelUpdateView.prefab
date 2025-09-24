@@ -148,8 +148,10 @@ GameObject:
   - component: {fileID: 4342206688741662956}
   - component: {fileID: 2228564546048357493}
   - component: {fileID: 448109284394271726}
+  - component: {fileID: 7474757418058782249}
+  - component: {fileID: 6159033672215104685}
   m_Layer: 5
-  m_Name: LevelUpgradeView
+  m_Name: LevelUpdateView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 0}
+  - {fileID: 6159033672215104685}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
@@ -219,6 +221,42 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &7474757418058782249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2573328724535142072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba0c6c51a65437cb40291310093f830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSequence: []
+  group: {fileID: 448109284394271726}
+  presenterHolder: {fileID: 6006399260463739380}
+  dimmerButton: {fileID: 0}
+  <AutoFitSupported>k__BackingField: 1
+  numberText: {fileID: 46267972144337768}
+  descriptionText: {fileID: 2516811769693394856}
+  nextButton: {fileID: 7313085755226595612}
+  leveIcon: {fileID: 8233340667217959669}
+  updateBackgroundColor: {r: 1, g: 0.69803923, b: 0, a: 1}
+  repairedBackgroundColor: {r: 0.003921569, g: 0.78039217, b: 0.23921569, a: 1}
+  backgroundImage: {fileID: 4750431578257023010}
+--- !u!114 &6159033672215104685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2573328724535142072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d62bd7c83ef409e9dd84f859f128875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3627092549110837515
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +344,7 @@ GameObject:
   - component: {fileID: 2401820211498582859}
   - component: {fileID: 2516811769693394856}
   m_Layer: 5
-  m_Name: LevelText
+  m_Name: DescriptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,10 +364,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6006399260463739380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -378.5, y: -169}
-  m_SizeDelta: {x: 754, y: 104}
+  m_AnchorMin: {x: 0.16355556, y: 0.38793105}
+  m_AnchorMax: {x: 0.8337778, y: 0.43062398}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2401820211498582859
 CanvasRenderer:
@@ -501,10 +539,10 @@ RectTransform:
   - {fileID: 1930624309135810378}
   m_Father: {fileID: 6006399260463739380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -299.5, y: 497}
-  m_SizeDelta: {x: 589, y: 593}
+  m_AnchorMin: {x: 0.23377778, y: 0.46059114}
+  m_AnchorMax: {x: 0.75733334, y: 0.704023}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7614701483096804469
 CanvasRenderer:
@@ -578,10 +616,10 @@ RectTransform:
   - {fileID: 2393776135361915724}
   m_Father: {fileID: 6006399260463739380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -490.5, y: -982}
-  m_SizeDelta: {x: 980, y: 129}
+  m_AnchorMin: {x: 0.064, y: 0.043924466}
+  m_AnchorMax: {x: 0.9351111, y: 0.09688013}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4502412471722188249
 CanvasRenderer:
@@ -697,10 +735,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2700941668396477161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.08030476, y: 0.22765599}
+  m_AnchorMax: {x: 0.91969526, y: 0.772344}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 323}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2388410823317345033
 CanvasRenderer:
@@ -732,8 +770,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dabe74112e343fe40bd8a1baf2ad24d6, type: 2}
-  m_sharedMaterial: {fileID: 9161002979829312959, guid: dabe74112e343fe40bd8a1baf2ad24d6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6c7b09e36eeef4ad788aeb7dec7dcf6a, type: 2}
+  m_sharedMaterial: {fileID: 9161002979829312959, guid: 6c7b09e36eeef4ad788aeb7dec7dcf6a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
