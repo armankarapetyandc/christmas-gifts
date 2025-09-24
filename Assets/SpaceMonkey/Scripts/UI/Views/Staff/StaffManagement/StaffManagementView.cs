@@ -41,7 +41,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack(_data.Profession)).AddTo(this);
             _data = data as Data;
             moneyText.text = $"${_accountService.Model.Money:F2}";
-            playerCapacityText.text = $"{_accountService.Model.Money:F2} hr";
+            playerCapacityText.text = $"{_accountService.Model.ProductionCapacity:F2} hr";
             headCharactersScrollComponent
                 .Setup(_gameConfig.Staffs.Where(staff =>
                     (_data.Profession == EmployeeProfession.All || staff.Profession == _data.Profession) &&

@@ -11,12 +11,14 @@ namespace SpaceMonkey.Scripts.Installers.Project
         [SerializeField] private GameConfig gameConfig;
         [SerializeField] private MapConfig mapConfig;
         [SerializeField] private CustomerReviewConfig customerReviewConfig;
+        [SerializeField] private ScoresConfigs scoresConfigs;
 
         public override void InstallBindings()
         {
             Container.Bind<GameConfig>().FromInstance(gameConfig).AsSingle().NonLazy();
             Container.Bind<MapConfig>().FromInstance(mapConfig).AsSingle().NonLazy();
             Container.Bind<CustomerReviewConfig>().FromInstance(customerReviewConfig).AsSingle().NonLazy();
+            Container.Bind<ScoresConfigs>().FromInstance(scoresConfigs).AsSingle().NonLazy();
         }
     }
 }

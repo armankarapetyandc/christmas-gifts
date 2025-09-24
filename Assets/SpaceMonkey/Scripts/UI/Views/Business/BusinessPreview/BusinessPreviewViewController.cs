@@ -18,10 +18,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
         private readonly AccountService _accountService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
         private readonly GameConfig _gameConfig;
+        private ScoresConfigs _scoresConfigs;
 
         public BusinessPreviewViewController(PresenterService presenterService, AccountService accountService,
-            VisualAssetDatabase visualAssetDatabase, GameConfig gameConfig) : base(presenterService)
+            VisualAssetDatabase visualAssetDatabase, GameConfig gameConfig,ScoresConfigs scoresConfigs) : base(presenterService)
         {
+            _scoresConfigs = scoresConfigs;
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
             _gameConfig = gameConfig;
@@ -62,6 +64,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
 
         internal void OnSave()
         {
+            _accountService.Model.Account.Score += GetAccount().Company.Tags.Length * _scoresConfigs.CalculateScoreConfigByKey("hashtag");
             _accountService.SaveAsync().Forget();
             PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
         }

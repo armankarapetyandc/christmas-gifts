@@ -1,11 +1,13 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Configs.Scores;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview;
 using SpaceMonkey.Scripts.UI.Views.Startup;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 {
@@ -13,10 +15,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
     {
         private readonly AccountService _accountService;
         private readonly GameConfig _gameConfig;
+        private ScoresConfigs _scoresConfigs;
 
         public CategorySelectionController(PresenterService presenterService, AccountService accountService,
-            GameConfig gameConfig) : base(presenterService)
+            GameConfig gameConfig, ScoresConfigs scoresConfigs) : base(presenterService)
         {
+            _scoresConfigs = scoresConfigs;
             _accountService = accountService;
             _gameConfig = gameConfig;
         }
@@ -38,6 +42,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
         internal void IdeaSelected(string category)
         {
+            _accountService.Model.Account.Score += _scoresConfigs.CalculateScoreConfigByKey("category");
             _accountService.Model.Account.SetCategory(category);
         }
     }

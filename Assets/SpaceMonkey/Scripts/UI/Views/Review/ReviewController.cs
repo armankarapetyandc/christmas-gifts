@@ -79,7 +79,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         internal IEnumerable<CustomerReviewInfo> GetReviews()
         {
             var account = GetAccount();
-            return account.Reviews.Where(info => info.WeekId.Equals(_weekSimulationContext.WeekSimulation.WeekInfo.Id));
+            return account.Reviews?.Where(info => info.WeekId.Equals(_weekSimulationContext.WeekSimulation.WeekInfo.Id));
         }
     }
 }

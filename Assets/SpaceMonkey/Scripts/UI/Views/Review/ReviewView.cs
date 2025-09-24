@@ -27,24 +27,25 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             InitializeInfoPanel();
             var customers = Controller.GetSimulationCustomers();
-
             var reviews = Controller.GetReviews();
 
-            foreach (CustomerReviewInfo reviewInfo in reviews)
+            if (reviews != null)
             {
-                var customer = customers.Find(c => c.Character.Id.Equals(reviewInfo.CharacterId));
-                if (customer==null)
+                foreach (CustomerReviewInfo reviewInfo in reviews)
                 {
-                    continue;
-                }
+                    var customer = customers.Find(c => c.Character.Id.Equals(reviewInfo.CharacterId));
+                    if (customer==null)
+                    {
+                        continue;
+                    }
 
-                var reviewItem = Instantiate(reviewItemPrefab, container);
-                reviewItem.SetCharacterVisual(customer.Character.Sprite, customer.Character.BackgroundColor);
-                reviewItem.SetMood(customer.Mood);
-                reviewItem.SetTextData(customer.Character.Name, reviewInfo.Message);
-                reviewItem.SetRating(Controller.GetRatingByCustomerMood(customer.Mood));
+                    var reviewItem = Instantiate(reviewItemPrefab, container);
+                    reviewItem.SetCharacterVisual(customer.Character.Sprite, customer.Character.BackgroundColor);
+                    reviewItem.SetMood(customer.Mood);
+                    reviewItem.SetTextData(customer.Character.Name, reviewInfo.Message);
+                    reviewItem.SetRating(Controller.GetRatingByCustomerMood(customer.Mood));
+                }
             }
-            
             
             return UniTask.CompletedTask;
         }
