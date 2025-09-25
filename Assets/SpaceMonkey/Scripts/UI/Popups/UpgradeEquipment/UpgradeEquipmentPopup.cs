@@ -38,11 +38,17 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
                 Controller.OnClose();
                 dimmerBackground.gameObject.SetActive(false);
             }).AddTo(this);
-            useCashButton.OnClickAsObservable()
-                .Subscribe(_ => UpgradeLevel())
-                .AddTo(this);
+            useCreditButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                UseCreditCard();
+            }).AddTo(this);
 
             return UniTask.CompletedTask;
+        }
+
+        private void UseCreditCard()
+        {
+            Controller.UseCredit();
         }
 
         private void UpgradeLevel()
