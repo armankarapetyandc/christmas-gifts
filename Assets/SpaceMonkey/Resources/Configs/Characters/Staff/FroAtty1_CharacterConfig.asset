@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76aff64394ce47828bd3037f4a9d4a17, type: 3}
+  m_Name: FroAtty1_CharacterConfig
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: fro_atty1
+  <Name>k__BackingField: Fro Atty1
+  <Sprite>k__BackingField: {fileID: 11400000, guid: 1be06d31846873649aa8e851c49f48e0, type: 2}
+  <HeadVisualAssets>k__BackingField:
+  - {fileID: 11400000, guid: 909b314440344de43963ef7fb5fc5fe5, type: 2}
+  - {fileID: 11400000, guid: 1be06d31846873649aa8e851c49f48e0, type: 2}
+  - {fileID: 11400000, guid: 1279052b990747946921240ca96a1925, type: 2}
+  - {fileID: 11400000, guid: 3ec2b008b9c0347448186b93f6ba729d, type: 2}
+  - {fileID: 11400000, guid: 724be680e0e47b44da06d3cd799ef767, type: 2}
+  <FullBodySprite>k__BackingField: {fileID: 0}
+  <BackgroundColor>k__BackingField: {fileID: 11400000, guid: 58fdc79821129c34d9b20199ca878eed, type: 2}
+  <MoodMin>k__BackingField: 1
+  <MoodMax>k__BackingField: 100
+  <DefaultMood>k__BackingField: 55
+  <Impacts>k__BackingField:
+  - Packaging sensitive
