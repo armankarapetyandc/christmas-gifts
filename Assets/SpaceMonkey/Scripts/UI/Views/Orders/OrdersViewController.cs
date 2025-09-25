@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using NUnit.Framework;
 using R3;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -19,12 +20,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         private readonly PopupPresenterService _popupPresenterService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
         private readonly WeekSimulationContext _weekSimulationContext;
+        private ScoresConfigs _scoresConfigs;
 
         public OrdersViewController(PresenterService presenterService, AccountService accountService,
             PopupPresenterService popupPresenterService,
             VisualAssetDatabase visualAssetDatabase,
-            WeekSimulationContext weekSimulationContext) : base(presenterService)
+            WeekSimulationContext weekSimulationContext,ScoresConfigs scoresConfigs) : base(presenterService)
         {
+            _scoresConfigs = scoresConfigs;
             _accountService = accountService;
             _popupPresenterService = popupPresenterService;
             _visualAssetDatabase = visualAssetDatabase;
@@ -63,6 +66,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         internal async UniTask<bool> TryShipOrder(Customer customer)
         {
+            
             if (!_weekSimulationContext.WeekSimulation.TryShipOrder(customer))
             {
                 var data = new ProductionAlertPopup.Data();
@@ -70,7 +74,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 await data.CompletionSource.Task;
                 return false;
             }
-
+            GetAccount().Score += customer.Orders.Length * _scoresConfigs.CalculateScoreConfigByKey("sellProduct");
             return true;
         }
 
