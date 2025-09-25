@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile.Simulation;
@@ -12,13 +13,24 @@ namespace SpaceMonkey.Scripts.Profile
 {
     public class Account
     {
+        private float _score;
         public CompanyInfo Company { get; set; }
-        public uint Level { get; set; }
+        public int Level { get; set; }
         public int Week => Weeks.Count + 1;
         public float Money { get; set; }
-        public float Score { get; set; }
+
+        public float Score
+        {
+            get { return _score; }
+            set
+            {
+                _score = value;
+                OnScoreChanged.Execute(_score);
+            }
+        }
         
-        
+        public readonly ReactiveCommand<float> OnScoreChanged = new ReactiveCommand<float>();
+
 
         public List<Product> Products { get; set; }
         public List<LevelProdCap> LevelProdCaps { get; set; }
@@ -157,7 +169,6 @@ namespace SpaceMonkey.Scripts.Profile
                     Weeks[w] = week; // put back
                 }
             }
-            
         }
 
         public void SetLevel(LevelProdCap level)
@@ -413,7 +424,7 @@ namespace SpaceMonkey.Scripts.Profile
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
-            return Equals((Hashtag)obj);
+            return Equals((Hashtag) obj);
         }
 
         public override int GetHashCode()

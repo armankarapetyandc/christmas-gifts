@@ -19,7 +19,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
 
         private MarketingFeature _marketingFeature;
 
-        public void Initialize(MarketingInfo info,uint level, MarketingFeature feature)
+        public void Initialize(MarketingInfo info,int level, MarketingFeature feature)
         {
             _marketingFeature = feature;
             MarketingItemInfo = info;

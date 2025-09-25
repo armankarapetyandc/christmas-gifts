@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq;
 using R3;
 
 namespace SpaceMonkey.Scripts.Profile
 {
-    public class AccountModel:IDisposable
+    public class AccountModel : IDisposable
     {
         private readonly ReactiveProperty<float> _money = new ReactiveProperty<float>();
         private readonly ReactiveProperty<float> _score = new ReactiveProperty<float>();
@@ -35,11 +36,6 @@ namespace SpaceMonkey.Scripts.Profile
             return true;
         }
 
-        public void AddScore(float amount)
-        {
-            _score.Value += amount;
-            Account.Score += amount;
-        }
 
         public void AddProductionCapacity(float amount)
         {
