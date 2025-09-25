@@ -3,6 +3,8 @@ using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
+using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -40,6 +42,15 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             _accountService.SaveAsync();
             OnClose();
             return level;
+        }
+
+        public void UseCredit()
+        {
+            PresenterService.Show<CreditCardStatementView>(new CreditCardStatementView.Data
+            {
+                OnClose = () => { PresenterService.Show<ProductionCapacityView>(); }
+            });
+            OnClose();
         }
     }
 }
