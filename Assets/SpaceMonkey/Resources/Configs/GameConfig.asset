@@ -321,3 +321,8 @@ MonoBehaviour:
     <BigProductChange>k__BackingField: 40
     <ExtremeSettingHigh>k__BackingField: 80
     <ExtremeSettingLow>k__BackingField: 20
+  <LevelScoreRanges>k__BackingField:
+  - 200
+  - 500
+  - 1000
+  - 2000

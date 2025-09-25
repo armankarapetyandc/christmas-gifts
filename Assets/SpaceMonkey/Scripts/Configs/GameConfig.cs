@@ -17,6 +17,7 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public MarketingInfo[] MarketingInfos { get; private set; }
         [field: SerializeField] public Staff[] Staffs { get; private set; }
         [field: SerializeField] public SimulationInfo SimulationInfo { get; private set; }
+        [field: SerializeField] public float[] LevelScoreRanges { get; private set; }
     }
 
     [Serializable]

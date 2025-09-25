@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
+using R3;
 using SpaceMonkey.Scripts.Configs;
 using UnityEngine;
 using Logger = DCLogger.Runtime.Logger;
@@ -14,6 +15,8 @@ namespace SpaceMonkey.Scripts.Profile
         private readonly GameConfig _gameConfig;
         private const string FILENAME = "Account.spacemonkey";
         private static readonly string _path = Path.Combine(Application.persistentDataPath, FILENAME);
+
+        private CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
         public AccountModel Model { get; private set; }
 
@@ -29,6 +32,10 @@ namespace SpaceMonkey.Scripts.Profile
             PlayerPrefs.DeleteAll();
             var freeProdCap = _gameConfig.ProductionLevels.Single(info => info.ProdCapCost == 0);
             Model = new AccountModel(Account.CreateEmpty(freeProdCap));
+            Model.Account.OnScoreChanged.Subscribe(score =>
+            {
+                Model.Account.Level = 1 + _gameConfig.LevelScoreRanges.TakeWhile(t => score >= t).Count();
+            }).AddTo(_compositeDisposable);
         }
 
         public async UniTask SaveAsync()
@@ -41,6 +48,8 @@ namespace SpaceMonkey.Scripts.Profile
             var content = JsonConvert.SerializeObject(Model.Account);
             await File.WriteAllTextAsync(_path, content);
         }
+        
+
 
         public async UniTask LoadAsync()
         {
@@ -72,6 +81,7 @@ namespace SpaceMonkey.Scripts.Profile
         public void Dispose()
         {
             Model?.Dispose();
+            _compositeDisposable?.Dispose();
         }
     }
 }

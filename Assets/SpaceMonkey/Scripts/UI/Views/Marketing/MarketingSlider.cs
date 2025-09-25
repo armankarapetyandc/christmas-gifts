@@ -25,7 +25,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
             slider.interactable = isActive;
         }
 
-        public void Setup(float minMult, float maxMult, uint level, string sliderType, float? currentValue, bool isActive = true)
+        public void Setup(float minMult, float maxMult, int level, string sliderType, float? currentValue, bool isActive = true)
         {
             var (min, max) = sliderType switch
             {
