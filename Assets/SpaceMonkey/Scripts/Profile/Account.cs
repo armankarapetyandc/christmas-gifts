@@ -338,6 +338,7 @@ namespace SpaceMonkey.Scripts.Profile
         public int ProdCapAdd { get; set; }
         public int ProdCapCost { get; set; }
         public bool NeedRepair { get; set; }
+        public int LevelNumber { get; set; }
     }
 
     public struct MarketingFeature : IEquatable<MarketingFeature>

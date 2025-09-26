@@ -60,6 +60,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             level.ProdCapAdd = levelInfo.ProdCapAdd;
             level.ProdCapCost = levelInfo.ProdCapCost;
             level.Id = levelInfo.Id;
+            level.LevelNumber = levelIndex;
             return level;
         }
     }

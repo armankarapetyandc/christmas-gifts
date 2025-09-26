@@ -41,6 +41,8 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             useCashButton.OnClickAsObservable()
                 .Subscribe(_ => UpgradeLevel())
                 .AddTo(this);
+            useCashButton.interactable = _data.UpgradeLevelProdCap.LevelNumber == _account.LevelProdCaps.Count;
+            useCreditButton.interactable = _data.UpgradeLevelProdCap.LevelNumber == _account.LevelProdCaps.Count;
 
             return UniTask.CompletedTask;
         }
