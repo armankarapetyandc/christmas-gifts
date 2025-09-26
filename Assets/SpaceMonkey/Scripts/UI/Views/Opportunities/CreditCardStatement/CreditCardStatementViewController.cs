@@ -16,6 +16,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
             _navigationPresenterService = navigationPresenterService;
         }
 
+        public void CloseView()
+        {
+            PresenterService.Hide();
+        }
         internal void OnBack()
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data

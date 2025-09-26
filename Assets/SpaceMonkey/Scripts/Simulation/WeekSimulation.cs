@@ -123,6 +123,7 @@ namespace SpaceMonkey.Scripts.Simulation
                 .Select(p => new ProductOrder(p, DetermineProductQuantity(character.Id, p))).ToArray();
 
             var mood = orders.Select(order => DetermineCustomerMood(character.Id, order.Product)).Sum();
+            mood = Mathf.Clamp(mood, _simulationInfo.MoodMin, _simulationInfo.MoodMax);
             if (mood < _simulationInfo.MoodLeave)
             {
                 return null;

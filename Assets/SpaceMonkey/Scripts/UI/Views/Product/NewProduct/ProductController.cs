@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Popups.Core;
@@ -18,10 +19,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         private readonly VisualAssetDatabase _visualAssetDatabase;
 
         internal Profile.Product CurrentProduct;
+        private ScoresConfigs _scoresConfigs;
 
-        public ProductController(PresenterService presenterService, PopupPresenterService popupPresenterService,AccountService accountService,
-            VisualAssetDatabase visualAssetDatabase) : base(presenterService)
+        public ProductController(PresenterService presenterService, PopupPresenterService popupPresenterService,
+            AccountService accountService,
+            VisualAssetDatabase visualAssetDatabase, ScoresConfigs scoresConfigs) : base(presenterService)
         {
+            _scoresConfigs = scoresConfigs;
             _popupPresenterService = popupPresenterService;
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
@@ -42,6 +46,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         {
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
+
         public async UniTaskVoid DeleteProduct()
         {
             var deleteProductPopupPresenterData = new DeleteProductPopup.Data();
@@ -51,17 +56,26 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             if (result)
             {
                 _accountService.Model.Account.DeleteProduct(CurrentProduct.Id);
+                _accountService.Model.Account.Score +=
+                    _scoresConfigs.CalculateScoreConfigByKey("sellProduct");
                 await _accountService.SaveAsync();
             }
+
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
+
         internal async UniTaskVoid SaveProduct()
         {
             if (!CurrentProduct.IsValid)
             {
-                CurrentProduct.AssignId();    
+                CurrentProduct.AssignId();
             }
+
             _accountService.Model.Account.SetProduct(CurrentProduct);
+            _accountService.Model.Account.Score +=
+                _scoresConfigs.CalculateScoreConfigByKey($"addProduct{_accountService.Model.Account.Products.Count}");
+
+
             await _accountService.SaveAsync();
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
@@ -78,7 +92,5 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 Product = CurrentProduct
             }).Forget();
         }
-
-       
     }
 }

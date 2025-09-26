@@ -65,6 +65,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
         internal void OnSave()
         {
             _accountService.Model.Account.Score += GetAccount().Company.Tags.Length * _scoresConfigs.CalculateScoreConfigByKey("hashtag");
+            _accountService.Model.Account.Score += _scoresConfigs.CalculateScoreConfigByKey("saveLogo");
+            //_accountService.Model
             _accountService.SaveAsync().Forget();
             PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
         }

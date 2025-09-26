@@ -18,11 +18,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
         private readonly AccountService _accountService;
         
         [Inject] private GameConfig _gameConfig;
+        private ScoresConfigs _scoresConfigs;
 
         public MarketingController(PresenterService presenterService,
             NavigationPresenterService navigationPresenterService, WeekSimulationContext weekSimulationContext,
-            AccountService accountService) : base(presenterService)
+            AccountService accountService,ScoresConfigs scoresConfigs) : base(presenterService)
         {
+            _scoresConfigs = scoresConfigs;
             _navigationPresenterService = navigationPresenterService;
             _weekSimulationContext = weekSimulationContext;
             _accountService = accountService;
@@ -39,6 +41,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
         internal void UpdateMarketingFeatures(List<MarketingFeature> marketingFeatures)
         {
             _accountService.Model.Account.UpdateMarketingFeatures(marketingFeatures);
+            foreach (var marketingFeature in marketingFeatures)
+            {
+                GetAccount().Score+= _scoresConfigs.CalculateScoreConfigByKey(marketingFeature.Id);
+            }
             _accountService.SaveAsync().Forget();
             OnBack();
         }

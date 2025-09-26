@@ -44,7 +44,13 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             useCashButton.interactable = _data.UpgradeLevelProdCap.LevelNumber == _account.LevelProdCaps.Count;
             useCreditButton.interactable = _data.UpgradeLevelProdCap.LevelNumber == _account.LevelProdCaps.Count;
 
+
             return UniTask.CompletedTask;
+        }
+
+        private void UseCreditCard()
+        {
+            Controller.UseCredit();
         }
 
         private void UpgradeLevel()

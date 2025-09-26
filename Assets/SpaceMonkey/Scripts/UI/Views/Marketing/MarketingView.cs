@@ -72,6 +72,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Marketing
                     CurrentPrice = item.MarketingSlider.CurrentValue.CurrentValue,
                     Unlock = item.MarketingItemInfo.Unlock,
                 }).ToList();
+            foreach (var marketingFeature in marketingFeatures)
+            {
+                
+            }
             Controller.UpdateMarketingFeatures(marketingFeatures);
         }
 
