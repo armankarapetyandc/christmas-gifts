@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs.Map;
-using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -48,7 +47,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }
         }
 
-        private void ShowPlaceHolder(MapPlace place)
+        private void ShowPlaceHolder(IMapPlace place)
         {
             foreach (var holder in placeHolders)
             {
