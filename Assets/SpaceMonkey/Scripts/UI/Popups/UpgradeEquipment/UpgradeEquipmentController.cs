@@ -2,8 +2,10 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter;
@@ -15,12 +17,16 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
     {
         private readonly AccountService _accountService;
         private readonly PopupPresenterService _popupPresenterService;
-        private ScoresConfigs _scoresConfigs;
+        private readonly ScoresConfigs _scoresConfigs;
+        private readonly CreditSimulator _creditSimulator;
 
+        public CreditSimulator CreditSimulator => _creditSimulator;
         public UpgradeEquipmentController(PresenterService presenterService, AccountService accountService,
-            PopupPresenterService popupPresenterService,ScoresConfigs scoresConfigs) : base(presenterService)
+            PopupPresenterService popupPresenterService,ScoresConfigs scoresConfigs, CreditSimulator creditSimulator) 
+            : base(presenterService)
         {
             _scoresConfigs = scoresConfigs;
+            _creditSimulator = creditSimulator;
             _accountService = accountService;
             _popupPresenterService = popupPresenterService;
         }
@@ -43,14 +49,15 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             OnClose();
             return level;
         }
-
-        public void UseCredit()
+        
+        public bool MakeCreditCardPurchase(LevelProdCap level)
         {
-            PresenterService.Show<CreditCardStatementView>(new CreditCardStatementView.Data
-            {
-                OnClose = () => { PresenterService.Show<ProductionCapacityView>(); }
-            });
-            OnClose();
+            return _creditSimulator.MakePurchase(level.ProdCapCost);
+        }
+        
+        public void ShowCreditCardView()
+        {
+            PresenterService.Show<CreditCardView>().Forget();
         }
     }
 }

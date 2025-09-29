@@ -8,6 +8,7 @@ using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Profile.Simulation;
+using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.Utilities;
 using UnityEngine;
 using Zenject;
@@ -46,6 +47,7 @@ namespace SpaceMonkey.Scripts.Simulation
         private readonly GameConfig _gameConfig;
         private readonly CustomerReviewConfig _customerReviewConfig;
         private readonly AccountService _accountService;
+        private readonly CreditSimulator _creditSimulator;
         private readonly SimulationInfo _simulationInfo;
         private readonly Account _account;
 
@@ -61,11 +63,12 @@ namespace SpaceMonkey.Scripts.Simulation
         public WeekInfo WeekInfo => _weekInfo;
 
         public WeekSimulation(GameConfig gameConfig, CustomerReviewConfig customerReviewConfig,
-            AccountService accountService)
+            AccountService accountService, CreditSimulator creditSimulator)
         {
             _gameConfig = gameConfig;
             _customerReviewConfig = customerReviewConfig;
             _accountService = accountService;
+            _creditSimulator = creditSimulator;
             _simulationInfo = gameConfig.SimulationInfo;
             _account = accountService.Model.Account;
             _availableProdCap = new ReactiveProperty<int>(_account.GetProductionCapacity());
@@ -255,6 +258,8 @@ namespace SpaceMonkey.Scripts.Simulation
             _account.PushFinishedWeek(_weekInfo);
             _account.Money = _money.Value;
             _accountService.SaveAsync().Forget();
+            
+            _creditSimulator.NextWeek();
         }
 
         private List<(Customer, Product, string)> DetermineCustomerReviewsV2()

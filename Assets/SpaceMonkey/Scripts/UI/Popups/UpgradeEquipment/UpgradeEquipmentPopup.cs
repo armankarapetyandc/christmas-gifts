@@ -23,6 +23,8 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
         [SerializeField] private Button useCashButton;
         [SerializeField] private Button useCreditButton;
         [SerializeField] private Image dimmerBackground;
+        [SerializeField] private TextMeshProUGUI costText;
+        
         private Data _data;
         private Account _account;
 
@@ -32,6 +34,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             dimmerBackground.gameObject.SetActive(true);
             _account = Controller.GetAccount();
             availableCashText.text = $"${_account.Money}";
+            costText.text = $"Level {_data.UpgradeLevelProdCap.LevelNumber} Equipment Cost: ${_data.UpgradeLevelProdCap.ProdCapCost}";
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _data.Result?.TrySetResult(_data.UpgradeLevelProdCap);
@@ -40,6 +43,9 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             }).AddTo(this);
             useCashButton.OnClickAsObservable()
                 .Subscribe(_ => UpgradeLevel())
+                .AddTo(this);
+            useCreditButton.OnClickAsObservable()
+                .Subscribe(_ => UseCreditCard())
                 .AddTo(this);
             useCashButton.interactable = _data.UpgradeLevelProdCap.LevelNumber == _account.LevelProdCaps.Count;
             useCreditButton.interactable = _data.UpgradeLevelProdCap.LevelNumber == _account.LevelProdCaps.Count;
@@ -50,7 +56,19 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
 
         private void UseCreditCard()
         {
-            Controller.UseCredit();
+            if (!Controller.CreditSimulator.HasActiveCard)
+            {
+                Controller.ShowCreditCardView();
+                return;
+            }
+            var result = Controller.MakeCreditCardPurchase(_data.UpgradeLevelProdCap);
+            if (!result)
+            {
+                Debug.LogError("Credit card purchase failed");
+                return;
+            }
+            var upgradedLevel = Controller.UpgradeLevel(_data.UpgradeLevelProdCap);
+            _data.Result?.TrySetResult(upgradedLevel.Result);
         }
 
         private void UpgradeLevel()

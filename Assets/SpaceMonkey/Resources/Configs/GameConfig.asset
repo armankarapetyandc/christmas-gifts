@@ -212,83 +212,48 @@ MonoBehaviour:
     <Div>k__BackingField: 8
     <Unlock>k__BackingField: 800
   <Staffs>k__BackingField:
-  - <Id>k__BackingField: mildredf_prod
+  - <Id>k__BackingField: redglasses_prod
     <Profession>k__BackingField: 0
     <Payroll>k__BackingField: 35
     <Capacity>k__BackingField: 20
     <Speed>k__BackingField: 5
     <Experience>k__BackingField: 5
-    <Character>k__BackingField: {fileID: 11400000, guid: c9ab0fe92348a864ba10aee44d704b3f, type: 2}
-  - <Id>k__BackingField: brandong_prod
+    <Character>k__BackingField: {fileID: 11400000, guid: f771579caba2d414aa59e2f3dbc0834f, type: 2}
+  - <Id>k__BackingField: froatty1_prod
     <Profession>k__BackingField: 0
-    <Payroll>k__BackingField: 30
-    <Capacity>k__BackingField: 30
-    <Speed>k__BackingField: 4
-    <Experience>k__BackingField: 3
-    <Character>k__BackingField: {fileID: 11400000, guid: fe0320438545bdc4dbcaaa2e7c635dda, type: 2}
-  - <Id>k__BackingField: ronaldop_prod
-    <Profession>k__BackingField: 0
-    <Payroll>k__BackingField: 45
-    <Capacity>k__BackingField: 35
-    <Speed>k__BackingField: 5
-    <Experience>k__BackingField: 4
-    <Character>k__BackingField: {fileID: 11400000, guid: df4d467ff49f26d4d8489e515e8636bb, type: 2}
-  - <Id>k__BackingField: mildredf_manage
-    <Profession>k__BackingField: 3
-    <Payroll>k__BackingField: 20
-    <Capacity>k__BackingField: 25
-    <Speed>k__BackingField: 3
-    <Experience>k__BackingField: 3
-    <Character>k__BackingField: {fileID: 11400000, guid: c9ab0fe92348a864ba10aee44d704b3f, type: 2}
-  - <Id>k__BackingField: mildredf_accountant
-    <Profession>k__BackingField: 1
-    <Payroll>k__BackingField: 30
-    <Capacity>k__BackingField: 30
-    <Speed>k__BackingField: 4
-    <Experience>k__BackingField: 4
-    <Character>k__BackingField: {fileID: 11400000, guid: c9ab0fe92348a864ba10aee44d704b3f, type: 2}
-  - <Id>k__BackingField: skimmyt_accountant
-    <Profession>k__BackingField: 1
-    <Payroll>k__BackingField: 20
+    <Payroll>k__BackingField: 35
     <Capacity>k__BackingField: 20
-    <Speed>k__BackingField: 3
-    <Experience>k__BackingField: 3
-    <Character>k__BackingField: {fileID: 11400000, guid: 92f23923ef499f14782d84752ec1c6d2, type: 2}
-  - <Id>k__BackingField: ronaldop_legal
-    <Profession>k__BackingField: 2
-    <Payroll>k__BackingField: 30
-    <Capacity>k__BackingField: 25
-    <Speed>k__BackingField: 4
-    <Experience>k__BackingField: 3
-    <Character>k__BackingField: {fileID: 11400000, guid: df4d467ff49f26d4d8489e515e8636bb, type: 2}
-  - <Id>k__BackingField: ronaldop_accountant
-    <Profession>k__BackingField: 1
-    <Payroll>k__BackingField: 30
-    <Capacity>k__BackingField: 30
-    <Speed>k__BackingField: 4
-    <Experience>k__BackingField: 4
-    <Character>k__BackingField: {fileID: 11400000, guid: df4d467ff49f26d4d8489e515e8636bb, type: 2}
-  - <Id>k__BackingField: ronaldop_manage
-    <Profession>k__BackingField: 3
-    <Payroll>k__BackingField: 35
-    <Capacity>k__BackingField: 30
     <Speed>k__BackingField: 5
-    <Experience>k__BackingField: 4
-    <Character>k__BackingField: {fileID: 11400000, guid: df4d467ff49f26d4d8489e515e8636bb, type: 2}
-  - <Id>k__BackingField: mildredf_legal
-    <Profession>k__BackingField: 2
-    <Payroll>k__BackingField: 25
-    <Capacity>k__BackingField: 25
-    <Speed>k__BackingField: 3
-    <Experience>k__BackingField: 3
-    <Character>k__BackingField: {fileID: 11400000, guid: c9ab0fe92348a864ba10aee44d704b3f, type: 2}
-  - <Id>k__BackingField: mildredf_prod
+    <Experience>k__BackingField: 5
+    <Character>k__BackingField: {fileID: 11400000, guid: e41d2562f4d40437f8da09a2f2dc7f7c, type: 2}
+  - <Id>k__BackingField: froatty2_prod
     <Profession>k__BackingField: 0
     <Payroll>k__BackingField: 35
-    <Capacity>k__BackingField: 30
+    <Capacity>k__BackingField: 20
     <Speed>k__BackingField: 5
-    <Experience>k__BackingField: 4
-    <Character>k__BackingField: {fileID: 11400000, guid: c9ab0fe92348a864ba10aee44d704b3f, type: 2}
+    <Experience>k__BackingField: 5
+    <Character>k__BackingField: {fileID: 11400000, guid: 30170bc2d0c104d1286ad354d2882d7f, type: 2}
+  - <Id>k__BackingField: pigtails_prod
+    <Profession>k__BackingField: 0
+    <Payroll>k__BackingField: 35
+    <Capacity>k__BackingField: 20
+    <Speed>k__BackingField: 5
+    <Experience>k__BackingField: 5
+    <Character>k__BackingField: {fileID: 11400000, guid: dce3b772ae3f4409b94c3c5ff55c37ea, type: 2}
+  - <Id>k__BackingField: yellowhair
+    <Profession>k__BackingField: 0
+    <Payroll>k__BackingField: 35
+    <Capacity>k__BackingField: 20
+    <Speed>k__BackingField: 5
+    <Experience>k__BackingField: 5
+    <Character>k__BackingField: {fileID: 11400000, guid: b2afad3dd2fc9461eb760c2026d3e5c1, type: 2}
+  - <Id>k__BackingField: lumberjack_prod
+    <Profession>k__BackingField: 0
+    <Payroll>k__BackingField: 35
+    <Capacity>k__BackingField: 20
+    <Speed>k__BackingField: 5
+    <Experience>k__BackingField: 5
+    <Character>k__BackingField: {fileID: 11400000, guid: 681d0f13df0e142f89ab5d9ee5fbc4f9, type: 2}
   <SimulationInfo>k__BackingField:
     <CustomersMin>k__BackingField: 1
     <CustomersMax>k__BackingField: 3
