@@ -1,6 +1,7 @@
 using System.IO;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
+using SpaceMonkey.Scripts.Configs;
 using UnityEngine;
 using Zenject;
 
@@ -57,11 +58,18 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
         private static readonly string Path = System.IO.Path.Combine(Application.persistentDataPath, Filename);
         private static readonly Random Rng = new();
 
+        private GameConfig _config;
         public GameData Data { get; private set; }
         public List<Transaction> Transactions { get; private set; } = new();
         public List<PaymentRecord> PaymentHistory { get; private set; } = new();
         
         public bool HasActiveCard => Data != null;
+        
+        [Inject]
+        private void Inject(GameConfig config)
+        {
+            _config = config;
+        }
 
         public void Initialize()
         {
@@ -73,7 +81,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             if (Data != null)
                 return;
             
-            Data = new GameData(0, 1000, 0.26f, 0);
+            Data = new GameData(0, _config.CreditCardInfo.CreditLimit, _config.CreditCardInfo.Apr, 0);
             SelectPayment(PaymentOption.Skip);
             
             Transactions.Clear();
@@ -108,12 +116,13 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             return true;
         }
 
-        public double GetMinimumPayment()
+        public float GetMinimumPayment()
         {
             if (Data == null || Data.Balance <= 0)
                 return 0;
 
-            return Math.Min(Data.Balance, Math.Max(35, Data.Balance * 0.03f));
+            return Math.Min(Data.Balance, Math.Max(_config.CreditCardInfo.MinimumPayment, Data.Balance * 
+                _config.CreditCardInfo.MinimumPatmentCoff));
         }
         
         public void NextWeek()
@@ -131,26 +140,21 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             {
                 var interest = Data.Balance * weeklyRate;
                 Data.Balance += interest;
+                
+                var minPayment = GetMinimumPayment();
 
-                var minPayment = Math.Min(Data.Balance, Math.Max(10, Data.Balance * 0.02f));
-
-                switch (Data.SelectedPayment)
+                payment = Data.SelectedPayment switch
                 {
-                    case PaymentOption.Skip:
-                        payment = 0;
-                        break;
-                    case PaymentOption.Minimum:
-                        payment = minPayment;
-                        break;
-                    case PaymentOption.Full:
-                        payment = Data.Balance;
-                        break;
-                }
+                    PaymentOption.Skip => 0,
+                    PaymentOption.Minimum => minPayment,
+                    PaymentOption.Full => Data.Balance,
+                    _ => payment
+                };
 
                 Data.Balance -= payment;
                 PaymentHistory.Add(new PaymentRecord
                     { Week = Data.Week, Payment = payment, Type = Data.SelectedPayment });
-                UpdateCreditScore(Data.SelectedPayment, payment, minPayment);
+                UpdateCreditScore(Data.SelectedPayment);
             }
 
             Data.Week++;
@@ -162,7 +166,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             }
         }
 
-        private void UpdateCreditScore(PaymentOption paymentType, float payment, float minPayment)
+        private void UpdateCreditScore(PaymentOption paymentType)
         {
             var scoreChange = 0f;
 

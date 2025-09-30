@@ -17,9 +17,19 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public MarketingInfo[] MarketingInfos { get; private set; }
         [field: SerializeField] public Staff[] Staffs { get; private set; }
         [field: SerializeField] public SimulationInfo SimulationInfo { get; private set; }
+        [field: SerializeField] public CreditCardInfo CreditCardInfo { get; private set; }
         [field: SerializeField] public float[] LevelScoreRanges { get; private set; }
     }
 
+    [Serializable]
+    public class CreditCardInfo
+    {
+        [field: SerializeField] public float CreditLimit { get; private set; }
+        [field: SerializeField] public float Apr { get; private set; }
+        [field: SerializeField] public float MinimumPayment { get; private set; }
+        [field: SerializeField] public float MinimumPatmentCoff { get; private set; }
+    }
+    
     [Serializable]
     public class CategoryInfo
     {

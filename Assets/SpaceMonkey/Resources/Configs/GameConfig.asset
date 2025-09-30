@@ -286,6 +286,11 @@ MonoBehaviour:
     <BigProductChange>k__BackingField: 40
     <ExtremeSettingHigh>k__BackingField: 80
     <ExtremeSettingLow>k__BackingField: 20
+  <CreditCardInfo>k__BackingField:
+    <CreditLimit>k__BackingField: 1000
+    <Apr>k__BackingField: 0.26
+    <MinimumPayment>k__BackingField: 35
+    <MinimumPatmentCoff>k__BackingField: 0.03
   <LevelScoreRanges>k__BackingField:
   - 200
   - 500
