@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76aff64394ce47828bd3037f4a9d4a17, type: 3}
   m_Name: RedGlasses_CharacterConfig
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: red_glasses
-  <Name>k__BackingField: Red Glasses
+  <Id>k__BackingField: ruby_b
+  <Name>k__BackingField: Ruby B.
   <Sprite>k__BackingField: {fileID: 11400000, guid: d67a6fdac844b5c4cb0b978e2ca51589, type: 2}
   <HeadVisualAssets>k__BackingField:
   - {fileID: 11400000, guid: c796ad2e77ee69445b819c9b32bed76e, type: 2}
@@ -21,10 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b617a3d002dca54eaf49c5112950985, type: 2}
   - {fileID: 11400000, guid: db7698ddb455d8943b4951943877dfe0, type: 2}
   - {fileID: 11400000, guid: 1d8d359d4f8fd534f9bf66f26db1177a, type: 2}
-  <FullBodySprite>k__BackingField: {fileID: 0}
+  <FullBodySprite>k__BackingField: {fileID: 11400000, guid: 2bf447cb4dbcb374b83cbaf16901b28e, type: 2}
   <BackgroundColor>k__BackingField: {fileID: 11400000, guid: 58fdc79821129c34d9b20199ca878eed, type: 2}
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

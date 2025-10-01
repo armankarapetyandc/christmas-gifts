@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76aff64394ce47828bd3037f4a9d4a17, type: 3}
   m_Name: Pigtails_CharacterConfig
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: pigtails
-  <Name>k__BackingField: Pigtails
+  <Id>k__BackingField: stella_a
+  <Name>k__BackingField: Stella A.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 61c7753c269a6c24c950625310188fe1, type: 2}
   <HeadVisualAssets>k__BackingField:
   - {fileID: 11400000, guid: 7b98798d2d7d0424fb20c2461af23593, type: 2}
@@ -21,10 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 276cd211536734a4ca65f619fd5f9bfb, type: 2}
   - {fileID: 11400000, guid: 7e6e99c5b8094124f9ee1fec49c21482, type: 2}
   - {fileID: 11400000, guid: 323319c1ac84f154581ecfd99cafccaf, type: 2}
-  <FullBodySprite>k__BackingField: {fileID: 0}
+  <FullBodySprite>k__BackingField: {fileID: 11400000, guid: 484e08ec50e56ea40be733e5544c3af9, type: 2}
   <BackgroundColor>k__BackingField: {fileID: 11400000, guid: 58fdc79821129c34d9b20199ca878eed, type: 2}
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

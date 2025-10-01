@@ -214,46 +214,58 @@ MonoBehaviour:
   <Staffs>k__BackingField:
   - <Id>k__BackingField: redglasses_prod
     <Profession>k__BackingField: 0
-    <Payroll>k__BackingField: 35
-    <Capacity>k__BackingField: 20
-    <Speed>k__BackingField: 5
-    <Experience>k__BackingField: 5
+    <Payroll>k__BackingField: 40
+    <Capacity>k__BackingField: 15
+    <Speed>k__BackingField: 1
+    <Experience>k__BackingField: 3
+    <Quirk>k__BackingField: Greedy
+    <WorkEthic>k__BackingField: Poor
     <Character>k__BackingField: {fileID: 11400000, guid: f771579caba2d414aa59e2f3dbc0834f, type: 2}
-  - <Id>k__BackingField: froatty1_prod
+  - <Id>k__BackingField: froatty_prod
     <Profession>k__BackingField: 0
-    <Payroll>k__BackingField: 35
+    <Payroll>k__BackingField: 60
     <Capacity>k__BackingField: 20
-    <Speed>k__BackingField: 5
-    <Experience>k__BackingField: 5
+    <Speed>k__BackingField: 2
+    <Experience>k__BackingField: 4
+    <Quirk>k__BackingField: Shady
+    <WorkEthic>k__BackingField: Good
     <Character>k__BackingField: {fileID: 11400000, guid: e41d2562f4d40437f8da09a2f2dc7f7c, type: 2}
-  - <Id>k__BackingField: froatty2_prod
+  - <Id>k__BackingField: yellowbeard_prod
     <Profession>k__BackingField: 0
-    <Payroll>k__BackingField: 35
-    <Capacity>k__BackingField: 20
-    <Speed>k__BackingField: 5
+    <Payroll>k__BackingField: 80
+    <Capacity>k__BackingField: 25
+    <Speed>k__BackingField: 3
     <Experience>k__BackingField: 5
-    <Character>k__BackingField: {fileID: 11400000, guid: 30170bc2d0c104d1286ad354d2882d7f, type: 2}
+    <Quirk>k__BackingField: Hard Working
+    <WorkEthic>k__BackingField: Excellent
+    <Character>k__BackingField: {fileID: 11400000, guid: 681d0f13df0e142f89ab5d9ee5fbc4f9, type: 2}
   - <Id>k__BackingField: pigtails_prod
     <Profession>k__BackingField: 0
-    <Payroll>k__BackingField: 35
-    <Capacity>k__BackingField: 20
-    <Speed>k__BackingField: 5
-    <Experience>k__BackingField: 5
+    <Payroll>k__BackingField: 50
+    <Capacity>k__BackingField: 5
+    <Speed>k__BackingField: 4
+    <Experience>k__BackingField: 1
+    <Quirk>k__BackingField: Complainer
+    <WorkEthic>k__BackingField: Fair
     <Character>k__BackingField: {fileID: 11400000, guid: dce3b772ae3f4409b94c3c5ff55c37ea, type: 2}
-  - <Id>k__BackingField: yellowhair
+  - <Id>k__BackingField: yellowhair_prod
     <Profession>k__BackingField: 0
-    <Payroll>k__BackingField: 35
-    <Capacity>k__BackingField: 20
+    <Payroll>k__BackingField: 70
+    <Capacity>k__BackingField: 10
     <Speed>k__BackingField: 5
-    <Experience>k__BackingField: 5
+    <Experience>k__BackingField: 2
+    <Quirk>k__BackingField: Fire Bug
+    <WorkEthic>k__BackingField: Good
     <Character>k__BackingField: {fileID: 11400000, guid: b2afad3dd2fc9461eb760c2026d3e5c1, type: 2}
   - <Id>k__BackingField: lumberjack_prod
     <Profession>k__BackingField: 0
-    <Payroll>k__BackingField: 35
-    <Capacity>k__BackingField: 20
-    <Speed>k__BackingField: 5
-    <Experience>k__BackingField: 5
-    <Character>k__BackingField: {fileID: 11400000, guid: 681d0f13df0e142f89ab5d9ee5fbc4f9, type: 2}
+    <Payroll>k__BackingField: 40
+    <Capacity>k__BackingField: 15
+    <Speed>k__BackingField: 1
+    <Experience>k__BackingField: 3
+    <Quirk>k__BackingField: Arrogant
+    <WorkEthic>k__BackingField: Excellent
+    <Character>k__BackingField: {fileID: 11400000, guid: 30170bc2d0c104d1286ad354d2882d7f, type: 2}
   <BusinessExamples>k__BackingField:
   - <Category>k__BackingField: Cooking
     <Name>k__BackingField: The Chocolateer

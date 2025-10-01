@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76aff64394ce47828bd3037f4a9d4a17, type: 3}
   m_Name: YellowHair_CharacterConfig
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: yellow_hair
-  <Name>k__BackingField: Yellow Hair
+  <Id>k__BackingField: camilla_b
+  <Name>k__BackingField: Camilla B.
   <Sprite>k__BackingField: {fileID: 11400000, guid: c5d1941d9d3616c4290f48d173cc0ad1, type: 2}
   <HeadVisualAssets>k__BackingField:
   - {fileID: 11400000, guid: be73cb93bd20ab743b5f36ddbd18a30a, type: 2}
@@ -21,10 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69f85244cdd0ea64b90283ad7f5a34af, type: 2}
   - {fileID: 11400000, guid: 6e7b9e941c7fc434dada80729bc83db2, type: 2}
   - {fileID: 11400000, guid: 41da7c9bbde3e5847af1e16443012057, type: 2}
-  <FullBodySprite>k__BackingField: {fileID: 0}
+  <FullBodySprite>k__BackingField: {fileID: 11400000, guid: af060474f289b694f932b512fcf66381, type: 2}
   <BackgroundColor>k__BackingField: {fileID: 11400000, guid: 58fdc79821129c34d9b20199ca878eed, type: 2}
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive
