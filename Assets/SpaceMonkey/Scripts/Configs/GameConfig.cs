@@ -4,7 +4,6 @@ using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Views.Staff;
 using SpaceMonkey.Scripts.Utilities;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace SpaceMonkey.Scripts.Configs
 {
@@ -16,6 +15,7 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public CharacterConfig[] Characters { get; private set; }
         [field: SerializeField] public MarketingInfo[] MarketingInfos { get; private set; }
         [field: SerializeField] public Staff[] Staffs { get; private set; }
+        [field: SerializeField] public BusinessExample[] BusinessExamples { get; private set; }
         [field: SerializeField] public SimulationInfo SimulationInfo { get; private set; }
         [field: SerializeField] public float[] LevelScoreRanges { get; private set; }
     }
@@ -65,7 +65,15 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int Speed { get; private set; }
         [field: SerializeField] public int Experience { get; private set; }
         [field: SerializeField] public CharacterConfig Character { get; internal set; }
-        
+    }
+
+    [Serializable]
+    public class BusinessExample
+    {
+        [field: SerializeField] public string Category { get; private set; }
+        [field: SerializeField] public string Name { get; private set; }
+        [field: SerializeField] public string Title { get; private set; }
+        [field: SerializeField] public string Description { get; private set; }
     }
 
     [Serializable]
