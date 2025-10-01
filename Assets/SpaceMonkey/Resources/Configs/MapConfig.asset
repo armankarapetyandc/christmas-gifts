@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd4eaf9eacc48f799b473c022406eea, type: 3}
   m_Name: MapConfig
   m_EditorClassIdentifier: 
+  <DefaultCompanyPlace>k__BackingField:
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 2634, y: -6041}
   <Places>k__BackingField:
   - <Name>k__BackingField: For Rent
     <Type>k__BackingField: 0
@@ -128,16 +131,16 @@ MonoBehaviour:
     <Position>k__BackingField: {x: 3037, y: -2901}
     <IconVisualAsset>k__BackingField: {fileID: 0}
     <Locked>k__BackingField: 1
-  - <Name>k__BackingField: For Rent
-    <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: 2298, y: -3233}
-    <IconVisualAsset>k__BackingField: {fileID: 0}
-    <Locked>k__BackingField: 1
   - <Name>k__BackingField: Jarnall Bank
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 3442, y: -3085}
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <Locked>k__BackingField: 0
+  - <Name>k__BackingField: For Rent
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 2298, y: -3233}
+    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <Locked>k__BackingField: 1
   - <Name>k__BackingField: For Rent
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 4080, y: -3686}
@@ -158,3 +161,23 @@ MonoBehaviour:
     <Position>k__BackingField: {x: 2942, y: -4637}
     <IconVisualAsset>k__BackingField: {fileID: 0}
     <Locked>k__BackingField: 1
+  - <Name>k__BackingField: Credit Card
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 3023, y: -5351}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 0551526926f069c43b718d4844041534, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: Investus
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 3930, y: -6230}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 0551526926f069c43b718d4844041534, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: Jarnall Bank
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 1920, y: -6652}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
+    <Locked>k__BackingField: 0
+  - <Name>k__BackingField: Jarnall Bank
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 2244, y: -5599}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
+    <Locked>k__BackingField: 0

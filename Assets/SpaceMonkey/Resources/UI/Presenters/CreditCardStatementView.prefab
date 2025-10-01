@@ -429,8 +429,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.499886, y: 72.50016}
-  m_SizeDelta: {x: 101, y: 46}
+  m_AnchoredPosition: {x: -80, y: 73.2}
+  m_SizeDelta: {x: 160, y: 46}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6813805582013073312
 CanvasRenderer:
@@ -490,9 +490,9 @@ MonoBehaviour:
   m_fontSize: 40
   m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3606,6 +3606,11 @@ MonoBehaviour:
   dimmerButton: {fileID: 0}
   <AutoFitSupported>k__BackingField: 1
   backButton: {fileID: 1534055561914294336}
+  minimumPaymentText: {fileID: 5398256372507241664}
+  balanceText: {fileID: 6254203244035535078}
+  skipPaymentToggle: {fileID: 7654222083645324299}
+  payMinimumToggle: {fileID: 6728146792583865470}
+  payFullToggle: {fileID: 7494789059847357368}
 --- !u!114 &5889140147643598705
 MonoBehaviour:
   m_ObjectHideFlags: 0

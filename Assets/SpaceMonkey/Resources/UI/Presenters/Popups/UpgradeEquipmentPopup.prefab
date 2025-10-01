@@ -1846,6 +1846,7 @@ MonoBehaviour:
   useCashButton: {fileID: 8833030309310896766}
   useCreditButton: {fileID: 9175061133628455057}
   dimmerBackground: {fileID: 2375804540773404402}
+  costText: {fileID: 8692729876902126878}
 --- !u!114 &5249612996518724896
 MonoBehaviour:
   m_ObjectHideFlags: 0

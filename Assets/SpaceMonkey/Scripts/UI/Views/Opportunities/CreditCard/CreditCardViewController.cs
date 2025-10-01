@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
@@ -16,13 +17,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard
         private readonly PopupPresenterService _popupPresenterService;
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly AccountService _accountService;
+        private readonly CreditSimulator _creditSimulator;
 
         public CreditCardViewController(PresenterService presenterService, PopupPresenterService popupPresenterService,
-            NavigationPresenterService navigationPresenterService, AccountService accountService) : base(presenterService)
+            NavigationPresenterService navigationPresenterService, AccountService accountService, 
+            CreditSimulator creditSimulator) : base(presenterService)
         {
             _popupPresenterService = popupPresenterService;
             _navigationPresenterService = navigationPresenterService;
             _accountService = accountService;
+            _creditSimulator = creditSimulator;
         }
 
         internal void OnBack()
@@ -37,6 +41,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard
         {
             if (_accountService.Model.Account.Week >= 3)
             {
+                _creditSimulator.ApplyForCredit();
                 PresenterService.Show<CreditCardSplashView>().Forget();   
             }
             else

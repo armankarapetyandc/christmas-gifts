@@ -13,7 +13,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardSplash
 
         internal void OnNext()
         {
-            PresenterService.Show<CreditCardStatementView>().Forget();
+            PresenterService.Show<CreditCardStatementView>(new CreditCardStatementView.Data()).Forget();
         }
     }
 }
