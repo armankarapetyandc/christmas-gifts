@@ -15,7 +15,6 @@ namespace SpaceMonkey.Scripts.Configs.Characters
         [field: SerializeField] public float MoodMin { get; private set; }
         [field: SerializeField] public float MoodMax { get; private set; }
         [field: SerializeField] public float DefaultMood { get; private set; }
-        [field: SerializeField] public string[] Impacts { get; private set; }
 
 #if UNITY_EDITOR
         private void OnValidate()

@@ -74,6 +74,8 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int Capacity { get; private set; }
         [field: SerializeField] public int Speed { get; private set; }
         [field: SerializeField] public int Experience { get; private set; }
+        [field: SerializeField] public string Quirk { get; private set; }
+        [field: SerializeField] public string WorkEthic { get; private set; }
         [field: SerializeField] public CharacterConfig Character { get; internal set; }
     }
 

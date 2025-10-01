@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using R3;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Simulation.CreditCard;
 using UnityEngine;
 using Logger = DCLogger.Runtime.Logger;
 
@@ -71,11 +72,22 @@ namespace SpaceMonkey.Scripts.Profile
             if (!File.Exists(_path))
             {
                 Logger.LogError($"Account file doesn't exist. Path: {_path}", SpaceMonkeyLogChannels.Default);
-                return;
+            }
+            else
+            {
+                File.Delete(_path);
+                Logger.Log($"Account file deleted! Path: {_path}", SpaceMonkeyLogChannels.Default);
             }
 
-            File.Delete(_path);
-            Logger.Log($"Account file deleted! Path: {_path}", SpaceMonkeyLogChannels.Default);
+            if (!File.Exists(CreditSimulator.Path))
+            {
+                Logger.LogError($"CreditSimulator file doesn't exist. Path: {CreditSimulator.Path}", SpaceMonkeyLogChannels.Default);
+            }
+            else
+            {
+                File.Delete(CreditSimulator.Path);
+                Logger.Log($"CreditSimulator file deleted! Path: {CreditSimulator.Path}", SpaceMonkeyLogChannels.Default);
+            }
         }
 
         public void Dispose()

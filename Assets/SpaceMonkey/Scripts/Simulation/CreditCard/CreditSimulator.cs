@@ -55,7 +55,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
     public class CreditSimulator : IInitializable
     {
         private const string Filename = "CreditSimulator.spacemonkey";
-        private static readonly string Path = System.IO.Path.Combine(Application.persistentDataPath, Filename);
+        public static readonly string Path = System.IO.Path.Combine(Application.persistentDataPath, Filename);
         private static readonly Random Rng = new();
 
         private GameConfig _config;
