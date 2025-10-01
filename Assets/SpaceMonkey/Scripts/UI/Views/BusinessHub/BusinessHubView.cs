@@ -32,6 +32,8 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private Button marketingButton;
         [SerializeField] private Button staffButton;
 
+        [SerializeField] private Button xpButton;
+
         public override UniTask Initialize(IPresenterData data = null)
         {
             productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
@@ -39,7 +41,8 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             staffButton.OnClickAsObservable().Subscribe(_ => Controller.ShowStaffView()).AddTo(this);
             startButton.OnClickAsObservable().Subscribe(_ => Controller.StartWeek()).AddTo(this);
             productionButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductionView()).AddTo(this);
-            
+
+            xpButton.OnClickAsObservable().Subscribe(_ => Controller.ShowLevelInfoPopup()).AddTo(this);
      
             
             SetupDefaults();

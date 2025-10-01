@@ -3,6 +3,8 @@ using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Popups.LevelInfo;
 using SpaceMonkey.Scripts.UI.Views.BusinessExamples;
 using SpaceMonkey.Scripts.UI.Views.Marketing;
 using SpaceMonkey.Scripts.UI.Views.Orders;
@@ -22,12 +24,14 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         private readonly VisualAssetDatabase _visualAssetDatabase;
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly WeekSimulationContext _weekSimulationContext;
+        private PopupPresenterService _popupPresenterService;
 
         public BusinessHubController(PresenterService presenterService,
             AccountService accountService, VisualAssetDatabase visualAssetDatabase,
             NavigationPresenterService navigationPresenterService,
-            WeekSimulationContext weekSimulationContext) : base(presenterService)
+            WeekSimulationContext weekSimulationContext,PopupPresenterService popupPresenterService) : base(presenterService)
         {
+            _popupPresenterService = popupPresenterService;
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
             _navigationPresenterService = navigationPresenterService;
@@ -62,6 +66,11 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         {
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<ProductionCapacityView>().Forget();
+        }
+
+        internal void ShowLevelInfoPopup()
+        {
+             _popupPresenterService.Show<LevelInfoPopup>().Forget();
         }
 
         public void ShowMarketingView()
