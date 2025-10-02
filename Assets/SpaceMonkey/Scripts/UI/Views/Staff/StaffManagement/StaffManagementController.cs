@@ -24,7 +24,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
                 Profession = employeeProfession
             }).Forget();
         }
-        
+
+        public Account GetAccount()
+        {
+            return _accountService.Model.Account;
+        }
         public void HireStaff(Configs.Staff hireStaff)
         {
             Employee newEmployee = new Employee()
