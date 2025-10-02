@@ -54,7 +54,9 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
 
     public class CreditSimulator : IInitializable
     {
+        public const string ProdCapacityDescription = "Interest (APR 26%)";
         private const string Filename = "CreditSimulator.spacemonkey";
+        
         public static readonly string Path = System.IO.Path.Combine(Application.persistentDataPath, Filename);
         private static readonly Random Rng = new();
 
@@ -62,7 +64,6 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
         public GameData Data { get; private set; }
         public List<Transaction> Transactions { get; private set; } = new();
         public List<PaymentRecord> PaymentHistory { get; private set; } = new();
-        
         public bool HasActiveCard => Data != null;
         
         [Inject]
@@ -94,18 +95,18 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             Data.SelectedPayment = option;
         }
 
-        public bool MakePurchase(float amount)
+        public bool MakePurchase(float amount, string description)
         {
             if (amount <= 0 || Data.Balance + amount > Data.CreditLimit)
                 return false;
 
             Data.Balance += amount;
-            Transactions.Add(new Transaction { Description = "Purchase", Amount = amount, Week = Data.Week });
+            Transactions.Add(new Transaction { Description = description, Amount = amount, Week = Data.Week });
             SaveAsync().Forget();
             return true;
         }
 
-        public bool AddCredit(float amount)
+        public bool AddCredit(float amount, string description)
         {
             if (amount <= 0)
                 return false;

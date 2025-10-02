@@ -7,6 +7,7 @@ using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -52,12 +53,13 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
         
         public bool MakeCreditCardPurchase(LevelProdCap level)
         {
-            return _creditSimulator.MakePurchase(level.ProdCapCost);
+            return _creditSimulator.MakePurchase(level.ProdCapCost, CreditSimulator.ProdCapacityDescription);
         }
         
         public void ShowCreditCardView()
         {
-            PresenterService.Show<CreditCardView>().Forget();
+            _popupPresenterService.Hide<UpgradeEquipmentPopup>();
+            PresenterService.HidePreviousAndShow<CreditCardView>().Forget();
         }
     }
 }

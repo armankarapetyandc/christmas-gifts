@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
@@ -21,6 +22,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
 
         public GameData gameData => _creditSimulator.Data;
         public double minimumPayment => _creditSimulator.GetMinimumPayment();
+        public List<Transaction> Transactions => _creditSimulator.Transactions;
         
         public void SelectPayment(PaymentOption option)
         {

@@ -17,7 +17,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
         [SerializeField] private Toggle skipPaymentToggle;
         [SerializeField] private Toggle payMinimumToggle;
         [SerializeField] private Toggle payFullToggle;
-
+        [SerializeField] private GameObject transactionsContainer;
+        [SerializeField] private TransactionItem transactionItemPrefab;
+        [SerializeField] private TextMeshProUGUI creditScoreText;
+        [SerializeField] private TextMeshProUGUI availableCreditText;
+        [SerializeField] private TextMeshProUGUI paymentDueText;
+        [SerializeField] private TextMeshProUGUI balanceAmountText;
+        
         protected override void InternalInit()
         {
             backButton.OnClickAsObservable().Subscribe(_ =>
@@ -55,7 +61,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
                 }
             });
             SetToggleState();
-
+            InitTransactions();
+            SetupTexts();
+            
             minimumPaymentText.text = $"${Controller.minimumPayment}";
             balanceText.text = $"${Controller.gameData.Balance}";
         }
@@ -67,6 +75,23 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
             payFullToggle.isOn = Controller.gameData.SelectedPayment == PaymentOption.Full;
         }
 
+        private void InitTransactions()
+        {
+            foreach (var transaction in Controller.Transactions)
+            {
+                var item = Instantiate(transactionItemPrefab, transactionsContainer.transform);
+                item.SetItemData(transaction);
+            }
+        }
+        
+        private void SetupTexts()
+        {
+            creditScoreText.text = Controller.gameData.CreditScore.ToString();
+            availableCreditText.text = $"${Controller.gameData.CreditLimit:F2}";
+            paymentDueText.text = $"Week {Controller.gameData.Week}";
+            balanceAmountText.text = $"${Controller.gameData.Balance:F2}";
+        }
+        
         public override void Dispose()
         {
         }
