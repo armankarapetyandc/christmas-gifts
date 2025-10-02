@@ -508,6 +508,6 @@ MonoBehaviour:
   - <Level>k__BackingField: 4
     <Score>k__BackingField: 1000
     <UnlockInfo>k__BackingField: []
-  - <Level>k__BackingField: 4
-    <Score>k__BackingField: 1000
+  - <Level>k__BackingField: 5
+    <Score>k__BackingField: 2000
     <UnlockInfo>k__BackingField: []
