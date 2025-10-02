@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
@@ -9,6 +10,7 @@ using UIService.Runtime.Presenter.Base;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Validator = SpaceMonkey.Scripts.Utilities.Validation.Validator;
 
 namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
 {
@@ -51,6 +53,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
                 .Subscribe(UpdateUi)
                 .AddTo(this);
             hireButton.OnClickAsObservable().Subscribe(_ => OnHireClicked()).AddTo(this);
+            var account = Controller.GetAccount();
+            hireButton.interactable = account.Employees.Count == 0;
             return UniTask.CompletedTask;
         }
 

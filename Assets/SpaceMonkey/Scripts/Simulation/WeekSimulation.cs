@@ -104,7 +104,9 @@ namespace SpaceMonkey.Scripts.Simulation
                 Id = Guid.NewGuid().ToString(),
                 Week = _account.Week,
                 NeededCap = Mathf.RoundToInt(Customers.Select(customer =>
-                    customer.Orders.Sum(order => order.Product.ProdCapCost!.Value * order.Quantity)).Sum()),
+                    customer.Orders.Sum(order =>
+                        order.Product.ProdCapCost!.Value *
+                        _account.Employees.Sum(e => e.Speed * (1f - 0.05f * e.Experience)) * order.Quantity)).Sum()),
                 Orders = Customers.Select(customer => new OrderInfo
                 {
                     CharacterId = customer.Character.Id,
