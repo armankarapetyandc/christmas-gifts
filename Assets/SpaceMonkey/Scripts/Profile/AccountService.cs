@@ -35,7 +35,8 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(Account.CreateEmpty(freeProdCap));
             Model.Account.OnScoreChanged.Subscribe(score =>
             {
-                Model.Account.Level = 1 + _gameConfig.LevelScoreRanges.TakeWhile(t => score >= t).Count();
+                LevelInfo levelInfo = _gameConfig.LevelInfos.FirstOrDefault(info => info.Score >= score);
+                Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
             }).AddTo(_compositeDisposable);
         }
 

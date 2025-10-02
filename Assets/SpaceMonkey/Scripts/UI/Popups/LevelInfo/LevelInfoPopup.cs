@@ -22,6 +22,13 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfo
         {
             closeButton.OnClickAsObservable().Subscribe(_ => { Controller.Close(); }).AddTo(this);
             okButton.OnClickAsObservable().Subscribe(_ => { Controller.Close(); }).AddTo(this);
+            int currentLevel = Controller.GetLevel();
+            Configs.LevelInfo nextLevelInfo = Controller.GetLeveInfoData(currentLevel+1);
+            slider.value = Controller.GetScore() / (float)nextLevelInfo.Score;
+            fromLevelText.text = $"{currentLevel}";
+            toLevelText.text = $"{currentLevel+1}";
+            levelText.text = $"Level {currentLevel}";
+            scoreText.text = $"Score {Controller.GetScore()}";
             return UniTask.CompletedTask;
         }
     }

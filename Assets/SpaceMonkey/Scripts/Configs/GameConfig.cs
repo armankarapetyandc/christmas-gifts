@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Views.Staff;
@@ -18,7 +19,22 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public BusinessExample[] BusinessExamples { get; private set; }
         [field: SerializeField] public SimulationInfo SimulationInfo { get; private set; }
         [field: SerializeField] public CreditCardInfo CreditCardInfo { get; private set; }
-        [field: SerializeField] public float[] LevelScoreRanges { get; private set; }
+        [field: SerializeField] public LevelInfo[] LevelInfos { get; private set; }
+    }
+
+    [Serializable]
+    public class LevelInfo
+    {
+        [field: SerializeField] public int Level { get; private set; }
+        [field: SerializeField] public int Score { get; private set; }
+        [field: SerializeField] public List<LevelUnlockInfo> UnlockInfo { get; private set; }
+    }
+
+    [Serializable]
+    public class LevelUnlockInfo
+    {
+        [field: SerializeField] public Sprite Icon{ get; private set; }
+        [field: SerializeField] public string Description{ get; private set; }
     }
 
     [Serializable]

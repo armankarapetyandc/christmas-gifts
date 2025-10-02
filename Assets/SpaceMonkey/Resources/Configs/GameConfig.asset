@@ -486,8 +486,16 @@ MonoBehaviour:
     <Apr>k__BackingField: 0.26
     <MinimumPayment>k__BackingField: 35
     <MinimumPatmentCoff>k__BackingField: 0.03
-  <LevelScoreRanges>k__BackingField:
-  - 200
-  - 500
-  - 1000
-  - 2000
+  <LevelInfos>k__BackingField:
+  - <Level>k__BackingField: 1
+    <Score>k__BackingField: 200
+    <UnlockInfo>k__BackingField: []
+  - <Level>k__BackingField: 2
+    <Score>k__BackingField: 500
+    <UnlockInfo>k__BackingField: []
+  - <Level>k__BackingField: 3
+    <Score>k__BackingField: 1000
+    <UnlockInfo>k__BackingField: []
+  - <Level>k__BackingField: 4
+    <Score>k__BackingField: 2000
+    <UnlockInfo>k__BackingField: []
