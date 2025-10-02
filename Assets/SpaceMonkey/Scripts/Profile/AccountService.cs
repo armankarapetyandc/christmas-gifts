@@ -6,6 +6,8 @@ using Newtonsoft.Json;
 using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto;
 using UnityEngine;
 using Logger = DCLogger.Runtime.Logger;
 
@@ -18,13 +20,15 @@ namespace SpaceMonkey.Scripts.Profile
         private static readonly string _path = Path.Combine(Application.persistentDataPath, FILENAME);
 
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
+        private PopupPresenterService _popupPresenterService;
 
         public AccountModel Model { get; private set; }
 
         public bool IsFreshAccount => !File.Exists(_path);
 
-        public AccountService(GameConfig gameConfig)
+        public AccountService(GameConfig gameConfig, PopupPresenterService popupPresenterService)
         {
+            _popupPresenterService = popupPresenterService;
             _gameConfig = gameConfig;
         }
 
@@ -35,8 +39,14 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(Account.CreateEmpty(freeProdCap));
             Model.Account.OnScoreChanged.Subscribe(score =>
             {
-                LevelInfo levelInfo = _gameConfig.LevelInfos.FirstOrDefault(info => info.Score >= score);
+                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= score)
+                    .DefaultIfEmpty(_gameConfig.LevelInfos[0]).Max();
+                int currentLevel = Model.Account.Level;
                 Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
+                if (currentLevel != 1 && currentLevel < Model.Account.Level)
+                {
+                    _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
+                }
             }).AddTo(_compositeDisposable);
         }
 
@@ -50,7 +60,6 @@ namespace SpaceMonkey.Scripts.Profile
             var content = JsonConvert.SerializeObject(Model.Account);
             await File.WriteAllTextAsync(_path, content);
         }
-        
 
 
         public async UniTask LoadAsync()
@@ -82,12 +91,14 @@ namespace SpaceMonkey.Scripts.Profile
 
             if (!File.Exists(CreditSimulator.Path))
             {
-                Logger.LogError($"CreditSimulator file doesn't exist. Path: {CreditSimulator.Path}", SpaceMonkeyLogChannels.Default);
+                Logger.LogError($"CreditSimulator file doesn't exist. Path: {CreditSimulator.Path}",
+                    SpaceMonkeyLogChannels.Default);
             }
             else
             {
                 File.Delete(CreditSimulator.Path);
-                Logger.Log($"CreditSimulator file deleted! Path: {CreditSimulator.Path}", SpaceMonkeyLogChannels.Default);
+                Logger.Log($"CreditSimulator file deleted! Path: {CreditSimulator.Path}",
+                    SpaceMonkeyLogChannels.Default);
             }
         }
 

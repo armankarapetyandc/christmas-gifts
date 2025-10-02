@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 26734454b1748436ba50e499b8e3cbdb
+guid: 69e2280351def4b71a02e3a54c1ee453
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7149605147207543209
-    second: eb_1_0
+      213: 607206419683989458
+    second: small_comerical_faciloty_unlock_icon_256_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: eb_1_0
+      name: small_comerical_faciloty_unlock_icon_256_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1125
-        height: 2436
+        width: 256
+        height: 145
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a92c9b4000883360800000000000000
-      internalID: 7149605147207543209
+      spriteID: 2d7d996850b3d6800800000000000000
+      internalID: 607206419683989458
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      eb_1_0: 7149605147207543209
+      small_comerical_faciloty_unlock_icon_256_0: 607206419683989458
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

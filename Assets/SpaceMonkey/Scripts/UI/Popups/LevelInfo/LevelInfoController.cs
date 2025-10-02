@@ -13,6 +13,8 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfo
         private PopupPresenterService _popupPresenterService;
         private AccountService _accountService;
         private GameConfig _gameConfig;
+        public int Level => _accountService.Model.Account.Level;
+        public int Score => (int)_accountService.Model.Account.Score;
 
         public LevelInfoController(PresenterService presenterService, PopupPresenterService popupPresenterService,
             AccountService accountService, GameConfig gameConfig) : base(presenterService)
@@ -22,15 +24,6 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfo
             _popupPresenterService = popupPresenterService;
         }
 
-        public int GetLevel()
-        {
-            return _accountService.Model.Account.Level;
-        }
-
-        public int GetScore()
-        {
-            return (int)_accountService.Model.Account.Score;
-        }
 
         public Configs.LevelInfo GetLeveInfoData(int level)
         {

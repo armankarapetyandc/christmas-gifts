@@ -488,14 +488,26 @@ MonoBehaviour:
     <MinimumPatmentCoff>k__BackingField: 0.03
   <LevelInfos>k__BackingField:
   - <Level>k__BackingField: 1
-    <Score>k__BackingField: 200
+    <Score>k__BackingField: 0
     <UnlockInfo>k__BackingField: []
   - <Level>k__BackingField: 2
-    <Score>k__BackingField: 500
-    <UnlockInfo>k__BackingField: []
+    <Score>k__BackingField: 200
+    <UnlockInfo>k__BackingField:
+    - <Key>k__BackingField: production
+      <Icon>k__BackingField: {fileID: 21300000, guid: e58ffb2e4615b4441bc0d4d706b9e5ea, type: 3}
+      <Description>k__BackingField: Production Upgrades
   - <Level>k__BackingField: 3
+    <Score>k__BackingField: 500
+    <UnlockInfo>k__BackingField:
+    - <Key>k__BackingField: 2product
+      <Icon>k__BackingField: {fileID: 0}
+      <Description>k__BackingField: 2nd Product Slot Unlock
+    - <Key>k__BackingField: smallSpace
+      <Icon>k__BackingField: {fileID: 607206419683989458, guid: 69e2280351def4b71a02e3a54c1ee453, type: 3}
+      <Description>k__BackingField: Small Space Unlocks
+  - <Level>k__BackingField: 4
     <Score>k__BackingField: 1000
     <UnlockInfo>k__BackingField: []
   - <Level>k__BackingField: 4
-    <Score>k__BackingField: 2000
+    <Score>k__BackingField: 1000
     <UnlockInfo>k__BackingField: []

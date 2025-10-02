@@ -5,6 +5,7 @@ using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.LevelInfo;
+using SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto;
 using SpaceMonkey.Scripts.UI.Views.BusinessExamples;
 using SpaceMonkey.Scripts.UI.Views.Marketing;
 using SpaceMonkey.Scripts.UI.Views.Orders;
