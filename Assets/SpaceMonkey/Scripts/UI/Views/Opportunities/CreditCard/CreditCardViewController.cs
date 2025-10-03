@@ -41,7 +41,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard
         {
             if (_accountService.Model.Account.Week >= 3)
             {
-                _creditSimulator.ApplyForCredit();
+                _creditSimulator.ApplyForCredit().Forget();
                 PresenterService.Show<CreditCardSplashView>().Forget();   
             }
             else

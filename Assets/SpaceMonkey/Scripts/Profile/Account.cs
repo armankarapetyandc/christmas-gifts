@@ -486,7 +486,6 @@ namespace SpaceMonkey.Scripts.Profile
         public float Balance { get; set; }
         public float CreditLimit { get; set; }
         public float Apr { get; set; }
-        public int Week { get; set; }
         public int CreditScore { get; set; }
         public PaymentOption SelectedPayment { get; set; }
         
@@ -499,7 +498,6 @@ namespace SpaceMonkey.Scripts.Profile
             CreditLimit = creditLimit;
             Apr = apr;
             CreditScore = creditScore;
-            Week = 1;
             SelectedPayment = PaymentOption.None;
         }
     }

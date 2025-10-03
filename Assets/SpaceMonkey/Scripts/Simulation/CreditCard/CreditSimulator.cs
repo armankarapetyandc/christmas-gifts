@@ -2,10 +2,12 @@ using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using Zenject;
+using System;
+using UnityEngine;
+using Random = System.Random;
 
 namespace SpaceMonkey.Scripts.Simulation.CreditCard
 {
-    using System;
     public class CreditSimulator
     {
         public const string ProdCapacityDescription = "Interest (APR 26%)";
@@ -14,7 +16,26 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
         private GameConfig _config;
         private AccountService _accountService;
         public CreditDataGameData Data => _accountService.Model.Account.CreditData;
+        private int Week => _accountService.Model.Account.Week;
         public bool HasActiveCard => Data != null;
+        public int IntervalWeeks => 4;
+        public bool CanRecalulate => Data != null && (Week-1) % IntervalWeeks == 0;
+        
+        public int DueWeek
+        {
+            get
+            {
+                if (Data == null)
+                    return -1;
+
+                if (Week % IntervalWeeks == 0)
+                {
+                    return Week / IntervalWeeks * IntervalWeeks;
+                }
+                
+                return (Week / IntervalWeeks + 1) * IntervalWeeks;
+            }
+        }
         
         [Inject]
         private void Inject(GameConfig config, AccountService accountService)
@@ -23,7 +44,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             _config = config;
         }
         
-        public void ApplyForCredit()
+        public async UniTask ApplyForCredit()
         {
             if (Data != null)
                 return;
@@ -31,8 +52,9 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             _accountService.Model.Account.CreateCreditData(0, _config.CreditCardInfo.CreditLimit,
                 _config.CreditCardInfo.Apr, 0);
             
+            
             SelectPayment(PaymentOption.Skip);
-            _accountService.SaveAsync().Forget();
+            await _accountService.SaveAsync();
         }
         
         public void SelectPayment(PaymentOption option)
@@ -40,25 +62,25 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             Data.SelectedPayment = option;
         }
 
-        public bool MakePurchase(float amount, string description)
+        public async UniTask<bool> MakePurchase(float amount, string description)
         {
             if (amount <= 0 || Data.Balance + amount > Data.CreditLimit)
                 return false;
 
             Data.Balance += amount;
-            _accountService.Model.Account.AddCreditTransaction(new Transaction { Description = description, Amount = amount, Week = Data.Week });
-            _accountService.SaveAsync().Forget();
+            _accountService.Model.Account.AddCreditTransaction(new Transaction { Description = description, Amount = amount, Week = Week });
+            await _accountService.SaveAsync();
             return true;
         }
 
-        public bool AddCredit(float amount, string description)
+        public async UniTask<bool> AddCredit(float amount, string description)
         {
             if (amount <= 0)
                 return false;
 
             Data.Balance -= amount;
-            _accountService.Model.Account.AddCreditTransaction(new Transaction { Description = "Credit Added", Amount = -amount, Week = Data.Week });
-            _accountService.SaveAsync().Forget();
+            _accountService.Model.Account.AddCreditTransaction(new Transaction { Description = "Credit Added", Amount = -amount, Week = Week });
+            await _accountService.SaveAsync();
             return true;
         }
 
@@ -79,7 +101,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
                 return 0;
             }
 
-            if ((Data.Week+1) % 4 != 0)
+            if (CanRecalulate == false)
             {
                 return 0;
             }
@@ -104,24 +126,28 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             
             if (Data.Balance > 0 && Data.SelectedPayment == PaymentOption.None)
                 return;
-                
+            
+            if (CanRecalulate == false)
+            {
+                _accountService.SaveAsync().Forget();
+                return;
+            }
+            
+            Debug.Log("Recalculating credit card for week " + Week);
             var weeklyRate = Data.Apr / 52f;
-            var payment = 0f;
 
             if (Data.Balance > 0)
             {
                 var interest = Data.Balance * weeklyRate;
                 Data.Balance += interest;
-
-                payment = GetPaymentAmount(Data.SelectedPayment);
+                var payment = GetPaymentAmount(Data.SelectedPayment);
                 
                 Data.Balance -= payment;
                 _accountService.Model.Account.AddPaymentRecord(new PaymentRecord
-                    { Week = Data.Week, Payment = payment, Type = Data.SelectedPayment });
+                    { Week = Week, Payment = payment, Type = Data.SelectedPayment });
                 UpdateCreditScore(Data.SelectedPayment);
             }
-
-            Data.Week++;
+            
             _accountService.SaveAsync().Forget();
             
             if (Data.Balance <= 0)

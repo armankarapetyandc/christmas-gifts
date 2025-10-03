@@ -44,7 +44,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             return _accountService.Model.Account;
         }
 
-        public async Task<LevelProdCap> UpgradeLevel(LevelProdCap level, Transform transform)
+        public async UniTask<LevelProdCap> UpgradeLevel(LevelProdCap level, Transform transform)
         {
             _accountService.Model.Account.SetLevel(level);
             var score = _scoresConfigs.CalculateScoreConfigByKey($"UpgradeProd{level.Id}");
@@ -60,9 +60,10 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             return level;
         }
 
-        public bool MakeCreditCardPurchase(LevelProdCap level)
+        public async UniTask<bool> MakeCreditCardPurchase(LevelProdCap level)
         {
-            return _creditSimulator.MakePurchase(level.ProdCapCost, CreditSimulator.ProdCapacityDescription);
+            var result = await _creditSimulator.MakePurchase(level.ProdCapCost, CreditSimulator.ProdCapacityDescription);
+            return result;
         }
         
         public void ShowCreditCardView()

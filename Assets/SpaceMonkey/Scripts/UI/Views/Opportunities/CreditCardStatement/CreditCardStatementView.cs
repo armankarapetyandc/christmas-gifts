@@ -64,8 +64,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
             InitTransactions();
             SetupTexts();
             
-            minimumPaymentText.text = $"${Controller.minimumPayment}";
-            balanceText.text = $"${Controller.creditDataGameData.Balance}";
+            minimumPaymentText.text = $"${Controller.minimumPayment:F2}";
+            balanceText.text = $"${Controller.creditDataGameData.Balance:F2}";
         }
 
         private void SetToggleState()
@@ -88,7 +88,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
         {
             creditScoreText.text = Controller.creditDataGameData.CreditScore.ToString();
             availableCreditText.text = $"${Controller.creditDataGameData.CreditLimit:F2}";
-            paymentDueText.text = $"Week {Controller.creditDataGameData.Week}";
+            paymentDueText.text = $"Week {Controller.DueWeek}";
             balanceAmountText.text = $"${Controller.creditDataGameData.Balance:F2}";
         }
         

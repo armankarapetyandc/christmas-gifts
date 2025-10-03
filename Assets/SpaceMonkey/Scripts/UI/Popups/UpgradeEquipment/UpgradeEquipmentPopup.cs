@@ -42,10 +42,10 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
                 dimmerBackground.gameObject.SetActive(false);
             }).AddTo(this);
             useCashButton.OnClickAsObservable()
-                .Subscribe(_ => UpgradeLevel())
+                .Subscribe(_ => UpgradeLevel().Forget())
                 .AddTo(this);
             useCreditButton.OnClickAsObservable()
-                .Subscribe(_ => UseCreditCard())
+                .Subscribe(_ => UseCreditCard().Forget())
                 .AddTo(this);
             useCashButton.interactable = _data.UpgradeLevelProdCap.LevelNumber == _account.LevelProdCaps.Count;
             useCreditButton.interactable = _data.UpgradeLevelProdCap.LevelNumber == _account.LevelProdCaps.Count;
@@ -54,30 +54,30 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             return UniTask.CompletedTask;
         }
 
-        private void UseCreditCard()
+        private async UniTask UseCreditCard()
         {
             if (!Controller.CreditSimulator.HasActiveCard)
             {
                 Controller.ShowCreditCardView();
                 return;
             }
-            var result = Controller.MakeCreditCardPurchase(_data.UpgradeLevelProdCap);
+            var result = await Controller.MakeCreditCardPurchase(_data.UpgradeLevelProdCap);
             if (!result)
             {
                 Debug.LogError("Credit card purchase failed");
                 return;
             }
-            var upgradedLevel = Controller.UpgradeLevel(_data.UpgradeLevelProdCap,transform);
-            _data.Result?.TrySetResult(upgradedLevel.Result);
+            var upgradedLevel = await Controller.UpgradeLevel(_data.UpgradeLevelProdCap,transform);
+            _data.Result?.TrySetResult(upgradedLevel);
         }
 
-        private void UpgradeLevel()
+        private async UniTask UpgradeLevel()
         {
             if (_account.CanAfford(_data.UpgradeLevelProdCap.ProdCapCost))
             {
                 _account.Buy(_data.UpgradeLevelProdCap.ProdCapCost);
-                var upgradedLevel = Controller.UpgradeLevel(_data.UpgradeLevelProdCap,transform);
-                _data.Result?.TrySetResult(upgradedLevel.Result);
+                var upgradedLevel = await Controller.UpgradeLevel(_data.UpgradeLevelProdCap,transform);
+                _data.Result?.TrySetResult(upgradedLevel);
             }
             else
             {
