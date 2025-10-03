@@ -1,5 +1,6 @@
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
     {
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private Sprite lockedIcon;
-        [SerializeField] private Image iconImage;
+        [SerializeField] private IconComponent iconComponent;
         [SerializeField] private Button button;
         private SpriteVisualAsset _visualAsset;
         public Observable<string> OnClickAsObservable() => button.OnClickAsObservable().Select(_ => nameText.text);
@@ -23,12 +24,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         public void SetIcon(SpriteVisualAsset visualAsset)
         {
             _visualAsset = visualAsset;
-            iconImage.sprite = visualAsset?.Sprite;
+            iconComponent.SetIcon(_visualAsset);
         }
 
         public void SetLocked(bool state)
         {
-            iconImage.sprite = state ? lockedIcon : _visualAsset?.Sprite;
+            // iconImage.sprite = state ? lockedIcon : _visualAsset?.Sprite;
         }
     }
 }

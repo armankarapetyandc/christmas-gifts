@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using R3;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.Utilities;
 using TMPro;
 using UIService.Runtime.Core;
@@ -37,7 +38,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         {
             backButton.OnClickAsObservable().Subscribe(_ => OnBackButtonClicked()).AddTo(this);
             infoButton.OnClickAsObservable().Subscribe(_ => OnInfoButtonClicked()).AddTo(this);
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
+            nextButton.OnClickAsObservable().Subscribe(async _ =>
+            {
+                var value=Controller.GetScoreFor("Category");
+                await XPParticleEffector.SpawnXpParticles(value, new Vector2(Screen.width/2f, Screen.height/2f), transform);
+                Controller.OnNext();
+            }).AddTo(this);
             SetupCategories();
             return UniTask.CompletedTask;
         }

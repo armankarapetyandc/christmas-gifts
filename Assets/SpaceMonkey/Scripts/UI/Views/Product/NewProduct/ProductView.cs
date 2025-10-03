@@ -42,7 +42,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         {
             var presenterData = data as Data;
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
-            saveButton.OnClickAsObservable().Subscribe(_ => Controller.SaveProduct().Forget()).AddTo(this);
+            saveButton.OnClickAsObservable().Subscribe(_ => Controller.SaveProduct(transform).Forget()).AddTo(this);
             deleteButton.OnClickAsObservable().Subscribe(_ => Controller.DeleteProduct().Forget()).AddTo(this);
             iconComponent.OnClick.Subscribe(_ => Controller.SelectProductIcon()).AddTo(this);
             generateProductNameButton.OnClickAsObservable().Subscribe(_ => GenerateProductName()).AddTo(this);

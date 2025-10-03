@@ -31,6 +31,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
             iconComponent.OnClick.Subscribe(_ => Controller.BuildLogo()).AddTo(this);
             hashtagVerticalList.SelectMore.Subscribe(_ => Controller.SelectMoreTags()).AddTo(this);
 
+            iconComponent.Fulfilled.Subscribe(state =>
+            {
+                if (!state || PlayerPrefs.GetInt("icon_fulfilled_score_effect", 0) == 1)
+                {
+                    return;
+                }
+
+                var score = Controller.GetScoreFor("savelogo");
+                XPParticleEffector.SpawnXpParticles(score, iconComponent.transform.position, transform).Forget();
+                PlayerPrefs.SetInt("icon_fulfilled_score_effect", 1);
+            }).AddTo(this);
+
             SetupDefaults();
 
             Validator

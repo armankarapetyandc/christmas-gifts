@@ -54,7 +54,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
                 .AddTo(this);
             hireButton.OnClickAsObservable().Subscribe(_ => OnHireClicked()).AddTo(this);
             var account = Controller.GetAccount();
-            hireButton.interactable = account.Employees.Count == 0;
+            hireButton.interactable = account.Employees.Count < 2;
             return UniTask.CompletedTask;
         }
 
@@ -62,7 +62,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
         {
             hireButton.interactable = false;
             hiredImage.gameObject.SetActive(true);
-            Controller.HireStaff(_data.Staff);
+            Controller.HireStaff(_data.Staff, transform);
         }
 
         private void UpdateUi(Configs.Staff staff)

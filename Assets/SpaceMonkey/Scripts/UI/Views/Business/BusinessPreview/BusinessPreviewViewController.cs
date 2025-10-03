@@ -18,7 +18,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
         private readonly AccountService _accountService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
         private readonly GameConfig _gameConfig;
-        private ScoresConfigs _scoresConfigs;
+        private readonly ScoresConfigs _scoresConfigs;
 
         public BusinessPreviewViewController(PresenterService presenterService, AccountService accountService,
             VisualAssetDatabase visualAssetDatabase, GameConfig gameConfig,ScoresConfigs scoresConfigs) : base(presenterService)
@@ -69,6 +69,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
             //_accountService.Model
             _accountService.SaveAsync().Forget();
             PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
+        }
+        
+        internal int GetScoreFor(string key)
+        {
+            return _scoresConfigs.PeekScoreConfigByKey(key);
         }
     }
 }

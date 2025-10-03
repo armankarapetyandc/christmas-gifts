@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.DeleteProduct;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder;
@@ -9,6 +10,7 @@ using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
 {
@@ -56,15 +58,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             if (result)
             {
                 _accountService.Model.Account.DeleteProduct(CurrentProduct.Id);
-                _accountService.Model.Account.Score +=
-                    _scoresConfigs.CalculateScoreConfigByKey("sellProduct");
                 await _accountService.SaveAsync();
             }
 
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
 
-        internal async UniTaskVoid SaveProduct()
+        internal async UniTaskVoid SaveProduct(Transform transform)
         {
             if (!CurrentProduct.IsValid)
             {
@@ -72,11 +72,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             }
 
             _accountService.Model.Account.SetProduct(CurrentProduct);
-            _accountService.Model.Account.Score +=
-                _scoresConfigs.CalculateScoreConfigByKey($"addProduct{_accountService.Model.Account.Products.Count}");
+            var score = _scoresConfigs.CalculateScoreConfigByKey(
+                $"addProduct{_accountService.Model.Account.Products.Count}");
+            _accountService.Model.Account.Score += score;
 
 
             await _accountService.SaveAsync();
+            if (score > 0)
+            {
+                await XPParticleEffector.SpawnXpParticles(score, new Vector2(Screen.width, Screen.height) * 0.5f,
+                    transform);
+            }
+
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
 
@@ -91,6 +98,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             {
                 Product = CurrentProduct
             }).Forget();
+        }
+        internal int GetScoreFor(string key)
+        {
+            return _scoresConfigs.PeekScoreConfigByKey(key);
         }
     }
 }

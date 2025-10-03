@@ -7,6 +7,7 @@ using SpaceMonkey.Scripts.UI.Components;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace SpaceMonkey.Scripts.UI.Views.Map
 {
@@ -16,6 +17,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         public PlaceType Type;
         public MapPlaceHolderItem Holder;
     }
+
     public class MapView : BasePresenterWithController<MapController>
     {
         [SerializeField] private CanvasPanZoom panZoom;
@@ -24,13 +26,33 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         [SerializeField] private MapPlaceItem placeItem;
         [SerializeField] private RectTransform placesContainer;
         [SerializeField] private List<MapPlaceHolder> placeHolders;
+
+        
         public override async UniTask Initialize(IPresenterData data = null)
         {
             await UniTask.Yield();
             panZoom.SetZoom(defaultMapZoom);
             panZoom.SetPosition(defaultMapPosition);
 
+            Observable.EveryUpdate().Subscribe(_ =>
+            {
+                if (EventSystem.current == null)
+                {
+                    return;
+                }
+
+                if (EventSystem.current.currentSelectedGameObject == null)
+                {
+                    // Debug.LogError(EventSystem.current.currentSelectedGameObject);
+                    HidePlaceHolder();
+                }
+            }).AddTo(this);
+
             PopulatePlaces();
+        }
+
+        private void Update()
+        {
         }
 
         private void PopulatePlaces()
@@ -43,7 +65,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 item.SetPosition(place.Position);
                 item.SetIcon(place.IconVisualAsset);
                 item.SetLocked(place.Locked);
-                item.OnClickAsObservable().Subscribe(_=> ShowPlaceHolder(place)).AddTo(this);
+                item.OnClickAsObservable().Subscribe(_ => ShowPlaceHolder(place)).AddTo(this);
             }
         }
 
@@ -56,6 +78,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 item.SetPlaceName(place.Name);
                 item.SetIcon(place.IconVisualAsset);
                 item.SetLocked(place.Locked);
+            }
+        }
+
+        private void HidePlaceHolder()
+        {
+            foreach (var holder in placeHolders)
+            {
+                var item = holder.Holder;
+                item.gameObject.SetActive(false);
             }
         }
 
