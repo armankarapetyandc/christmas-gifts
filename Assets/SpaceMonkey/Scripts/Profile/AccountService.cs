@@ -88,18 +88,6 @@ namespace SpaceMonkey.Scripts.Profile
                 File.Delete(_path);
                 Logger.Log($"Account file deleted! Path: {_path}", SpaceMonkeyLogChannels.Default);
             }
-
-            if (!File.Exists(CreditSimulator.Path))
-            {
-                Logger.LogError($"CreditSimulator file doesn't exist. Path: {CreditSimulator.Path}",
-                    SpaceMonkeyLogChannels.Default);
-            }
-            else
-            {
-                File.Delete(CreditSimulator.Path);
-                Logger.Log($"CreditSimulator file deleted! Path: {CreditSimulator.Path}",
-                    SpaceMonkeyLogChannels.Default);
-            }
         }
 
         public void Dispose()

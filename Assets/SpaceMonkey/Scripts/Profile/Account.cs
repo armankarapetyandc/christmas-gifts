@@ -6,6 +6,7 @@ using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile.Simulation;
+using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Views.Staff;
 using SpaceMonkey.Scripts.Utilities;
 
@@ -39,6 +40,8 @@ namespace SpaceMonkey.Scripts.Profile
         public List<MarketingFeature> MarketingFeatures { get; set; }
 
         public List<Employee> Employees { get; set; }
+        
+        public CreditDataGameData CreditData { get; set; }
 
         public void SetCategory(string category)
         {
@@ -94,7 +97,8 @@ namespace SpaceMonkey.Scripts.Profile
                     }
                 },
                 MarketingFeatures = new List<MarketingFeature>(),
-                Employees = new List<Employee>()
+                Employees = new List<Employee>(),
+                CreditData = null
             };
             return account;
         }
@@ -212,11 +216,32 @@ namespace SpaceMonkey.Scripts.Profile
             LevelProdCaps = new List<LevelProdCap>();
             MarketingFeatures = new List<MarketingFeature>();
             Employees = new List<Employee>();
+            CreditData = null;
         }
 
         public void DeleteProduct(string productId)
         {
             Products.RemoveAll(p => p.Id.Equals(productId));
+        }
+        
+        public void ResetCreditData()
+        {
+            CreditData = null;
+        }
+        
+        public void CreateCreditData(float balance, float creditLimit, float apr, int creditScore)
+        {
+            CreditData = new CreditDataGameData(balance, creditLimit, apr, creditScore);
+        }
+        
+        public void AddCreditTransaction(Transaction transaction)
+        {
+            CreditData?.Transactions.Add(transaction);
+        }
+        
+        public void AddPaymentRecord(PaymentRecord record)
+        {
+            CreditData?.PaymentHistory.Add(record);
         }
 
         public int GetProductionCapacity()
@@ -431,6 +456,51 @@ namespace SpaceMonkey.Scripts.Profile
         public override int GetHashCode()
         {
             return Tag != null ? Tag.GetHashCode() : 0;
+        }
+    }
+    
+    public enum PaymentOption
+    {
+        None,
+        Skip,
+        Minimum,
+        Full
+    }
+
+    public class Transaction
+    {
+        public string Description { get; set; }
+        public float Amount { get; set; }
+        public int Week { get; set; }
+    }
+
+    public class PaymentRecord
+    {
+        public int Week { get; set; }
+        public float Payment { get; set; }
+        public PaymentOption Type { get; set; }
+    }
+
+    public class CreditDataGameData
+    {
+        public float Balance { get; set; }
+        public float CreditLimit { get; set; }
+        public float Apr { get; set; }
+        public int Week { get; set; }
+        public int CreditScore { get; set; }
+        public PaymentOption SelectedPayment { get; set; }
+        
+        public List<Transaction> Transactions { get; private set; } = new();
+        public List<PaymentRecord> PaymentHistory { get; private set; } = new();
+
+        public CreditDataGameData(float balance, float creditLimit, float apr, int creditScore)
+        {
+            Balance = balance;
+            CreditLimit = creditLimit;
+            Apr = apr;
+            CreditScore = creditScore;
+            Week = 1;
+            SelectedPayment = PaymentOption.None;
         }
     }
 }

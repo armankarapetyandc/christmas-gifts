@@ -1,6 +1,6 @@
 using System;
 using R3;
-using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.Profile;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -65,14 +65,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
             SetupTexts();
             
             minimumPaymentText.text = $"${Controller.minimumPayment}";
-            balanceText.text = $"${Controller.gameData.Balance}";
+            balanceText.text = $"${Controller.creditDataGameData.Balance}";
         }
 
         private void SetToggleState()
         {
-            skipPaymentToggle.isOn = Controller.gameData.SelectedPayment == PaymentOption.Skip;
-            payMinimumToggle.isOn = Controller.gameData.SelectedPayment == PaymentOption.Minimum;
-            payFullToggle.isOn = Controller.gameData.SelectedPayment == PaymentOption.Full;
+            skipPaymentToggle.isOn = Controller.creditDataGameData.SelectedPayment == PaymentOption.Skip;
+            payMinimumToggle.isOn = Controller.creditDataGameData.SelectedPayment == PaymentOption.Minimum;
+            payFullToggle.isOn = Controller.creditDataGameData.SelectedPayment == PaymentOption.Full;
         }
 
         private void InitTransactions()
@@ -86,10 +86,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
         
         private void SetupTexts()
         {
-            creditScoreText.text = Controller.gameData.CreditScore.ToString();
-            availableCreditText.text = $"${Controller.gameData.CreditLimit:F2}";
-            paymentDueText.text = $"Week {Controller.gameData.Week}";
-            balanceAmountText.text = $"${Controller.gameData.Balance:F2}";
+            creditScoreText.text = Controller.creditDataGameData.CreditScore.ToString();
+            availableCreditText.text = $"${Controller.creditDataGameData.CreditLimit:F2}";
+            paymentDueText.text = $"Week {Controller.creditDataGameData.Week}";
+            balanceAmountText.text = $"${Controller.creditDataGameData.Balance:F2}";
         }
         
         public override void Dispose()

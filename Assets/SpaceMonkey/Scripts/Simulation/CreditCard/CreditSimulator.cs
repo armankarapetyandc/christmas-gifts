@@ -1,93 +1,38 @@
-using System.IO;
 using Cysharp.Threading.Tasks;
-using Newtonsoft.Json;
 using SpaceMonkey.Scripts.Configs;
-using UnityEngine;
+using SpaceMonkey.Scripts.Profile;
 using Zenject;
 
 namespace SpaceMonkey.Scripts.Simulation.CreditCard
 {
     using System;
-    using System.Collections.Generic;
-
-    public enum PaymentOption
-    {
-        None,
-        Skip,
-        Minimum,
-        Full
-    }
-
-    public class Transaction
-    {
-        public string Description { get; set; }
-        public float Amount { get; set; }
-        public int Week { get; set; }
-    }
-
-    public class PaymentRecord
-    {
-        public int Week { get; set; }
-        public float Payment { get; set; }
-        public PaymentOption Type { get; set; }
-    }
-
-    public class GameData
-    {
-        public float Balance { get; set; }
-        public float CreditLimit { get; set; }
-        public float Apr { get; set; }
-        public int Week { get; set; }
-        public int CreditScore { get; set; }
-        public PaymentOption SelectedPayment { get; set; }
-
-        public GameData(float balance, float creditLimit, float apr, int creditScore)
-        {
-            Balance = balance;
-            CreditLimit = creditLimit;
-            Apr = apr;
-            CreditScore = creditScore;
-            Week = 1;
-            SelectedPayment = PaymentOption.None;
-        }
-    }
-
-    public class CreditSimulator : IInitializable
+    public class CreditSimulator
     {
         public const string ProdCapacityDescription = "Interest (APR 26%)";
-        private const string Filename = "CreditSimulator.spacemonkey";
-        
-        public static readonly string Path = System.IO.Path.Combine(Application.persistentDataPath, Filename);
         private static readonly Random Rng = new();
 
         private GameConfig _config;
-        public GameData Data { get; private set; }
-        public List<Transaction> Transactions { get; private set; } = new();
-        public List<PaymentRecord> PaymentHistory { get; private set; } = new();
+        private AccountService _accountService;
+        public CreditDataGameData Data => _accountService.Model.Account.CreditData;
         public bool HasActiveCard => Data != null;
         
         [Inject]
-        private void Inject(GameConfig config)
+        private void Inject(GameConfig config, AccountService accountService)
         {
+            _accountService = accountService;
             _config = config;
-        }
-
-        public void Initialize()
-        {
-            LoadAsync().Forget();
         }
         
         public void ApplyForCredit()
         {
             if (Data != null)
                 return;
+
+            _accountService.Model.Account.CreateCreditData(0, _config.CreditCardInfo.CreditLimit,
+                _config.CreditCardInfo.Apr, 0);
             
-            Data = new GameData(0, _config.CreditCardInfo.CreditLimit, _config.CreditCardInfo.Apr, 0);
             SelectPayment(PaymentOption.Skip);
-            
-            Transactions.Clear();
-            PaymentHistory.Clear();
-            SaveAsync().Forget();
+            _accountService.SaveAsync().Forget();
         }
         
         public void SelectPayment(PaymentOption option)
@@ -101,8 +46,8 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
                 return false;
 
             Data.Balance += amount;
-            Transactions.Add(new Transaction { Description = description, Amount = amount, Week = Data.Week });
-            SaveAsync().Forget();
+            _accountService.Model.Account.AddCreditTransaction(new Transaction { Description = description, Amount = amount, Week = Data.Week });
+            _accountService.SaveAsync().Forget();
             return true;
         }
 
@@ -112,8 +57,8 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
                 return false;
 
             Data.Balance -= amount;
-            Transactions.Add(new Transaction { Description = "Credit Added", Amount = -amount, Week = Data.Week });
-            SaveAsync().Forget();
+            _accountService.Model.Account.AddCreditTransaction(new Transaction { Description = "Credit Added", Amount = -amount, Week = Data.Week });
+            _accountService.SaveAsync().Forget();
             return true;
         }
 
@@ -124,6 +69,32 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
 
             return Math.Min(Data.Balance, Math.Max(_config.CreditCardInfo.MinimumPayment, Data.Balance * 
                 _config.CreditCardInfo.MinimumPatmentCoff));
+        }
+        
+        public float GetPLPaymentAmount()
+        {
+            if (HasActiveCard == false || Data.SelectedPayment == PaymentOption.None
+                || Data.Balance <= 0)
+            {
+                return 0;
+            }
+
+            if ((Data.Week+1) % 4 != 0)
+            {
+                return 0;
+            }
+            return GetPaymentAmount(Data.SelectedPayment);
+        }
+
+        private float GetPaymentAmount(PaymentOption option)
+        {
+            return option switch
+            {
+                PaymentOption.Skip => 0,
+                PaymentOption.Minimum => GetMinimumPayment(),
+                PaymentOption.Full => Data.Balance,
+                _ => 0
+            };
         }
         
         public void NextWeek()
@@ -141,32 +112,24 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             {
                 var interest = Data.Balance * weeklyRate;
                 Data.Balance += interest;
+
+                payment = GetPaymentAmount(Data.SelectedPayment);
                 
-                var minPayment = GetMinimumPayment();
-
-                payment = Data.SelectedPayment switch
-                {
-                    PaymentOption.Skip => 0,
-                    PaymentOption.Minimum => minPayment,
-                    PaymentOption.Full => Data.Balance,
-                    _ => payment
-                };
-
                 Data.Balance -= payment;
-                PaymentHistory.Add(new PaymentRecord
+                _accountService.Model.Account.AddPaymentRecord(new PaymentRecord
                     { Week = Data.Week, Payment = payment, Type = Data.SelectedPayment });
                 UpdateCreditScore(Data.SelectedPayment);
             }
 
             Data.Week++;
-            SaveAsync().Forget();
-
+            _accountService.SaveAsync().Forget();
+            
             if (Data.Balance <= 0)
             {
                 ResetAsync();
             }
         }
-
+        
         private void UpdateCreditScore(PaymentOption paymentType)
         {
             var scoreChange = 0f;
@@ -190,7 +153,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             scoreChange += RandomBetween(-5f, 5f);
 
             Data.CreditScore = Math.Max(300, Math.Min(850, (int)Math.Round(Data.CreditScore + scoreChange)));
-            SaveAsync().Forget();
+            _accountService.SaveAsync().Forget();
         }
 
         private int RandomBetween(int min, int max)
@@ -203,37 +166,10 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             return (float)(min + Rng.NextDouble() * (max - min));
         }
 
-        private async UniTask SaveAsync()
-        {
-            if (Data == null)
-            {
-                throw new Exception("Credit data is null");
-            }
-
-            var content = JsonConvert.SerializeObject(Data);
-            await File.WriteAllTextAsync(Path, content);
-        }
-
         private void ResetAsync()
         {
-            Data = null;
-            Transactions.Clear();
-            PaymentHistory.Clear();
-            if (File.Exists(Path))
-            {
-                File.Delete(Path);
-            }
-        }
-
-        private async UniTask LoadAsync()
-        {
-            if (!File.Exists(Path))
-            {
-                return;
-            }
-
-            var content = await File.ReadAllTextAsync(Path);
-            Data = JsonConvert.DeserializeObject<GameData>(content);
+            _accountService.Model.Account.ResetCreditData();
+            _accountService.SaveAsync().Forget();
         }
     }
 }

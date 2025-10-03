@@ -1,4 +1,4 @@
-using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.Profile;
 using TMPro;
 using UnityEngine;
 
