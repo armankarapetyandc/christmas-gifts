@@ -82,5 +82,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         {
             _weekSimulationContext.Finish();
         }
+        
+        internal int GetScoreFor(string key)
+        {
+            return _scoresConfigs.PeekScoreConfigByKey(key);
+        }
     }
 }

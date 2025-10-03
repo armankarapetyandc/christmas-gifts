@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
@@ -11,6 +12,7 @@ using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
 {
@@ -42,15 +44,22 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             return _accountService.Model.Account;
         }
 
-        public async Task<LevelProdCap> UpgradeLevel(LevelProdCap level)
+        public async Task<LevelProdCap> UpgradeLevel(LevelProdCap level, Transform transform)
         {
             _accountService.Model.Account.SetLevel(level);
-            GetAccount().Score += _scoresConfigs.CalculateScoreConfigByKey($"UpgradeProd{level.Id}");
-            _accountService.SaveAsync();
+            var score = _scoresConfigs.CalculateScoreConfigByKey($"UpgradeProd{level.Id}");
+            GetAccount().Score += score;
+            if (score > 0)
+            {
+                XPParticleEffector.SpawnXpParticles(score, new Vector2(Screen.width, Screen.height) * 0.5f, transform)
+                    .Forget();
+            }
+
+            await _accountService.SaveAsync();
             OnClose();
             return level;
         }
-        
+
         public bool MakeCreditCardPurchase(LevelProdCap level)
         {
             return _creditSimulator.MakePurchase(level.ProdCapCost, CreditSimulator.ProdCapacityDescription);

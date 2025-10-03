@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -18,12 +19,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private TextMeshProUGUI businessName;
 
-        public override UniTask Initialize(IPresenterData data = null)
+        public override async UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             SetupDefaults();
-            return UniTask.CompletedTask;
+
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: destroyCancellationToken);
+            // XPParticleEffector.SpawnXpParticles("+5",)
+            
         }
 
         private void SetupDefaults()

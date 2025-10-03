@@ -12,12 +12,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
     public class BusinessHashtagsSelectionViewController : BasePresenterController
     {
         private readonly AccountService _accountService;
+        private readonly ScoresConfigs _scoresConfigs;
         private readonly GameConfig _gameConfig;
 
-        public BusinessHashtagsSelectionViewController(PresenterService presenterService, AccountService accountService,
+        public BusinessHashtagsSelectionViewController(PresenterService presenterService, AccountService accountService,ScoresConfigs scoresConfigs,
             GameConfig gameConfig) : base(presenterService)
         {
             _accountService = accountService;
+            _scoresConfigs = scoresConfigs;
             _gameConfig = gameConfig;
         }
 
@@ -48,6 +50,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
         internal void OnBack()
         {
             PresenterService.HidePreviousAndShow<BusinessPreviewView>().Forget();
+        }
+        internal int GetScoreFor(string key)
+        {
+            return _scoresConfigs.PeekScoreConfigByKey(key);
         }
     }
 }

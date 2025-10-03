@@ -15,13 +15,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
     {
         private readonly AccountService _accountService;
         private readonly GameConfig _gameConfig;
-        private ScoresConfigs _scoresConfigs;
+        private readonly ScoresConfigs _scoresConfigs;
 
-        public CategorySelectionController(PresenterService presenterService, AccountService accountService,
-            GameConfig gameConfig, ScoresConfigs scoresConfigs) : base(presenterService)
+        public CategorySelectionController(PresenterService presenterService, AccountService accountService,ScoresConfigs scoresConfigs,
+            GameConfig gameConfig) : base(presenterService)
         {
             _scoresConfigs = scoresConfigs;
             _accountService = accountService;
+            _scoresConfigs = scoresConfigs;
             _gameConfig = gameConfig;
         }
 
@@ -44,6 +45,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         {
             _accountService.Model.Account.Score += _scoresConfigs.CalculateScoreConfigByKey("category");
             _accountService.Model.Account.SetCategory(category);
+        }
+
+        internal int GetScoreFor(string key)
+        {
+            return _scoresConfigs.PeekScoreConfigByKey(key);
         }
     }
 }

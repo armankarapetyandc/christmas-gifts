@@ -35,5 +35,12 @@ namespace SpaceMonkey.Scripts.Configs
 
             return 0;
         }
+
+        public int PeekScoreConfigByKey(string key)
+        {
+            ScoreConfig scoreConfig = scoresConfigs.FirstOrDefault(config =>
+                string.Equals(config.Key, key, StringComparison.OrdinalIgnoreCase));
+            return scoreConfig!=null ? scoreConfig.Score : 0;
+        }
     }
 }

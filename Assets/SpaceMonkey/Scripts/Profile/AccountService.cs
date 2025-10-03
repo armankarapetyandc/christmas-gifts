@@ -79,6 +79,8 @@ namespace SpaceMonkey.Scripts.Profile
 #endif
         public static void DeleteAccount()
         {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
             if (!File.Exists(_path))
             {
                 Logger.LogError($"Account file doesn't exist. Path: {_path}", SpaceMonkeyLogChannels.Default);

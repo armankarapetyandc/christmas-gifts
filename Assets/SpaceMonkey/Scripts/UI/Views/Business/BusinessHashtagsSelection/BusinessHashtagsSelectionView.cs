@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using ObservableCollections;
 using R3;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Components.HashTag;
 using SpaceMonkey.Scripts.Utilities;
 using SpaceMonkey.Scripts.Utilities.Validation;
@@ -73,6 +74,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
             if (tuple.state)
             {
                 _selectedTags.Add(tuple.label);
+                var score = Controller.GetScoreFor("Hashtag");
+                XPParticleEffector.SpawnXpParticles(score, Input.mousePosition, transform).Forget();
                 return;
             }
 

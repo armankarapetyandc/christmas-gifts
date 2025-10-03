@@ -67,7 +67,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
                 Debug.LogError("Credit card purchase failed");
                 return;
             }
-            var upgradedLevel = Controller.UpgradeLevel(_data.UpgradeLevelProdCap);
+            var upgradedLevel = Controller.UpgradeLevel(_data.UpgradeLevelProdCap,transform);
             _data.Result?.TrySetResult(upgradedLevel.Result);
         }
 
@@ -76,7 +76,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             if (_account.CanAfford(_data.UpgradeLevelProdCap.ProdCapCost))
             {
                 _account.Buy(_data.UpgradeLevelProdCap.ProdCapCost);
-                var upgradedLevel = Controller.UpgradeLevel(_data.UpgradeLevelProdCap);
+                var upgradedLevel = Controller.UpgradeLevel(_data.UpgradeLevelProdCap,transform);
                 _data.Result?.TrySetResult(upgradedLevel.Result);
             }
             else

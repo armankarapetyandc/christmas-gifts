@@ -1,8 +1,10 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI.Components;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
 {
@@ -29,7 +31,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
         {
             return _accountService.Model.Account;
         }
-        public void HireStaff(Configs.Staff hireStaff)
+        public void HireStaff(Configs.Staff hireStaff,Transform transform)
         {
             Employee newEmployee = new Employee()
             {
@@ -42,7 +44,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
                 Id = hireStaff.Id
             };
             _accountService.Model.Account.SetEmployee(newEmployee);
-            _accountService.Model.Account.Score+= _scoresConfigs.CalculateScoreConfigByKey("HireStaff");
+            var score= _scoresConfigs.CalculateScoreConfigByKey("HireStaff");
+            if (score > 0)
+            {
+                XPParticleEffector.SpawnXpParticles(score, new Vector2(Screen.width, Screen.height) * 0.5f, transform)
+                    .Forget();
+            }
+            _accountService.Model.Account.Score += score;
             _accountService.SaveAsync();
         }
     }
