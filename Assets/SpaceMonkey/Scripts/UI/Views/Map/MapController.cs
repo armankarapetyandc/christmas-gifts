@@ -1,21 +1,34 @@
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Navigation.Bottom;
+using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Popups.CreditCard;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.Map
 {
     public class MapController : BasePresenterController
     {
+        private readonly PopupPresenterService _popupPresenterService;
+        private readonly NavigationPresenterService _navigationPresenterService;
         private readonly AccountService _accountService;
+        private readonly CreditSimulator _creditSimulator;
         private readonly MapConfig _mapConfig;
         private readonly VisualAssetDatabase _visualAssetDatabase;
 
-        public MapController(PresenterService presenterService,AccountService accountService,MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase) : base(presenterService)
+        public MapController(PresenterService presenterService,PopupPresenterService popupPresenterService,NavigationPresenterService navigationPresenterService,AccountService accountService,CreditSimulator creditSimulator,MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase) : base(presenterService)
         {
+            _popupPresenterService = popupPresenterService;
+            _navigationPresenterService = navigationPresenterService;
             _accountService = accountService;
+            _creditSimulator = creditSimulator;
             _mapConfig = mapConfig;
             _visualAssetDatabase = visualAssetDatabase;
         }
@@ -35,8 +48,28 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             var account = _accountService.Model.Account;
             var place = _mapConfig.DefaultCompanyPlace;
             place.Name = $"{account.Company.CompanyName}\nLevel {account.Level}";
+            place.SingleLineName=$"{account.Company.CompanyName} Level {account.Level}";
             place.IconVisualAsset = ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.IconVisualAssetId);
             return place;
+        }
+
+        internal void ShowCreditCardInfoPopup()
+        {
+            _popupPresenterService.Show<CreditCardPopup>().Forget();
+        }
+
+        internal bool HasCreditCard()
+        {
+            return _creditSimulator.HasActiveCard;
+        }
+
+        internal void NavigateToMyCompany()
+        {
+            _navigationPresenterService.HideAll();
+            _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+            {
+                Type = MainNavigationType.BusinessHub
+            }).Forget();
         }
     }
 }

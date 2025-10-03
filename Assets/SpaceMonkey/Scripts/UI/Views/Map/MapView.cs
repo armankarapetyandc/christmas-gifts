@@ -27,7 +27,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         [SerializeField] private RectTransform placesContainer;
         [SerializeField] private List<MapPlaceHolder> placeHolders;
 
-        
+
         public override async UniTask Initialize(IPresenterData data = null)
         {
             await UniTask.Yield();
@@ -61,11 +61,23 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             foreach (var place in places)
             {
                 var item = Instantiate(placeItem, placesContainer);
+                item.SetPlace(place);
                 item.SetPlaceName(place.Name);
                 item.SetPosition(place.Position);
                 item.SetIcon(place.IconVisualAsset);
                 item.SetLocked(place.Locked);
-                item.OnClickAsObservable().Subscribe(_ => ShowPlaceHolder(place)).AddTo(this);
+                item.OnClickAsObservable().Subscribe(_ =>
+                {
+                    if (place.Name.Equals("Credit Card") && !Controller.HasCreditCard())
+                    {
+                        Controller.ShowCreditCardInfoPopup();
+                    }
+                    else
+                    {
+                        ShowPlaceHolder(place);
+                    }
+                    
+                }).AddTo(this);
             }
         }
 
@@ -75,9 +87,23 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             {
                 var item = holder.Holder;
                 item.gameObject.SetActive(holder.Type == place.Type);
-                item.SetPlaceName(place.Name);
+                item.SetPlaceName(place.SingleLineName);
                 item.SetIcon(place.IconVisualAsset);
                 item.SetLocked(place.Locked);
+                item.GetClickHandler().Subscribe(_ =>
+                {
+
+                    if (place is RuntimeMapPlace runtimeMapPlace)
+                    {
+                        Controller.NavigateToMyCompany();
+                    }
+
+                    if (place is MapPlace && place.Name.Equals("Credit Card"))
+                    {
+                        Controller.ShowCreditCardInfoPopup();
+                    }
+                    
+                });
             }
         }
 

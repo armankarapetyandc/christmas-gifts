@@ -1,5 +1,6 @@
 using System;
 using R3;
+using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using TMPro;
 using UnityEngine;
@@ -15,10 +16,12 @@ namespace SpaceMonkey.Scripts.UI.Components
         [SerializeField] private Image iconImage;
         [SerializeField] private Button button;
         private SpriteVisualAsset _visualAsset;
-        public Observable<string> OnClickAsObservable() => button.OnClickAsObservable().Select(_ => nameText.text);
+        private IMapPlace _place;
+        public Observable<IMapPlace> OnClickAsObservable() => button.OnClickAsObservable().Select(_ => _place);
         public void SetPlaceName(string placeName)
         {
-            nameText.SetText(placeName);
+            var a=System.Text.RegularExpressions.Regex.Replace(placeName, @"\s+", " ").Trim();
+            nameText.SetText(a);
         }
 
         public void SetPosition(Vector2 position)
@@ -35,6 +38,11 @@ namespace SpaceMonkey.Scripts.UI.Components
         public void SetLocked(bool state)
         {
             iconImage.sprite = state ? lockedIcon : _visualAsset?.Sprite;
+        }
+
+        public void SetPlace(IMapPlace place)
+        {
+            _place = place;
         }
     }
 }

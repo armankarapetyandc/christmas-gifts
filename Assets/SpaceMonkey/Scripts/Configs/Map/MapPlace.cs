@@ -8,6 +8,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
     public interface IMapPlace
     {
         string Name { get; }
+        string SingleLineName { get; }
         PlaceType Type { get; }
         Vector2 Position { get; }
         SpriteVisualAsset IconVisualAsset { get; }
@@ -18,6 +19,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
     public class MapPlace : IMapPlace
     {
         [field: SerializeField] public string Name { get; private set; }
+        [field: SerializeField] public string SingleLineName { get; private set; }
         [field: SerializeField] public PlaceType Type { get; private set; }
         [field: SerializeField] public Vector2 Position { get; private set; }
         [field: SerializeField] public SpriteVisualAsset IconVisualAsset { get; private set; }
@@ -29,6 +31,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
     {
         [field: SerializeField] public PlaceType Type { get; private set; }
         [field: SerializeField] public Vector2 Position { get; private set; }
+        public string SingleLineName { get; set; }
         public string Name { get; set; }
         public SpriteVisualAsset IconVisualAsset { get; set; }
         public bool Locked { get; set; }
