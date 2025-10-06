@@ -23,7 +23,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         private readonly MapConfig _mapConfig;
         private readonly VisualAssetDatabase _visualAssetDatabase;
 
-        public MapController(PresenterService presenterService,PopupPresenterService popupPresenterService,NavigationPresenterService navigationPresenterService,AccountService accountService,CreditSimulator creditSimulator,MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase) : base(presenterService)
+        public int CurrentWeek => _accountService.Model.Account.Week;
+        public MapController(PresenterService presenterService,PopupPresenterService popupPresenterService,
+            NavigationPresenterService navigationPresenterService,AccountService accountService,
+            CreditSimulator creditSimulator,MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase) : base(presenterService)
         {
             _popupPresenterService = popupPresenterService;
             _navigationPresenterService = navigationPresenterService;

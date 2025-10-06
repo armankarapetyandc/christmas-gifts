@@ -53,7 +53,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
                 _config.CreditCardInfo.Apr, 0);
             
             
-            SelectPayment(PaymentOption.Skip);
+            SelectPayment(PaymentOption.Minimum);
             await _accountService.SaveAsync();
         }
         
@@ -108,6 +108,16 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             return GetPaymentAmount(Data.SelectedPayment);
         }
 
+        public float GetPaymentAmount()
+        {
+            if (HasActiveCard == false || Data.SelectedPayment == PaymentOption.None
+                || Data.Balance <= 0)
+            {
+                return 0;
+            }
+
+            return GetPaymentAmount(Data.SelectedPayment);
+        }
         private float GetPaymentAmount(PaymentOption option)
         {
             return option switch

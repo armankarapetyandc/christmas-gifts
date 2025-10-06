@@ -12,7 +12,8 @@ namespace SpaceMonkey.Scripts.Configs.Map
         PlaceType Type { get; }
         Vector2 Position { get; }
         SpriteVisualAsset IconVisualAsset { get; }
-        bool Locked { get; }
+     
+        int AppearWeek { get;}
     }
 
     [Serializable]
@@ -23,7 +24,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
         [field: SerializeField] public PlaceType Type { get; private set; }
         [field: SerializeField] public Vector2 Position { get; private set; }
         [field: SerializeField] public SpriteVisualAsset IconVisualAsset { get; private set; }
-        [field: SerializeField] public bool Locked { get; private set; }
+        [field: SerializeField] public int AppearWeek { get; private set; }
     }
 
     [Serializable]
@@ -34,6 +35,6 @@ namespace SpaceMonkey.Scripts.Configs.Map
         public string SingleLineName { get; set; }
         public string Name { get; set; }
         public SpriteVisualAsset IconVisualAsset { get; set; }
-        public bool Locked { get; set; }
+        [field: SerializeField] public int AppearWeek { get; private set; }
     }
 }
