@@ -28,7 +28,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
             if (_creditSimulator.HasActiveCard)
             {
                 balance = _creditSimulator.Data.Balance;
-                nextPayment = _creditSimulator.GetPLPaymentAmount();
+                nextPayment = _creditSimulator.GetPaymentAmount();
                 dueDate = _creditSimulator.DueWeek;
             }
             

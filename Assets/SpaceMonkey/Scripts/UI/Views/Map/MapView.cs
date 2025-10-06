@@ -61,6 +61,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             var places = Controller.GetMapPlaces();
             foreach (var place in places)
             {
+                if (place.AppearWeek !=0 && place.AppearWeek > Controller.CurrentWeek)
+                {
+                    continue;
+                }
                 var item = Instantiate(placeItem, placesContainer);
                 item.SetPlace(place);
                 item.SetPlaceName(place.Name);
