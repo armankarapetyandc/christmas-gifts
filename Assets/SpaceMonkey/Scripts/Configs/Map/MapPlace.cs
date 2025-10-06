@@ -12,7 +12,6 @@ namespace SpaceMonkey.Scripts.Configs.Map
         PlaceType Type { get; }
         Vector2 Position { get; }
         SpriteVisualAsset IconVisualAsset { get; }
-        bool Locked { get; }
     }
 
     [Serializable]

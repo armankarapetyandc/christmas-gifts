@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.UI.Components;
+using SpaceMonkey.Scripts.UI.Views.Map.Items;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
@@ -65,7 +66,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 item.SetPlaceName(place.Name);
                 item.SetPosition(place.Position);
                 item.SetIcon(place.IconVisualAsset);
-                item.SetLocked(place.Locked);
                 item.OnClickAsObservable().Subscribe(_ =>
                 {
                     if (place.Name.Equals("Credit Card") && !Controller.HasCreditCard())
@@ -87,9 +87,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             {
                 var item = holder.Holder;
                 item.gameObject.SetActive(holder.Type == place.Type);
+                item.Init();
                 item.SetPlaceName(place.SingleLineName);
                 item.SetIcon(place.IconVisualAsset);
-                item.SetLocked(place.Locked);
                 item.GetClickHandler().Subscribe(_ =>
                 {
 
@@ -98,7 +98,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                         Controller.NavigateToMyCompany();
                     }
 
-                    if (place is MapPlace && place.Name.Equals("Credit Card"))
+                    if (place.Type == PlaceType.CreditCard)
                     {
                         Controller.ShowCreditCardInfoPopup();
                     }

@@ -1,4 +1,3 @@
-using System;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
@@ -6,15 +5,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceMonkey.Scripts.UI.Views.Map
+namespace SpaceMonkey.Scripts.UI.Views.Map.Items
 {
     public class MapPlaceHolderItem : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI nameText;
-        [SerializeField] private Sprite lockedIcon;
+        [SerializeField] private GameObject lockedState;
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private Button button;
         private SpriteVisualAsset _visualAsset;
+
+        public virtual void Init()
+        {
+            
+        }
         
         public void SetPlaceName(string placeName)
         {
@@ -27,9 +31,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             iconComponent.SetIcon(_visualAsset);
         }
 
-        public void SetLocked(bool state)
+        protected void SetLocked(bool state)
         {
-            // iconImage.sprite = state ? lockedIcon : _visualAsset?.Sprite;
+            iconComponent.gameObject.SetActive(!state);
+            lockedState.gameObject.SetActive(state);
         }
 
         public Observable<Unit> GetClickHandler()

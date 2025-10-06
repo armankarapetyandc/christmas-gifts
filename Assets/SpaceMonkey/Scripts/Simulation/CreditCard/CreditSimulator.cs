@@ -53,7 +53,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
                 _config.CreditCardInfo.Apr, 0);
             
             
-            SelectPayment(PaymentOption.Skip);
+            SelectPayment(PaymentOption.Minimum);
             await _accountService.SaveAsync();
         }
         
