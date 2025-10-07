@@ -9,10 +9,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
         [SerializeField] private TextMeshProUGUI componentNameText;
         [SerializeField] private TextMeshProUGUI costText;
 
-        public void SetItemData(Transaction transaction)
+        public void SetItemData(PaymentRecord transaction)
         {
             componentNameText.text = transaction.Description;
-            costText.text = $"${transaction.Amount:F2}";
+            costText.text = $"${transaction.Payment:F2}";
         }
     }
 }

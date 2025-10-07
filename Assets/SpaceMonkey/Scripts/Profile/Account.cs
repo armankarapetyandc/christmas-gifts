@@ -229,9 +229,9 @@ namespace SpaceMonkey.Scripts.Profile
             CreditData = null;
         }
         
-        public void CreateCreditData(float balance, float creditLimit, float apr, int creditScore)
+        public void CreateCreditData(float balance, float creditLimit, int creditScore)
         {
-            CreditData = new CreditDataGameData(balance, creditLimit, apr, creditScore);
+            CreditData = new CreditDataGameData(balance, creditLimit, creditScore);
         }
         
         public void AddCreditTransaction(Transaction transaction)
@@ -479,24 +479,25 @@ namespace SpaceMonkey.Scripts.Profile
         public int Week { get; set; }
         public float Payment { get; set; }
         public PaymentOption Type { get; set; }
+        
+        public string Description { get; set; }
+        
     }
 
     public class CreditDataGameData
     {
         public float Balance { get; set; }
         public float CreditLimit { get; set; }
-        public float Apr { get; set; }
         public int CreditScore { get; set; }
         public PaymentOption SelectedPayment { get; set; }
         
         public List<Transaction> Transactions { get; private set; } = new();
         public List<PaymentRecord> PaymentHistory { get; private set; } = new();
 
-        public CreditDataGameData(float balance, float creditLimit, float apr, int creditScore)
+        public CreditDataGameData(float balance, float creditLimit, int creditScore)
         {
             Balance = balance;
             CreditLimit = creditLimit;
-            Apr = apr;
             CreditScore = creditScore;
             SelectedPayment = PaymentOption.None;
         }

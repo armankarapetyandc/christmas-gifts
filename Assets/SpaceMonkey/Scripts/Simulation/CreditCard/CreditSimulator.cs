@@ -49,10 +49,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             if (Data != null)
                 return;
 
-            _accountService.Model.Account.CreateCreditData(0, _config.CreditCardInfo.CreditLimit,
-                _config.CreditCardInfo.Apr, 0);
-            
-            
+            _accountService.Model.Account.CreateCreditData(0, _config.CreditCardInfo.CreditLimit, 0);
             SelectPayment(PaymentOption.Minimum);
             await _accountService.SaveAsync();
         }
@@ -144,7 +141,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
             }
             
             Debug.Log("Recalculating credit card for week " + Week);
-            var weeklyRate = Data.Apr / 52f;
+            var weeklyRate = _config.CreditCardInfo.Apr / 12f;
 
             if (Data.Balance > 0)
             {
@@ -154,7 +151,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
                 
                 Data.Balance -= payment;
                 _accountService.Model.Account.AddPaymentRecord(new PaymentRecord
-                    { Week = Week, Payment = payment, Type = Data.SelectedPayment });
+                    { Week = Week, Payment = interest, Type = Data.SelectedPayment, Description = ProdCapacityDescription});
                 UpdateCreditScore(Data.SelectedPayment);
             }
             

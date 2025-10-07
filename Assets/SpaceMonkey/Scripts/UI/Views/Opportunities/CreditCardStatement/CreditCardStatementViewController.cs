@@ -24,7 +24,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
         public CreditDataGameData creditDataGameData => _creditSimulator.Data;
         public int DueWeek => _creditSimulator.DueWeek;
         public double minimumPayment => _creditSimulator.GetMinimumPayment();
-        public List<Transaction> Transactions => _creditSimulator.Data.Transactions;
+        public List<PaymentRecord> Transactions => _creditSimulator.Data.PaymentHistory;
         
         public void SelectPayment(PaymentOption option)
         {

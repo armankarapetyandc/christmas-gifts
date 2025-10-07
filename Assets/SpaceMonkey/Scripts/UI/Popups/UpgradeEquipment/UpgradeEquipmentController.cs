@@ -13,6 +13,7 @@ using UIService.Runtime.Core;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
+using static System.String;
 
 namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
 {
@@ -62,7 +63,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
 
         public async UniTask<bool> MakeCreditCardPurchase(LevelProdCap level)
         {
-            var result = await _creditSimulator.MakePurchase(level.ProdCapCost, CreditSimulator.ProdCapacityDescription);
+            var result = await _creditSimulator.MakePurchase(level.ProdCapCost, Empty);
             return result;
         }
         
