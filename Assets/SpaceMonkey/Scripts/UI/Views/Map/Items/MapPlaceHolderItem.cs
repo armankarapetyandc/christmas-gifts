@@ -1,4 +1,5 @@
 using R3;
+using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
@@ -13,11 +14,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
         [SerializeField] private GameObject lockedState;
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private Button button;
-        private SpriteVisualAsset _visualAsset;
+        [SerializeField] private ColorVisualAsset placeHolderFirstShowColor;
+        [SerializeField] private ColorVisualAsset placeHolderDefaultColor;
 
-        public virtual void Init()
+        private SpriteVisualAsset _visualAsset;
+        private PlaceType _placeType;
+
+        public virtual void Init(PlaceType placeType)
         {
-            
+            _placeType = placeType;
+            SetIconColor();
         }
         
         public void SetPlaceName(string placeName)
@@ -29,6 +35,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
         {
             _visualAsset = visualAsset;
             iconComponent.SetIcon(_visualAsset);
+        }
+
+        private void SetIconColor()
+        {
+            var isFirstShow = PlayerPrefs.GetInt(_placeType.ToString(), 0) == 0;
+            iconComponent.SetColor(isFirstShow ? placeHolderFirstShowColor : placeHolderDefaultColor);
+            if (isFirstShow)
+            {
+                PlayerPrefs.SetInt(_placeType.ToString(), 1);
+                PlayerPrefs.Save();
+            }
         }
 
         protected void SetLocked(bool state)
