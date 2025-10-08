@@ -57,6 +57,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             iconComponent.SetColor(colorVisualAsset);
             expensesComponent.Initialize(Controller.GetTotalQuantitiesByProduct(_viewData.UseSimulation));
             revenueComponent.Initialize(Controller.GetTotalQuantitiesByProduct(_viewData.UseSimulation));
+            cashComponent.Initialize(Controller.GetTotalQuantitiesByProduct(_viewData.UseSimulation));
             //overallTotalsComponent.SetTotals(0f, revenueComponent.TotalCash.CurrentValue, 0f);
             var totalExpense = Controller.GetWeekTotalExpenses(_viewData.UseSimulation);
             var totalRevenue = Controller.GetWeekRevenue(_viewData.UseSimulation);
