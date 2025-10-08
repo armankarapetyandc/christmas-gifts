@@ -54,7 +54,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
 
         internal void OnNext()
         {
-            _presenterService.Show<ProfitView>().Forget();
+            _presenterService.Show<ProfitView>(new ProfitView.Data
+            {
+                UseSimulation = true
+            }).Forget();
         }
 
         internal float CalculateCompanyRating()

@@ -12,8 +12,16 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
 {
     public class ProfitView : BasePresenterWithController<ProfitController>
     {
+        public class Data : IPresenterData
+        {
+            public bool EnableBackButton;
+            public bool UseSimulation;
+        }
+        
+        
         [SerializeField] private Button infoButton;
         [SerializeField] private Button nextButton;
+        [SerializeField] private Button backButton;
         [SerializeField] private TextMeshProUGUI businessName;
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private TextMeshProUGUI weekNumberText;
@@ -22,9 +30,12 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         [SerializeField] private CashComponent cashComponent;
         [SerializeField] private OverallTotalsComponent overallTotalsComponent;
         
+        private Data _viewData;
         public override UniTask Initialize(IPresenterData data = null)
         {
+            _viewData = data as Data;
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             SetupDefaults();
             return UniTask.CompletedTask;
         }
@@ -44,14 +55,17 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             iconComponent.SetShape(shapeVisualAsset);
             iconComponent.SetIcon(iconVisualAsset);
             iconComponent.SetColor(colorVisualAsset);
-            expensesComponent.Initialize(Controller.GetTotalQuantitiesByProduct());
-            revenueComponent.Initialize(Controller.GetTotalQuantitiesByProduct());
+            expensesComponent.Initialize(Controller.GetTotalQuantitiesByProduct(_viewData.UseSimulation));
+            revenueComponent.Initialize(Controller.GetTotalQuantitiesByProduct(_viewData.UseSimulation));
             //overallTotalsComponent.SetTotals(0f, revenueComponent.TotalCash.CurrentValue, 0f);
-            var totalExpense = Controller.GetWeekTotalExpenses();
-            var totalRevenue = Controller.GetWeekRevenue();
-            var totalProfit = Controller.GetWeekProfit();
+            var totalExpense = Controller.GetWeekTotalExpenses(_viewData.UseSimulation);
+            var totalRevenue = Controller.GetWeekRevenue(_viewData.UseSimulation);
+            var totalProfit = Controller.GetWeekProfit(_viewData.UseSimulation);
 
             overallTotalsComponent.SetTotals(totalExpense, totalRevenue, totalProfit);
+            
+            backButton.gameObject.SetActive(_viewData.EnableBackButton);
+            nextButton.gameObject.SetActive(!_viewData.EnableBackButton);
         }
 
         public override void Dispose()

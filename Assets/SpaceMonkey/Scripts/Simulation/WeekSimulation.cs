@@ -201,16 +201,7 @@ namespace SpaceMonkey.Scripts.Simulation
             var mood = orderInfo.Mood + orderInfo.Mood * moodDeltaPercent;
             return Mathf.Clamp(Mathf.RoundToInt(mood), 1, 100);
         }
-
-        public Dictionary<Product, int> GetTotalQuantitiesByProduct()
-        {
-            return _weekInfo.Orders
-                .Where(o => o.Shipped)
-                .SelectMany(o => o.Products)
-                .GroupBy(p => p.Product)
-                .ToDictionary(g => g.Key, g => g.Sum(o => o.Quantity));
-        }
-
+        
         public void Run()
         {
         }

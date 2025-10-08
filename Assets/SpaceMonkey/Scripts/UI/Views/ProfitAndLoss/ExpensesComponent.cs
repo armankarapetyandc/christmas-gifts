@@ -34,9 +34,14 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
                 productComponent.SetData(pair);
                 _productComponents.Add(productComponent);
             }
-            // Payroll
-            var payRollComponent = Instantiate(payRollComponentPrefab, container);
-            payRollComponent.Initialize(_accountService.Model.Account.Employees);
+            
+            var totalPayroll = _accountService.Model.Account.Employees.Sum(employee => employee.Payroll);
+            if (totalPayroll > 0)
+            {
+                // Payroll
+                var payRollComponent = Instantiate(payRollComponentPrefab, container);
+                payRollComponent.Initialize(_accountService.Model.Account.Employees);   
+            }
             
             // Credit Card
             var creditCardPayment = _creditSimulator.GetPLPaymentAmount();
@@ -47,8 +52,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             }
             
             var productsTotal = _productComponents.Sum(item => item.TotalCost.CurrentValue);
-            var payrollTotal = _accountService.Model.Account.Employees.Sum(employee => employee.Payroll);
-            totalCashText.text = $"${productsTotal + payrollTotal + creditCardPayment:f2}";
+            totalCashText.text = $"${productsTotal + totalPayroll + creditCardPayment:f2}";
         }
     }
 }
