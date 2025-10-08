@@ -74,7 +74,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 await data.CompletionSource.Task;
                 return false;
             }
-            GetAccount().Score += customer.Orders.Length * _scoresConfigs.CalculateScoreConfigByKey("sellProduct");
+            _weekSimulationContext.WeekSimulation.SellScore += customer.Orders.Length * _scoresConfigs.CalculateScoreConfigByKey("sellProduct");
             return true;
         }
 

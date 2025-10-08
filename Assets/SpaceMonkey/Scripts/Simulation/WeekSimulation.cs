@@ -62,6 +62,8 @@ namespace SpaceMonkey.Scripts.Simulation
 
         public WeekInfo WeekInfo => _weekInfo;
 
+        public float SellScore { get; set; }
+
         public WeekSimulation(GameConfig gameConfig, CustomerReviewConfig customerReviewConfig,
             AccountService accountService, CreditSimulator creditSimulator)
         {
@@ -259,6 +261,7 @@ namespace SpaceMonkey.Scripts.Simulation
             
             _account.PushFinishedWeek(_weekInfo);
             _account.Money = _money.Value;
+            _account.Score += SellScore;
             _accountService.SaveAsync().Forget();
             
             _creditSimulator.NextWeek();
