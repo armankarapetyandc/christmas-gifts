@@ -53,9 +53,14 @@ namespace SpaceMonkey.Scripts.Profile
             Company.CompanyName = companyName;
         }
 
-        public float CalculateCompanyRating(RangeValue[] values)
+        public float CalculateCompanyRating(RangeValue[] values,List<WeekInfo> weekInfos)
         {
-            return Weeks
+            if (weekInfos.Count == 0)
+            {
+                return 5;
+            }
+
+            return weekInfos
                 .SelectMany(w => w.Orders)
                 .Select(o =>
                 {

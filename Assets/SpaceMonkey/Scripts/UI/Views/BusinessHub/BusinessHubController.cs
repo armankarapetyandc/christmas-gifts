@@ -30,7 +30,8 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         public BusinessHubController(PresenterService presenterService,
             AccountService accountService, VisualAssetDatabase visualAssetDatabase,
             NavigationPresenterService navigationPresenterService,
-            WeekSimulationContext weekSimulationContext,PopupPresenterService popupPresenterService) : base(presenterService)
+            WeekSimulationContext weekSimulationContext,
+            PopupPresenterService popupPresenterService) : base(presenterService)
         {
             _popupPresenterService = popupPresenterService;
             _accountService = accountService;
@@ -69,9 +70,15 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             PresenterService.HidePreviousAndShow<ProductionCapacityView>().Forget();
         }
 
+        internal void ShowAllReviewView()
+        {
+            _navigationPresenterService.HideAll();
+            PresenterService.HidePreviousAndShow<AllReviewView.AllReviewView>().Forget();
+        }
+
         internal void ShowLevelInfoPopup()
         {
-             _popupPresenterService.Show<LevelInfoPopup>().Forget();
+            _popupPresenterService.Show<LevelInfoPopup>().Forget();
         }
 
         public void ShowMarketingView()
@@ -79,7 +86,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<MarketingView>().Forget();
         }
-        
+
         public void ShowStaffView()
         {
             _navigationPresenterService.HideAll();

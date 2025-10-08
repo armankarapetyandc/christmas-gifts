@@ -28,7 +28,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
             InitializeInfoPanel();
             var customers = Controller.GetSimulationCustomers();
             var reviews = Controller.GetReviews();
-
+            weekNumberText.text = Controller.GetAccount().Week.ToString();
             if (reviews != null)
             {
                 foreach (CustomerReviewInfo reviewInfo in reviews)
