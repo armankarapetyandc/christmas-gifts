@@ -28,7 +28,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         [SerializeField] private RectTransform placesContainer;
         [SerializeField] private List<MapPlaceHolder> placeHolders;
 
-
         public override async UniTask Initialize(IPresenterData data = null)
         {
             await UniTask.Yield();
@@ -72,7 +71,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 item.SetIcon(place.IconVisualAsset);
                 item.OnClickAsObservable().Subscribe(_ =>
                 {
-                    if (place.Name.Equals("Credit Card") && !Controller.HasCreditCard())
+                    if (place.Type == PlaceType.CreditCard && !Controller.HasCreditCard())
                     {
                         Controller.ShowCreditCardInfoPopup();
                     }
@@ -91,12 +90,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             {
                 var item = holder.Holder;
                 item.gameObject.SetActive(holder.Type == place.Type);
-                item.Init();
+                item.Init(place.Type);
                 item.SetPlaceName(place.SingleLineName);
                 item.SetIcon(place.IconVisualAsset);
                 item.GetClickHandler().Subscribe(_ =>
                 {
-
                     if (place is RuntimeMapPlace runtimeMapPlace)
                     {
                         Controller.NavigateToMyCompany();
@@ -106,7 +104,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     {
                         Controller.ShowCreditCardInfoPopup();
                     }
-                    
                 });
             }
         }

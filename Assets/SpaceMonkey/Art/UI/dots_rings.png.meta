@@ -1,0 +1,4823 @@
+fileFormatVersion: 2
+guid: 30b062256ace54266b2c4300532c1d4d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3378432741890194194
+    second: dots_rings_0
+  - first:
+      213: 8588972037719030898
+    second: dots_rings_1
+  - first:
+      213: -8838689961605127754
+    second: dots_rings_2
+  - first:
+      213: -4116098958244188943
+    second: dots_rings_3
+  - first:
+      213: -1500465712609130042
+    second: dots_rings_4
+  - first:
+      213: -870067714807626652
+    second: dots_rings_5
+  - first:
+      213: -2392256570204228866
+    second: dots_rings_6
+  - first:
+      213: 6702218032136705393
+    second: dots_rings_7
+  - first:
+      213: 5162469376299298951
+    second: dots_rings_8
+  - first:
+      213: -5044603774909363603
+    second: dots_rings_9
+  - first:
+      213: -887464914772203107
+    second: dots_rings_10
+  - first:
+      213: 4671129454791567713
+    second: dots_rings_11
+  - first:
+      213: 6523532333972143872
+    second: dots_rings_12
+  - first:
+      213: 172995904569537684
+    second: dots_rings_13
+  - first:
+      213: 1605581096551527935
+    second: dots_rings_14
+  - first:
+      213: 1828682773462036521
+    second: dots_rings_15
+  - first:
+      213: -894112251750060611
+    second: dots_rings_16
+  - first:
+      213: -779680229947950840
+    second: dots_rings_17
+  - first:
+      213: -3668397851789953352
+    second: dots_rings_18
+  - first:
+      213: -8652202894960131421
+    second: dots_rings_19
+  - first:
+      213: 4539669877792369200
+    second: dots_rings_20
+  - first:
+      213: 6327025627450281869
+    second: dots_rings_21
+  - first:
+      213: 4196362847332214142
+    second: dots_rings_22
+  - first:
+      213: -7806959835704280076
+    second: dots_rings_23
+  - first:
+      213: -1434124497924793360
+    second: dots_rings_24
+  - first:
+      213: 7068911789758132989
+    second: dots_rings_25
+  - first:
+      213: 4768470092521084493
+    second: dots_rings_26
+  - first:
+      213: 882316393007249504
+    second: dots_rings_27
+  - first:
+      213: 1414710873002275300
+    second: dots_rings_28
+  - first:
+      213: 536385819821768295
+    second: dots_rings_29
+  - first:
+      213: 9188846011049689132
+    second: dots_rings_30
+  - first:
+      213: -5497908171195409274
+    second: dots_rings_31
+  - first:
+      213: -8325714283966778322
+    second: dots_rings_32
+  - first:
+      213: -8376385216645745822
+    second: dots_rings_33
+  - first:
+      213: 7723011913936450627
+    second: dots_rings_34
+  - first:
+      213: -3416973089672125884
+    second: dots_rings_35
+  - first:
+      213: -1315900244959291927
+    second: dots_rings_36
+  - first:
+      213: -6845096543993082377
+    second: dots_rings_37
+  - first:
+      213: 6078991101854087528
+    second: dots_rings_38
+  - first:
+      213: 8077982714474767150
+    second: dots_rings_39
+  - first:
+      213: -8605555650791244578
+    second: dots_rings_40
+  - first:
+      213: -4007675150591408942
+    second: dots_rings_41
+  - first:
+      213: -2263788138577188320
+    second: dots_rings_42
+  - first:
+      213: 1462746150520075918
+    second: dots_rings_43
+  - first:
+      213: -1071131363920609798
+    second: dots_rings_44
+  - first:
+      213: 7377823249540238826
+    second: dots_rings_45
+  - first:
+      213: -5299338340752857747
+    second: dots_rings_46
+  - first:
+      213: 8660233731928917510
+    second: dots_rings_47
+  - first:
+      213: 6318588925720762744
+    second: dots_rings_48
+  - first:
+      213: -3588057281390935272
+    second: dots_rings_49
+  - first:
+      213: -6515288350874302649
+    second: dots_rings_50
+  - first:
+      213: 7801755861659382791
+    second: dots_rings_51
+  - first:
+      213: 4246131175664218222
+    second: dots_rings_52
+  - first:
+      213: 4559251910167842721
+    second: dots_rings_53
+  - first:
+      213: 7379776898869649653
+    second: dots_rings_54
+  - first:
+      213: -8944043564122055212
+    second: dots_rings_55
+  - first:
+      213: -620130675069703600
+    second: dots_rings_56
+  - first:
+      213: 5097791341033521995
+    second: dots_rings_57
+  - first:
+      213: -1077688827643035732
+    second: dots_rings_58
+  - first:
+      213: 144715375063896877
+    second: dots_rings_59
+  - first:
+      213: 3634573007034964239
+    second: dots_rings_60
+  - first:
+      213: 2847102042765870002
+    second: dots_rings_61
+  - first:
+      213: -4403654248485625716
+    second: dots_rings_62
+  - first:
+      213: 7312938653615696084
+    second: dots_rings_63
+  - first:
+      213: 4600189508464325262
+    second: dots_rings_64
+  - first:
+      213: 5084153219898387982
+    second: dots_rings_65
+  - first:
+      213: -8765901807861556763
+    second: dots_rings_66
+  - first:
+      213: -5210246772171266212
+    second: dots_rings_67
+  - first:
+      213: -8422303507502107290
+    second: dots_rings_68
+  - first:
+      213: 711484844028554554
+    second: dots_rings_69
+  - first:
+      213: 6240799984400480305
+    second: dots_rings_70
+  - first:
+      213: 4192803381258827075
+    second: dots_rings_71
+  - first:
+      213: 1091693145248884945
+    second: dots_rings_72
+  - first:
+      213: 7793461730543913349
+    second: dots_rings_73
+  - first:
+      213: -8807035580548692508
+    second: dots_rings_74
+  - first:
+      213: -5084802716401332759
+    second: dots_rings_75
+  - first:
+      213: -7298818435015807975
+    second: dots_rings_76
+  - first:
+      213: 7632926668938430037
+    second: dots_rings_77
+  - first:
+      213: 3670181964042840717
+    second: dots_rings_78
+  - first:
+      213: 1908650020281867120
+    second: dots_rings_79
+  - first:
+      213: 8498493291856375410
+    second: dots_rings_80
+  - first:
+      213: 4810507458413328384
+    second: dots_rings_81
+  - first:
+      213: -1820672131778526221
+    second: dots_rings_82
+  - first:
+      213: -9222603324417809431
+    second: dots_rings_83
+  - first:
+      213: -6369295653116873807
+    second: dots_rings_84
+  - first:
+      213: 4785694918779921940
+    second: dots_rings_85
+  - first:
+      213: -4053080357681538746
+    second: dots_rings_86
+  - first:
+      213: -601507610261920613
+    second: dots_rings_87
+  - first:
+      213: -6059066750499293282
+    second: dots_rings_88
+  - first:
+      213: -5861471729552904200
+    second: dots_rings_89
+  - first:
+      213: -8457556046117756428
+    second: dots_rings_90
+  - first:
+      213: -84211927577027666
+    second: dots_rings_91
+  - first:
+      213: 8734583480027315141
+    second: dots_rings_92
+  - first:
+      213: -5773397009257416583
+    second: dots_rings_93
+  - first:
+      213: -4275393566075103169
+    second: dots_rings_94
+  - first:
+      213: 700422038772614356
+    second: dots_rings_95
+  - first:
+      213: 6906296310026511217
+    second: dots_rings_96
+  - first:
+      213: 776596567106856375
+    second: dots_rings_97
+  - first:
+      213: -3134352673939397396
+    second: dots_rings_98
+  - first:
+      213: 2040530249699798460
+    second: dots_rings_99
+  - first:
+      213: 9143759500829344191
+    second: dots_rings_100
+  - first:
+      213: 3936315143489163322
+    second: dots_rings_101
+  - first:
+      213: 5777175320463310163
+    second: dots_rings_102
+  - first:
+      213: 5401654796475641838
+    second: dots_rings_103
+  - first:
+      213: -4323622683639626477
+    second: dots_rings_104
+  - first:
+      213: -5202673921871125804
+    second: dots_rings_105
+  - first:
+      213: -2458348143040980530
+    second: dots_rings_106
+  - first:
+      213: 7817910168849947588
+    second: dots_rings_107
+  - first:
+      213: -1338806399292563388
+    second: dots_rings_108
+  - first:
+      213: 1145581626250982908
+    second: dots_rings_109
+  - first:
+      213: 5855260003946279108
+    second: dots_rings_110
+  - first:
+      213: 7748997389729747132
+    second: dots_rings_111
+  - first:
+      213: -2034042220038291532
+    second: dots_rings_112
+  - first:
+      213: -5651912658660452784
+    second: dots_rings_113
+  - first:
+      213: 8126542769705584939
+    second: dots_rings_114
+  - first:
+      213: 1068493792363722350
+    second: dots_rings_115
+  - first:
+      213: -6882128295355065246
+    second: dots_rings_116
+  - first:
+      213: 6818667551290026401
+    second: dots_rings_117
+  - first:
+      213: -3084556431442073934
+    second: dots_rings_118
+  - first:
+      213: 387392647866080171
+    second: dots_rings_119
+  - first:
+      213: -677874615654038292
+    second: dots_rings_120
+  - first:
+      213: 814339757237782
+    second: dots_rings_121
+  - first:
+      213: 4623346651024171166
+    second: dots_rings_122
+  - first:
+      213: -2623507412959390256
+    second: dots_rings_123
+  - first:
+      213: 7065862922998363360
+    second: dots_rings_124
+  - first:
+      213: 8506442951264688334
+    second: dots_rings_125
+  - first:
+      213: 8089582141870270
+    second: dots_rings_126
+  - first:
+      213: -1954555529874512470
+    second: dots_rings_127
+  - first:
+      213: 7443578059565209852
+    second: dots_rings_128
+  - first:
+      213: -182495600340279022
+    second: dots_rings_129
+  - first:
+      213: -3051852507703275730
+    second: dots_rings_130
+  - first:
+      213: 5328967591402272347
+    second: dots_rings_131
+  - first:
+      213: -3175534245424235889
+    second: dots_rings_132
+  - first:
+      213: -7533377201377778856
+    second: dots_rings_133
+  - first:
+      213: 5637190584997798124
+    second: dots_rings_134
+  - first:
+      213: 3265910219963588514
+    second: dots_rings_135
+  - first:
+      213: -3630227834890497052
+    second: dots_rings_136
+  - first:
+      213: -2856382918192334095
+    second: dots_rings_137
+  - first:
+      213: 6773726295964021675
+    second: dots_rings_138
+  - first:
+      213: 7331602589280188914
+    second: dots_rings_139
+  - first:
+      213: 3228227024541167728
+    second: dots_rings_140
+  - first:
+      213: -2246296960665851395
+    second: dots_rings_141
+  - first:
+      213: -5285840786044990949
+    second: dots_rings_142
+  - first:
+      213: -311854602668665520
+    second: dots_rings_143
+  - first:
+      213: -4533798618913448889
+    second: dots_rings_144
+  - first:
+      213: 4178646496139195653
+    second: dots_rings_145
+  - first:
+      213: 4742016492848625057
+    second: dots_rings_146
+  - first:
+      213: 7582220981482133801
+    second: dots_rings_147
+  - first:
+      213: 4018160975427557601
+    second: dots_rings_148
+  - first:
+      213: -1630038223547838373
+    second: dots_rings_149
+  - first:
+      213: 4180392236860028869
+    second: dots_rings_150
+  - first:
+      213: 2531241347692679582
+    second: dots_rings_151
+  - first:
+      213: 4533657690753370435
+    second: dots_rings_152
+  - first:
+      213: 4201063301096648260
+    second: dots_rings_153
+  - first:
+      213: -1882149883098469366
+    second: dots_rings_154
+  - first:
+      213: -1408239387010416089
+    second: dots_rings_155
+  - first:
+      213: 4196280416789604669
+    second: dots_rings_156
+  - first:
+      213: 2593687910264692030
+    second: dots_rings_157
+  - first:
+      213: 1423493145617698708
+    second: dots_rings_158
+  - first:
+      213: 4691484643166738433
+    second: dots_rings_159
+  - first:
+      213: -9193309692768671856
+    second: dots_rings_160
+  - first:
+      213: 8248865057767835683
+    second: dots_rings_161
+  - first:
+      213: -3874825260305612139
+    second: dots_rings_162
+  - first:
+      213: 6951300679700340266
+    second: dots_rings_163
+  - first:
+      213: 4076532310922720416
+    second: dots_rings_164
+  - first:
+      213: 1271148589502299201
+    second: dots_rings_165
+  - first:
+      213: 6636341120327746980
+    second: dots_rings_166
+  - first:
+      213: -6454989955232206558
+    second: dots_rings_167
+  - first:
+      213: 8688152194597601260
+    second: dots_rings_168
+  - first:
+      213: 5286303419985891804
+    second: dots_rings_169
+  - first:
+      213: -5243111020755141017
+    second: dots_rings_170
+  - first:
+      213: -7201284037727616003
+    second: dots_rings_171
+  - first:
+      213: 8352063461617515019
+    second: dots_rings_172
+  - first:
+      213: -7877169604435908558
+    second: dots_rings_173
+  - first:
+      213: 4945154459189452208
+    second: dots_rings_174
+  - first:
+      213: 336397818306518950
+    second: dots_rings_175
+  - first:
+      213: 7345585987395544236
+    second: dots_rings_176
+  - first:
+      213: 5813430847051590612
+    second: dots_rings_177
+  - first:
+      213: 2147594503879563708
+    second: dots_rings_178
+  - first:
+      213: 2550129115414391180
+    second: dots_rings_179
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dots_rings_0
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 1105
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21bf9e5ddaa92ee20800000000000000
+      internalID: 3378432741890194194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_1
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 1109
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27c710edf88223770800000000000000
+      internalID: 8588972037719030898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_2
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 1107
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b127be2f4aa65580800000000000000
+      internalID: -8838689961605127754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_3
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 1099
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fcef753ecda0e6c0800000000000000
+      internalID: -4116098958244188943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_4
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 1095
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c9874a52664d2be0800000000000000
+      internalID: -1500465712609130042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_5
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 1085
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4640b50f506ece3f0800000000000000
+      internalID: -870067714807626652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_6
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 1080
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef2f169f25ffcced0800000000000000
+      internalID: -2392256570204228866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_7
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1058
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 175d9b45acf030d50800000000000000
+      internalID: 6702218032136705393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_8
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 1065
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 780f62abb86c4a740800000000000000
+      internalID: 5162469376299298951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_9
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 1031
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6aceeb1897fdf9b0800000000000000
+      internalID: -5044603774909363603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_10
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 1032
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d99616cac571fa3f0800000000000000
+      internalID: -887464914772203107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_11
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 1038
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16927bc8d7f23d040800000000000000
+      internalID: 4671129454791567713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_12
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 1039
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00f3f27381e388a50800000000000000
+      internalID: 6523532333972143872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_13
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 1035
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 494f67fcbda966200800000000000000
+      internalID: 172995904569537684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_14
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 1039
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff53906208b284610800000000000000
+      internalID: 1605581096551527935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_15
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 1021
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920b41f2b49c06910800000000000000
+      internalID: 1828682773462036521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_16
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 1025
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbdec1de4a97793f0800000000000000
+      internalID: -894112251750060611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_17
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 998
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 809be8736f40e25f0800000000000000
+      internalID: -779680229947950840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_18
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 1005
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b6f04df69b371dc0800000000000000
+      internalID: -3668397851789953352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_19
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 1010
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a28b41fe433de780800000000000000
+      internalID: -8652202894960131421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_20
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 1008
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03aea5f93b5200f30800000000000000
+      internalID: 4539669877792369200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_21
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 983
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8f87f0494c1ec750800000000000000
+      internalID: 6327025627450281869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_22
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 990
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7522efb6c97c3a30800000000000000
+      internalID: 4196362847332214142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_23
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 961
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fbba19746b18a390800000000000000
+      internalID: -7806959835704280076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_24
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 961
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fbd1811e57f81ce0800000000000000
+      internalID: -1434124497924793360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_25
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 964
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df2ba11f1d1d91260800000000000000
+      internalID: 7068911789758132989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_26
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 962
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d461bc2e8420d2240800000000000000
+      internalID: 4768470092521084493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_27
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 965
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06873b0b51e9e3c00800000000000000
+      internalID: 882316393007249504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_28
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 972
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e1fe252b0012a310800000000000000
+      internalID: 1414710873002275300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_29
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 957
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76e780daf00a17700800000000000000
+      internalID: 536385819821768295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_30
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 954
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c20c16033c6558f70800000000000000
+      internalID: 9188846011049689132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_31
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 956
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c1e20c5a183b3b0800000000000000
+      internalID: -5497908171195409274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_32
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 946
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e24b3c268fe157c80800000000000000
+      internalID: -8325714283966778322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_33
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 942
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2633ff3860a11cb80800000000000000
+      internalID: -8376385216645745822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_34
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 931
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 344ba4eda66ad2b60800000000000000
+      internalID: 7723011913936450627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_35
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 936
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 442260f24197490d0800000000000000
+      internalID: -3416973089672125884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_36
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 932
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e51a5bf2bbfcbde0800000000000000
+      internalID: -1315900244959291927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_37
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 919
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fdc90ac5f45101a0800000000000000
+      internalID: -6845096543993082377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_38
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 927
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 869f5c2033aec5450800000000000000
+      internalID: 6078991101854087528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_39
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 926
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e23a306da72ca1070800000000000000
+      internalID: 8077982714474767150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_40
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 906
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc7bb3dabce29880800000000000000
+      internalID: -8605555650791244578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_41
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 912
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d4c6d12fa0e168c0800000000000000
+      internalID: -4007675150591408942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_42
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 902
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02a2d599ea86590e0800000000000000
+      internalID: -2263788138577188320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_43
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 892
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e86b15abfd7bc4410800000000000000
+      internalID: 1462746150520075918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_44
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 882
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afd7bb913b39221f0800000000000000
+      internalID: -1071131363920609798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_45
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 889
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aedc674f72b436660800000000000000
+      internalID: 7377823249540238826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_46
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 887
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6561de2bd7f476b0800000000000000
+      internalID: -5299338340752857747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_47
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 874
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6068a7ff1b45f2870800000000000000
+      internalID: 8660233731928917510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_48
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 863
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8799d4f862320b750800000000000000
+      internalID: 6318588925720762744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_49
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 865
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81380f4b9e8a43ec0800000000000000
+      internalID: -3588057281390935272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_50
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 854
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74785eca3cb0595a0800000000000000
+      internalID: -6515288350874302649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_51
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 854
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7047786ee97654c60800000000000000
+      internalID: 7801755861659382791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_52
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 833
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e607d2baec94dea30800000000000000
+      internalID: 4246131175664218222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_53
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 839
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1af4313d477b54f30800000000000000
+      internalID: 4559251910167842721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_54
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 824
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f062c26dfb3a6660800000000000000
+      internalID: 7379776898869649653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_55
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 813
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ddd2e814cf50e380800000000000000
+      internalID: -8944043564122055212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_56
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 824
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05aa526cf6ad467f0800000000000000
+      internalID: -620130675069703600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_57
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 824
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b438d55273efeb640800000000000000
+      internalID: 5097791341033521995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_58
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 790
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caffde998b74b01f0800000000000000
+      internalID: -1077688827643035732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_59
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 800
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d23983cedd1220200800000000000000
+      internalID: 144715375063896877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_60
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 787
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f09da82a4e8907230800000000000000
+      internalID: 3634573007034964239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_61
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 772
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b3495a2930f28720800000000000000
+      internalID: 2847102042765870002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_62
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 768
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c80ef55eac313e2c0800000000000000
+      internalID: -4403654248485625716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_63
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 780
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d8acf8b5f6cc7560800000000000000
+      internalID: 7312938653615696084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_64
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 754
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e82be7f2cf727df30800000000000000
+      internalID: 4600189508464325262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_65
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 764
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0ea3bf9a6a8e8640800000000000000
+      internalID: 5084153219898387982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_66
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 721
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e9157edfb2495680800000000000000
+      internalID: -8765901807861556763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_67
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 726
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c572b907a2c71b7b0800000000000000
+      internalID: -5210246772171266212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_68
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 734
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6657fcc4597fd1b80800000000000000
+      internalID: -8422303507502107290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_69
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 733
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3d656f22b3bfd900800000000000000
+      internalID: 711484844028554554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_70
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 718
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13834784586cb9650800000000000000
+      internalID: 6240799984400480305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_71
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 715
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3453df8f574df2a30800000000000000
+      internalID: 4192803381258827075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_72
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 675
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d8e94ea129762f00800000000000000
+      internalID: 1091693145248884945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_73
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 686
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 589cba30720f72c60800000000000000
+      internalID: 7793461730543913349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_74
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 686
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e54b291dcf17c580800000000000000
+      internalID: -8807035580548692508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_75
+      rect:
+        serializedVersion: 2
+        x: 1095
+        y: 677
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ed05ffaed62f69b0800000000000000
+      internalID: -5084802716401332759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_76
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 661
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91c6fccdd4365ba90800000000000000
+      internalID: -7298818435015807975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_77
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 673
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5564eaa4d5a9de960800000000000000
+      internalID: 7632926668938430037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_78
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 633
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8aa1d30d0b1fe230800000000000000
+      internalID: 3670181964042840717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_79
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 645
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07b517bb413ec7a10800000000000000
+      internalID: 1908650020281867120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_80
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 637
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27ea32b3f96b0f570800000000000000
+      internalID: 8498493291856375410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_81
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 623
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 008f718db0b52c240800000000000000
+      internalID: 4810507458413328384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_82
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 620
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f343eca75cabb6e0800000000000000
+      internalID: -1820672131778526221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_83
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 604
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e36dbfc32bb20080800000000000000
+      internalID: -9222603324417809431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_84
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 603
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b377867957bb97a0800000000000000
+      internalID: -6369295653116873807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_85
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 591
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 416e4454c243a6240800000000000000
+      internalID: 4785694918779921940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_86
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 586
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 649574a83e090c7c0800000000000000
+      internalID: -4053080357681538746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_87
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 572
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b94e4a0f30407a7f0800000000000000
+      internalID: -601507610261920613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_88
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 560
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e97fb1a84eed9eba0800000000000000
+      internalID: -6059066750499293282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_89
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 562
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ff2103748ed7aea0800000000000000
+      internalID: -5861471729552904200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 546
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f1a13b0699b0aa80800000000000000
+      internalID: -8457556046117756428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_91
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 548
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eab9be2b2b1d4def0800000000000000
+      internalID: -84211927577027666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_92
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 535
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cbf504b569773970800000000000000
+      internalID: 8734583480027315141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_93
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 522
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 978b8e34206c0efa0800000000000000
+      internalID: -5773397009257416583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_94
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 517
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f385a132430caa4c0800000000000000
+      internalID: -4275393566075103169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_95
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 505
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d485ed122668b900800000000000000
+      internalID: 700422038772614356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_96
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 504
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 173a8b027e718df50800000000000000
+      internalID: 6906296310026511217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_97
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 488
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b52134967607ca00800000000000000
+      internalID: 776596567106856375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_98
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 485
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce4eb0d79da8084d0800000000000000
+      internalID: -3134352673939397396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_99
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 471
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbdabce637b615c10800000000000000
+      internalID: 2040530249699798460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_100
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 463
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb1498ef1d825ee70800000000000000
+      internalID: 9143759500829344191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_101
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 475
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3099ab74c990a630800000000000000
+      internalID: 3936315143489163322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_102
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 435
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35d7e5d5856ac2050800000000000000
+      internalID: 5777175320463310163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_103
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 447
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eef273f0b6886fa40800000000000000
+      internalID: 5401654796475641838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_104
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 430
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 315c6d6a3186ff3c0800000000000000
+      internalID: -4323622683639626477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_105
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 422
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d2eeac02a36cc7b0800000000000000
+      internalID: -5202673921871125804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_106
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 421
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec91dc7836132edd0800000000000000
+      internalID: -2458348143040980530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_107
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 433
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cb1734a0ebce7c60800000000000000
+      internalID: 7817910168849947588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_108
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 382
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 440a5235caa9b6de0800000000000000
+      internalID: -1338806399292563388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_109
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 393
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf577e56b6ce5ef00800000000000000
+      internalID: 1145581626250982908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_110
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 386
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c035ca73ff024150800000000000000
+      internalID: 5855260003946279108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_111
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 390
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb0554ce118f98b60800000000000000
+      internalID: 7748997389729747132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_112
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 374
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bf7870b061a5c3e0800000000000000
+      internalID: -2034042220038291532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_113
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 373
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056920fc16f5091b0800000000000000
+      internalID: -5651912658660452784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_114
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 344
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b290250c79747c070800000000000000
+      internalID: 8126542769705584939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_115
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 354
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e66bc8a617d04de00800000000000000
+      internalID: 1068493792363722350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_116
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 340
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26c52b847c4cd70a0800000000000000
+      internalID: -6882128295355065246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_117
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 336
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a9ef14d206c0ae50800000000000000
+      internalID: 6818667551290026401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_118
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 320
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b6af3ea4447135d0800000000000000
+      internalID: -3084556431442073934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_119
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 327
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: babd7ac8f8b406500800000000000000
+      internalID: 387392647866080171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_120
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 318
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce4cfabe0a4b796f0800000000000000
+      internalID: -677874615654038292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_121
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 308
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 616e4ff33a4e20000800000000000000
+      internalID: 814339757237782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_122
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 284
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e90a9c7984d692040800000000000000
+      internalID: 4623346651024171166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_123
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 284
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d593f868ed679bd0800000000000000
+      internalID: -2623507412959390256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_124
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 295
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4bbe454ecfe0260800000000000000
+      internalID: 7065862922998363360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_125
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 283
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec8d14c8bc4fc0670800000000000000
+      internalID: 8506442951264688334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_126
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 269
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb092fd9e6dbc1000800000000000000
+      internalID: 8089582141870270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_127
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 275
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa5ed0ce91600e4e0800000000000000
+      internalID: -1954555529874512470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_128
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 243
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf89642bec6ec4760800000000000000
+      internalID: 7443578059565209852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_129
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 245
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21165a8e735a77df0800000000000000
+      internalID: -182495600340279022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_130
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 253
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2f067b4054a5a5d0800000000000000
+      internalID: -3051852507703275730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_131
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 254
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b56f9115acb44f940800000000000000
+      internalID: 5328967591402272347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_132
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 226
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8a7661bd6c3ee3d0800000000000000
+      internalID: -3175534245424235889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_133
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 234
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 853e9d05951147790800000000000000
+      internalID: -7533377201377778856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_134
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 221
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce068fd48f25b3e40800000000000000
+      internalID: 5637190584997798124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_135
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 219
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2af5f31aa08d25d20800000000000000
+      internalID: 3265910219963588514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_136
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 215
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e3dd979407de9dc0800000000000000
+      internalID: -3630227834890497052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_137
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 206
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1faf6a2aed61c58d0800000000000000
+      internalID: -2856382918192334095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_138
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 196
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba378ac6d2c110e50800000000000000
+      internalID: 6773726295964021675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_139
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 202
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f93160e5b51fb560800000000000000
+      internalID: 7331602589280188914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_140
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 176
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 070b71cff57fccc20800000000000000
+      internalID: 3228227024541167728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_141
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 177
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df9e87fc0dc83d0e0800000000000000
+      internalID: -2246296960665851395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_142
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 182
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1a44888fcbe4a6b0800000000000000
+      internalID: -5285840786044990949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_143
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 181
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0551d5224e11cabf0800000000000000
+      internalID: -311854602668665520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_144
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 188
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74cd18c5d26b411c0800000000000000
+      internalID: -4533798618913448889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_145
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 172
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 505be4c49d88df930800000000000000
+      internalID: 4178646496139195653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_146
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 162
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a5394f30e60fc140800000000000000
+      internalID: 4742016492848625057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_147
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 166
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92991c17fc5793960800000000000000
+      internalID: 7582220981482133801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_148
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 143
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e852b63e1063c730800000000000000
+      internalID: 4018160975427557601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_149
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 152
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b505f1b3fd0f069e0800000000000000
+      internalID: -1630038223547838373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_150
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 146
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c7b7db379cb30a30800000000000000
+      internalID: 4180392236860028869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_151
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 144
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e91d00a3896c02320800000000000000
+      internalID: 2531241347692679582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_152
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 147
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 349829e36a9caee30800000000000000
+      internalID: 4533657690753370435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_153
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 154
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44eabcc60dc2d4a30800000000000000
+      internalID: 4201063301096648260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_154
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 150
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0c6fd347a241e5e0800000000000000
+      internalID: -1882149883098469366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_155
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 147
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 722c78a1dbde47ce0800000000000000
+      internalID: -1408239387010416089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_156
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 136
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d392ca46ece2c3a30800000000000000
+      internalID: 4196280416789604669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_157
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 124
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3d5d859961aef320800000000000000
+      internalID: 2593687910264692030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_158
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 118
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49f0fb4597341c310800000000000000
+      internalID: 1423493145617698708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_159
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 109
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10857292d608b1140800000000000000
+      internalID: 4691484643166738433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_160
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 100
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0972e5cea8dca6080800000000000000
+      internalID: -9193309692768671856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_161
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 98
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3284260d01bd97270800000000000000
+      internalID: 8248865057767835683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_162
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 103
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59206c894fad93ac0800000000000000
+      internalID: -3874825260305612139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_163
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 83
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2e587c732bf77060800000000000000
+      internalID: 6951300679700340266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_164
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 75
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a473f3d980c29830800000000000000
+      internalID: 4076532310922720416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_165
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 87
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14cf50648e604a110800000000000000
+      internalID: 1271148589502299201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_166
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 77
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a5047d8615091c50800000000000000
+      internalID: 6636341120327746980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_167
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 69
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2217ba1f5d44b66a0800000000000000
+      internalID: -6454989955232206558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_168
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 73
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cef3581a364829870800000000000000
+      internalID: 8688152194597601260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_169
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 69
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd11133d3f8bc5940800000000000000
+      internalID: 5286303419985891804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_170
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 69
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76e34f94e4abc37b0800000000000000
+      internalID: -5243111020755141017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_171
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 43
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df30e8c5256ef0c90800000000000000
+      internalID: -7201284037727616003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_172
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 50
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a3b3b977d78e370800000000000000
+      internalID: 8352063461617515019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_173
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 23
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238e714dafbaea290800000000000000
+      internalID: -7877169604435908558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_174
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 28
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bd1d63b7c7b0a440800000000000000
+      internalID: 4945154459189452208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_175
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 9
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6af506f88002ba400800000000000000
+      internalID: 336397818306518950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_176
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 1
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca46cc57983c0f560800000000000000
+      internalID: 7345585987395544236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_177
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 2
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dbeec4fd847da050800000000000000
+      internalID: 5813430847051590612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_178
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 12
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb99255a2d9cdcd10800000000000000
+      internalID: 2147594503879563708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dots_rings_179
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 0
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c89e7a75be0e36320800000000000000
+      internalID: 2550129115414391180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dots_rings_0: 3378432741890194194
+      dots_rings_1: 8588972037719030898
+      dots_rings_10: -887464914772203107
+      dots_rings_100: 9143759500829344191
+      dots_rings_101: 3936315143489163322
+      dots_rings_102: 5777175320463310163
+      dots_rings_103: 5401654796475641838
+      dots_rings_104: -4323622683639626477
+      dots_rings_105: -5202673921871125804
+      dots_rings_106: -2458348143040980530
+      dots_rings_107: 7817910168849947588
+      dots_rings_108: -1338806399292563388
+      dots_rings_109: 1145581626250982908
+      dots_rings_11: 4671129454791567713
+      dots_rings_110: 5855260003946279108
+      dots_rings_111: 7748997389729747132
+      dots_rings_112: -2034042220038291532
+      dots_rings_113: -5651912658660452784
+      dots_rings_114: 8126542769705584939
+      dots_rings_115: 1068493792363722350
+      dots_rings_116: -6882128295355065246
+      dots_rings_117: 6818667551290026401
+      dots_rings_118: -3084556431442073934
+      dots_rings_119: 387392647866080171
+      dots_rings_12: 6523532333972143872
+      dots_rings_120: -677874615654038292
+      dots_rings_121: 814339757237782
+      dots_rings_122: 4623346651024171166
+      dots_rings_123: -2623507412959390256
+      dots_rings_124: 7065862922998363360
+      dots_rings_125: 8506442951264688334
+      dots_rings_126: 8089582141870270
+      dots_rings_127: -1954555529874512470
+      dots_rings_128: 7443578059565209852
+      dots_rings_129: -182495600340279022
+      dots_rings_13: 172995904569537684
+      dots_rings_130: -3051852507703275730
+      dots_rings_131: 5328967591402272347
+      dots_rings_132: -3175534245424235889
+      dots_rings_133: -7533377201377778856
+      dots_rings_134: 5637190584997798124
+      dots_rings_135: 3265910219963588514
+      dots_rings_136: -3630227834890497052
+      dots_rings_137: -2856382918192334095
+      dots_rings_138: 6773726295964021675
+      dots_rings_139: 7331602589280188914
+      dots_rings_14: 1605581096551527935
+      dots_rings_140: 3228227024541167728
+      dots_rings_141: -2246296960665851395
+      dots_rings_142: -5285840786044990949
+      dots_rings_143: -311854602668665520
+      dots_rings_144: -4533798618913448889
+      dots_rings_145: 4178646496139195653
+      dots_rings_146: 4742016492848625057
+      dots_rings_147: 7582220981482133801
+      dots_rings_148: 4018160975427557601
+      dots_rings_149: -1630038223547838373
+      dots_rings_15: 1828682773462036521
+      dots_rings_150: 4180392236860028869
+      dots_rings_151: 2531241347692679582
+      dots_rings_152: 4533657690753370435
+      dots_rings_153: 4201063301096648260
+      dots_rings_154: -1882149883098469366
+      dots_rings_155: -1408239387010416089
+      dots_rings_156: 4196280416789604669
+      dots_rings_157: 2593687910264692030
+      dots_rings_158: 1423493145617698708
+      dots_rings_159: 4691484643166738433
+      dots_rings_16: -894112251750060611
+      dots_rings_160: -9193309692768671856
+      dots_rings_161: 8248865057767835683
+      dots_rings_162: -3874825260305612139
+      dots_rings_163: 6951300679700340266
+      dots_rings_164: 4076532310922720416
+      dots_rings_165: 1271148589502299201
+      dots_rings_166: 6636341120327746980
+      dots_rings_167: -6454989955232206558
+      dots_rings_168: 8688152194597601260
+      dots_rings_169: 5286303419985891804
+      dots_rings_17: -779680229947950840
+      dots_rings_170: -5243111020755141017
+      dots_rings_171: -7201284037727616003
+      dots_rings_172: 8352063461617515019
+      dots_rings_173: -7877169604435908558
+      dots_rings_174: 4945154459189452208
+      dots_rings_175: 336397818306518950
+      dots_rings_176: 7345585987395544236
+      dots_rings_177: 5813430847051590612
+      dots_rings_178: 2147594503879563708
+      dots_rings_179: 2550129115414391180
+      dots_rings_18: -3668397851789953352
+      dots_rings_19: -8652202894960131421
+      dots_rings_2: -8838689961605127754
+      dots_rings_20: 4539669877792369200
+      dots_rings_21: 6327025627450281869
+      dots_rings_22: 4196362847332214142
+      dots_rings_23: -7806959835704280076
+      dots_rings_24: -1434124497924793360
+      dots_rings_25: 7068911789758132989
+      dots_rings_26: 4768470092521084493
+      dots_rings_27: 882316393007249504
+      dots_rings_28: 1414710873002275300
+      dots_rings_29: 536385819821768295
+      dots_rings_3: -4116098958244188943
+      dots_rings_30: 9188846011049689132
+      dots_rings_31: -5497908171195409274
+      dots_rings_32: -8325714283966778322
+      dots_rings_33: -8376385216645745822
+      dots_rings_34: 7723011913936450627
+      dots_rings_35: -3416973089672125884
+      dots_rings_36: -1315900244959291927
+      dots_rings_37: -6845096543993082377
+      dots_rings_38: 6078991101854087528
+      dots_rings_39: 8077982714474767150
+      dots_rings_4: -1500465712609130042
+      dots_rings_40: -8605555650791244578
+      dots_rings_41: -4007675150591408942
+      dots_rings_42: -2263788138577188320
+      dots_rings_43: 1462746150520075918
+      dots_rings_44: -1071131363920609798
+      dots_rings_45: 7377823249540238826
+      dots_rings_46: -5299338340752857747
+      dots_rings_47: 8660233731928917510
+      dots_rings_48: 6318588925720762744
+      dots_rings_49: -3588057281390935272
+      dots_rings_5: -870067714807626652
+      dots_rings_50: -6515288350874302649
+      dots_rings_51: 7801755861659382791
+      dots_rings_52: 4246131175664218222
+      dots_rings_53: 4559251910167842721
+      dots_rings_54: 7379776898869649653
+      dots_rings_55: -8944043564122055212
+      dots_rings_56: -620130675069703600
+      dots_rings_57: 5097791341033521995
+      dots_rings_58: -1077688827643035732
+      dots_rings_59: 144715375063896877
+      dots_rings_6: -2392256570204228866
+      dots_rings_60: 3634573007034964239
+      dots_rings_61: 2847102042765870002
+      dots_rings_62: -4403654248485625716
+      dots_rings_63: 7312938653615696084
+      dots_rings_64: 4600189508464325262
+      dots_rings_65: 5084153219898387982
+      dots_rings_66: -8765901807861556763
+      dots_rings_67: -5210246772171266212
+      dots_rings_68: -8422303507502107290
+      dots_rings_69: 711484844028554554
+      dots_rings_7: 6702218032136705393
+      dots_rings_70: 6240799984400480305
+      dots_rings_71: 4192803381258827075
+      dots_rings_72: 1091693145248884945
+      dots_rings_73: 7793461730543913349
+      dots_rings_74: -8807035580548692508
+      dots_rings_75: -5084802716401332759
+      dots_rings_76: -7298818435015807975
+      dots_rings_77: 7632926668938430037
+      dots_rings_78: 3670181964042840717
+      dots_rings_79: 1908650020281867120
+      dots_rings_8: 5162469376299298951
+      dots_rings_80: 8498493291856375410
+      dots_rings_81: 4810507458413328384
+      dots_rings_82: -1820672131778526221
+      dots_rings_83: -9222603324417809431
+      dots_rings_84: -6369295653116873807
+      dots_rings_85: 4785694918779921940
+      dots_rings_86: -4053080357681538746
+      dots_rings_87: -601507610261920613
+      dots_rings_88: -6059066750499293282
+      dots_rings_89: -5861471729552904200
+      dots_rings_9: -5044603774909363603
+      dots_rings_90: -8457556046117756428
+      dots_rings_91: -84211927577027666
+      dots_rings_92: 8734583480027315141
+      dots_rings_93: -5773397009257416583
+      dots_rings_94: -4275393566075103169
+      dots_rings_95: 700422038772614356
+      dots_rings_96: 6906296310026511217
+      dots_rings_97: 776596567106856375
+      dots_rings_98: -3134352673939397396
+      dots_rings_99: 2040530249699798460
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

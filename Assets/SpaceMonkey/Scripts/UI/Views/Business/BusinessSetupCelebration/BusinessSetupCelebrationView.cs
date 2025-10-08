@@ -15,6 +15,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
     {
         [SerializeField] private Button infoButton;
         [SerializeField] private Button backButton;
+        [SerializeField] private Button seeExamplesButton;
         [SerializeField] private Button nextButton;
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private TextMeshProUGUI businessName;
@@ -23,6 +24,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
+            seeExamplesButton.OnClickAsObservable().Subscribe(_ => Controller.OpenExamplesView()).AddTo(this);
             SetupDefaults();
 
             await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: destroyCancellationToken);

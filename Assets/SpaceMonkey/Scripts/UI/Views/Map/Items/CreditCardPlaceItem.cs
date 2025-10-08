@@ -1,3 +1,4 @@
+using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using TMPro;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
             _creditSimulator = creditSimulator;
         }
         
-        public override void Init()
+        public override void Init(PlaceType placeType)
         {
             float balance = 0;
             float nextPayment = 0;
@@ -35,7 +36,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
             balanceText.text = $"Balance: ${balance:F2}";
             nextPaymentText.text = $"Next Payment: ${nextPayment:F2}";
             dueDateText.text = $"Payment Due: Week {dueDate}";
-            base.Init();
+            base.Init(placeType);
         }
     }
 }

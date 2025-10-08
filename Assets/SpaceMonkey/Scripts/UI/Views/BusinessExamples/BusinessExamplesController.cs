@@ -1,5 +1,8 @@
+using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration;
 using SpaceMonkey.Scripts.UI.Views.Example;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
@@ -33,6 +36,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessExamples
 
         public void OnBack()
         {
+            PresenterService.HidePreviousAndShow<BusinessSetupCelebrationView>().Forget();
         }
     }
 }
