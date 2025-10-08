@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ContextLoaderService.Runtime;
 using Cysharp.Threading.Tasks;
 using DCLogger.Runtime;
+using SpaceMonkey.Scripts.Cloud;
+using SpaceMonkey.Scripts.Cloud.Config.GameConfig;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
@@ -18,14 +22,18 @@ namespace SpaceMonkey.Scripts.Installers.Main
     {
         private readonly PresenterService _presenterService;
         private readonly AccountService _accountService;
+        private readonly CloudDataService _cloudDataService;
+        private readonly GameConfig _gameConfig;
         private readonly NavigationPresenterService _navigationPresenterService;
 
         public MainLoader(LoadingService loadingService, PresenterService presenterService,
-            AccountService accountService,
+            AccountService accountService, CloudDataService cloudDataService, GameConfig gameConfig,
             NavigationPresenterService navigationPresenterService) : base(loadingService)
         {
             _presenterService = presenterService;
             _accountService = accountService;
+            _cloudDataService = cloudDataService;
+            _gameConfig = gameConfig;
             _navigationPresenterService = navigationPresenterService;
         }
 
@@ -34,6 +42,11 @@ namespace SpaceMonkey.Scripts.Installers.Main
             try
             {
                 await LoadingService.BeginLoading(UniTask.DelayFrame(1).ToLoadingUnit());
+
+                var cloudDataClientUnit = _cloudDataService.Initialize();
+                await LoadingService.BeginLoading(cloudDataClientUnit);
+
+                await PatchGameConfig();
 
                 if (_accountService.IsFreshAccount)
                 {
@@ -52,6 +65,28 @@ namespace SpaceMonkey.Scripts.Installers.Main
             {
                 Logger.LogError(e.Message, SpaceMonkeyLogChannels.Default);
             }
+        }
+
+        private async UniTask PatchGameConfig()
+        {
+            var categoriesUnit = _cloudDataService.Patch<CategoryInfoPatcher, CategoryInfo[]>();
+            var productionLevelsUnit = _cloudDataService.Patch<ProductionLevelInfoPatcher, ProductionLevelInfo[]>();
+            var marketingInfosUnit = _cloudDataService.Patch<MarketingInfoPatcher, MarketingInfo[]>();
+            var businessExamplesUnit = _cloudDataService.Patch<BusinessExamplePatcher, BusinessExample[]>();
+            var staffsUnit = _cloudDataService.Patch<StaffPatcher, Staff[]>();
+            var creditCardInfoUnit = _cloudDataService.Patch<CreditCardInfoPatcher, CreditCardInfo>();
+
+            await LoadingService.BeginLoadingParallel(
+                categoriesUnit, productionLevelsUnit, marketingInfosUnit,
+                businessExamplesUnit, staffsUnit, creditCardInfoUnit
+            );
+
+            _gameConfig.PatchCategories(categoriesUnit.Result);
+            _gameConfig.PatchProductionLevelInfos(productionLevelsUnit.Result);
+            _gameConfig.PatchMarketingInfos(marketingInfosUnit.Result);
+            _gameConfig.PatchBusinessExamples(businessExamplesUnit.Result);
+            _gameConfig.PatchStaffs(staffsUnit.Result);
+            _gameConfig.PatchCreditCardInfo(creditCardInfoUnit.Result);
         }
 
         public class Installer : Installer<Installer>
