@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Profile.Simulation;
 
 namespace SpaceMonkey.Scripts.Utilities
 {
@@ -59,6 +61,16 @@ namespace SpaceMonkey.Scripts.Utilities
             }
 
             return temp.GetRange(0, count);
+        }
+
+
+        public static Dictionary<Product, int> GetTotalQuantitiesByProduct(this WeekInfo weekInfo)
+        {
+            return weekInfo.Orders
+                .Where(o => o.Shipped)
+                .SelectMany(o => o.Products)
+                .GroupBy(p => p.Product)
+                .ToDictionary(g => g.Key, g => g.Sum(o => o.Quantity));
         }
     }
 }

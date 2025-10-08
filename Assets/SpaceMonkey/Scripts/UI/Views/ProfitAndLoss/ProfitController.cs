@@ -6,6 +6,7 @@ using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -46,23 +47,35 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             }).Forget();
         }
 
-        internal Dictionary<Profile.Product, int> GetTotalQuantitiesByProduct()
+        public void OnBack()
         {
-            return _weekSimulationContext.WeekSimulation.GetTotalQuantitiesByProduct();
+            _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+            {
+                Type = MainNavigationType.BusinessHub
+            }).Forget();
         }
-        internal float GetWeekProfit()
+        
+        internal Dictionary<Profile.Product, int> GetTotalQuantitiesByProduct(bool useSimulation)
         {
-            return GetTotalQuantitiesByProduct().Sum(pair => pair.Key.Profit!.Value * pair.Value);
+            if (useSimulation)
+            {
+                return _weekSimulationContext.WeekSimulation.WeekInfo.GetTotalQuantitiesByProduct();
+            }
+            return _accountService.Model.Account.Weeks[^1].GetTotalQuantitiesByProduct();
         }
-        internal float GetWeekRevenue()
+        internal float GetWeekProfit(bool useSimulation)
         {
-            return GetTotalQuantitiesByProduct().Sum(pair => pair.Key.ProductPrice!.Value * pair.Value);
+            return GetTotalQuantitiesByProduct(useSimulation).Sum(pair => pair.Key.Profit!.Value * pair.Value);
         }
-        internal float GetWeekTotalExpenses()
+        internal float GetWeekRevenue(bool useSimulation)
         {
-            return GetTotalQuantitiesByProduct().Sum(pair => (pair.Key.MaterialPrice!.Value +
-                                                              pair.Key.MaterialPackagingPrice!.Value +
-                                                              pair.Key.ShippingCost!.Value) * pair.Value);
+            return GetTotalQuantitiesByProduct(useSimulation).Sum(pair => pair.Key.ProductPrice!.Value * pair.Value);
+        }
+        internal float GetWeekTotalExpenses(bool useSimulation)
+        {
+            return GetTotalQuantitiesByProduct(useSimulation).Sum(pair => (pair.Key.MaterialPrice!.Value +
+                                                                           pair.Key.MaterialPackagingPrice!.Value +
+                                                                           pair.Key.ShippingCost!.Value) * pair.Value);
         }
     }
 }

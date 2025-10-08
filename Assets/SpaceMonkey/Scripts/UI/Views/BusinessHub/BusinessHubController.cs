@@ -11,6 +11,7 @@ using SpaceMonkey.Scripts.UI.Views.Marketing;
 using SpaceMonkey.Scripts.UI.Views.Orders;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
+using SpaceMonkey.Scripts.UI.Views.ProfitAndLoss;
 using SpaceMonkey.Scripts.UI.Views.Staff;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
@@ -86,6 +87,19 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             PresenterService.HidePreviousAndShow<StaffView>(new StaffView.Data()
             {
                 Profession = EmployeeProfession.All
+            }).Forget();
+        }
+
+        public void ShowPlmView()
+        {
+            if (_accountService.Model.Account.Weeks.Count <= 0)
+            {
+                return;
+            }
+            _navigationPresenterService.HideAll();
+            PresenterService.Show<ProfitView>(new ProfitView.Data
+            {
+                EnableBackButton = true
             }).Forget();
         }
     }
