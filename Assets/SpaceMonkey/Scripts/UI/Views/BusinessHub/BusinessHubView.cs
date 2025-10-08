@@ -32,6 +32,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private Button marketingButton;
         [SerializeField] private Button staffButton;
         [SerializeField] private Button plmButton;
+        [SerializeField] private Button reviewButton;
 
         [SerializeField] private Button xpButton;
 
@@ -42,6 +43,8 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             staffButton.OnClickAsObservable().Subscribe(_ => Controller.ShowStaffView()).AddTo(this);
             startButton.OnClickAsObservable().Subscribe(_ => Controller.StartWeek()).AddTo(this);
             productionButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductionView()).AddTo(this);
+            reviewButton.OnClickAsObservable().Subscribe(_ => Controller.ShowAllReviewView()).AddTo(this);
+
             plmButton.OnClickAsObservable().Subscribe(_ => Controller.ShowPlmView()).AddTo(this);
             xpButton.OnClickAsObservable().Subscribe(_ => Controller.ShowLevelInfoPopup()).AddTo(this);
      

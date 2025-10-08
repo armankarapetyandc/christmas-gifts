@@ -15,8 +15,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         [SerializeField] private TextMeshProUGUI commentText;
         [SerializeField] private RectTransform commentTextRect;
         [SerializeField] private Slider moodSlider;
-        [SerializeField] private Slider ratingSlider;
-        
+        [SerializeField] private GameObject[] stars;
+
         public void SetCharacterVisual(SpriteVisualAsset characterVisual = null,
             ColorVisualAsset baseColorVisual = null)
         {
@@ -37,7 +37,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
 
         public void SetRating(float value)
         {
-            ratingSlider.value = value;
+            for (int i = 0; i < stars.Length; i++)
+            {
+                stars[i].SetActive(i + 1 <= value);
+            }
         }
 
         private void Update()
