@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Views.Review;
+using SpaceMonkey.Scripts.UI.Views.UpgradeCapacity;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -18,7 +19,7 @@ namespace SpaceMonkey.Scripts.UI.Views.WeekReview
 
         internal void OnNext()
         {
-            _presenterService.HidePreviousAndShow<ReviewView>().Forget();
+            _presenterService.HidePreviousAndShow<WeekEndRewardView>().Forget();
         }
     }
 }

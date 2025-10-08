@@ -1695,7 +1695,7 @@ GameObject:
   - component: {fileID: 7012565185354547393}
   - component: {fileID: 2407491061623046129}
   m_Layer: 5
-  m_Name: UpgradeCapacityView
+  m_Name: WeekEndRewardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
