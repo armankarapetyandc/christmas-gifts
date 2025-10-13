@@ -1,4 +1,5 @@
-﻿using SpaceMonkey.Scripts.Profile;
+﻿using SpaceMonkey.Scripts.Cloud;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.Utilities;
@@ -14,6 +15,7 @@ namespace SpaceMonkey.Scripts.Installers.Main
         {
             Container.Bind<CameraHolder>().FromInstance(cameraHolder).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AccountService>().AsSingle();
+            CloudDataInstaller.Install(Container);
             WeekSimulationInstaller.Install(Container);
             MainLoader.Installer.Install(Container);
             CreditCardInstaller.Install(Container);

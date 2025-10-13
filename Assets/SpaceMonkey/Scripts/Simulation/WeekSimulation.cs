@@ -269,8 +269,8 @@ namespace SpaceMonkey.Scripts.Simulation
             }
             var candidate =
                 from customer in Customers
-                let canReview = Random.Range(0, 100) <= _gameConfig.SimulationInfo.ReviewChance
-                where canReview
+                // let canReview = Random.Range(0, 100) <= _gameConfig.SimulationInfo.ReviewChance
+                // where canReview
                 let hasPrevious = previousWeek.Orders.Any(o => o.CharacterId.Equals(customer.Character.Id))
                 where hasPrevious
                 let currentOrder = _weekInfo.Orders.First(o => o.CharacterId.Equals(customer.Character.Id))
