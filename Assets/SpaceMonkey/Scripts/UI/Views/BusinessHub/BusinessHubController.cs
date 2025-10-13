@@ -1,4 +1,8 @@
+using System;
+using System.Linq;
 using Cysharp.Threading.Tasks;
+using R3;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -6,6 +10,7 @@ using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.LevelInfo;
 using SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto;
+using SpaceMonkey.Scripts.UI.Utility;
 using SpaceMonkey.Scripts.UI.Views.BusinessExamples;
 using SpaceMonkey.Scripts.UI.Views.Marketing;
 using SpaceMonkey.Scripts.UI.Views.Orders;
@@ -27,13 +32,24 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly WeekSimulationContext _weekSimulationContext;
         private PopupPresenterService _popupPresenterService;
+        private GameConfig _gameConfig;
+
+        public Observable<int> OnLevelChanged => _accountService.OnLevelChanged;
+        public Observable<float> OnMoneyChanged => _accountService.Model.Account.OnMoneyChanged;
+        public int Level => _accountService.Model.Account.Level;
+        public float Money => _accountService.Model.Account.Money;
+
+
+        public readonly ReactiveCommand<LockByLevel> OnUnlockByLevel = new ReactiveCommand<LockByLevel>();
+        public readonly ReactiveCommand<LockByMoney> OnUnlockByMoney = new ReactiveCommand<LockByMoney>();
 
         public BusinessHubController(PresenterService presenterService,
             AccountService accountService, VisualAssetDatabase visualAssetDatabase,
             NavigationPresenterService navigationPresenterService,
             WeekSimulationContext weekSimulationContext,
-            PopupPresenterService popupPresenterService) : base(presenterService)
+            PopupPresenterService popupPresenterService, GameConfig gameConfig) : base(presenterService)
         {
+            _gameConfig = gameConfig;
             _popupPresenterService = popupPresenterService;
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
@@ -59,6 +75,31 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
 
+
+        internal void CheckForUnlockByMoney(LockByMoney[] lockedByMoney, float money)
+        {
+            foreach (var byMoney in lockedByMoney)
+            {
+                if (byMoney.Value <= money)
+                {
+                    OnUnlockByMoney.Execute(byMoney);
+                }
+            }
+        }
+
+        internal void CheckForUnlockByMoney(LockByLevel[] lockedByLevels, int level)
+        {
+            foreach (var lockedByLevel in lockedByLevels)
+            {
+                var levelInfo = _gameConfig.LevelInfos.FirstOrDefault(info => info.Level == level);
+                var unlockedInfo =
+                    levelInfo?.UnlockInfo.FirstOrDefault(unlockedInfo => unlockedInfo.Key == lockedByLevel.Key);
+                if (unlockedInfo != null)
+                {
+                    OnUnlockByLevel.Execute(lockedByLevel);
+                }
+            }
+        }
 
         internal void StartWeek()
         {
@@ -103,6 +144,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             {
                 return;
             }
+
             _navigationPresenterService.HideAll();
             PresenterService.Show<ProfitView>(new ProfitView.Data
             {

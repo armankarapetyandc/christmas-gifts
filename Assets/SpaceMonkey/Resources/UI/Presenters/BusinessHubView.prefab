@@ -1059,6 +1059,7 @@ GameObject:
   - component: {fileID: 8902355417344831800}
   - component: {fileID: 8872644482589548593}
   - component: {fileID: 5509658334340901470}
+  - component: {fileID: 5015109388961010116}
   m_Layer: 5
   m_Name: MarketingButton
   m_TagString: Untagged
@@ -1080,6 +1081,7 @@ RectTransform:
   m_Children:
   - {fileID: 6447814098555593904}
   - {fileID: 6952735434056563307}
+  - {fileID: 6122187737184477223}
   m_Father: {fileID: 8857387184411291624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6956522, y: 0.53333336}
@@ -1164,11 +1166,26 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 8872644482589548593}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5015109388961010116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435147518789495905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688d30d6652f462fa20a85eba92eabd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Utility.LockByMoney
+  <Value>k__BackingField: 500
+  featureButton: {fileID: 5509658334340901470}
+  icon: {fileID: 2771699658066120289}
 --- !u!1 &2453840294183039629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,6 +1338,97 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2771699658066120289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6122187737184477223}
+  - component: {fileID: 8447096292347624658}
+  - component: {fileID: 2881672196737269336}
+  - component: {fileID: 6666636322129783048}
+  m_Layer: 5
+  m_Name: Lock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6122187737184477223
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771699658066120289}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5167131222155101580}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 42, y: -42}
+  m_SizeDelta: {x: 70, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8447096292347624658
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771699658066120289}
+  m_CullTransparentMesh: 1
+--- !u!114 &2881672196737269336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771699658066120289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 2303658635155955023, guid: 129687a2b682b4c89a7b91407bb23889, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6666636322129783048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771699658066120289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688d30d6652f462fa20a85eba92eabd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Utility.LockByMoney
+  <Value>k__BackingField: 0
+  featureButton: {fileID: 0}
+  icon: {fileID: 0}
 --- !u!1 &2833434389654534569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,9 +2233,13 @@ MonoBehaviour:
   productionButton: {fileID: 3337978667445576170}
   marketingButton: {fileID: 5509658334340901470}
   staffButton: {fileID: 1078467762630206259}
-  reviewButton: {fileID: 2883412023075280684}
   plmButton: {fileID: 4983065232253104143}
+  reviewButton: {fileID: 2883412023075280684}
   xpButton: {fileID: 1973577559721117648}
+  lockedByLevels:
+  - {fileID: 5829497971999333026}
+  lockedByMoney:
+  - {fileID: 5015109388961010116}
 --- !u!114 &3690061935181294210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,6 +2573,7 @@ GameObject:
   - component: {fileID: 1850796842889575052}
   - component: {fileID: 1802895450325412741}
   - component: {fileID: 3337978667445576170}
+  - component: {fileID: 5829497971999333026}
   m_Layer: 5
   m_Name: ProductionButton
   m_TagString: Untagged
@@ -2482,6 +2595,7 @@ RectTransform:
   m_Children:
   - {fileID: 4278384716424244996}
   - {fileID: 169387409907282399}
+  - {fileID: 6832735044145190665}
   m_Father: {fileID: 8857387184411291624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3478261, y: 0.53333336}
@@ -2566,11 +2680,26 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1802895450325412741}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5829497971999333026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895339393320691669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53e4f6f0f104d92a5ef5b7d96bfd584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Utility.LockByLevel
+  <Key>k__BackingField: production
+  featureButton: {fileID: 3337978667445576170}
+  icon: {fileID: 8233119393631901652}
 --- !u!1 &5025651189535592723
 GameObject:
   m_ObjectHideFlags: 0
@@ -3787,6 +3916,81 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: e58ffb2e4615b4441bc0d4d706b9e5ea, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8233119393631901652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6832735044145190665}
+  - component: {fileID: 4885368724178575074}
+  - component: {fileID: 4715004714051322805}
+  m_Layer: 5
+  m_Name: Lock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6832735044145190665
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233119393631901652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2707097140444171832}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 42, y: -42}
+  m_SizeDelta: {x: 70, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4885368724178575074
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233119393631901652}
+  m_CullTransparentMesh: 1
+--- !u!114 &4715004714051322805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233119393631901652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 2303658635155955023, guid: 129687a2b682b4c89a7b91407bb23889, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

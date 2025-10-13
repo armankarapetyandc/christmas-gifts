@@ -15,10 +15,20 @@ namespace SpaceMonkey.Scripts.Profile
     public class Account
     {
         private float _score;
+        private float _money;
         public CompanyInfo Company { get; set; }
         public int Level { get; set; }
         public int Week => Weeks.Count + 1;
-        public float Money { get; set; }
+
+        public float Money
+        {
+            get { return _money; }
+            set
+            {
+                _money = value;
+                OnMoneyChanged.Execute(_money);
+            }
+        }
 
         public float Score
         {
@@ -31,6 +41,7 @@ namespace SpaceMonkey.Scripts.Profile
         }
         
         public readonly ReactiveCommand<float> OnScoreChanged = new ReactiveCommand<float>();
+        public readonly ReactiveCommand<float> OnMoneyChanged = new ReactiveCommand<float>();
 
 
         public List<Product> Products { get; set; }

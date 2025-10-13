@@ -3,6 +3,7 @@ using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
+using SpaceMonkey.Scripts.UI.Utility;
 using SpaceMonkey.Scripts.Utilities.Validation;
 using TMPro;
 using UIService.Runtime.Core;
@@ -36,6 +37,9 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         [SerializeField] private Button xpButton;
 
+        [SerializeField] private LockByLevel[] lockedByLevels;
+        [SerializeField] private LockByMoney[] lockedByMoney;
+
         public override UniTask Initialize(IPresenterData data = null)
         {
             productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
@@ -47,10 +51,37 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
             plmButton.OnClickAsObservable().Subscribe(_ => Controller.ShowPlmView()).AddTo(this);
             xpButton.OnClickAsObservable().Subscribe(_ => Controller.ShowLevelInfoPopup()).AddTo(this);
-     
-            
+
+
+            Controller.OnLevelChanged.Subscribe(CheckForUnlockByLevel).AddTo(this);
+            Controller.OnUnlockByLevel.Subscribe(UnlockItemByLevel).AddTo(this);
+            Controller.OnUnlockByMoney.Subscribe(UnlockItemByLevel).AddTo(this);
+            CheckForUnlockByLevel(Controller.Level);
+            CheckForUnlockByMoney(Controller.Money);
+
             SetupDefaults();
             return UniTask.CompletedTask;
+        }
+
+
+        private void CheckForUnlockByMoney(float money)
+        {
+            Controller.CheckForUnlockByMoney(lockedByMoney,money);
+        }
+
+        private void CheckForUnlockByLevel(int level)
+        {
+            Controller.CheckForUnlockByMoney(lockedByLevels,level);
+        }
+
+
+        private void UnlockItemByLevel(LockByLevel lockByLevel)
+        {
+            lockByLevel.Unlock();
+        }
+        private void UnlockItemByLevel(LockByMoney lockByMoney)
+        {
+            lockByMoney.Unlock();
         }
 
         private void SetupDefaults()

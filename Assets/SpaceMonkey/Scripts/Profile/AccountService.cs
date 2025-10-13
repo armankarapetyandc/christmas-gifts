@@ -22,6 +22,8 @@ namespace SpaceMonkey.Scripts.Profile
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
         private PopupPresenterService _popupPresenterService;
 
+        
+        public readonly ReactiveCommand<int> OnLevelChanged = new ReactiveCommand<int>();
         public AccountModel Model { get; private set; }
 
         public bool IsFreshAccount => !File.Exists(_path);
@@ -39,12 +41,13 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(Account.CreateEmpty(freeProdCap));
             Model.Account.OnScoreChanged.Subscribe(score =>
             {
-                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= score)
-                    .DefaultIfEmpty(_gameConfig.LevelInfos[0]).Max();
+                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= score)?.LastOrDefault();
+                   
                 int currentLevel = Model.Account.Level;
                 Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
                 if (currentLevel != 1 && currentLevel < Model.Account.Level)
                 {
+                    OnLevelChanged.Execute(Model.Account.Level);
                     _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
                 }
             }).AddTo(_compositeDisposable);
@@ -72,6 +75,18 @@ namespace SpaceMonkey.Scripts.Profile
             var content = await File.ReadAllTextAsync(_path);
             var account = JsonConvert.DeserializeObject<Account>(content);
             Model = new AccountModel(account);
+            Model.Account.OnScoreChanged.Subscribe(score =>
+            {
+                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= score)?.LastOrDefault();
+                   
+                int currentLevel = Model.Account.Level;
+                Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
+                if (currentLevel != 1 && currentLevel < Model.Account.Level)
+                {
+                    OnLevelChanged.Execute(Model.Account.Level);
+                    _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
+                }
+            }).AddTo(_compositeDisposable);
         }
 
 #if UNITY_EDITOR
