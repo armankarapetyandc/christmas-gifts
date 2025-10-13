@@ -69,6 +69,13 @@ namespace SpaceMonkey.Scripts.Installers.Main
 
         private async UniTask PatchGameConfig()
         {
+#if UNITY_EDITOR
+            if (!Cloud.Tool.CloudMenuTools.GetState())
+            {
+                return;
+            }
+#endif
+
             var categoriesUnit = _cloudDataService.Patch<CategoryInfoPatcher, CategoryInfo[]>();
             var productionLevelsUnit = _cloudDataService.Patch<ProductionLevelInfoPatcher, ProductionLevelInfo[]>();
             var marketingInfosUnit = _cloudDataService.Patch<MarketingInfoPatcher, MarketingInfo[]>();
