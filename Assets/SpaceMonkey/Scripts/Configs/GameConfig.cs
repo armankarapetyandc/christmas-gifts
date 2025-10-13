@@ -29,14 +29,14 @@ namespace SpaceMonkey.Scripts.Configs
             {
                 return;
             }
-            
+
             var patchedCategories = new List<CategoryInfo>();
             foreach (var info in infos)
             {
                 // Find matching category by Name
                 var existing = Categories?.FirstOrDefault(c => c.Name == info.Name);
 
-                if (existing!= null)
+                if (existing != null)
                 {
                     // Found match - preserve Visual, overwrite other properties
                     var patched = CategoryInfo.Create(
@@ -52,7 +52,7 @@ namespace SpaceMonkey.Scripts.Configs
             Categories = patchedCategories.ToArray();
             Debug.Log($"Patched {Categories.Length} categories");
         }
-        
+
         public void PatchProductionLevelInfos(ProductionLevelInfo[] infos)
         {
             if (infos == null || infos.Length == 0)
@@ -63,7 +63,7 @@ namespace SpaceMonkey.Scripts.Configs
             ProductionLevels = infos.ToArray();
             Debug.Log($"Patched {ProductionLevels.Length} production levels");
         }
-        
+
         public void PatchMarketingInfos(MarketingInfo[] infos)
         {
             if (infos == null || infos.Length == 0)
@@ -74,7 +74,7 @@ namespace SpaceMonkey.Scripts.Configs
             MarketingInfos = infos.ToArray();
             Debug.Log($"Patched {MarketingInfos.Length} marketing infos");
         }
-        
+
         public void PatchBusinessExamples(BusinessExample[] infos)
         {
             if (infos == null || infos.Length == 0)
@@ -131,8 +131,18 @@ namespace SpaceMonkey.Scripts.Configs
 
             CreditCardInfo = info;
         }
+
+        public void PatchSimulationInfo(SimulationInfo info)
+        {
+            if (info==null)
+            {
+                return;
+            }
+
+            SimulationInfo = info;
+        }
     }
-    
+
 
     [Serializable]
     public class LevelInfo
@@ -146,8 +156,8 @@ namespace SpaceMonkey.Scripts.Configs
     public class LevelUnlockInfo
     {
         [field: SerializeField] public string Key { get; private set; }
-        [field: SerializeField] public Sprite Icon{ get; private set; }
-        [field: SerializeField] public string Description{ get; private set; }
+        [field: SerializeField] public Sprite Icon { get; private set; }
+        [field: SerializeField] public string Description { get; private set; }
     }
 
     [Serializable]
@@ -170,7 +180,7 @@ namespace SpaceMonkey.Scripts.Configs
             };
         }
     }
-    
+
     [Serializable]
     public class CategoryInfo
     {
@@ -188,8 +198,8 @@ namespace SpaceMonkey.Scripts.Configs
                 Enabled = enabled
             };
         }
-        
-        public static CategoryInfo Create(string name,SpriteVisualAsset visualAsset, HashtagInfo[] tags, bool enabled)
+
+        public static CategoryInfo Create(string name, SpriteVisualAsset visualAsset, HashtagInfo[] tags, bool enabled)
         {
             return new CategoryInfo
             {
@@ -208,7 +218,7 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public float MaterialAdd { get; private set; }
         [field: SerializeField] public float PackagingAdd { get; private set; }
 
-        public static HashtagInfo Create(string tag,float materialAdd,float packagingAdd)
+        public static HashtagInfo Create(string tag, float materialAdd, float packagingAdd)
         {
             return new HashtagInfo
             {
@@ -245,7 +255,7 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int MaxMult { get; private set; }
         [field: SerializeField] public int Div { get; private set; }
         [field: SerializeField] public int Unlock { get; private set; }
-        
+
         public static MarketingInfo Create(string id, int minMult, int maxMult, int div, int unlock)
         {
             return new MarketingInfo
@@ -334,14 +344,52 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField]
         [Range(0, 100f)]
         public float ReviewChance { get; private set; } = 75f;
+
         [field: SerializeField]
         [Range(0, 100f)]
         public float BigProductChange { get; private set; } = 40f;
+
         [field: SerializeField]
         [Range(0, 100f)]
         public float ExtremeSettingHigh { get; private set; } = 80f;
+
         [field: SerializeField]
         [Range(0, 100f)]
         public float ExtremeSettingLow { get; private set; } = 20f;
+
+        public static SimulationInfo Create(int customersMin, int customersMax, int moodMin, int moodMax,
+            int moodLeave, float moodTtpCoefficient, float moodMaterialCoefficient,
+            float moodPackagingCoefficient, float moodOrderFulfillmentCoefficient,
+            float moodOrderNotFulfillmentCoefficient, int customerMoodThreshold,
+            RangeValue[] moodRanges, int orderQuantityMin, int orderQuantityMax,
+            int newCustomersMin, int newCustomersMax, float priceSensitivity,
+            float reviewChance, float bigProductChange, float extremeSettingHigh,
+            float extremeSettingLow)
+        {
+            return new SimulationInfo
+            {
+                CustomersMin = customersMin,
+                CustomersMax = customersMax,
+                MoodMin = moodMin,
+                MoodMax = moodMax,
+                MoodLeave = moodLeave,
+                MoodTtpCoefficient = moodTtpCoefficient,
+                MoodMaterialCoefficient = moodMaterialCoefficient,
+                MoodPackagingCoefficient = moodPackagingCoefficient,
+                MoodOrderFulfillmentCoefficient = moodOrderFulfillmentCoefficient,
+                MoodOrderNotFulfillmentCoefficient = moodOrderNotFulfillmentCoefficient,
+                CustomerMoodThreshold = customerMoodThreshold,
+                MoodRanges = moodRanges,
+                OrderQuantityMin = orderQuantityMin,
+                OrderQuantityMax = orderQuantityMax,
+                NewCustomersMin = newCustomersMin,
+                NewCustomersMax = newCustomersMax,
+                PriceSensitivity = priceSensitivity,
+                ReviewChance = reviewChance,
+                BigProductChange = bigProductChange,
+                ExtremeSettingHigh = extremeSettingHigh,
+                ExtremeSettingLow = extremeSettingLow
+            };
+        }
     }
 }

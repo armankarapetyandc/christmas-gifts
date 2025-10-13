@@ -75,10 +75,12 @@ namespace SpaceMonkey.Scripts.Installers.Main
             var businessExamplesUnit = _cloudDataService.Patch<BusinessExamplePatcher, BusinessExample[]>();
             var staffsUnit = _cloudDataService.Patch<StaffPatcher, Staff[]>();
             var creditCardInfoUnit = _cloudDataService.Patch<CreditCardInfoPatcher, CreditCardInfo>();
+            var simulationInfoUnit = _cloudDataService.Patch<SimulationInfoPatcher, SimulationInfo>();
 
             await LoadingService.BeginLoadingParallel(
                 categoriesUnit, productionLevelsUnit, marketingInfosUnit,
-                businessExamplesUnit, staffsUnit, creditCardInfoUnit
+                businessExamplesUnit, staffsUnit, creditCardInfoUnit,
+                simulationInfoUnit
             );
 
             _gameConfig.PatchCategories(categoriesUnit.Result);
@@ -87,6 +89,7 @@ namespace SpaceMonkey.Scripts.Installers.Main
             _gameConfig.PatchBusinessExamples(businessExamplesUnit.Result);
             _gameConfig.PatchStaffs(staffsUnit.Result);
             _gameConfig.PatchCreditCardInfo(creditCardInfoUnit.Result);
+            _gameConfig.PatchSimulationInfo(simulationInfoUnit.Result);
         }
 
         public class Installer : Installer<Installer>

@@ -8,5 +8,14 @@ namespace SpaceMonkey.Scripts.Utilities
     {
         [field: SerializeField] public float Min { get; private set; }
         [field: SerializeField] public float Max { get; private set; }
+
+        public static RangeValue Create(float min, float max)
+        {
+            return new RangeValue
+            {
+                Min = min,
+                Max = max
+            };
+        }
     }
 }
