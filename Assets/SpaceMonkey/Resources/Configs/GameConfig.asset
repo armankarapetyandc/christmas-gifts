@@ -496,6 +496,9 @@ MonoBehaviour:
     - <Key>k__BackingField: production
       <Icon>k__BackingField: {fileID: 21300000, guid: e58ffb2e4615b4441bc0d4d706b9e5ea, type: 3}
       <Description>k__BackingField: Production Upgrades
+    - <Key>k__BackingField: stuff
+      <Icon>k__BackingField: {fileID: 21300000, guid: 959cb735908c54928a532784c2ce555c, type: 3}
+      <Description>k__BackingField: Stuff
   - <Level>k__BackingField: 3
     <Score>k__BackingField: 500
     <UnlockInfo>k__BackingField:
