@@ -36,9 +36,9 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
             okButton.OnClickAsObservable().Subscribe(_ => { Controller.Close(); }).AddTo(this);
             Configs.LevelInfo nextLevelInfo = Controller.GetLeveInfoData(Controller.Level + 1);
             slider.value = Controller.Score / (float) nextLevelInfo.Score;
-            fromLevelText.text = $"{Controller.Level}";
-            toLevelText.text = $"{Controller.Level + 1}";
-            levelText.text = $"Level {Controller.Level}";
+            fromLevelText.text = $"{Controller.Level-1}";
+            toLevelText.text = $"{Controller.Level}";
+            levelText.text = $"Level {Controller.Level-1}";
             scoreText.text = $"Score {Controller.Score}";
             foreach (var unlockedItem in unlockedItems)
             {
@@ -70,12 +70,12 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
         
         private void OnFillComplete()
         {
-            levelText.text = $"Level {Controller.Level+1}";
-            fromLevelText.text = $"{Controller.Level+1}";
-            toLevelText.text = $"{Controller.Level + 2}";
+            levelText.text = $"Level {Controller.Level}";
+            fromLevelText.text = $"{Controller.Level}";
+            toLevelText.text = $"{Controller.Level + 1}";
             slider.value = 0.1f;
             sliderFillImage.color = startColor;
-            Configs.LevelInfo nextLevelInfo = Controller.GetLeveInfoData(Controller.Level + 1);
+            Configs.LevelInfo nextLevelInfo = Controller.GetLeveInfoData(Controller.Level);
             for (int i = 0; i < nextLevelInfo.UnlockInfo.Count; i++)
             {
                 unlockedItems[i].Initialize(nextLevelInfo.UnlockInfo[i]);

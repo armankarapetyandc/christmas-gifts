@@ -2,6 +2,7 @@ using System.Linq;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.DemoComplete;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -33,6 +34,11 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
         public new void Close()
         {
             _popupPresenterService.HideLast();
+            if (Level == 5)
+            {
+                PresenterService.Show<DemoCompleteView>();
+            }
+
         }
     }
 }
