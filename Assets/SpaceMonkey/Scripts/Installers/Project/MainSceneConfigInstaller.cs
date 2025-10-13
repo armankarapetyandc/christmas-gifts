@@ -18,9 +18,18 @@ namespace SpaceMonkey.Scripts.Installers.Project
 
         public override void InstallBindings()
         {
-            BindScriptableObjectFromNew(gameConfig, c => _runtimeGameConfig = c).AsSingle().NonLazy();
-
-            // Container.Bind<GameConfig>().FromInstance(gameConfig).AsSingle().NonLazy();
+#if UNITY_EDITOR
+            if (Cloud.Tool.CloudMenuTools.GetState())
+            {
+                BindScriptableObjectFromNew(gameConfig, c => _runtimeGameConfig = c).AsSingle().NonLazy();
+            }
+            else
+            {
+                Container.Bind<GameConfig>().FromInstance(gameConfig).AsSingle().NonLazy();
+            }
+#else
+            Container.Bind<GameConfig>().FromInstance(gameConfig).AsSingle().NonLazy();
+#endif
             Container.Bind<MapConfig>().FromInstance(mapConfig).AsSingle().NonLazy();
             Container.Bind<CustomerReviewConfig>().FromInstance(customerReviewConfig).AsSingle().NonLazy();
             Container.Bind<ScoresConfigs>().FromInstance(scoresConfigs).AsSingle().NonLazy();
