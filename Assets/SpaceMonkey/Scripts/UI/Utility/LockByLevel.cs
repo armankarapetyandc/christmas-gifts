@@ -9,9 +9,11 @@ namespace SpaceMonkey.Scripts.UI.Utility
         [SerializeField] private Button featureButton;
         [SerializeField] private GameObject icon;
 
+        public bool Locked { get; private set; } = true;
+
         public void Unlock()
         {
-            featureButton.interactable = true;
+            Locked = false;
             icon.SetActive(false);
         }
     }

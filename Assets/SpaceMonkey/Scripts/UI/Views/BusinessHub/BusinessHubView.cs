@@ -1,8 +1,10 @@
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
+using SpaceMonkey.Scripts.UI.Popups;
 using SpaceMonkey.Scripts.UI.Utility;
 using SpaceMonkey.Scripts.Utilities.Validation;
 using TMPro;
@@ -36,6 +38,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private Button reviewButton;
 
         [SerializeField] private Button xpButton;
+        [SerializeField] private ToastPopup toastPopup;
 
         [SerializeField] private LockByLevel[] lockedByLevels;
         [SerializeField] private LockByMoney[] lockedByMoney;
@@ -43,10 +46,47 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         public override UniTask Initialize(IPresenterData data = null)
         {
             productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
-            marketingButton.OnClickAsObservable().Subscribe(_ => Controller.ShowMarketingView()).AddTo(this);
-            staffButton.OnClickAsObservable().Subscribe(_ => Controller.ShowStaffView()).AddTo(this);
+            marketingButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                if (PlayerPrefs.GetInt("marketing") != 1)
+                {
+                    var item = lockedByMoney.FirstOrDefault(level => level.Key == "marketing");
+                    if (item != null)
+                    {
+                        toastPopup.ShowToast($"Unlocks at ", item.Value);
+                        return;
+                    }
+                }
+
+
+                Controller.ShowMarketingView();
+            }).AddTo(this);
+
+            staffButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                var item = lockedByLevels.FirstOrDefault(level => level.Key == "stuff");
+                if (item != null && item.Locked)
+                {
+                    var unlockInfo = Controller.GetLevelUnlockConfig(item.Key);
+                    toastPopup.ShowToast($"Unlocks at Company Level {unlockInfo.Level}");
+                    return;
+                }
+
+                Controller.ShowStaffView();
+            }).AddTo(this);
             startButton.OnClickAsObservable().Subscribe(_ => Controller.StartWeek()).AddTo(this);
-            productionButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductionView()).AddTo(this);
+            productionButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                var item = lockedByLevels.FirstOrDefault(level => level.Key == "production");
+                if (item != null && item.Locked)
+                {
+                    var unlockInfo = Controller.GetLevelUnlockConfig(item.Key);
+                    toastPopup.ShowToast($"Unlocks at Company Level {unlockInfo.Level}");
+                    return;
+                }
+
+                Controller.ShowProductionView();
+            }).AddTo(this);
             reviewButton.OnClickAsObservable().Subscribe(_ => Controller.ShowAllReviewView()).AddTo(this);
 
             plmButton.OnClickAsObservable().Subscribe(_ => Controller.ShowPlmView()).AddTo(this);
@@ -66,12 +106,12 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         private void CheckForUnlockByMoney(float money)
         {
-            Controller.CheckForUnlockByMoney(lockedByMoney,money);
+            Controller.CheckForUnlockByMoney(lockedByMoney, money);
         }
 
         private void CheckForUnlockByLevel(int level)
         {
-            Controller.CheckForUnlockByMoney(lockedByLevels,level);
+            Controller.CheckForUnlockByMoney(lockedByLevels, level);
         }
 
 
@@ -79,6 +119,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         {
             lockByLevel.Unlock();
         }
+
         private void UnlockItemByLevel(LockByMoney lockByMoney)
         {
             lockByMoney.Unlock();

@@ -87,6 +87,20 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             }
         }
 
+        internal LevelInfo GetLevelUnlockConfig(string key)
+        {
+            foreach (var gameConfigLevelInfo in _gameConfig.LevelInfos)
+            {
+                var contains = gameConfigLevelInfo.UnlockInfo.Any(info => info.Key == key);
+                if (contains)
+                {
+                    return gameConfigLevelInfo;
+                }
+            }
+
+            return null;
+        }
+
         internal void CheckForUnlockByMoney(LockByLevel[] lockedByLevels, int level)
         {
             foreach (var lockedByLevel in lockedByLevels)
