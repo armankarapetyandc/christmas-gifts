@@ -14,29 +14,29 @@ namespace SpaceMonkey.Scripts.Installers.Project
         [SerializeField] private CustomerReviewConfig customerReviewConfig;
         [SerializeField] private ScoresConfigs scoresConfigs;
 
-        private GameConfig _runtimeGameConfig;
-
         public override void InstallBindings()
         {
 #if UNITY_EDITOR
             if (Cloud.Tool.CloudMenuTools.GetState())
             {
-                BindScriptableObjectFromNew(gameConfig, c => _runtimeGameConfig = c).AsSingle().NonLazy();
+                BindScriptableObjectFromNew(gameConfig).AsSingle().NonLazy();
+                BindScriptableObjectFromNew(customerReviewConfig).AsSingle().NonLazy();
             }
             else
             {
                 Container.Bind<GameConfig>().FromInstance(gameConfig).AsSingle().NonLazy();
+                Container.Bind<CustomerReviewConfig>().FromInstance(customerReviewConfig).AsSingle().NonLazy();
             }
 #else
             Container.Bind<GameConfig>().FromInstance(gameConfig).AsSingle().NonLazy();
+            Container.Bind<CustomerReviewConfig>().FromInstance(customerReviewConfig).AsSingle().NonLazy();
 #endif
             Container.Bind<MapConfig>().FromInstance(mapConfig).AsSingle().NonLazy();
-            Container.Bind<CustomerReviewConfig>().FromInstance(customerReviewConfig).AsSingle().NonLazy();
             Container.Bind<ScoresConfigs>().FromInstance(scoresConfigs).AsSingle().NonLazy();
         }
 
         private ScopeConcreteIdArgConditionCopyNonLazyBinder BindScriptableObjectFromNew<T>(T original,
-            Action<T> onCreated) where T : ScriptableObject
+            Action<T> onCreated = null) where T : ScriptableObject
         {
             var instance = ScriptableObject.Instantiate(original);
             onCreated?.Invoke(instance);

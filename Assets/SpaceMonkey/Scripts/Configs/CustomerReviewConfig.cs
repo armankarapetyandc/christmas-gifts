@@ -1,4 +1,9 @@
 using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using UnityEditor;
 using UnityEngine;
 
 namespace SpaceMonkey.Scripts.Configs
@@ -28,6 +33,17 @@ namespace SpaceMonkey.Scripts.Configs
         {
             Reviews = i;
         }
+
+        public void PatchReviewInfo(ReviewInfo[] infos)
+        {
+            if (infos == null || infos.Length == 0)
+            {
+                return;
+            }
+
+            Reviews = infos;
+            Debug.Log($"Patched {Reviews.Length} review infos");
+        }
     }
 
     [Serializable]
@@ -39,7 +55,6 @@ namespace SpaceMonkey.Scripts.Configs
 
         public ReviewInfo()
         {
-            
         }
 
         public ReviewInfo(ReviewType type, string message, bool needFormating)
@@ -48,7 +63,7 @@ namespace SpaceMonkey.Scripts.Configs
             Message = message;
             NeedFormating = needFormating;
         }
-        
+
         public string GetMessage(params string[] args)
         {
             if (NeedFormating && args == null)
