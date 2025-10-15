@@ -24,16 +24,18 @@ namespace SpaceMonkey.Scripts.Installers.Main
         private readonly AccountService _accountService;
         private readonly CloudDataService _cloudDataService;
         private readonly GameConfig _gameConfig;
+        private readonly CustomerReviewConfig _customerReviewConfig;
         private readonly NavigationPresenterService _navigationPresenterService;
 
         public MainLoader(LoadingService loadingService, PresenterService presenterService,
-            AccountService accountService, CloudDataService cloudDataService, GameConfig gameConfig,
+            AccountService accountService, CloudDataService cloudDataService, GameConfig gameConfig,CustomerReviewConfig customerReviewConfig,
             NavigationPresenterService navigationPresenterService) : base(loadingService)
         {
             _presenterService = presenterService;
             _accountService = accountService;
             _cloudDataService = cloudDataService;
             _gameConfig = gameConfig;
+            _customerReviewConfig = customerReviewConfig;
             _navigationPresenterService = navigationPresenterService;
         }
 
@@ -83,11 +85,12 @@ namespace SpaceMonkey.Scripts.Installers.Main
             var staffsUnit = _cloudDataService.Patch<StaffPatcher, Staff[]>();
             var creditCardInfoUnit = _cloudDataService.Patch<CreditCardInfoPatcher, CreditCardInfo>();
             var simulationInfoUnit = _cloudDataService.Patch<SimulationInfoPatcher, SimulationInfo>();
+            var customerReviewUnit = _cloudDataService.Patch<CustomerReviewPatcher, ReviewInfo[]>();
 
             await LoadingService.BeginLoadingParallel(
                 categoriesUnit, productionLevelsUnit, marketingInfosUnit,
                 businessExamplesUnit, staffsUnit, creditCardInfoUnit,
-                simulationInfoUnit
+                simulationInfoUnit, customerReviewUnit
             );
 
             _gameConfig.PatchCategories(categoriesUnit.Result);
@@ -97,6 +100,8 @@ namespace SpaceMonkey.Scripts.Installers.Main
             _gameConfig.PatchStaffs(staffsUnit.Result);
             _gameConfig.PatchCreditCardInfo(creditCardInfoUnit.Result);
             _gameConfig.PatchSimulationInfo(simulationInfoUnit.Result);
+
+            _customerReviewConfig.PatchReviewInfo(customerReviewUnit.Result);
         }
 
         public class Installer : Installer<Installer>
