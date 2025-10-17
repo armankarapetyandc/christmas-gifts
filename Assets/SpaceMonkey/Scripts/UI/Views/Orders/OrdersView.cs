@@ -90,8 +90,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
             _orders.Remove(item);
 
-            var score = Controller.GetScoreFor("sellProduct") * item.Customer.Orders.Length;
-            XPParticleEffector.SpawnXpParticles(score, item.transform.position, transform).Forget();
+            var score = Controller.GetScoreFor("sellProduct") * item.Customer.Orders.Sum(order => order.Quantity);
+            Debug.LogError(score);
+            XPParticleEffector.SpawnXpParticles(score, Input.mousePosition, transform).Forget();
             Destroy(item.gameObject);
 
             if (_orders.Count==0)
