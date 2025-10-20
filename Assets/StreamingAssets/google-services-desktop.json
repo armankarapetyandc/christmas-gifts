@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "755948040491",
+    "project_id": "space-monkey-4fd46",
+    "storage_bucket": "space-monkey-4fd46.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755948040491:android:4d025bab81b155d70e156e",
+        "android_client_info": {
+          "package_name": "com.tidemillgroup.dev.spacemonkey"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3XvuP1jw2kKQqcWoQHwyi5yxYYtt8dOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
