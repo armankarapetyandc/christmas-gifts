@@ -36,7 +36,7 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
             var reviews = Controller.GetReviews();
             var weeks = Controller.GetWeeks();
             var orderedWeeks = weeks.OrderByDescending(info => info.Week).ToList();
-            weekNumberText.text = weeks.Max(info => info.Week).ToString();
+            weekNumberText.text = weeks.Count >1 ? weeks.Max(info => info.Week).ToString() : "1";
             var weekOrderMap = weeks
                 .Select((w, index) => new {w.Id, index})
                 .ToDictionary(x => x.Id, x => x.index);
