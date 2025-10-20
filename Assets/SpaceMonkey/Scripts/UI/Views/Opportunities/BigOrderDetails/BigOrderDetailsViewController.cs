@@ -3,6 +3,7 @@ using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.BigOrder;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderCanceled;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -36,6 +37,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
         
         public void OnCancel()
         {
+            PresenterService.Show<BigOrderCanceledView>().Forget();
         }
 
     }
