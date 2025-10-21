@@ -144,19 +144,19 @@ namespace SpaceMonkey.Scripts.Simulation
         {
             if (_account.Weeks.Count == 0)
             {
-                return Random.Range(1, 18) * 2;
+                return Random.Range(1, 3) * 2;
             }
 
             var lastWeek = _account.Weeks.LastOrDefault();
             if (!lastWeek.Orders.Any(o => o.CharacterId.Equals(characterId)))
             {
-                return Random.Range(1, 18) * 2;
+                return Random.Range(1, 3) * 2;
             }
 
             var orderInfo = lastWeek.Orders.FirstOrDefault(order => order.CharacterId.Equals(characterId));
             if (!orderInfo.Products.Any(o => o.Product.Id.Equals(product.Id)))
             {
-                return Random.Range(1, 18) * 2;
+                return Random.Range(1, 3) * 2;
             }
 
             var productOrderInfo = orderInfo.Products.FirstOrDefault(o => o.Product.Id.Equals(product.Id));
