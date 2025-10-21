@@ -337,6 +337,12 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public RangeValue[] MoodRanges { get; private set; }
         [field: SerializeField] public int OrderQuantityMin { get; private set; } = 1;
         [field: SerializeField] public int OrderQuantityMax { get; private set; } = 3;
+        [field: SerializeField] 
+        [Range(0, 100f)]
+        public float OrderQuantReduceLow { get; private set; } = 30f;
+        [field: SerializeField] 
+        [Range(0, 100f)]
+        public float OrderQuantReduceHigh { get; private set; } = 60f;
         [field: SerializeField] public int NewCustomersMin { get; private set; } = 1;
         [field: SerializeField] public int NewCustomersMax { get; private set; } = 2;
         [field: SerializeField] public float PriceSensitivity { get; private set; } = 0.3f;
@@ -362,6 +368,7 @@ namespace SpaceMonkey.Scripts.Configs
             float moodPackagingCoefficient, float moodOrderFulfillmentCoefficient,
             float moodOrderNotFulfillmentCoefficient, int customerMoodThreshold,
             RangeValue[] moodRanges, int orderQuantityMin, int orderQuantityMax,
+            float orderQuantReduceLow,float orderQuantReduceHigh,
             int newCustomersMin, int newCustomersMax, float priceSensitivity,
             float reviewChance, float bigProductChange, float extremeSettingHigh,
             float extremeSettingLow)
@@ -382,6 +389,8 @@ namespace SpaceMonkey.Scripts.Configs
                 MoodRanges = moodRanges,
                 OrderQuantityMin = orderQuantityMin,
                 OrderQuantityMax = orderQuantityMax,
+                OrderQuantReduceLow = orderQuantReduceLow,
+                OrderQuantReduceHigh = orderQuantReduceHigh,
                 NewCustomersMin = newCustomersMin,
                 NewCustomersMax = newCustomersMax,
                 PriceSensitivity = priceSensitivity,

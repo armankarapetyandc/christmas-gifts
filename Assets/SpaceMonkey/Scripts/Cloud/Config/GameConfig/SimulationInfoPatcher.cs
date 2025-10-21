@@ -65,6 +65,8 @@ namespace SpaceMonkey.Scripts.Cloud.Config.GameConfig
             int customerMoodThreshold = GetInt(propertyDict, "CustomerMoodThreshold", 30);
             int orderQuantityMin = GetInt(propertyDict, "OrderQuantityMin", 1);
             int orderQuantityMax = GetInt(propertyDict, "OrderQuantityMax", 3);
+            int orderQuantReduceLow = GetInt(propertyDict, "OrderQuantReduceLow", 30);
+            int orderQuantReduceHigh = GetInt(propertyDict, "OrderQuantReduceHigh", 60);
             int newCustomersMin = GetInt(propertyDict, "NewCustomersMin", 1);
             int newCustomersMax = GetInt(propertyDict, "NewCustomersMax", 2);
             float priceSensitivity = GetFloat(propertyDict, "PriceSensitivity", 0.3f);
@@ -82,6 +84,7 @@ namespace SpaceMonkey.Scripts.Cloud.Config.GameConfig
                 moodTtpCoefficient, moodMaterialCoefficient, moodPackagingCoefficient,
                 moodOrderFulfillmentCoefficient, moodOrderNotFulfillmentCoefficient,
                 customerMoodThreshold, moodRanges, orderQuantityMin, orderQuantityMax,
+                orderQuantReduceLow, orderQuantReduceHigh,
                 newCustomersMin, newCustomersMax, priceSensitivity, reviewChance,
                 bigProductChange, extremeSettingHigh, extremeSettingLow
             );
