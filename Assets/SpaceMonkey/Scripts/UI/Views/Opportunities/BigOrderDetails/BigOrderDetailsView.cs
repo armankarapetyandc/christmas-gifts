@@ -19,15 +19,20 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
         [SerializeField] private TextMeshProUGUI gingerText;
         [SerializeField] private TextMeshProUGUI customerNameText;
         [SerializeField] private TextMeshProUGUI bigOrderRatioText;
+        [SerializeField] private GameObject infoPanel;
+        [SerializeField] private Button infoCloseButton;
 
         [SerializeField] private Button cancelButton;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
-            infoButton.OnClickAsObservable().Subscribe(_ => Controller.OnInfo()).AddTo(this);
+            infoButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(true)).AddTo(this);
 
             cancelButton.OnClickAsObservable().Subscribe(_ => Controller.OnCancel()).AddTo(this);
+
+            infoCloseButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(false)).AddTo(this);
+            
             return UniTask.CompletedTask;
         }
 

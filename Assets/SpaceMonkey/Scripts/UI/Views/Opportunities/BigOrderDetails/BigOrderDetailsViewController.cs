@@ -32,7 +32,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
 
         public void OnInfo()
         {
-            _popupPresenterService.Show<BigOrderPopup>().Forget();
+         
         }
         
         public void OnCancel()
