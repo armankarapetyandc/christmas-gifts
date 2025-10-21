@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using R3;
+using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace SpaceMonkey.Scripts.UI.Views.DisasterInsurance
         [SerializeField] private Button backButton;
         [SerializeField] private Button purchasePolicyButton;
         [SerializeField] private Button learnAboutInsuranceButton;
+        [SerializeField] private TextMeshProUGUI moneyText;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
