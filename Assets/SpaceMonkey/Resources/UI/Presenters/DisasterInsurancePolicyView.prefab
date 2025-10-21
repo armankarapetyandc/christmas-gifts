@@ -276,7 +276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Info on Big Order
+  m_text: Info on Business Loans
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b494bbecf8f8284aaddd701b3563269, type: 2}
   m_sharedMaterial: {fileID: 1309805500137172838, guid: 3b494bbecf8f8284aaddd701b3563269, type: 2}
@@ -653,8 +653,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 486, y: -331}
-  m_SizeDelta: {x: 795.6, y: 50}
+  m_AnchoredPosition: {x: 486, y: -711.4309}
+  m_SizeDelta: {x: 795.6, y: 810.8619}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6092716283385050709
 CanvasRenderer:
@@ -684,12 +684,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This is an interesting business opportunity - a large order every week,
-    guaranteed sales, but can you do it? Can you make enough product? Will you overextend
-    your business? Do you need to hire staff or buy new equipment to meet this demand?
-    And what about your other customers? Will you still be able to fulfill thier
-    orders?\L\nIf you can manage it, it could be a good path to growth. But think
-    it through!"
+  m_text: 'Loans aren''t free money. A loan is money you borrow that you must pay
+    back, usually with interest (the cost of borrowing the money). You''ll have a
+    set repayment schedule, so you need to be sure your business can generate enough
+    cash flow to cover the monthly payments.
+
+
+    Your personal finances matter.
+    Even though the loan is for your business, lenders will heavily evaluate your
+    personal credit score and financial history to determine your creditworthiness.
+    A good credit score and history show you''re responsible with money and can increase
+    your chances of approval and getting better loan terms.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e6891c03f13f1e44a213bc615ab5855, type: 2}
   m_sharedMaterial: {fileID: 3712076712150920612, guid: 6e6891c03f13f1e44a213bc615ab5855, type: 2}
@@ -3257,7 +3262,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Big Order Fundamentals
+  m_text: Loan Fundamentals
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b494bbecf8f8284aaddd701b3563269, type: 2}
   m_sharedMaterial: {fileID: 1309805500137172838, guid: 3b494bbecf8f8284aaddd701b3563269, type: 2}
