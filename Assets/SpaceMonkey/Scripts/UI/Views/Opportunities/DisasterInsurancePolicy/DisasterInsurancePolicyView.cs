@@ -22,13 +22,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             cancelButton.OnClickAsObservable().Subscribe(_ => Controller.OnCancel()).AddTo(this);
 
             infoButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(true)).AddTo(this);
 
 
             infoCloseButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(false)).AddTo(this);
+
+            weekText.text = $"Week {Controller.Week}";
+            paymentText.text = $"${Controller.InsurancePrice}";
             return UniTask.CompletedTask;
         }
 

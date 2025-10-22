@@ -249,10 +249,14 @@ namespace SpaceMonkey.Scripts.Simulation
                     Message = tuple.Item3
                 });
             }
-            
+
             _account.PushFinishedWeek(_weekInfo);
             _account.Money = _money.Value;
             _account.Score += SellScore;
+            if ( _weekInfo.Week % 4 == 0 && _account.InsuranceData != null)
+            {
+                _account.CreateInsuranceData(_gameConfig.InsuranceInfo);
+            }
             _accountService.SaveAsync().Forget();
             
             _creditSimulator.NextWeek();

@@ -39,7 +39,7 @@ namespace SpaceMonkey.Scripts.Profile
                 OnScoreChanged.Execute(_score);
             }
         }
-        
+
         public readonly ReactiveCommand<float> OnScoreChanged = new ReactiveCommand<float>();
         public readonly ReactiveCommand<float> OnMoneyChanged = new ReactiveCommand<float>();
 
@@ -51,8 +51,9 @@ namespace SpaceMonkey.Scripts.Profile
         public List<MarketingFeature> MarketingFeatures { get; set; }
 
         public List<Employee> Employees { get; set; }
-        
+
         public CreditDataGameData CreditData { get; set; }
+        public InsuranceGameData InsuranceData { get; set; }
 
         public void SetCategory(string category)
         {
@@ -64,7 +65,7 @@ namespace SpaceMonkey.Scripts.Profile
             Company.CompanyName = companyName;
         }
 
-        public float CalculateCompanyRating(RangeValue[] values,List<WeekInfo> weekInfos)
+        public float CalculateCompanyRating(RangeValue[] values, List<WeekInfo> weekInfos)
         {
             if (weekInfos.Count == 0)
             {
@@ -114,7 +115,8 @@ namespace SpaceMonkey.Scripts.Profile
                 },
                 MarketingFeatures = new List<MarketingFeature>(),
                 Employees = new List<Employee>(),
-                CreditData = null
+                CreditData = null,
+                InsuranceData = null
             };
             return account;
         }
@@ -233,28 +235,45 @@ namespace SpaceMonkey.Scripts.Profile
             MarketingFeatures = new List<MarketingFeature>();
             Employees = new List<Employee>();
             CreditData = null;
+            InsuranceData = null;
         }
 
         public void DeleteProduct(string productId)
         {
             Products.RemoveAll(p => p.Id.Equals(productId));
         }
-        
+
         public void ResetCreditData()
         {
             CreditData = null;
         }
-        
+
+        public void ResetInsurance()
+        {
+            InsuranceData = null;
+        }
+
+        public void CreateInsuranceData(InsuranceInfo insuranceInfo)
+        {
+            if (!CanAfford(insuranceInfo.InsurancePrice))
+            {
+                ResetInsurance();
+                return;
+            }
+            Buy(insuranceInfo.InsurancePrice);
+            InsuranceData = new InsuranceGameData();
+        }
+
         public void CreateCreditData(float balance, float creditLimit, int creditScore)
         {
             CreditData = new CreditDataGameData(balance, creditLimit, creditScore);
         }
-        
+
         public void AddCreditTransaction(Transaction transaction)
         {
             CreditData?.Transactions.Add(transaction);
         }
-        
+
         public void AddPaymentRecord(PaymentRecord record)
         {
             CreditData?.PaymentHistory.Add(record);
@@ -474,7 +493,7 @@ namespace SpaceMonkey.Scripts.Profile
             return Tag != null ? Tag.GetHashCode() : 0;
         }
     }
-    
+
     public enum PaymentOption
     {
         None,
@@ -495,9 +514,20 @@ namespace SpaceMonkey.Scripts.Profile
         public int Week { get; set; }
         public float Payment { get; set; }
         public PaymentOption Type { get; set; }
-        
+
         public string Description { get; set; }
-        
+    }
+
+    public class InsuranceGameData
+    {
+        // public int InsurancePrice { get; private set; }
+        // public int OccurrenceLimit { get; private set; }
+        public bool IsActive { get; private set; }
+
+        public InsuranceGameData()
+        {
+            IsActive = true;
+        }
     }
 
     public class CreditDataGameData
@@ -506,7 +536,7 @@ namespace SpaceMonkey.Scripts.Profile
         public float CreditLimit { get; set; }
         public int CreditScore { get; set; }
         public PaymentOption SelectedPayment { get; set; }
-        
+
         public List<Transaction> Transactions { get; private set; } = new();
         public List<PaymentRecord> PaymentHistory { get; private set; } = new();
 

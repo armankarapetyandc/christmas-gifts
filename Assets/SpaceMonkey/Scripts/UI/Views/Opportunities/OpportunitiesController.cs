@@ -1,14 +1,15 @@
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Views.DisasterInsurance;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BankAccounts;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
-using SpaceMonkey.Scripts.UI.Views.Opportunities.Insurance;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.Investing;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.MutualFunds;
 using SpaceMonkey.Scripts.Utilities;
-using UIService.Runtime.Examples.Popups.TempWithDataAndController;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -18,10 +19,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
     {
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly CreditSimulator _creditSimulator;
+        private AccountService _accountService;
 
         public OpportunitiesController(PresenterService presenterService,
-            NavigationPresenterService navigationPresenterService, CreditSimulator creditSimulator) : base(presenterService)
+            NavigationPresenterService navigationPresenterService, CreditSimulator creditSimulator,AccountService accountService) : base(presenterService)
         {
+            _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
             _creditSimulator = creditSimulator;
         }
@@ -46,7 +49,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
         public void OnInsuranceButtonClicked()
         {
             _navigationPresenterService.HideAll();
-            PresenterService.HidePreviousAndShow<InsuranceView>().Forget();
+            if (_accountService.Model.Account.InsuranceData != null)
+            {
+                PresenterService.HidePreviousAndShow<DisasterInsurancePolicyView>().Forget();
+                return;
+            }
+
+            PresenterService.HidePreviousAndShow<DisasterInsuranceView>().Forget();
         }
 
         public void OnInvestmentButtonClicked()

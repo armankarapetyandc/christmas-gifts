@@ -20,7 +20,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.DisasterInsurance
             }).AddTo(this);
             confirmButton.OnClickAsObservable().Subscribe(_ =>
             {
-                Controller.Close();
+                Controller.ConfirmClicked();
    
             }).AddTo(this);
             return UniTask.CompletedTask;
