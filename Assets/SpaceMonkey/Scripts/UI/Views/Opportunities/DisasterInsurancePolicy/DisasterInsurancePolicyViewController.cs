@@ -31,6 +31,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy
         public void OnCancel()
         {
             _accountService.Model.Account.ResetInsurance();
+            _accountService.SaveAsync().Forget();
             PresenterService.Show<InsuranceCanceledView>().Forget();
         }
 
