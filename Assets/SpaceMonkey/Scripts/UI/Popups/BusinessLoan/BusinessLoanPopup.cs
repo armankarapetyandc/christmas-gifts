@@ -5,9 +5,9 @@ using UIService.Runtime.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceMonkey.Scripts.UI.Popups.BigOrder
+namespace SpaceMonkey.Scripts.UI.Popups.BusinessLoan
 {
-    public class BigOrderPopup : PopupPresenterWithController<BigOrderPopupController>
+    public class BusinessLoanPopup : PopupPresenterWithController<BusinessLoanPopupController>
     {
         [SerializeField] private Button closeButton;
         [SerializeField] private Button confirmButton;
@@ -21,7 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.BigOrder
             confirmButton.OnClickAsObservable().Subscribe(_ =>
             {
                 Controller.Close();
-                Controller.OpenBigOrderView();
+                Controller.OpenBusinessLoanView();
             }).AddTo(this);
             return UniTask.CompletedTask;
         }
