@@ -14,7 +14,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
         [SerializeField] private Button investmentButton;
         [SerializeField] private Button insuranceButton;
         [SerializeField] private Button mutualFundsButton;
+        [SerializeField] private Button bigOrderButton;
         [SerializeField] private Button taxesButton;
+        
 
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -23,6 +25,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
             investmentButton.OnClickAsObservable().Subscribe(_=>Controller.OnInvestmentButtonClicked()).AddTo(this);
             insuranceButton.OnClickAsObservable().Subscribe(_=>Controller.OnInsuranceButtonClicked()).AddTo(this);
             bankAccountButton.OnClickAsObservable().Subscribe(_=>Controller.OnBankAccountButtonClicked()).AddTo(this);
+            bigOrderButton.OnClickAsObservable().Subscribe(_=>Controller.OnBigOrderButtonClicked()).AddTo(this);
             return UniTask.CompletedTask;
         }
 

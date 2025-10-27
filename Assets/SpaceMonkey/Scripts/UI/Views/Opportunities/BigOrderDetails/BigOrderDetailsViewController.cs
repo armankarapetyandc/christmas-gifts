@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.BigOrder;
@@ -13,11 +14,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
     {
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly PopupPresenterService _popupPresenterService;
+        private AccountService _accountService;
 
         public BigOrderDetailsViewController(PresenterService presenterService,
             NavigationPresenterService navigationPresenterService,
-            PopupPresenterService popupPresenterService) : base(presenterService)
+            PopupPresenterService popupPresenterService,AccountService accountService) : base(presenterService)
         {
+            _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
             _popupPresenterService = popupPresenterService;
         }
@@ -26,17 +29,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Map
+                Type = MainNavigationType.Opportunities
             }).Forget();
         }
-
-        public void OnInfo()
-        {
-         
-        }
+        
         
         public void OnCancel()
         {
+            _accountService.Model.Account.ResetBigOrder();
+            _accountService.SaveAsync().Forget();
             PresenterService.Show<BigOrderCanceledView>().Forget();
         }
 

@@ -21,7 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderCanceled
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Map
+                Type = MainNavigationType.Opportunities
             }).Forget();
         }
     }

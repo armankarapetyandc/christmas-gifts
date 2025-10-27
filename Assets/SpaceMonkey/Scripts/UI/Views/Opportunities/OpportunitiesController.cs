@@ -5,6 +5,8 @@ using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.DisasterInsurance;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BankAccounts;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
@@ -81,5 +83,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
             }
             PresenterService.HidePreviousAndShow<BankAccountsView>().Forget();
         }
+        
+        public void OnBigOrderButtonClicked()
+        {
+            _navigationPresenterService.HideAll();
+            if (_accountService.Model.Account.BigOrderGameData != null)
+            {
+                PresenterService.HidePreviousAndShow<BigOrderDetailsView>().Forget();
+                return;
+            }
+
+            PresenterService.HidePreviousAndShow<BigOrderView>().Forget();
+        }
+        
+        
     }
 }

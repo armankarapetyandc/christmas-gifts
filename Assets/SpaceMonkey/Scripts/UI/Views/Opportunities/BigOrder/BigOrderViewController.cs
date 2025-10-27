@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.BigOrder;
@@ -14,11 +16,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder
     {
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly PopupPresenterService _popupPresenterService;
+        private AccountService _accountService;
 
         public BigOrderViewController(PresenterService presenterService,
             NavigationPresenterService navigationPresenterService,
-            PopupPresenterService popupPresenterService) : base(presenterService)
+            PopupPresenterService popupPresenterService,AccountService accountService) : base(presenterService)
         {
+            _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
             _popupPresenterService = popupPresenterService;
         }
@@ -27,7 +31,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Map
+                Type = MainNavigationType.Opportunities
             }).Forget();
         }
 
@@ -40,12 +44,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Map
+                Type = MainNavigationType.Opportunities
             }).Forget();
         }
         
-        public void OnAccept()
+        public async Task OnAccept()
         {
+            _accountService.Model.Account.CreateBigOrder();
+            await _accountService.SaveAsync();
             PresenterService.Show<BigOrderCongratulationView>();
         }
     }
