@@ -21,7 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.BusinessLoan
             confirmButton.OnClickAsObservable().Subscribe(_ =>
             {
                 Controller.Close();
-                Controller.OpenBusinessLoanView();
+                Controller.RedirectToBusinessLoanStatement();
             }).AddTo(this);
             return UniTask.CompletedTask;
         }

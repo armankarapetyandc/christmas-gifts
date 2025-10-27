@@ -8,6 +8,7 @@ using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.CreditCard;
+using SpaceMonkey.Scripts.UI.Popups.BusinessLoan;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
@@ -59,6 +60,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         internal void ShowCreditCardInfoPopup()
         {
             _popupPresenterService.Show<CreditCardPopup>().Forget();
+        }
+        
+        internal void ShowBusinessLoanPopup()
+        {
+            _popupPresenterService.Show<BusinessLoanPopup>().Forget();
         }
 
         internal bool HasCreditCard()

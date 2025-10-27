@@ -1,6 +1,7 @@
 ﻿using SpaceMonkey.Scripts.Cloud;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
+using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.Utilities;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace SpaceMonkey.Scripts.Installers.Main
             WeekSimulationInstaller.Install(Container);
             MainLoader.Installer.Install(Container);
             CreditCardInstaller.Install(Container);
+            BusinessLoanInstaller.Install(Container);
         }
     }
 }

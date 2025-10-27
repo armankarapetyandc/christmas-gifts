@@ -7,6 +7,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
         Investment, 
         Insurance,
         MutualFunds,
-        Taxes
+        Taxes,
+        BusinessLoan
     }
 }

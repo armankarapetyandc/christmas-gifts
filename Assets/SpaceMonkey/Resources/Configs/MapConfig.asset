@@ -209,9 +209,9 @@ MonoBehaviour:
     <Position>k__BackingField: {x: 1920, y: -6652}
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
-  - <Name>k__BackingField: Jarnall Bank
+  - <Name>k__BackingField: Business Loan
     <SingleLineName>k__BackingField: 
-    <Type>k__BackingField: 0
+    <Type>k__BackingField: 6
     <Position>k__BackingField: {x: 2244, y: -5599}
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0

@@ -75,6 +75,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     {
                         Controller.ShowCreditCardInfoPopup();
                     }
+                    else if (place.Type == PlaceType.BusinessLoan)
+                    {
+                        Controller.ShowBusinessLoanPopup();
+                    }
                     else
                     {
                         ShowPlaceHolder(place);
@@ -103,6 +107,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     if (place.Type == PlaceType.CreditCard)
                     {
                         Controller.ShowCreditCardInfoPopup();
+                    }
+                    else if (place.Type == PlaceType.BusinessLoan)
+                    {
+                        Controller.ShowBusinessLoanPopup();
                     }
                 });
             }

@@ -13,7 +13,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanSplash
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
+            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext().Forget()).AddTo(this);
             return UniTask.CompletedTask;
         }
 

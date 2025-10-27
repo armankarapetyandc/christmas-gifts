@@ -1,9 +1,11 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.DisasterInsurance;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BankAccounts;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy;
@@ -19,14 +21,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
     {
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly CreditSimulator _creditSimulator;
+        private readonly BusinessLoanSimulator _businessLoanSimulator;
         private AccountService _accountService;
 
         public OpportunitiesController(PresenterService presenterService,
-            NavigationPresenterService navigationPresenterService, CreditSimulator creditSimulator,AccountService accountService) : base(presenterService)
+            NavigationPresenterService navigationPresenterService, 
+            CreditSimulator creditSimulator,
+            BusinessLoanSimulator businessLoanSimulator,
+            AccountService accountService) : base(presenterService)
         {
             _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
             _creditSimulator = creditSimulator;
+            _businessLoanSimulator = businessLoanSimulator;
         }
 
         internal void OnMutualFundsButtonClicked()
@@ -67,6 +74,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
         public void OnBankAccountButtonClicked()
         {
             _navigationPresenterService.HideAll();
+            if (_businessLoanSimulator.HasActiveLoan)
+            {
+                PresenterService.HidePreviousAndShow<BusinessLoanStatementView>().Forget();
+                return;
+            }
             PresenterService.HidePreviousAndShow<BankAccountsView>().Forget();
         }
     }

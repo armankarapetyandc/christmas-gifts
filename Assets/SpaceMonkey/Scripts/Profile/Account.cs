@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -6,6 +6,7 @@ using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile.Simulation;
+using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Views.Staff;
 using SpaceMonkey.Scripts.Utilities;
@@ -53,6 +54,7 @@ namespace SpaceMonkey.Scripts.Profile
         public List<Employee> Employees { get; set; }
 
         public CreditDataGameData CreditData { get; set; }
+        public BusinessLoanDataGameData BusinessLoanData { get; set; }
         public InsuranceGameData InsuranceData { get; set; }
 
         public void SetCategory(string category)
@@ -267,6 +269,19 @@ namespace SpaceMonkey.Scripts.Profile
         public void CreateCreditData(float balance, float creditLimit, int creditScore)
         {
             CreditData = new CreditDataGameData(balance, creditLimit, creditScore);
+        }
+        
+        public void CreateBusinessLoanData(float originalAmount, float balance, float apr, int termMonths, int startWeek)
+        {
+            BusinessLoanData = new BusinessLoanDataGameData(originalAmount, balance, apr, termMonths, startWeek);
+        }
+        
+        public void AddLoanPaymentRecord(PaymentRecord record)
+        {
+            if (BusinessLoanData != null)
+            {
+                BusinessLoanData.PaymentHistory.Add(record);
+            }
         }
 
         public void AddCreditTransaction(Transaction transaction)
