@@ -154,7 +154,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         public void ShowPlmView()
         {
-            if (_accountService.Model.Account.Weeks.Count <= 0)
+            if (_accountService.Model.Account.WeeksV2.Count <= 0)
             {
                 return;
             }

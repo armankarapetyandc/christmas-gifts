@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +16,26 @@ using Random = UnityEngine.Random;
 
 namespace SpaceMonkey.Scripts.Simulation
 {
+    public class CustomerV2
+    {
+        public CharacterConfig Character { get; private set; }
+        public int Mood { get; private set; }
+        public int Frequency { get; private set; }
+        public ProductOrder[] Orders { get; private set; }
+
+        public CustomerV2(CharacterConfig character, int mood, int frequency)
+        {
+            Character = character;
+            Mood = mood;
+            Frequency = frequency;
+        }
+
+        public void SetOrders(ProductOrder[] orders)
+        {
+            Orders = orders;
+        }
+    }
+
     public class Customer
     {
         public CharacterConfig Character { get; private set; }
@@ -34,6 +54,9 @@ namespace SpaceMonkey.Scripts.Simulation
     {
         public Product Product { get; private set; }
         public int Quantity { get; private set; }
+
+        public float OrderCost => Product.ProductPrice!.Value * Quantity;
+        public float OrderProdCost => Product.ProdCapCost!.Value * Quantity;
 
         public ProductOrder(Product product, int quantity)
         {
@@ -76,6 +99,43 @@ namespace SpaceMonkey.Scripts.Simulation
             _availableProdCap = new ReactiveProperty<int>(_account.GetProductionCapacity());
             _money = new ReactiveProperty<float>(_account.Money);
         }
+
+
+        public void PrepareV2()
+        {
+            var newCustomersCount = _account.Week == 0
+                ? Random.Range(_simulationInfo.CustomersMin, _simulationInfo.CustomersMax + 1)
+                : Mathf.RoundToInt(Random.Range(_simulationInfo.NewCustomersMin,
+                    _simulationInfo.NewCustomersMax + _account.GetMarketingCustAdd()));
+            
+            Customers = new List<Customer>(newCustomersCount);
+            var newCustomers = _gameConfig.Characters
+                .PickRandomElements(newCustomersCount)
+                .Select(PickCustomerV2)
+                .ToList();
+
+        }
+
+        public CustomerV2 PickCustomerV2(CharacterConfig characterConfig)
+        {
+            var mood = Random.Range(_simulationInfo.MoodMin, _simulationInfo.MoodMax);
+            var frequency = Random.Range(_simulationInfo.FrequencyMin, _simulationInfo.FrequencyMax);
+            var currentOrderProdCount = 1;
+            var customer = new CustomerV2(characterConfig, mood, frequency);
+            var orders = new ProductOrder[currentOrderProdCount];
+            for (int i = 0; i < currentOrderProdCount; i++)
+            {
+                var currentOrderQuantity =
+                    Random.Range(_simulationInfo.OrderQuantityMin, _simulationInfo.OrderQuantityMax);
+                var product = _account.Products.PickRandomElement();
+                var productOrder = new ProductOrder(product, currentOrderQuantity);
+                orders[i] = productOrder;
+            }
+
+            customer.SetOrders(orders);
+            return customer;
+        }
+
 
         public void Prepare()
         {
@@ -201,7 +261,7 @@ namespace SpaceMonkey.Scripts.Simulation
             var mood = orderInfo.Mood + orderInfo.Mood * moodDeltaPercent;
             return Mathf.Clamp(Mathf.RoundToInt(mood), 1, 100);
         }
-        
+
         public void Run()
         {
         }
@@ -241,7 +301,7 @@ namespace SpaceMonkey.Scripts.Simulation
             {
                 Debug.Log($" {tuple.Item1.Character.Name}, {tuple.Item2.Name}, {tuple.Item3} ");
                 _account.Reviews ??= new List<CustomerReviewInfo>();
-                _account.Reviews.Add( new CustomerReviewInfo
+                _account.Reviews.Add(new CustomerReviewInfo
                 {
                     WeekId = _weekInfo.Id,
                     CharacterId = tuple.Item1.Character.Id,
@@ -249,311 +309,343 @@ namespace SpaceMonkey.Scripts.Simulation
                     Message = tuple.Item3
                 });
             }
-            
+
             _account.PushFinishedWeek(_weekInfo);
             _account.Money = _money.Value;
             _account.Score += SellScore;
             _accountService.SaveAsync().Forget();
-            
+
             _creditSimulator.NextWeek();
         }
-private List<(Customer, Product, string)> DetermineCustomerReviewsV2()
-{
-    var reviews = new List<(Customer, Product, string)>();
-    var previousWeek = _account.Weeks.LastOrDefault();
-    
-    // Process all customers who have current orders
-    foreach (var customer in Customers)
-    {
-        // Check if current week has orders
-        if (_weekInfo.Orders == null || _weekInfo.Orders.Length == 0)
-            continue;
-            
-        // Find current order for this customer
-        var currentOrderIndex = -1;
-        for (int i = 0; i < _weekInfo.Orders.Length; i++)
+
+        private List<(Customer, Product, string)> DetermineCustomerReviewsV2()
         {
-            if (_weekInfo.Orders[i].CharacterId.Equals(customer.Character.Id))
+            var reviews = new List<(Customer, Product, string)>();
+            var previousWeek = _account.Weeks.LastOrDefault();
+
+            // Process all customers who have current orders
+            foreach (var customer in Customers)
             {
-                currentOrderIndex = i;
-                break;
-            }
-        }
-        
-        if (currentOrderIndex == -1)
-            continue;
-            
-        var currentOrder = _weekInfo.Orders[currentOrderIndex];
-        
-        // Check if current order has products
-        if (currentOrder.Products == null || currentOrder.Products.Length == 0)
-            continue;
-            
-        foreach (var currentProduct in currentOrder.Products)
-        {
-            var stringBuilder = new StringBuilder();
-            bool hasReview = false;
-            
-            // Try to find previous order and product for comparison
-            var hasPreviousProduct = false;
-            ProductOrderInfo previousProduct = default(ProductOrderInfo);
-            
-            // Check if previous week exists and has orders
-            if (previousWeek.Orders != null && previousWeek.Orders.Length > 0)
-            {
-                // Find previous order for this customer
-                for (int i = 0; i < previousWeek.Orders.Length; i++)
+                // Check if current week has orders
+                if (_weekInfo.Orders == null || _weekInfo.Orders.Length == 0)
+                    continue;
+
+                // Find current order for this customer
+                var currentOrderIndex = -1;
+                for (int i = 0; i < _weekInfo.Orders.Length; i++)
                 {
-                    if (previousWeek.Orders[i].CharacterId.Equals(customer.Character.Id))
+                    if (_weekInfo.Orders[i].CharacterId.Equals(customer.Character.Id))
                     {
-                        var previousOrder = previousWeek.Orders[i];
-                        
-                        // Check if previous order has products
-                        if (previousOrder.Products != null && previousOrder.Products.Length > 0)
-                        {
-                            // Find matching product in previous order
-                            for (int j = 0; j < previousOrder.Products.Length; j++)
-                            {
-                                if (previousOrder.Products[j].Product.Id.Equals(currentProduct.Product.Id))
-                                {
-                                    previousProduct = previousOrder.Products[j];
-                                    hasPreviousProduct = true;
-                                    break;
-                                }
-                            }
-                        }
+                        currentOrderIndex = i;
                         break;
                     }
                 }
-            }
-            
-            // If we have a previous product to compare with
-            if (hasPreviousProduct && previousProduct.Product.ProductPrice != null && previousProduct.Product.ProductPrice.Value > 0)
-            {
-                // Calculate deltas for comparison
-                var productPriceDelta = (currentProduct.Product.ProductPrice!.Value -
-                                         previousProduct.Product.ProductPrice!.Value) /
-                                        previousProduct.Product.ProductPrice!.Value;
-                var materialPackagingPriceDelta =
-                    (currentProduct.Product.MaterialPackagingPrice!.Value -
-                     previousProduct.Product.MaterialPackagingPrice!.Value) /
-                    previousProduct.Product.MaterialPackagingPrice!.Value;
-                var materialPriceDelta =
-                    (currentProduct.Product.MaterialPrice!.Value - previousProduct.Product.MaterialPrice!.Value) /
-                    previousProduct.Product.MaterialPrice!.Value;
-                var timeToProduceDelta =
-                    ((currentProduct.Product.TimeToProduceIndex + 1.0f) -
-                     (previousProduct.Product.TimeToProduceIndex + 1.0f)) /
-                    (previousProduct.Product.TimeToProduceIndex + 1.0f);
 
-                var ttpAbs = Mathf.Abs(timeToProduceDelta);
-                var materialPriceAbs = Mathf.Abs(materialPriceDelta);
-                var materialPackagingPriceAbs = Mathf.Abs(materialPackagingPriceDelta);
-                var productPriceAbs = Mathf.Abs(productPriceDelta);
+                if (currentOrderIndex == -1)
+                    continue;
 
-                // Check extreme settings
-                if (ttpAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeSlipshodTTP).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
+                var currentOrder = _weekInfo.Orders[currentOrderIndex];
 
-                if (ttpAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeDiligentTTP).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
+                // Check if current order has products
+                if (currentOrder.Products == null || currentOrder.Products.Length == 0)
+                    continue;
 
-                if (materialPriceAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
+                foreach (var currentProduct in currentOrder.Products)
                 {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeLowMaterial).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
+                    var stringBuilder = new StringBuilder();
+                    bool hasReview = false;
 
-                if (materialPriceAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeHighMaterial).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
+                    // Try to find previous order and product for comparison
+                    var hasPreviousProduct = false;
+                    ProductOrderInfo previousProduct = default(ProductOrderInfo);
 
-                if (materialPackagingPriceAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeLowPackaging).ToList();
-                    if (reviewList.Any())
+                    // Check if previous week exists and has orders
+                    if (previousWeek.Orders != null && previousWeek.Orders.Length > 0)
                     {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
-
-                if (materialPackagingPriceAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeHighPackaging).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
-
-                if (productPriceAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeLowPrice).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
-
-                if (productPriceAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeHighPrice).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
-
-                // Check for big changes
-                if (ttpAbs > _gameConfig.SimulationInfo.BigProductChange)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.BigChangeTTP).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
-                
-                if (materialPriceAbs > _gameConfig.SimulationInfo.BigProductChange)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.BigChangeMaterial).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
-                
-                if (materialPackagingPriceAbs > _gameConfig.SimulationInfo.BigProductChange)
-                {
-                    var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.BigChangePackaging).ToList();
-                    if (reviewList.Any())
-                    {
-                        stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                        hasReview = true;
-                    }
-                }
-            }
-            
-            // If no review was generated (no previous product or no deltas exceeded thresholds),
-            // generate a review based on current product characteristics
-            if (!hasReview)
-            {
-                // Generate review based on absolute values of current product
-                if (currentProduct.Product.ProductPrice != null)
-                {
-                    // Check if price is particularly high or low (you may need to define base thresholds)
-                    var basePrice = 100.0; // Adjust this based on your game's economy
-                    var priceRatio = currentProduct.Product.ProductPrice.Value / basePrice;
-                    
-                    if (priceRatio > 2.0) // Price is more than double the base
-                    {
-                        var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeHighPrice).ToList();
-                        if (reviewList.Any())
+                        // Find previous order for this customer
+                        for (int i = 0; i < previousWeek.Orders.Length; i++)
                         {
-                            stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                            hasReview = true;
+                            if (previousWeek.Orders[i].CharacterId.Equals(customer.Character.Id))
+                            {
+                                var previousOrder = previousWeek.Orders[i];
+
+                                // Check if previous order has products
+                                if (previousOrder.Products != null && previousOrder.Products.Length > 0)
+                                {
+                                    // Find matching product in previous order
+                                    for (int j = 0; j < previousOrder.Products.Length; j++)
+                                    {
+                                        if (previousOrder.Products[j].Product.Id.Equals(currentProduct.Product.Id))
+                                        {
+                                            previousProduct = previousOrder.Products[j];
+                                            hasPreviousProduct = true;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                break;
+                            }
                         }
                     }
-                    else if (priceRatio < 0.5) // Price is less than half the base
+
+                    // If we have a previous product to compare with
+                    if (hasPreviousProduct && previousProduct.Product.ProductPrice != null &&
+                        previousProduct.Product.ProductPrice.Value > 0)
                     {
-                        var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == ReviewType.ExtremeLowPrice).ToList();
-                        if (reviewList.Any())
+                        // Calculate deltas for comparison
+                        var productPriceDelta = (currentProduct.Product.ProductPrice!.Value -
+                                                 previousProduct.Product.ProductPrice!.Value) /
+                                                previousProduct.Product.ProductPrice!.Value;
+                        var materialPackagingPriceDelta =
+                            (currentProduct.Product.MaterialPackagingPrice!.Value -
+                             previousProduct.Product.MaterialPackagingPrice!.Value) /
+                            previousProduct.Product.MaterialPackagingPrice!.Value;
+                        var materialPriceDelta =
+                            (currentProduct.Product.MaterialPrice!.Value -
+                             previousProduct.Product.MaterialPrice!.Value) /
+                            previousProduct.Product.MaterialPrice!.Value;
+                        var timeToProduceDelta =
+                            ((currentProduct.Product.TimeToProduceIndex + 1.0f) -
+                             (previousProduct.Product.TimeToProduceIndex + 1.0f)) /
+                            (previousProduct.Product.TimeToProduceIndex + 1.0f);
+
+                        var ttpAbs = Mathf.Abs(timeToProduceDelta);
+                        var materialPriceAbs = Mathf.Abs(materialPriceDelta);
+                        var materialPackagingPriceAbs = Mathf.Abs(materialPackagingPriceDelta);
+                        var productPriceAbs = Mathf.Abs(productPriceDelta);
+
+                        // Check extreme settings
+                        if (ttpAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
                         {
-                            stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                            hasReview = true;
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.ExtremeSlipshodTTP).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        if (ttpAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.ExtremeDiligentTTP).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        if (materialPriceAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.ExtremeLowMaterial).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        if (materialPriceAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.ExtremeHighMaterial).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        if (materialPackagingPriceAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.ExtremeLowPackaging).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        if (materialPackagingPriceAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.ExtremeHighPackaging).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        if (productPriceAbs < _gameConfig.SimulationInfo.ExtremeSettingLow)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.ExtremeLowPrice).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        if (productPriceAbs > _gameConfig.SimulationInfo.ExtremeSettingHigh)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.ExtremeHighPrice).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        // Check for big changes
+                        if (ttpAbs > _gameConfig.SimulationInfo.BigProductChange)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.BigChangeTTP).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        if (materialPriceAbs > _gameConfig.SimulationInfo.BigProductChange)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.BigChangeMaterial).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
+                        }
+
+                        if (materialPackagingPriceAbs > _gameConfig.SimulationInfo.BigProductChange)
+                        {
+                            var reviewList = _customerReviewConfig.Reviews
+                                .Where(info => info.Type == ReviewType.BigChangePackaging).ToList();
+                            if (reviewList.Any())
+                            {
+                                stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                    .GetMessage(currentProduct.Product.Name));
+                                hasReview = true;
+                            }
                         }
                     }
-                }
-                
-                // If still no review, pick a random review type based on product characteristics
-                if (!hasReview)
-                {
-                    var allReviewTypes = new List<ReviewType>();
-                    
-                    // Build a list of applicable review types based on product stats
-                    if (currentProduct.Product.TimeToProduceIndex < 2)
-                        allReviewTypes.Add(ReviewType.ExtremeSlipshodTTP);
-                    else if (currentProduct.Product.TimeToProduceIndex > 5)
-                        allReviewTypes.Add(ReviewType.ExtremeDiligentTTP);
-                    
-                    if (currentProduct.Product.MaterialPrice != null)
+
+                    // If no review was generated (no previous product or no deltas exceeded thresholds),
+                    // generate a review based on current product characteristics
+                    if (!hasReview)
                     {
-                        if (currentProduct.Product.MaterialPrice < 50)
-                            allReviewTypes.Add(ReviewType.ExtremeLowMaterial);
-                        else if (currentProduct.Product.MaterialPrice > 200)
-                            allReviewTypes.Add(ReviewType.ExtremeHighMaterial);
-                    }
-                    
-                    if (currentProduct.Product.MaterialPackagingPrice != null)
-                    {
-                        if (currentProduct.Product.MaterialPackagingPrice < 10)
-                            allReviewTypes.Add(ReviewType.ExtremeLowPackaging);
-                        else if (currentProduct.Product.MaterialPackagingPrice > 50)
-                            allReviewTypes.Add(ReviewType.ExtremeHighPackaging);
-                    }
-                    
-                    // If we have applicable types, pick one randomly
-                    if (allReviewTypes.Any())
-                    {
-                        var selectedType = allReviewTypes.PickRandomElement();
-                        var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == selectedType).ToList();
-                        if (reviewList.Any())
+                        // Generate review based on absolute values of current product
+                        if (currentProduct.Product.ProductPrice != null)
                         {
-                            stringBuilder.AppendLine(reviewList.PickRandomElement().GetMessage(currentProduct.Product.Name));
-                            hasReview = true;
+                            // Check if price is particularly high or low (you may need to define base thresholds)
+                            var basePrice = 100.0; // Adjust this based on your game's economy
+                            var priceRatio = currentProduct.Product.ProductPrice.Value / basePrice;
+
+                            if (priceRatio > 2.0) // Price is more than double the base
+                            {
+                                var reviewList = _customerReviewConfig.Reviews
+                                    .Where(info => info.Type == ReviewType.ExtremeHighPrice).ToList();
+                                if (reviewList.Any())
+                                {
+                                    stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                        .GetMessage(currentProduct.Product.Name));
+                                    hasReview = true;
+                                }
+                            }
+                            else if (priceRatio < 0.5) // Price is less than half the base
+                            {
+                                var reviewList = _customerReviewConfig.Reviews
+                                    .Where(info => info.Type == ReviewType.ExtremeLowPrice).ToList();
+                                if (reviewList.Any())
+                                {
+                                    stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                        .GetMessage(currentProduct.Product.Name));
+                                    hasReview = true;
+                                }
+                            }
+                        }
+
+                        // If still no review, pick a random review type based on product characteristics
+                        if (!hasReview)
+                        {
+                            var allReviewTypes = new List<ReviewType>();
+
+                            // Build a list of applicable review types based on product stats
+                            if (currentProduct.Product.TimeToProduceIndex < 2)
+                                allReviewTypes.Add(ReviewType.ExtremeSlipshodTTP);
+                            else if (currentProduct.Product.TimeToProduceIndex > 5)
+                                allReviewTypes.Add(ReviewType.ExtremeDiligentTTP);
+
+                            if (currentProduct.Product.MaterialPrice != null)
+                            {
+                                if (currentProduct.Product.MaterialPrice < 50)
+                                    allReviewTypes.Add(ReviewType.ExtremeLowMaterial);
+                                else if (currentProduct.Product.MaterialPrice > 200)
+                                    allReviewTypes.Add(ReviewType.ExtremeHighMaterial);
+                            }
+
+                            if (currentProduct.Product.MaterialPackagingPrice != null)
+                            {
+                                if (currentProduct.Product.MaterialPackagingPrice < 10)
+                                    allReviewTypes.Add(ReviewType.ExtremeLowPackaging);
+                                else if (currentProduct.Product.MaterialPackagingPrice > 50)
+                                    allReviewTypes.Add(ReviewType.ExtremeHighPackaging);
+                            }
+
+                            // If we have applicable types, pick one randomly
+                            if (allReviewTypes.Any())
+                            {
+                                var selectedType = allReviewTypes.PickRandomElement();
+                                var reviewList = _customerReviewConfig.Reviews.Where(info => info.Type == selectedType)
+                                    .ToList();
+                                if (reviewList.Any())
+                                {
+                                    stringBuilder.AppendLine(reviewList.PickRandomElement()
+                                        .GetMessage(currentProduct.Product.Name));
+                                    hasReview = true;
+                                }
+                            }
+
+                            // Final fallback: pick any available review
+                            if (!hasReview && _customerReviewConfig.Reviews.Any())
+                            {
+                                var anyReview = _customerReviewConfig.Reviews.PickRandomElement();
+                                stringBuilder.AppendLine(anyReview.GetMessage(currentProduct.Product.Name));
+                            }
                         }
                     }
-                    
-                    // Final fallback: pick any available review
-                    if (!hasReview && _customerReviewConfig.Reviews.Any())
+
+                    // Add the review if we have any content
+                    var reviewText = stringBuilder.ToString().Trim();
+                    if (!string.IsNullOrEmpty(reviewText))
                     {
-                        var anyReview = _customerReviewConfig.Reviews.PickRandomElement();
-                        stringBuilder.AppendLine(anyReview.GetMessage(currentProduct.Product.Name));
+                        reviews.Add((customer, currentProduct.Product, reviewText));
                     }
                 }
             }
-            
-            // Add the review if we have any content
-            var reviewText = stringBuilder.ToString().Trim();
-            if (!string.IsNullOrEmpty(reviewText))
-            {
-                reviews.Add((customer, currentProduct.Product, reviewText));
-            }
+
+            return reviews;
         }
-    }
-    
-    return reviews;
-}
 
         public void Dispose()
         {
@@ -563,4 +655,4 @@ private List<(Customer, Product, string)> DetermineCustomerReviewsV2()
         {
         }
     }
-}
+}*/

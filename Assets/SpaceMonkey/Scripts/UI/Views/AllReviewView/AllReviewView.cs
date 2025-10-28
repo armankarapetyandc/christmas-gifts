@@ -35,8 +35,8 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
             //var customers = Controller.GetReviews();
             var reviews = Controller.GetReviews();
             var weeks = Controller.GetWeeks();
-            var orderedWeeks = weeks.OrderByDescending(info => info.Week).ToList();
-            weekNumberText.text = weeks.Count >1 ? weeks.Max(info => info.Week).ToString() : "1";
+            var orderedWeeks = weeks.OrderByDescending(info => info.WeekNumber).ToList();
+            weekNumberText.text = weeks.Count >1 ? weeks.Max(info => info.WeekNumber).ToString() : "1";
             var weekOrderMap = weeks
                 .Select((w, index) => new {w.Id, index})
                 .ToDictionary(x => x.Id, x => x.index);
@@ -51,7 +51,7 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
                 .Where(w => groupedReviews.ContainsKey(w.Id))
                 .OrderBy(w => weekOrderMap[w.Id])
                 .ToDictionary(
-                    w => w.Week,
+                    w => w.WeekNumber,
                     w => groupedReviews[w.Id]
                 );
 
@@ -65,7 +65,7 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
                     if (!isLastWeek)
                     {
                         var reviewWeekInfoItem = Instantiate(reviewWeekInfoItemPrefab, container);
-                        float review = Controller.CalculateCompanyWeekRating(orderedWeeks.Where(info => info.Week <= item.Key).ToList());
+                        float review = Controller.CalculateCompanyWeekRating(orderedWeeks.Where(info => info.WeekNumber <= item.Key).ToList());
                         reviewWeekInfoItem.Initialize(item.Key, review);
                     }
 
@@ -78,14 +78,14 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
                         }
 
                         var orderInfo = weeks.FirstOrDefault(info => info.Id == reviewInfo.WeekId).Orders
-                            .FirstOrDefault(order => order.CharacterId == character.Id);
+                            .FirstOrDefault(order => order.Customer.CharacterId == character.Id);
 
 
                         var reviewItem = Instantiate(reviewItemPrefab, container);
                         reviewItem.SetCharacterVisual(character.Sprite, character.BackgroundColor);
-                        reviewItem.SetMood(orderInfo.Mood);
+                        reviewItem.SetMood(orderInfo.Customer.Mood);
                         reviewItem.SetTextData(character.Name, reviewInfo.Message);
-                        reviewItem.SetRating(Controller.GetRatingByCustomerMood(orderInfo.Mood));
+                        reviewItem.SetRating(Controller.GetRatingByCustomerMood(orderInfo.Customer.Mood));
                     }
                     isLastWeek = false;
                     if (!olderReviewInfoShown)

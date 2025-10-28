@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Profile.Simulation;
+using SpaceMonkey.Scripts.Simulation;
 
 namespace SpaceMonkey.Scripts.Utilities
 {
@@ -69,6 +70,15 @@ namespace SpaceMonkey.Scripts.Utilities
             return weekInfo.Orders
                 .Where(o => o.Shipped)
                 .SelectMany(o => o.Products)
+                .GroupBy(p => p.Product)
+                .ToDictionary(g => g.Key, g => g.Sum(o => o.Quantity));
+        }
+        
+        public static Dictionary<Product, int> GetTotalQuantitiesByProduct(this WeekSimulationV2.Week weekInfo)
+        {
+            return weekInfo.Orders
+                .Where(o => o.WasFulfilled)
+                .SelectMany(o => o.OrderEntries)
                 .GroupBy(p => p.Product)
                 .ToDictionary(g => g.Key, g => g.Sum(o => o.Quantity));
         }

@@ -1,12 +1,23 @@
-﻿using SpaceMonkey.Scripts.UI.Asset.Database;
+﻿using System;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
 
 namespace SpaceMonkey.Scripts.Configs.Characters
 {
+    [Flags]
+    public enum CharacterAppearance
+    {
+        None = 0,
+        Customer = 2,
+        Employee = 4,
+        Opportunity = 8
+    }
+
     [CreateAssetMenu(fileName = "CharacterConfig", menuName = "Space Monkey/Configs/Character Config", order = 1)]
     public class CharacterConfig : ScriptableObject
     {
         [field: SerializeField] public string Id { get; private set; }
+        [field: SerializeField] public CharacterAppearance Appearance { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public SpriteVisualAsset Sprite { get; private set; }
         [field: SerializeField] public CharacterMoodVisualAsset[] HeadVisualAssets { get; private set; }

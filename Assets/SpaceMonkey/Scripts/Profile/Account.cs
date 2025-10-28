@@ -6,9 +6,11 @@ using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile.Simulation;
+using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Views.Staff;
 using SpaceMonkey.Scripts.Utilities;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.Profile
 {
@@ -18,7 +20,7 @@ namespace SpaceMonkey.Scripts.Profile
         private float _money;
         public CompanyInfo Company { get; set; }
         public int Level { get; set; }
-        public int Week => Weeks.Count + 1;
+        public int Week => WeeksV2.Count + 1;
 
         public float Money
         {
@@ -43,16 +45,20 @@ namespace SpaceMonkey.Scripts.Profile
         public readonly ReactiveCommand<float> OnScoreChanged = new ReactiveCommand<float>();
         public readonly ReactiveCommand<float> OnMoneyChanged = new ReactiveCommand<float>();
 
+        public List<WeekSimulationV2.CustomerData> AllCustomers { get; set; } =
+            new List<WeekSimulationV2.CustomerData>();
 
+        public List<WeekSimulationV2.Week> WeeksV2 { get; set; } = new List<WeekSimulationV2.Week>();
         public List<Product> Products { get; set; }
         public List<LevelProdCap> LevelProdCaps { get; set; }
-        public List<WeekInfo> Weeks { get; set; }
+        // public List<WeekInfo> Weeks { get; set; }
         public List<CustomerReviewInfo> Reviews { get; set; }
         public List<MarketingFeature> MarketingFeatures { get; set; }
 
         public List<Employee> Employees { get; set; }
         
         public CreditDataGameData CreditData { get; set; }
+        public bool IsGameOver { get; set; }
 
         public void SetCategory(string category)
         {
@@ -64,7 +70,7 @@ namespace SpaceMonkey.Scripts.Profile
             Company.CompanyName = companyName;
         }
 
-        public float CalculateCompanyRating(RangeValue[] values,List<WeekInfo> weekInfos)
+        public float CalculateCompanyRating(RangeValue[] values,List<WeekSimulationV2.Week> weekInfos)
         {
             if (weekInfos.Count == 0)
             {
@@ -77,13 +83,13 @@ namespace SpaceMonkey.Scripts.Profile
                 {
                     for (int i = 0; i < values.Length; i++)
                     {
-                        if (o.Mood >= values[i].Min && o.Mood <= values[i].Max)
+                        if (o.Customer.Mood >= values[i].Min && o.Customer.Mood <= values[i].Max)
                         {
                             return i + 1f;
                         }
                     }
 
-                    throw new ArgumentOutOfRangeException(nameof(o.Mood), "Mood value must be between 1 and 100.");
+                    throw new ArgumentOutOfRangeException(nameof(o.Customer.Mood), "Mood value must be between 1 and 100.");
                 }).Average();
         }
 
@@ -100,7 +106,7 @@ namespace SpaceMonkey.Scripts.Profile
                 Money = 30000,
                 Score = 0,
                 Products = new List<Product>(),
-                Weeks = new List<WeekInfo>(),
+                WeeksV2 = new List<WeekSimulationV2.Week>(),
                 Reviews = new List<CustomerReviewInfo>(),
                 LevelProdCaps = new List<LevelProdCap>()
                 {
@@ -119,9 +125,9 @@ namespace SpaceMonkey.Scripts.Profile
             return account;
         }
 
-        public void PushFinishedWeek(WeekInfo info)
+        public void PushFinishedWeek(WeekSimulationV2.Week info)
         {
-            Weeks.Add(info);
+            WeeksV2.Add(info);
         }
 
         public bool CanAfford(float cost)
@@ -167,26 +173,26 @@ namespace SpaceMonkey.Scripts.Profile
             {
                 Products[index] = product;
                 // Cascade update into Weeks -> Orders -> Products
-                for (int w = 0; w < Weeks.Count; w++)
+                for (int w = 0; w < WeeksV2.Count; w++)
                 {
-                    var week = Weeks[w]; // struct copy
-                    for (int o = 0; o < week.Orders.Length; o++)
+                    var week = WeeksV2[w]; // struct copy
+                    for (int o = 0; o < week.Orders.Count; o++)
                     {
                         var order = week.Orders[o]; // struct copy
-                        for (int p = 0; p < order.Products.Length; p++)
+                        for (int p = 0; p < order.OrderEntries.Count; p++)
                         {
-                            var poi = order.Products[p]; // struct copy
+                            var poi = order.OrderEntries[p]; // struct copy
                             if (poi.Product.Id == product.Id)
                             {
                                 poi.Product = product; // update
-                                order.Products[p] = poi; // put back
+                                order.OrderEntries[p] = poi; // put back
                             }
                         }
 
                         week.Orders[o] = order; // put back
                     }
 
-                    Weeks[w] = week; // put back
+                    WeeksV2[w] = week; // put back
                 }
             }
         }
@@ -269,10 +275,10 @@ namespace SpaceMonkey.Scripts.Profile
             return employeeCapacity + prodCap;
         }
 
-        public float GetMarketingCustAdd()
+        public int GetMarketingCustAdd()
         {
-            return MarketingFeatures
-                .Sum(feature => feature.GetCustAdd());
+            return Mathf.RoundToInt(MarketingFeatures
+                .Sum(feature => feature.GetCustAdd()));
         }
 
         public Product GetProduct(string id)
@@ -347,9 +353,9 @@ namespace SpaceMonkey.Scripts.Profile
         public string IconVisualAssetId { get; set; }
         public string BackgroundColorVisualAssetId { get; set; }
 
-        public int TimeToProduceIndex { get; set; }
-        public float? MaterialPrice { get; set; }
-        public float? MaterialPackagingPrice { get; set; }
+        public int TimeToProduceIndex { get; set; } //TTP
+        public float? MaterialPrice { get; set; } //MatValue
+        public float? MaterialPackagingPrice { get; set; } //PackValue
         public float? MinProductPrice { get; set; }
         public float? MaxProductPrice { get; set; }
         public float? ProductPrice { get; set; }

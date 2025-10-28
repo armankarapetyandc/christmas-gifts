@@ -61,7 +61,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             {
                 return _weekSimulationContext.WeekSimulation.WeekInfo.GetTotalQuantitiesByProduct();
             }
-            return _accountService.Model.Account.Weeks[^1].GetTotalQuantitiesByProduct();
+            return _accountService.Model.Account.WeeksV2[^1].GetTotalQuantitiesByProduct();
         }
         internal float GetWeekProfit(bool useSimulation)
         {

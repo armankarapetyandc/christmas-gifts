@@ -474,6 +474,8 @@ MonoBehaviour:
       <Max>k__BackingField: 100
     <OrderQuantityMin>k__BackingField: 1
     <OrderQuantityMax>k__BackingField: 3
+    <OrderQuantReduceLow>k__BackingField: 30
+    <OrderQuantReduceHigh>k__BackingField: 60
     <NewCustomersMin>k__BackingField: 1
     <NewCustomersMax>k__BackingField: 2
     <PriceSensitivity>k__BackingField: 0.3
@@ -481,6 +483,8 @@ MonoBehaviour:
     <BigProductChange>k__BackingField: 40
     <ExtremeSettingHigh>k__BackingField: 80
     <ExtremeSettingLow>k__BackingField: 20
+    <FrequencyMin>k__BackingField: 1
+    <FrequencyMax>k__BackingField: 4
   <CreditCardInfo>k__BackingField:
     <CreditLimit>k__BackingField: 1000
     <Apr>k__BackingField: 0.26

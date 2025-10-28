@@ -22,14 +22,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private RectTransform productsContainer;
         [SerializeField] private OrderProductItem orderProductItemPrefab;
         
-        public Customer Customer { get; private set; }
+        public WeekSimulationV2.Customer Customer { get; private set; }
 
         public Observable<OrderItem> ShipOrder => shipButton.OnClickAsObservable().Select(_ => this);
         
         public int ProductionCapCost { get; private set; }
         public float Profit { get; private set; }
 
-        public void SetCustomer(Customer customer)
+        public void SetCustomer(WeekSimulationV2.Customer customer)
         {
             Customer = customer;
             customerName.text = customer.Character.Name;
@@ -49,7 +49,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         }
 
         public void SetProducts(
-            List<(ProductOrder productOrder, SpriteVisualAsset iconVisualAsset, ColorVisualAsset colorVisualAsset)> products)
+            List<(WeekSimulationV2.OrderEntry productOrder, SpriteVisualAsset iconVisualAsset, ColorVisualAsset colorVisualAsset)> products)
         {
             foreach (var product in products)
             {

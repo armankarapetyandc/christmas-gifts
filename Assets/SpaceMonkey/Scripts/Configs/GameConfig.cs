@@ -327,6 +327,9 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public int CustomersMax { get; private set; } = 3;
         [field: SerializeField] public int MoodMin { get; private set; } = 55;
         [field: SerializeField] public int MoodMax { get; private set; } = 75;
+        [field: SerializeField] public int MoodLow { get; private set; } = 50;
+        [field: SerializeField] public int MoodMedium { get; private set; } = 80;
+        [field: SerializeField] public int MoodHigh { get; private set; } = 100;
         [field: SerializeField] public int MoodLeave { get; private set; } = 30;
         [field: SerializeField] public float MoodTtpCoefficient { get; private set; } = 2.5f;
         [field: SerializeField] public float MoodMaterialCoefficient { get; private set; } = 10f;
@@ -343,6 +346,10 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] 
         [Range(0, 100f)]
         public float OrderQuantReduceHigh { get; private set; } = 60f;
+        [field: SerializeField] public float OrderQuantIncreaseMediumLow { get; private set; } = 30f;
+        [field: SerializeField] public float OrderQuantIncreaseMediumHigh { get; private set; } = 60f;
+        [field: SerializeField] public float OrderQuantIncreaseLow { get; private set; } = 60f;
+        [field: SerializeField] public float OrderQuantIncreaseHigh { get; private set; } = 100f;
         [field: SerializeField] public int NewCustomersMin { get; private set; } = 1;
         [field: SerializeField] public int NewCustomersMax { get; private set; } = 2;
         [field: SerializeField] public float PriceSensitivity { get; private set; } = 0.3f;
@@ -363,6 +370,12 @@ namespace SpaceMonkey.Scripts.Configs
         [Range(0, 100f)]
         public float ExtremeSettingLow { get; private set; } = 20f;
 
+        [field: SerializeField]
+        [Range(1, 10)] public int FrequencyMin { get; private set; } = 1;
+        
+        [field:SerializeField]
+        [Range(1,10)]
+        public int FrequencyMax { get; private set; } = 4;
         public static SimulationInfo Create(int customersMin, int customersMax, int moodMin, int moodMax,
             int moodLeave, float moodTtpCoefficient, float moodMaterialCoefficient,
             float moodPackagingCoefficient, float moodOrderFulfillmentCoefficient,

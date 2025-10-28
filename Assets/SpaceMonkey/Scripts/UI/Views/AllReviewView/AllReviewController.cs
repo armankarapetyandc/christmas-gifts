@@ -70,10 +70,10 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
 
         internal float CalculateCompanyOngoingWeekRating()
         {
-            return GetAccount().CalculateCompanyRating(_gameConfig.SimulationInfo.MoodRanges,_accountService.Model.Account.Weeks);
+            return GetAccount().CalculateCompanyRating(_gameConfig.SimulationInfo.MoodRanges,_accountService.Model.Account.WeeksV2);
         }
 
-        internal float CalculateCompanyWeekRating(List<WeekInfo> weeks)
+        internal float CalculateCompanyWeekRating(List<WeekSimulationV2.Week> weeks)
         {
             return Mathf.Floor(GetAccount().CalculateCompanyRating(_gameConfig.SimulationInfo.MoodRanges, weeks)  * 10f) / 10f;
         }
@@ -99,9 +99,9 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
 
 
 
-        internal List<WeekInfo> GetWeeks()
+        internal List<WeekSimulationV2.Week> GetWeeks()
         {
-            return _accountService.Model.Account.Weeks;
+            return _accountService.Model.Account.WeeksV2;
         }
 
         internal IEnumerable<CustomerReviewInfo> GetReviews()

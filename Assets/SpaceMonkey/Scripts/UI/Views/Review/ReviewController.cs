@@ -62,7 +62,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
 
         internal float CalculateCompanyRating()
         {
-            return GetAccount().CalculateCompanyRating(_gameConfig.SimulationInfo.MoodRanges,_accountService.Model.Account.Weeks);
+            return GetAccount().CalculateCompanyRating(_gameConfig.SimulationInfo.MoodRanges,_accountService.Model.Account.WeeksV2);
         }
 
         internal float GetRatingByCustomerMood(int value)
