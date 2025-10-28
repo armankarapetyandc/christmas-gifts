@@ -1,4 +1,6 @@
+using System.Linq;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
@@ -27,13 +29,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
         private readonly CreditSimulator _creditSimulator;
         private readonly BusinessLoanSimulator _businessLoanSimulator;
         private AccountService _accountService;
+        private MapConfig _mapConfig;
 
         public OpportunitiesController(PresenterService presenterService,
-            NavigationPresenterService navigationPresenterService, 
+            NavigationPresenterService navigationPresenterService,
             CreditSimulator creditSimulator,
             BusinessLoanSimulator businessLoanSimulator,
-            AccountService accountService) : base(presenterService)
+            AccountService accountService, MapConfig mapConfig) : base(presenterService)
         {
+            _mapConfig = mapConfig;
             _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
             _creditSimulator = creditSimulator;
@@ -51,12 +55,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
             _navigationPresenterService.HideAll();
             if (_creditSimulator.HasActiveCard)
             {
-                PresenterService.HidePreviousAndShow<CreditCardStatementView>(new CreditCardStatementView.Data()).Forget();
+                PresenterService.HidePreviousAndShow<CreditCardStatementView>(new CreditCardStatementView.Data())
+                    .Forget();
                 return;
             }
+
             PresenterService.HidePreviousAndShow<CreditCardView>().Forget();
         }
-        
+
         public void OnInsuranceButtonClicked()
         {
             _navigationPresenterService.HideAll();
@@ -74,7 +80,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<InvestingView>().Forget();
         }
-        
+
         public void OnBankAccountButtonClicked()
         {
             _navigationPresenterService.HideAll();
@@ -83,11 +89,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
                 PresenterService.HidePreviousAndShow<BusinessLoanStatementView>().Forget();
                 return;
             }
+
             PresenterService.HidePreviousAndShow<BankAccountsView>().Forget();
         }
-        
+
         public void OnBigOrderButtonClicked()
         {
+            if (_mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.BigOrder)?.AppearLevel >
+                _accountService.Model.Account.Level)
+            {
+                return;
+            }
+
             _navigationPresenterService.HideAll();
             if (_accountService.Model.Account.BigOrderGameData != null)
             {
@@ -103,7 +116,5 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
                 Type = MainNavigationType.Opportunities
             }).Forget();
         }
-        
-        
     }
 }
