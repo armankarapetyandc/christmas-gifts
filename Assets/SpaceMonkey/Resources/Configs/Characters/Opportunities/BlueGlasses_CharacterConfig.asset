@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BlueGlasses_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: blue_glasses
+  <Appearance>k__BackingField: 8
   <Name>k__BackingField: Blue Glasses
   <Sprite>k__BackingField: {fileID: 11400000, guid: 8f53019e47fe9874d8a11fe1e41ae09e, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

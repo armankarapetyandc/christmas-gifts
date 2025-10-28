@@ -27,7 +27,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         public override UniTask Initialize(IPresenterData data = null)
         {
             Controller.GetAvailableProdCapObservable()
-                .Subscribe(value => productionCapacityText.text = $"{value} hrs").AddTo(this);
+                .Subscribe(value => productionCapacityText.text = $"{Mathf.RoundToInt(value)} hrs").AddTo(this);
             Controller.GetMoneyObservable()
                 .Subscribe(value => moneyText.text = $"${value}").AddTo(this);
             SetupDefaults();
@@ -55,25 +55,28 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         private void SetupCustomers()
         {
-            var customers = Controller.GetSimulationCustomers();
+            var currentWeek = Controller.GetCurrentWeek();
             var moodVisualAssets = Controller.ResolveVisualAssets<MoodVisualAsset>().OrderBy(asset => asset.MoodValue)
                 .ToList();
-            foreach (Customer customer in customers)
-            {
-                var orderItem = Instantiate(orderItemPrefab, container);
-                orderItem.SetCustomer(customer);
-                orderItem.ShipOrder.Subscribe(item => ShipOrder(item).Forget()).AddTo(this);
-                orderItem.SetCharacterVisual(customer.Character.Sprite, customer.Character.BackgroundColor);
-                var moodAsset = moodVisualAssets.FirstOrDefault(asset => customer.Mood <= asset.MoodValue);
-                orderItem.SetMood(customer.Mood, moodAsset);
 
-                var products = customer.Orders.Select(o => (
+
+            foreach (var order in currentWeek.Orders)
+            {
+                var character = Controller.GetCharacter(order.Customer.CharacterId);
+                var orderItem = Instantiate(orderItemPrefab, container);
+                orderItem.SetOrder(order);
+                orderItem.SetCustomer(character);
+                orderItem.ShipOrder.Subscribe(item => ShipOrder(item).Forget()).AddTo(this);
+                orderItem.SetCharacterVisual(character.Sprite, character.BackgroundColor);
+                var moodAsset = moodVisualAssets.FirstOrDefault(asset => order.Customer.Mood <= asset.MoodValue);
+                orderItem.SetMood(order.Customer.Mood, moodAsset);
+                
+                var products = order.OrderEntries.Select(o => (
                     productOrder: o,
                     iconVisualAsset: Controller.ResolveVisualAsset<SpriteVisualAsset>(o.Product.IconVisualAssetId),
                     colorVisualAsset:
                     Controller.ResolveVisualAsset<ColorVisualAsset>(o.Product.BackgroundColorVisualAssetId)
                 )).ToList();
-
                 orderItem.SetProducts(products);
                 _orders.Add(orderItem);
             }
@@ -81,7 +84,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         private async UniTaskVoid ShipOrder(OrderItem item)
         {
-            var isShipped = await Controller.TryShipOrder(item.Customer);
+            var isShipped = await Controller.TryShipOrder(item.Order);
             if (!isShipped)
             {
                 Controller.FinishWeek();
@@ -90,7 +93,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
             _orders.Remove(item);
 
-            var score = Controller.GetScoreFor("sellProduct") * item.Customer.Orders.Sum(order => order.Quantity);
+            var score = Controller.GetScoreFor("sellProduct") * item.Order.OrderEntries.Sum(order => order.Quantity);
             XPParticleEffector.SpawnXpParticles(score, Input.mousePosition, transform).Forget();
             Destroy(item.gameObject);
 

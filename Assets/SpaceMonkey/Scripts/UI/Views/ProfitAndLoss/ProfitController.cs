@@ -59,7 +59,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         {
             if (useSimulation)
             {
-                return _weekSimulationContext.WeekSimulation.WeekInfo.GetTotalQuantitiesByProduct();
+                return _weekSimulationContext.WeekSimulation.CurrentWeek!.Value.GetTotalQuantitiesByProduct();
             }
             return _accountService.Model.Account.WeeksV2[^1].GetTotalQuantitiesByProduct();
         }

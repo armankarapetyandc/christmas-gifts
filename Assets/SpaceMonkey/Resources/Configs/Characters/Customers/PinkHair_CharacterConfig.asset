@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PinkHair_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: pink_hair
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Pink Hair
   <Sprite>k__BackingField: {fileID: 11400000, guid: e6e812cbc2cec9f4aab778039633e66a, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

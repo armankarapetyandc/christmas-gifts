@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GoldGlasses_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: gold_glasses
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Gold Glasses
   <Sprite>k__BackingField: {fileID: 11400000, guid: cd85d57364f406940b28a098deac6e65, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

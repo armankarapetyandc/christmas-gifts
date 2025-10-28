@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pirate_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: pirate
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Pirate
   <Sprite>k__BackingField: {fileID: 11400000, guid: e8280ff758405ac4bb15bc5145a2f301, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

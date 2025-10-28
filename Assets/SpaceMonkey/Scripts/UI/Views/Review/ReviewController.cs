@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Profile.Simulation;
 using SpaceMonkey.Scripts.Simulation;
@@ -42,9 +43,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
             return _accountService.Model.Account;
         }
         
-        internal List<Customer> GetSimulationCustomers()
+        internal WeekSimulationV2.Week GetSimulationWeek()
         {
-            return _weekSimulationContext.WeekSimulation.Customers;
+            return _weekSimulationContext.WeekSimulation.CurrentWeek.Value;
         }
         
         internal IEnumerable<T> ResolveVisualAssets<T>(Predicate<T> predicate = null) where T : VisualAsset
@@ -82,7 +83,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         internal IEnumerable<CustomerReviewInfo> GetReviews()
         {
             var account = GetAccount();
-            return account.Reviews?.Where(info => info.WeekId.Equals(_weekSimulationContext.WeekSimulation.WeekInfo.Id));
+            return account.Reviews?.Where(info => info.WeekId.Equals(_weekSimulationContext.WeekSimulation.CurrentWeek.Value.Id));
+        }
+
+        public CharacterConfig GetCharacterConfig(string customerCharacterId)
+        {
+            return _gameConfig.Characters.FirstOrDefault(c => c.Id.Equals(customerCharacterId));
         }
     }
 }

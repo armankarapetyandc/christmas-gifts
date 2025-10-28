@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Hatta_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: hatta
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Hatta
   <Sprite>k__BackingField: {fileID: 11400000, guid: e0b63ecb773bc1241a6ea651162c65f7, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

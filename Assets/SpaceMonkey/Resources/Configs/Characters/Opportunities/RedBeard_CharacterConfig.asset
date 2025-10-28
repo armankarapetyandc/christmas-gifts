@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RedBeard_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: red_beard
+  <Appearance>k__BackingField: 8
   <Name>k__BackingField: Red Beard
   <Sprite>k__BackingField: {fileID: 11400000, guid: ed994a8523f14b048a000100b9c99570, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

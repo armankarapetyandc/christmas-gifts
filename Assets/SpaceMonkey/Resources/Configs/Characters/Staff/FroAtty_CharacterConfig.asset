@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FroAtty_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: atticus_e
+  <Appearance>k__BackingField: 4
   <Name>k__BackingField: Atticus E.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 1be06d31846873649aa8e851c49f48e0, type: 2}
   <HeadVisualAssets>k__BackingField:

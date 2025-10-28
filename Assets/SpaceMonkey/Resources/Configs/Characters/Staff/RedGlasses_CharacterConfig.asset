@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RedGlasses_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: ruby_b
+  <Appearance>k__BackingField: 4
   <Name>k__BackingField: Ruby B.
   <Sprite>k__BackingField: {fileID: 11400000, guid: d67a6fdac844b5c4cb0b978e2ca51589, type: 2}
   <HeadVisualAssets>k__BackingField:

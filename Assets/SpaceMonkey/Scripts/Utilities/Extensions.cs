@@ -65,14 +65,7 @@ namespace SpaceMonkey.Scripts.Utilities
         }
 
 
-        public static Dictionary<Product, int> GetTotalQuantitiesByProduct(this WeekInfo weekInfo)
-        {
-            return weekInfo.Orders
-                .Where(o => o.Shipped)
-                .SelectMany(o => o.Products)
-                .GroupBy(p => p.Product)
-                .ToDictionary(g => g.Key, g => g.Sum(o => o.Quantity));
-        }
+
         
         public static Dictionary<Product, int> GetTotalQuantitiesByProduct(this WeekSimulationV2.Week weekInfo)
         {

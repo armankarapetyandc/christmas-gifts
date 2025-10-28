@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Flower_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: flower
+  <Appearance>k__BackingField: 8
   <Name>k__BackingField: Flower
   <Sprite>k__BackingField: {fileID: 11400000, guid: dd567e70c99c15644850659ebc0030e5, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Jersey_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: jersey
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Jersey
   <Sprite>k__BackingField: {fileID: 11400000, guid: 162d7f987abf0e240844ddeed003c3d0, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

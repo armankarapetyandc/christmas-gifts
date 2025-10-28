@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bald_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: bald
+  <Appearance>k__BackingField: 8
   <Name>k__BackingField: Bald
   <Sprite>k__BackingField: {fileID: 11400000, guid: 88861f5b32b558e43ad536f016feefc3, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

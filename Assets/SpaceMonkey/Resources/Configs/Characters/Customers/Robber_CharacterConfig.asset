@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Robber_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: robber
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Robber
   <Sprite>k__BackingField: {fileID: 11400000, guid: 300e4ca3312041043810b44eb7bfbf93, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Smark_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: smark
+  <Appearance>k__BackingField: 8
   <Name>k__BackingField: Smark
   <Sprite>k__BackingField: {fileID: 11400000, guid: 87bcafda8bd8d924f96bf48a2da4b59b, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

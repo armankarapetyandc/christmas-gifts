@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Suspenders_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: suspenders
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Suspenders
   <Sprite>k__BackingField: {fileID: 11400000, guid: a7b9e533f4e57cd40ab1426644dbb669, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

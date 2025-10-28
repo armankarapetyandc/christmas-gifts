@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Stache_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: stache
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Stache
   <Sprite>k__BackingField: {fileID: 11400000, guid: 5144ee62c741b364a8d45d42b7a8fe1c, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

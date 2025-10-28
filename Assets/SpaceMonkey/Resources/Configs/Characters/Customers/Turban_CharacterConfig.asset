@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Turban_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: turban
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Turban
   <Sprite>k__BackingField: {fileID: 11400000, guid: 5e0ec8e9c1d80f549a2e363cf74649c7, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

@@ -1,3 +1,4 @@
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile.Simulation;
@@ -26,23 +27,25 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         {
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             InitializeInfoPanel();
-            var customers = Controller.GetSimulationCustomers();
+            var simulationWeek = Controller.GetSimulationWeek();
             var reviews = Controller.GetReviews();
             weekNumberText.text = Controller.GetAccount().Week.ToString();
             if (reviews != null)
             {
                 foreach (CustomerReviewInfo reviewInfo in reviews)
                 {
-                    var customer = customers.Find(c => c.Character.Id.Equals(reviewInfo.CharacterId));
+                    var customer = simulationWeek.Orders.Select(o => o.Customer)
+                        .FirstOrDefault(c => c.CharacterId.Equals(reviewInfo.CharacterId));
                     if (customer==null)
                     {
                         continue;
                     }
 
+                    var characterConfig = Controller.GetCharacterConfig(customer.CharacterId);
                     var reviewItem = Instantiate(reviewItemPrefab, container);
-                    reviewItem.SetCharacterVisual(customer.Character.Sprite, customer.Character.BackgroundColor);
+                    reviewItem.SetCharacterVisual(characterConfig.Sprite, characterConfig.BackgroundColor);
                     reviewItem.SetMood(customer.Mood);
-                    reviewItem.SetTextData(customer.Character.Name, reviewInfo.Message);
+                    reviewItem.SetTextData(characterConfig.Name, reviewInfo.Message);
                     reviewItem.SetRating(Controller.GetRatingByCustomerMood(customer.Mood));
                 }
             }

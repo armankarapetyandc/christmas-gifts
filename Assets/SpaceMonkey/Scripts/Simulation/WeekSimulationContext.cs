@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.Orders;
 using SpaceMonkey.Scripts.UI.Views.WeekReview;
@@ -10,27 +11,29 @@ namespace SpaceMonkey.Scripts.Simulation
 {
     public class WeekSimulationContext : IDisposable
     {
-        private readonly WeekSimulation.Factory _factory;
+        private readonly WeekSimulationV2.Factory _factory;
         private readonly PresenterService _presenterService;
+        private readonly AccountService _accountService;
         private readonly NavigationPresenterService _navigationPresenterService;
 
-        public WeekSimulation WeekSimulation { get; private set; }
+        public WeekSimulationV2 WeekSimulation { get; private set; }
 
-        public WeekSimulationContext(WeekSimulation.Factory factory, PresenterService presenterService,
+        public WeekSimulationContext(WeekSimulationV2.Factory factory, PresenterService presenterService,AccountService accountService,
             NavigationPresenterService navigationPresenterService)
         {
             _factory = factory;
             _presenterService = presenterService;
+            _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
         }
 
         public void Run()
         {
-            WeekSimulation?.Dispose();
+            // WeekSimulation?.Dispose();
             WeekSimulation = _factory.Create();
 
-            WeekSimulation.Prepare();
-            WeekSimulation.Run();
+            WeekSimulation.Initialize();
+            WeekSimulation.StartNewWeek(_accountService.Model.Account.Week);
 
             _navigationPresenterService.HideAll();
             _presenterService.HidePreviousAndShow<OrdersView>().Forget();
@@ -38,12 +41,12 @@ namespace SpaceMonkey.Scripts.Simulation
         
         public void Dispose()
         {
-            WeekSimulation?.Dispose();
+            // WeekSimulation?.Dispose();
         }
 
         public void Finish()
         {
-            WeekSimulation?.Finish();
+            WeekSimulation?.FinishWeek();
             _presenterService.HidePreviousAndShow<WeekReviewView>().Forget();
         }
     }

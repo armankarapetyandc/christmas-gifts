@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: YellowBeard_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: leo_h
+  <Appearance>k__BackingField: 4
   <Name>k__BackingField: Leo H.
   <Sprite>k__BackingField: {fileID: 11400000, guid: b16a9ba1dda5de24abc0cdea956ef6e6, type: 2}
   <HeadVisualAssets>k__BackingField:

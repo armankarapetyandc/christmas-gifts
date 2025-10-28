@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PurpleHair_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: purple_hair
+  <Appearance>k__BackingField: 8
   <Name>k__BackingField: Purple Hair
   <Sprite>k__BackingField: {fileID: 11400000, guid: 61101d0441e1db24caf8a82a548f6488, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

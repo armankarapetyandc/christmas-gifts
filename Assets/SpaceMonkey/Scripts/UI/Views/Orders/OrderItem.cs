@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using R3;
+using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
@@ -21,18 +22,20 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private Button shipButton;
         [SerializeField] private RectTransform productsContainer;
         [SerializeField] private OrderProductItem orderProductItemPrefab;
-        
-        public WeekSimulationV2.Customer Customer { get; private set; }
 
         public Observable<OrderItem> ShipOrder => shipButton.OnClickAsObservable().Select(_ => this);
-        
+        public WeekSimulationV2.Order Order { get; private set; }
         public int ProductionCapCost { get; private set; }
         public float Profit { get; private set; }
 
-        public void SetCustomer(WeekSimulationV2.Customer customer)
+        public void SetCustomer(CharacterConfig customerCharacter)
         {
-            Customer = customer;
-            customerName.text = customer.Character.Name;
+            customerName.text = customerCharacter.Name;
+        }
+
+        public void SetOrder(WeekSimulationV2.Order order)
+        {
+            Order = order;
         }
 
         public void SetCharacterVisual(SpriteVisualAsset characterVisual = null,
@@ -49,7 +52,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         }
 
         public void SetProducts(
-            List<(WeekSimulationV2.OrderEntry productOrder, SpriteVisualAsset iconVisualAsset, ColorVisualAsset colorVisualAsset)> products)
+            List<(WeekSimulationV2.OrderEntry productOrder, SpriteVisualAsset iconVisualAsset, ColorVisualAsset
+                colorVisualAsset)> products)
         {
             foreach (var product in products)
             {

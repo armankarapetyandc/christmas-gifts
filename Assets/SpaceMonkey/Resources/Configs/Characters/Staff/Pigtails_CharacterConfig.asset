@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pigtails_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: stella_a
+  <Appearance>k__BackingField: 4
   <Name>k__BackingField: Stella A.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 61c7753c269a6c24c950625310188fe1, type: 2}
   <HeadVisualAssets>k__BackingField:

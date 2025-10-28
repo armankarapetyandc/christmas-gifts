@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FroBrown_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: fro_brown
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Fro Brown
   <Sprite>k__BackingField: {fileID: 11400000, guid: 091c62bbf3a4d004d8a614cef10b5ea5, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

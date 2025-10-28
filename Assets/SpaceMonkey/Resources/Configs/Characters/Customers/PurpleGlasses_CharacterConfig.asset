@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PurpleGlasses_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: purple_glasses
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: Purple Glasses
   <Sprite>k__BackingField: {fileID: 11400000, guid: 81470746fd74fb34e8a1f9fdd725e437, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

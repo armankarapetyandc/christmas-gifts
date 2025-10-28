@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lumberjack_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: darius_z
+  <Appearance>k__BackingField: 4
   <Name>k__BackingField: Darius Z.
   <Sprite>k__BackingField: {fileID: 11400000, guid: fa9dc32fcd7d6a249825b66c35dd16c8, type: 2}
   <HeadVisualAssets>k__BackingField:

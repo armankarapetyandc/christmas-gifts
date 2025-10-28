@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BlueJacket_CharacterConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: bluejacket
+  <Appearance>k__BackingField: 2
   <Name>k__BackingField: BlueJacket
   <Sprite>k__BackingField: {fileID: 11400000, guid: d7e46f1bae8fc88449ab738726d34e53, type: 2}
   <HeadVisualAssets>k__BackingField:
@@ -26,5 +27,3 @@ MonoBehaviour:
   <MoodMin>k__BackingField: 1
   <MoodMax>k__BackingField: 100
   <DefaultMood>k__BackingField: 55
-  <Impacts>k__BackingField:
-  - Packaging sensitive

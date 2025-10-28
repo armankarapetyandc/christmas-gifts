@@ -7,7 +7,7 @@ namespace SpaceMonkey.Scripts.Simulation
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<WeekSimulationContext>().AsSingle().NonLazy();
-            Container.BindFactory<WeekSimulation, WeekSimulation.Factory>();
+            Container.BindFactory<WeekSimulationV2, WeekSimulationV2.Factory>();
         }
     }
 }

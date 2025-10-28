@@ -1,33 +1,23 @@
-﻿namespace SpaceMonkey.Scripts.Profile.Simulation
+﻿using System;
+
+namespace SpaceMonkey.Scripts.Profile.Simulation
 {
-    public struct WeekInfo
-    {
-        public string Id { get; set; }
-        public int Week { get; set; }
-        public int NeededCap { get; set; }
-        public OrderInfo[] Orders { get; set; }
-        
-    }
-    public struct OrderInfo
-    {
-        public string CharacterId { get; set; }
-        public int Mood { get; set; }
-        public bool Shipped { get; set; }
-        public ProductOrderInfo[]  Products { get; set; }
-    }
-
-    public struct ProductOrderInfo
-    {
-        public Product Product { get; set; }
-        public int Quantity { get; set; }
-    }
-
+    [Serializable]
     public struct CustomerReviewInfo
     {
         public string WeekId { get; set; }
         public string CharacterId { get; set; }
         public string ProductId { get; set; }
         public string Message { get; set; }
+        public int StarRating { get; set; } // 1-5 stars based on mood
+        public ReviewType Type { get; set; } // BigChange or ExtremeSetting
+        public string TriggerReason { get; set; } // What caused the review (e.g., "Price -80%")
+    }
+
+    public enum ReviewType
+    {
+        BigChange,
+        ExtremeSettingHigh,
+        ExtremeSettingLow
     }
 }
-
