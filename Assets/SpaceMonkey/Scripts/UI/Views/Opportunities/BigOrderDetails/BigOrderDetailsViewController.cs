@@ -25,11 +25,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
             _popupPresenterService = popupPresenterService;
         }
 
-        internal void OnBack()
+        internal void OnBack(MainNavigationType type)
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Opportunities
+                Type = type
             }).Forget();
         }
 
