@@ -54,6 +54,14 @@ namespace SpaceMonkey.Scripts.Simulation.BusinessLoan
             return _config.BusinessLoanInfo.FixedPrincipalPayment + _config.BusinessLoanInfo.FixedInterestPayment;
         }
         
+        public int GetTotalPaymentsCount()
+        {
+            if (!HasActiveLoan)
+                return 0;
+                
+            return _config.BusinessLoanInfo.DefaultTermMonths;
+        }
+        
         public float GetNextPaymentAmount()
         {
             if (!HasActiveLoan || Data.Balance <= 0)

@@ -44,25 +44,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement
                 Type = MainNavigationType.Opportunities
             }).Forget();
         }
-
-        internal async void OnNext()
-        {
-            // Check if already has an active loan
-            if (_businessLoanSimulator.HasActiveLoan)
-            {
-                // Show loan details or payment screen
-                PresenterService.Show<BusinessLoanStatementView>(new BusinessLoanStatementView.Data()).Forget();
-                return;
-            }
-            
-            // Show loan application splash screen
-            PresenterService.Show<BusinessLoanSplashView>().Forget();
-        }
-
+        
         public void OnInfo()
         {
             // Show loan information popup
             _popupPresenterService.Show<BusinessLoanPopup>().Forget();
+        }
+        
+        public int GetTotalPaymentsCount()
+        {
+            return _businessLoanSimulator.GetTotalPaymentsCount();
         }
         
         public (float amount, float apr, float monthlyPayment, float totalPayment) GetLoanDetails()
@@ -126,6 +117,32 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement
                 
             int weeksSinceLoanStart = _accountService.Model.Account.Week - _businessLoanSimulator.Data.StartWeek;
             return weeksSinceLoanStart / _businessLoanSimulator.PaymentIntervalWeeks;
+        }
+        
+        public (float principal, float interest, float fee, float total) GetLastMonthPayment()
+        {
+            if (!_businessLoanSimulator.HasActiveLoan)
+                return (0, 0, 0, 0);
+                
+            // Check if at least one payment has been made
+            int paymentsMade = GetPaymentsMade();
+            if (paymentsMade == 0)
+                return (0, 0, 0, 0);
+                
+            // Get the fixed payment amounts from config
+            float principal = _config.BusinessLoanInfo.FixedPrincipalPayment;
+            float interest = _config.BusinessLoanInfo.FixedInterestPayment;
+            float fee = 0; // No fees in the current implementation
+            
+            // If the loan balance is less than the principal payment, adjust it
+            if (_businessLoanSimulator.Data.Balance + principal < principal)
+            {
+                principal = _businessLoanSimulator.Data.Balance + principal;
+            }
+            
+            float total = principal + interest + fee;
+            
+            return (principal, interest, fee, total);
         }
     }
 }
