@@ -289,5 +289,5 @@ MonoBehaviour:
     <Position>k__BackingField: {x: 2800, y: -5500}
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: ebfad9aa9ddc6c04a99aba1ab38fd3eb, type: 2}
     <AppearWeek>k__BackingField: 0
-    <AppearLevel>k__BackingField: 1
+    <AppearLevel>k__BackingField: 4
     <BackgroundColor>k__BackingField: {r: 0.003921569, g: 0.78039217, b: 0.23921569, a: 1}
