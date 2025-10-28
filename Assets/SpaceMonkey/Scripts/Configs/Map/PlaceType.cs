@@ -8,6 +8,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
         Insurance,
         MutualFunds,
         Taxes,
-        BusinessLoan
+        BusinessLoan,
+        BigOrder
     }
 }

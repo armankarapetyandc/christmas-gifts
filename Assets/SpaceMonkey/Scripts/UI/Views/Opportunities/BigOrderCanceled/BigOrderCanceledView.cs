@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
@@ -7,18 +8,21 @@ using UnityEngine.UI;
 
 namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderCanceled
 {
-    public class BigOrderCanceledView : BasePresenterWithController<BigOrderCanceledViewController>
+    public class BigOrderCanceledView : BasePresenterWithController<BigOrderCanceledView.Data,BigOrderCanceledViewController>
     {
         [SerializeField] private Button okButton;
 
-        public override UniTask Initialize(IPresenterData data = null)
+        protected override void InternalInit()
         {
             okButton.OnClickAsObservable().Subscribe(_ => Controller.OnOkClicked()).AddTo(this);
-            return UniTask.CompletedTask;
         }
 
         public override void Dispose()
         {
+        }
+        public class Data : IPresenterData
+        {
+            public MainNavigationType Type { get; set; }
         }
     }
 }

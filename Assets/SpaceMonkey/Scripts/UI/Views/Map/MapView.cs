@@ -60,20 +60,26 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             var places = Controller.GetMapPlaces();
             foreach (var place in places)
             {
-                if (place.AppearWeek !=0 && place.AppearWeek > Controller.CurrentWeek)
+                if ((place.AppearWeek != 0 && place.AppearWeek > Controller.CurrentWeek) || (place.AppearLevel != 0 &&
+                    place.AppearLevel > Controller.CurrentLevel))
                 {
                     continue;
                 }
+
                 var item = Instantiate(placeItem, placesContainer);
                 item.SetPlace(place);
                 item.SetPlaceName(place.Name);
                 item.SetPosition(place.Position);
                 item.SetIcon(place.IconVisualAsset);
+                item.SetBackgroundColor(place.BackgroundColor);
                 item.OnClickAsObservable().Subscribe(_ =>
                 {
                     if (place.Type == PlaceType.CreditCard && !Controller.HasCreditCard())
                     {
                         Controller.ShowCreditCardInfoPopup();
+                    }else if (place.Type == PlaceType.BigOrder)
+                    {
+                        Controller.ShowBigOrderView();
                     }
                     else if (place.Type == PlaceType.BusinessLoan)
                     {
@@ -83,7 +89,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     {
                         ShowPlaceHolder(place);
                     }
-                    
                 }).AddTo(this);
             }
         }

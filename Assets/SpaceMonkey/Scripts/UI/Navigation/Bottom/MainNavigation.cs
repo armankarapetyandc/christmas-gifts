@@ -91,6 +91,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
 
         private async UniTaskVoid ShowView(MainNavigationType type)
         {
+            Debug.LogError("===show view "+type);
             await UniTask.Yield();
             _selected.Value = type;
             switch (type)
@@ -109,6 +110,8 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
                 case MainNavigationType.More:
                     Controller.HidePreviousAndShow<StartupView>().Forget();
                     Controller.HideMainNavigation();
+                    break;
+                case MainNavigationType.None:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

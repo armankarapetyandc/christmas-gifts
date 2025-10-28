@@ -14,6 +14,8 @@ namespace SpaceMonkey.Scripts.Configs.Map
         SpriteVisualAsset IconVisualAsset { get; }
      
         int AppearWeek { get;}
+        int AppearLevel { get;}
+         Color BackgroundColor { get; }
     }
 
     [Serializable]
@@ -25,6 +27,8 @@ namespace SpaceMonkey.Scripts.Configs.Map
         [field: SerializeField] public Vector2 Position { get; private set; }
         [field: SerializeField] public SpriteVisualAsset IconVisualAsset { get; private set; }
         [field: SerializeField] public int AppearWeek { get; private set; }
+        [field: SerializeField] public int AppearLevel { get; private set; }
+        [field: SerializeField] public Color BackgroundColor { get; private set; }
     }
 
     [Serializable]
@@ -36,5 +40,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
         public string Name { get; set; }
         public SpriteVisualAsset IconVisualAsset { get; set; }
         [field: SerializeField] public int AppearWeek { get; private set; }
+        [field: SerializeField] public int AppearLevel { get; private set; }
+        [field: SerializeField] public Color BackgroundColor { get; private set; }
     }
 }

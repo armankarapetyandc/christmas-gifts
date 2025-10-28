@@ -14,6 +14,7 @@ namespace SpaceMonkey.Scripts.UI.Components
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private Sprite lockedIcon;
         [SerializeField] private Image iconImage;
+        [SerializeField] private Image background;
         [SerializeField] private Button button;
         private SpriteVisualAsset _visualAsset;
         private IMapPlace _place;
@@ -28,6 +29,12 @@ namespace SpaceMonkey.Scripts.UI.Components
         {
             rectTransform.anchoredPosition = position;
         }
+
+        public void SetBackgroundColor(Color color)
+        {
+            background.color = color;
+        }
+        
 
         public void SetIcon(SpriteVisualAsset visualAsset)
         {

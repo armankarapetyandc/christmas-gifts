@@ -18,7 +18,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
 
         public BigOrderDetailsViewController(PresenterService presenterService,
             NavigationPresenterService navigationPresenterService,
-            PopupPresenterService popupPresenterService,AccountService accountService) : base(presenterService)
+            PopupPresenterService popupPresenterService, AccountService accountService) : base(presenterService)
         {
             _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
@@ -32,14 +32,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
                 Type = MainNavigationType.Opportunities
             }).Forget();
         }
-        
-        
-        public void OnCancel()
+
+
+        public void OnCancel(MainNavigationType type)
         {
             _accountService.Model.Account.ResetBigOrder();
             _accountService.SaveAsync().Forget();
-            PresenterService.Show<BigOrderCanceledView>().Forget();
+            PresenterService.Show<BigOrderCanceledView>(new BigOrderCanceledView.Data()
+                {
+                    Type = type
+                }
+            ).Forget();
         }
-
     }
 }

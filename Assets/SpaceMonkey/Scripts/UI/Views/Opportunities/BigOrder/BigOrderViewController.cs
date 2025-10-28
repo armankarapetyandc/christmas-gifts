@@ -5,6 +5,7 @@ using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.BigOrder;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Popups.DeleteProduct;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderCongratulation;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -27,32 +28,32 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder
             _popupPresenterService = popupPresenterService;
         }
 
-        internal void OnBack()
+        internal void OnBack(MainNavigationType type)
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Opportunities
+                Type = type
             }).Forget();
         }
 
-        public void OnInfo()
-        {
-            _popupPresenterService.Show<BigOrderPopup>().Forget();
-        }
 
-        public void OnDecline()
+
+        public void OnDecline(MainNavigationType type)
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Opportunities
+                Type = type
             }).Forget();
         }
         
-        public async Task OnAccept()
+        public async Task OnAccept(MainNavigationType type)
         {
             _accountService.Model.Account.CreateBigOrder();
             await _accountService.SaveAsync();
-            PresenterService.Show<BigOrderCongratulationView>();
+            PresenterService.Show<BigOrderCongratulationView>(new BigOrderCongratulationView.Data()
+            {
+                Type = type
+            });
         }
     }
 }

@@ -1,3 +1,4 @@
+using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -10,9 +11,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderCongratulation
         {
         }
 
-        internal void OnNext()
+        internal void OnNext(MainNavigationType Type)
         {
-            PresenterService.Show<BigOrderDetailsView>();
+            PresenterService.Show<BigOrderDetailsView>(new BigOrderDetailsView.Data()
+            {
+                Type = Type
+            });
         }
     }
 }
