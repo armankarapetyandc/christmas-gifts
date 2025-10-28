@@ -56,6 +56,7 @@ namespace SpaceMonkey.Scripts.Profile
         public CreditDataGameData CreditData { get; set; }
         public BusinessLoanDataGameData BusinessLoanData { get; set; }
         public InsuranceGameData InsuranceData { get; set; }
+        public BigOrderGameData BigOrderGameData { get; set; }
 
         public void SetCategory(string category)
         {
@@ -118,7 +119,8 @@ namespace SpaceMonkey.Scripts.Profile
                 MarketingFeatures = new List<MarketingFeature>(),
                 Employees = new List<Employee>(),
                 CreditData = null,
-                InsuranceData = null
+                InsuranceData = null,
+                BigOrderGameData = null
             };
             return account;
         }
@@ -238,6 +240,7 @@ namespace SpaceMonkey.Scripts.Profile
             Employees = new List<Employee>();
             CreditData = null;
             InsuranceData = null;
+            BigOrderGameData = null;
         }
 
         public void DeleteProduct(string productId)
@@ -254,6 +257,13 @@ namespace SpaceMonkey.Scripts.Profile
         {
             InsuranceData = null;
         }
+        
+        public void ResetBigOrder()
+        {
+            BigOrderGameData = null;
+        }
+        
+        
 
         public void CreateInsuranceData(InsuranceInfo insuranceInfo)
         {
@@ -264,6 +274,11 @@ namespace SpaceMonkey.Scripts.Profile
             }
             Buy(insuranceInfo.InsurancePrice);
             InsuranceData = new InsuranceGameData();
+        }
+
+        public void CreateBigOrder()
+        {
+            BigOrderGameData = new BigOrderGameData();
         }
 
         public void CreateCreditData(float balance, float creditLimit, int creditScore)
@@ -540,6 +555,17 @@ namespace SpaceMonkey.Scripts.Profile
         public bool IsActive { get; private set; }
 
         public InsuranceGameData()
+        {
+            IsActive = true;
+        }
+    }
+    
+    public class BigOrderGameData
+    {
+
+        public bool IsActive { get; private set; }
+
+        public BigOrderGameData()
         {
             IsActive = true;
         }

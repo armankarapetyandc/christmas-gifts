@@ -435,7 +435,7 @@ MonoBehaviour:
   - {fileID: 3026452667317249173}
   - {fileID: 1604541980489203298}
   - {fileID: 3141696043365700255}
-  defaultType: 1
+  defaultType: 0
   baseHolder: {fileID: 429801832465928250}
 --- !u!114 &1859547408086241512
 MonoBehaviour:

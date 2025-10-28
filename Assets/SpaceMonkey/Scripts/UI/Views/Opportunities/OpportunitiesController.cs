@@ -2,9 +2,12 @@ using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.DisasterInsurance;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BankAccounts;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
@@ -12,6 +15,7 @@ using SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.Investing;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.MutualFunds;
 using SpaceMonkey.Scripts.Utilities;
+using UIService.Runtime.Examples.Popups.TempWithAll;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -81,5 +85,25 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
             }
             PresenterService.HidePreviousAndShow<BankAccountsView>().Forget();
         }
+        
+        public void OnBigOrderButtonClicked()
+        {
+            _navigationPresenterService.HideAll();
+            if (_accountService.Model.Account.BigOrderGameData != null)
+            {
+                PresenterService.HidePreviousAndShow<BigOrderDetailsView>(new BigOrderDetailsView.Data()
+                {
+                    Type = MainNavigationType.Opportunities
+                }).Forget();
+                return;
+            }
+
+            PresenterService.HidePreviousAndShow<BigOrderView>(new BigOrderView.Data()
+            {
+                Type = MainNavigationType.Opportunities
+            }).Forget();
+        }
+        
+        
     }
 }
