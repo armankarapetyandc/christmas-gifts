@@ -22,6 +22,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement
         [SerializeField] private TextMeshProUGUI maturityDateText;
         [SerializeField] private TextMeshProUGUI paymentsMadeText;
         
+        
+        [Header("Last Month")]
+        [SerializeField] private TextMeshProUGUI principalLastMonthText;
+        [SerializeField] private TextMeshProUGUI interestLastMonthText;
+        [SerializeField] private TextMeshProUGUI feeLastMonthText;
+        [SerializeField] private TextMeshProUGUI totalLastMonthText;
+        
+        [Header("Year to date")]
+        [SerializeField] private TextMeshProUGUI principalYearToDateText;
+        [SerializeField] private TextMeshProUGUI interestYearToDateText;
+        [SerializeField] private TextMeshProUGUI feeYearToDateText;
+        [SerializeField] private TextMeshProUGUI totalYearToDateText;
+        
         [Header("Buttons")]
         [SerializeField] private Button backButton;
         
@@ -44,6 +57,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement
             var nextPaymentDate = Controller.GetNextPaymentDate();
             var maturityDate = Controller.GetMaturityDate();
             var paymentsMade = Controller.GetPaymentsMade();
+            var totalPaymentsCount = Controller.GetTotalPaymentsCount();
             
             // Update header
             customerNameText.text = customerName;
@@ -53,8 +67,21 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement
             // Update loan details
             loanAmountText.text = $"${amount:N2}";
             interestRateText.text = $"{apr:F1}%";
-            maturityDateText.text = maturityDate.ToString();
-            paymentsMadeText.text = paymentsMade.ToString();
+            maturityDateText.text = $"Week {maturityDate}";
+            paymentsMadeText.text = $"{paymentsMade} of {totalPaymentsCount}";
+            
+            // Update last month's payment data
+            var (principal, interest, fee, total) = Controller.GetLastMonthPayment();
+            principalLastMonthText.text = $"${principal:N2}";
+            interestLastMonthText.text = $"${interest:N2}";
+            feeLastMonthText.text = $"${fee:N2}";
+            totalLastMonthText.text = $"${total:N2}";
+            
+            
+            principalYearToDateText.text = $"${principal * 2:N2}";
+            interestYearToDateText.text = $"${interest * 2:N2}";
+            feeYearToDateText.text = $"${fee * 2:N2}";
+            totalYearToDateText.text = $"${total * 2:N2}";
         }
 
         public override void Dispose()
