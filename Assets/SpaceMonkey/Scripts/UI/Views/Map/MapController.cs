@@ -2,6 +2,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
@@ -12,6 +13,7 @@ using SpaceMonkey.Scripts.UI.Popups.CreditCard;
 using SpaceMonkey.Scripts.UI.Popups.BusinessLoan;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -25,6 +27,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly AccountService _accountService;
         private readonly CreditSimulator _creditSimulator;
+        private readonly BusinessLoanSimulator _businessLoanSimulator;
         private readonly MapConfig _mapConfig;
         private readonly VisualAssetDatabase _visualAssetDatabase;
 
@@ -32,12 +35,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         public int CurrentLevel => _accountService.Model.Account.Level;
         public MapController(PresenterService presenterService,PopupPresenterService popupPresenterService,
             NavigationPresenterService navigationPresenterService,AccountService accountService,
-            CreditSimulator creditSimulator,MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase) : base(presenterService)
+            CreditSimulator creditSimulator, BusinessLoanSimulator businessLoanSimulator,
+            MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase) : base(presenterService)
         {
             _popupPresenterService = popupPresenterService;
             _navigationPresenterService = navigationPresenterService;
             _accountService = accountService;
             _creditSimulator = creditSimulator;
+            _businessLoanSimulator = businessLoanSimulator;
             _mapConfig = mapConfig;
             _visualAssetDatabase = visualAssetDatabase;
         }
@@ -88,7 +93,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         {
             _popupPresenterService.Show<BusinessLoanPopup>().Forget();
         }
+        
+        internal void ShowBusinessLoanView()
+        {
+            _navigationPresenterService.HideAll();
+            PresenterService.HidePreviousAndShow<BusinessLoanStatementView>(new BusinessLoanStatementView.Data()).Forget();
+        }
 
+        internal bool HasBusinessLoan()
+        {
+            return _businessLoanSimulator.HasActiveLoan;
+        }
+        
         internal bool HasCreditCard()
         {
             return _creditSimulator.HasActiveCard;

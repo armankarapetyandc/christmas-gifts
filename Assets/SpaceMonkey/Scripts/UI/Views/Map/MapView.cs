@@ -81,7 +81,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     {
                         Controller.ShowBigOrderView();
                     }
-                    else if (place.Type == PlaceType.BusinessLoan)
+                    else if (place.Type == PlaceType.BusinessLoan && !Controller.HasBusinessLoan())
                     {
                         Controller.ShowBusinessLoanPopup();
                     }
@@ -115,7 +115,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     }
                     else if (place.Type == PlaceType.BusinessLoan)
                     {
-                        Controller.ShowBusinessLoanPopup();
+                        Controller.ShowBusinessLoanView();
                     }
                 });
             }

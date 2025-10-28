@@ -170,5 +170,21 @@ namespace SpaceMonkey.Scripts.Simulation.BusinessLoan
             
             return numerator / denominator;
         }
+        
+        public int GetNextPaymentDate()
+        {
+            if (!HasActiveLoan)
+                return 0;
+                
+            // Calculate weeks since loan start
+            int currentWeek = Week;
+            int weeksSinceLoanStart = currentWeek - Data.StartWeek;
+            
+            // Calculate weeks until next payment
+            int weeksUntilNextPayment = PaymentIntervalWeeks - (weeksSinceLoanStart % PaymentIntervalWeeks);
+            
+            // Return the week number when the next payment is due
+            return currentWeek + weeksUntilNextPayment;
+        }
     }
 }

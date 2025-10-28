@@ -86,18 +86,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement
         
         public int GetNextPaymentDate()
         {
-            if (!_businessLoanSimulator.HasActiveLoan)
-                return 0;
-                
-            // Calculate weeks since loan start
-            int currentWeek = _accountService.Model.Account.Week;
-            int weeksSinceLoanStart = currentWeek - _businessLoanSimulator.Data.StartWeek;
-            
-            // Calculate weeks until next payment
-            int weeksUntilNextPayment = _businessLoanSimulator.PaymentIntervalWeeks - (weeksSinceLoanStart % _businessLoanSimulator.PaymentIntervalWeeks);
-            
-            // Return the week number when the next payment is due
-            return currentWeek + weeksUntilNextPayment;
+            return _businessLoanSimulator.GetNextPaymentDate();
         }
         
         public int GetMaturityDate()

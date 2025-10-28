@@ -276,7 +276,7 @@ MonoBehaviour:
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
   - <Name>k__BackingField: Business Loan
-    <SingleLineName>k__BackingField: 
+    <SingleLineName>k__BackingField: Small Business Loan
     <Type>k__BackingField: 6
     <Position>k__BackingField: {x: 2244, y: -5599}
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}

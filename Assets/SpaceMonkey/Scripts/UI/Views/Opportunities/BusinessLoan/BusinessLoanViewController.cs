@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Popups.BusinessLoanInfo;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanSplash;
 using UIService.Runtime.Presenter;
@@ -35,6 +36,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoan
 
         public void OnInfo()
         {
+            _popupPresenterService.Show<BusinessLoanInfoPopup>().Forget();
         }
     }
 }
