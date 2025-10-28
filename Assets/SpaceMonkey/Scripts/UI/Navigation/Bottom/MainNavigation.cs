@@ -11,6 +11,7 @@ using SpaceMonkey.Scripts.UI.Views.Startup;
 using UIService.Runtime.Core;
 using UIService.Runtime.Utilities;
 using UnityEngine;
+using UnityEngine.UI;
 using Logger = DCLogger.Runtime.Logger;
 
 namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
@@ -25,6 +26,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
         [SerializeField] private List<MainNavigationElement> elements;
         [SerializeField] private MainNavigationType defaultType;
         [SerializeField] private RectTransform baseHolder;
+        [SerializeField] private ToggleGroup toggleGroup;
 
 
         private Data _data;
@@ -59,11 +61,10 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
             else
             {
                 ShowView(defaultType).Forget();
+
             }
 
-
-            // var navigateTo = _data?.Type ?? defaultType;
-            // ShowView(navigateTo).Forget();
+            toggleGroup.allowSwitchOff = false;
             return UniTask.CompletedTask;
         }
 
@@ -91,7 +92,6 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
 
         private async UniTaskVoid ShowView(MainNavigationType type)
         {
-            Debug.LogError("===show view "+type);
             await UniTask.Yield();
             _selected.Value = type;
             switch (type)

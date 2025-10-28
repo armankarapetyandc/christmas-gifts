@@ -27,7 +27,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
 
         protected override void InternalInit()
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack(PresenterData.Type)).AddTo(this);
             infoButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(true)).AddTo(this);
 
             cancelButton.OnClickAsObservable().Subscribe(_ => Controller.OnCancel(PresenterData.Type)).AddTo(this);

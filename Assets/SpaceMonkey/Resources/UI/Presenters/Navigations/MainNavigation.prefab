@@ -110,7 +110,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1159023064555749552
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +437,7 @@ MonoBehaviour:
   - {fileID: 3141696043365700255}
   defaultType: 0
   baseHolder: {fileID: 429801832465928250}
+  toggleGroup: {fileID: 2832260220107906599}
 --- !u!114 &1859547408086241512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,7 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 0
+  m_AllowSwitchOff: 1
 --- !u!223 &5008617873355142660
 Canvas:
   m_ObjectHideFlags: 0
@@ -1296,7 +1297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &666301528605118636
 RectTransform:
   m_ObjectHideFlags: 0
