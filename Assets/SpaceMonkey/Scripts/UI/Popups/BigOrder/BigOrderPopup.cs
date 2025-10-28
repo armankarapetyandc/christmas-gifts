@@ -9,7 +9,6 @@ namespace SpaceMonkey.Scripts.UI.Popups.BigOrder
 {
     public class BigOrderPopup : PopupPresenterWithController<BigOrderPopupController>
     {
-        
         [SerializeField] private Button closeButton;
         [SerializeField] private Button confirmButton;
         

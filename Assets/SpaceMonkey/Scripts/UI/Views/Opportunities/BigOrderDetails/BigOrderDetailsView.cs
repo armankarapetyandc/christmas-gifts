@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
 {
-    public class BigOrderDetailsView : BasePresenterWithController<BigOrderDetailsViewController>
+    public class BigOrderDetailsView : BasePresenterWithController<BigOrderDetailsView.Data,BigOrderDetailsViewController>
     {
         [SerializeField] private Button backButton;
         [SerializeField] private Button infoButton;
@@ -24,22 +25,25 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
 
         [SerializeField] private Button cancelButton;
 
-        public override UniTask Initialize(IPresenterData data = null)
+        protected override void InternalInit()
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack(PresenterData.Type)).AddTo(this);
             infoButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(true)).AddTo(this);
 
-            cancelButton.OnClickAsObservable().Subscribe(_ => Controller.OnCancel()).AddTo(this);
+            cancelButton.OnClickAsObservable().Subscribe(_ => Controller.OnCancel(PresenterData.Type)).AddTo(this);
 
             infoCloseButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(false)).AddTo(this);
-            
-            return UniTask.CompletedTask;
         }
 
 
 
         public override void Dispose()
         {
+        }
+        
+        public class Data : IPresenterData
+        {
+            public MainNavigationType Type { get; set; }
         }
     }
 }

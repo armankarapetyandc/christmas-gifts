@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06129bc55a0747adbe5829f647b96c3f, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
+  <InsuranceInfo>k__BackingField:
+    <InsurancePrice>k__BackingField: 67
+    <OccurrenceLimit>k__BackingField: 20000
   <Categories>k__BackingField:
   - <Name>k__BackingField: Arts & Crafts
     <Visual>k__BackingField: {fileID: 11400000, guid: b57297d9730c02844b5656eb1a7d267a, type: 2}

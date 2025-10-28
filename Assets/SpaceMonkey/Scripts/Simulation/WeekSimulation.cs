@@ -8,6 +8,7 @@ using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Profile.Simulation;
+using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.Utilities;
 using UnityEngine;
@@ -71,6 +72,7 @@ namespace SpaceMonkey.Scripts.Simulation
         private readonly CustomerReviewConfig _customerReviewConfig;
         private readonly AccountService _accountService;
         private readonly CreditSimulator _creditSimulator;
+        private readonly BusinessLoanSimulator _businessLoanSimulator;
         private readonly SimulationInfo _simulationInfo;
         private readonly Account _account;
 
@@ -88,12 +90,13 @@ namespace SpaceMonkey.Scripts.Simulation
         public float SellScore { get; set; }
 
         public WeekSimulation(GameConfig gameConfig, CustomerReviewConfig customerReviewConfig,
-            AccountService accountService, CreditSimulator creditSimulator)
+            AccountService accountService, CreditSimulator creditSimulator, BusinessLoanSimulator businessLoanSimulator)
         {
             _gameConfig = gameConfig;
             _customerReviewConfig = customerReviewConfig;
             _accountService = accountService;
             _creditSimulator = creditSimulator;
+            _businessLoanSimulator = businessLoanSimulator;
             _simulationInfo = gameConfig.SimulationInfo;
             _account = accountService.Model.Account;
             _availableProdCap = new ReactiveProperty<int>(_account.GetProductionCapacity());
@@ -313,9 +316,14 @@ namespace SpaceMonkey.Scripts.Simulation
             _account.PushFinishedWeek(_weekInfo);
             _account.Money = _money.Value;
             _account.Score += SellScore;
+            if ( _weekInfo.Week % 4 == 0 && _account.InsuranceData != null)
+            {
+                _account.CreateInsuranceData(_gameConfig.InsuranceInfo);
+            }
             _accountService.SaveAsync().Forget();
 
             _creditSimulator.NextWeek();
+            _businessLoanSimulator.NextWeek();
         }
 
         private List<(Customer, Product, string)> DetermineCustomerReviewsV2()

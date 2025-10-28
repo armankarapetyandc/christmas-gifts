@@ -5,20 +5,21 @@ using UIService.Runtime.Presenter.Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceMonkey.Scripts.UI.Views.Opportunities.Insurance
+namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanSplash
 {
-    public class InsuranceView: BasePresenterWithController<InsuranceViewController>
+    public class BusinessLoanSplashView : BasePresenterWithController<BusinessLoanSplashViewController>
     {
-        [SerializeField] private Button backButton;
+        [SerializeField] private Button nextButton;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext().Forget()).AddTo(this);
             return UniTask.CompletedTask;
         }
 
         public override void Dispose()
         {
+            
         }
     }
 }

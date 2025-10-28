@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using SpaceMonkey.Scripts.Configs.Characters;
@@ -10,8 +10,9 @@ using UnityEngine;
 namespace SpaceMonkey.Scripts.Configs
 {
     [CreateAssetMenu(fileName = "GameConfig", menuName = "Space Monkey/Configs/Game Config", order = 1)]
-    public class GameConfig : ScriptableObject
+    public class GameConfig: ScriptableObject
     {
+        [field: SerializeField] public InsuranceInfo InsuranceInfo { get; private set; }
         [field: SerializeField] public CategoryInfo[] Categories { get; private set; }
         [field: SerializeField] public ProductionLevelInfo[] ProductionLevels { get; private set; }
         [field: SerializeField] public CharacterConfig[] Characters { get; private set; }
@@ -20,6 +21,7 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public BusinessExample[] BusinessExamples { get; private set; }
         [field: SerializeField] public SimulationInfo SimulationInfo { get; private set; }
         [field: SerializeField] public CreditCardInfo CreditCardInfo { get; private set; }
+        [field: SerializeField] public BusinessLoanInfo BusinessLoanInfo { get; private set; }
         [field: SerializeField] public LevelInfo[] LevelInfos { get; private set; }
 
 
@@ -158,6 +160,14 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public string Key { get; private set; }
         [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
+    }
+
+    [Serializable]
+    public class InsuranceInfo
+    {
+        
+        [field: SerializeField] public int InsurancePrice { get; private set; }
+        [field: SerializeField] public int OccurrenceLimit { get; private set; }
     }
 
     [Serializable]

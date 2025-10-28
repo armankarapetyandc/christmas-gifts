@@ -1,3 +1,4 @@
+using SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -12,7 +13,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsuranceCongratula
         
         internal void OnNext()
         {
-          //  PresenterService.Show<BigOrderDetailsView>();
+            PresenterService.Show<DisasterInsurancePolicyView>();
         }
     }
 }

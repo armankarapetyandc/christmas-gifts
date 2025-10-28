@@ -14,13 +14,20 @@ namespace SpaceMonkey.Scripts.UI.Views.DisasterInsurance
         [SerializeField] private Button purchasePolicyButton;
         [SerializeField] private Button learnAboutInsuranceButton;
         [SerializeField] private TextMeshProUGUI moneyText;
+        [SerializeField] private TextMeshProUGUI priceInfoText;
+        [SerializeField] private GameObject infoPanel;
+        [SerializeField] private Button infoCloseButton;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             purchasePolicyButton.OnClickAsObservable().Subscribe(_ => Controller.PurchasePolicy()).AddTo(this);
-            learnAboutInsuranceButton.OnClickAsObservable().Subscribe(_ => Controller.LearnAboutInsurance())
+            learnAboutInsuranceButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(true))
                 .AddTo(this);
+            
+            infoCloseButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(false)).AddTo(this);
+            moneyText.text = $"${Controller.Money}";
+            priceInfoText.text = $"<B>The policy costs ${Controller.InsurancePrice}/month.</B>";
             return UniTask.CompletedTask;
         }
 

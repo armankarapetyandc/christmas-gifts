@@ -20,7 +20,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.InsuranceCanceled
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Map
+                Type = MainNavigationType.Opportunities
             }).Forget();
         }
     }
