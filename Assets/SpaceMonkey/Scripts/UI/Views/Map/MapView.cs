@@ -85,6 +85,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     {
                         Controller.ShowBusinessLoanPopup();
                     }
+                    else if (place.Type == PlaceType.BusinessHub)
+                    {
+                        Controller.NavigateToMyCompany();
+                    }
                     else
                     {
                         ShowPlaceHolder(place);
