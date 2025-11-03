@@ -82,7 +82,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 await data.CompletionSource.Task;
                 return false;
             }
-            _weekSimulationContext.WeekSimulation.SellScore += order.OrderEntries.Count * _scoresConfigs.CalculateScoreConfigByKey("sellProduct");
+
+            var score = GetScoreFor("sellProduct") * order.OrderEntries.Sum(o => o.Quantity);
+            _weekSimulationContext.WeekSimulation.SellScore += score;
             return true;
         }
 
