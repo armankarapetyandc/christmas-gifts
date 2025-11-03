@@ -3813,6 +3813,8 @@ MonoBehaviour:
   feeYearToDateText: {fileID: 7841351088228649413}
   totalYearToDateText: {fileID: 6904509834454986094}
   backButton: {fileID: 1534055561914294336}
+  bottomInfoCloseButton: {fileID: 82662142088968519}
+  bottomInfoContainer: {fileID: 7557419631446203198}
 --- !u!114 &8941973297583101752
 MonoBehaviour:
   m_ObjectHideFlags: 0

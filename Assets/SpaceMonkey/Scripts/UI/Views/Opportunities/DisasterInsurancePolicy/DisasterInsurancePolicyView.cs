@@ -14,8 +14,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy
         [SerializeField] private Button infoButton;
         [SerializeField] private GameObject infoPanel;
         [SerializeField] private Button infoCloseButton;
+        [SerializeField] private Button bottomInfoCloseButton;
         [SerializeField] private Button cancelButton;
-        
+        [SerializeField] private RectTransform bottomInfoContainer;
         [SerializeField] private TextMeshProUGUI customerNameText;
         [SerializeField] private TextMeshProUGUI weekText;
         [SerializeField] private TextMeshProUGUI paymentText;
@@ -29,9 +30,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy
 
 
             infoCloseButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(false)).AddTo(this);
-
+            bottomInfoCloseButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                PlayerPrefs.SetInt("DisasterInsurancePolicyViewInfoShown", 1);
+                bottomInfoContainer.gameObject.SetActive(!PlayerPrefs.HasKey("DisasterInsurancePolicyViewInfoShown"));
+            }).AddTo(this);
             weekText.text = $"Week {Controller.Week}";
             paymentText.text = $"${Controller.InsurancePrice}";
+            bottomInfoContainer.gameObject.SetActive(!PlayerPrefs.HasKey("DisasterInsurancePolicyViewInfoShown"));
+            
             return UniTask.CompletedTask;
         }
 

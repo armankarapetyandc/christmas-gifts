@@ -12,6 +12,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
     public class CreditCardStatementView : BasePresenterWithController<CreditCardStatementView.Data, CreditCardStatementViewController>
     {
         [SerializeField] private Button backButton;
+        [SerializeField] private Button bottomInfoCloseButton;
+        [SerializeField] private RectTransform bottomInfoContainer;
         [SerializeField] private TextMeshProUGUI minimumPaymentText;
         [SerializeField] private TextMeshProUGUI balanceText;
         [SerializeField] private Toggle skipPaymentToggle;
@@ -60,12 +62,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
                     SetToggleState();
                 }
             });
+            bottomInfoCloseButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                PlayerPrefs.SetInt("CreditCardStatementInfoShown", 1);
+                bottomInfoContainer.gameObject.SetActive(!PlayerPrefs.HasKey("CreditCardStatementInfoShown"));
+            }).AddTo(this);
             SetToggleState();
             InitTransactions();
             SetupTexts();
             
             minimumPaymentText.text = $"${Controller.minimumPayment:F2}";
             balanceText.text = $"${Controller.creditDataGameData.Balance:F2}";
+            bottomInfoContainer.gameObject.SetActive(!PlayerPrefs.HasKey("CreditCardStatementInfoShown"));
         }
 
         private void SetToggleState()
