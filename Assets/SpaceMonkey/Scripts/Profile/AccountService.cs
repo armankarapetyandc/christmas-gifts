@@ -102,6 +102,7 @@ namespace SpaceMonkey.Scripts.Profile
                         Model.Account.FromWeekEndScore = false;
                         return;
                     }
+                    
                     _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
                 }
             }).AddTo(_compositeDisposable);

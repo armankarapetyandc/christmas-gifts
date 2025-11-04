@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MapConfig
   m_EditorClassIdentifier: 
   <DefaultCompanyPlace>k__BackingField:
-    <Type>k__BackingField: 8
+    <Type>k__BackingField: 9
     <Position>k__BackingField: {x: 2634, y: -6041}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
