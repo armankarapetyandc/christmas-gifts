@@ -278,6 +278,7 @@ namespace SpaceMonkey.Scripts.Simulation
             Account.AllCustomers = allCustomers;
             Account.Reviews = ProcessCustomerReviews();
             Account.Money += _money.Value;
+            Account.FromWeekEndScore = true;
             Account.Score += SellScore;
 
             Debug.Log($"Finished Week {CurrentWeek.Value.WeekNumber} and saved to account.");
