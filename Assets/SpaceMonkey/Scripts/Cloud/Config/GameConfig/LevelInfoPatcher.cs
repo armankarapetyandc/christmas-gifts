@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
@@ -24,12 +25,6 @@ namespace SpaceMonkey.Scripts.Cloud.Config.GameConfig
             {
                 var row = result.values[i];
 
-                if (row == null || row.Count < 5)
-                {
-                    Debug.LogWarning($"Skipping incomplete row {i}");
-                    continue;
-                }
-
                 // Parse Level (column 0)
                 if (!int.TryParse(row[0]?.Trim(), out int level))
                 {
@@ -44,14 +39,7 @@ namespace SpaceMonkey.Scripts.Cloud.Config.GameConfig
                     continue;
                 }
 
-                // Parse UnlockInfo Key (column 2)
-                string unlockKey = row[2]?.Trim();
-                
-                // Parse IconVisualAssetId (column 3)
-                string iconAssetId = row[3]?.Trim() ?? string.Empty;
-                
-                // Parse Description (column 4)
-                string description = row[4]?.Trim() ?? string.Empty;
+            
 
                 // Initialize list for this level if not exists
                 if (!levelUnlockMap.ContainsKey(level))
@@ -63,11 +51,22 @@ namespace SpaceMonkey.Scripts.Cloud.Config.GameConfig
                     patchedLevelInfos.Add(levelInfo);
                 }
 
-                // If there's unlock info, add it to the level
-                if (!string.IsNullOrWhiteSpace(unlockKey))
+                if (row.Count >= 3)
                 {
-                    var unlockInfo = CreateLevelUnlockInfo(unlockKey, iconAssetId, description);
-                    levelUnlockMap[level].Add(unlockInfo);
+                    // Parse UnlockInfo Key (column 2)
+                    string unlockKey = row[2]?.Trim();
+
+                    // Parse IconVisualAssetId (column 3)
+                    string iconAssetId = row.Count >= 4 ? row[3]?.Trim() ?? string.Empty : string.Empty;
+
+                    // Parse Description (column 4)
+                    string description = row.Count >= 5 ? row[4]?.Trim() ?? string.Empty : string.Empty;
+                    // If there's unlock info, add it to the level
+                    if (!string.IsNullOrWhiteSpace(unlockKey))
+                    {
+                        var unlockInfo = CreateLevelUnlockInfo(unlockKey, iconAssetId, description);
+                        levelUnlockMap[level].Add(unlockInfo);
+                    }
                 }
             }
 
