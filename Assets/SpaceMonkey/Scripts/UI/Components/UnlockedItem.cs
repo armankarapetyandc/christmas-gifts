@@ -1,4 +1,5 @@
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,11 @@ namespace SpaceMonkey.Scripts.UI.Components
         {
             gameObject.SetActive(true);
             description.text = levelUnlockInfo?.Description;
-            icon.sprite = levelUnlockInfo?.IconVisualAsset?.Sprite;
+        }
+
+        public void SetVisualAsset(SpriteVisualAsset visualAsset)
+        {
+            icon.sprite = visualAsset?.Sprite;
         }
     }
 }
