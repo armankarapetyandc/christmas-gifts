@@ -516,18 +516,22 @@ MonoBehaviour:
     <UnlockInfo>k__BackingField:
     - <Key>k__BackingField: production
       <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 0018744018646ed48843368aca9c8362, type: 2}
+      <IconVisualAssetId>k__BackingField: icn_r_equipment
       <Description>k__BackingField: Production Upgrades
     - <Key>k__BackingField: stuff
       <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 42a94a7b1716c7e4fbef781ab2519a1b, type: 2}
+      <IconVisualAssetId>k__BackingField: icn_r_staff
       <Description>k__BackingField: Stuff
   - <Level>k__BackingField: 3
     <Score>k__BackingField: 500
     <UnlockInfo>k__BackingField:
     - <Key>k__BackingField: 2product
       <IconVisualAsset>k__BackingField: {fileID: 0}
+      <IconVisualAssetId>k__BackingField: 
       <Description>k__BackingField: 2nd Product Slot Unlock
     - <Key>k__BackingField: smallSpace
       <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: ef480d3603eba6349a0cf619946d88d4, type: 2}
+      <IconVisualAssetId>k__BackingField: small_comerical_faciloty_unlock_icon_256_0
       <Description>k__BackingField: Small Space Unlocks
   - <Level>k__BackingField: 4
     <Score>k__BackingField: 1000

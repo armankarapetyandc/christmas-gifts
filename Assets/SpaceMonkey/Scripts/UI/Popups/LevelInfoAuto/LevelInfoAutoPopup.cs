@@ -80,6 +80,13 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
             for (int i = 0; i < nextLevelInfo.UnlockInfo.Count; i++)
             {
                 unlockedItems[i].Initialize(nextLevelInfo.UnlockInfo[i]);
+                if (!string.IsNullOrEmpty(nextLevelInfo.UnlockInfo[i].IconVisualAssetId))
+                {
+                    unlockedItems[i]
+                        .SetVisualAsset(
+                            Controller.ResolveVisualAsset<SpriteVisualAsset>(nextLevelInfo.UnlockInfo[i]
+                                .IconVisualAssetId));
+                }
             }
         }
     }

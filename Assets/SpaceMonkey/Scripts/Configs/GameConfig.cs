@@ -124,6 +124,18 @@ namespace SpaceMonkey.Scripts.Configs
             Debug.Log($"Patched {Staffs.Length} staffs");
         }
 
+        public void PatchLevelInfo(LevelInfo[] infos)
+        {
+            if (infos == null || infos.Length == 0)
+            {
+                return;
+            }
+
+            LevelInfos = infos;
+            Debug.Log($"Patched {LevelInfos.Length} level infos");
+        }
+        
+
         public void PatchCreditCardInfo(CreditCardInfo info)
         {
             if (info == null)
@@ -158,7 +170,7 @@ namespace SpaceMonkey.Scripts.Configs
     public class LevelUnlockInfo
     {
         [field: SerializeField] public string Key { get; private set; }
-        [field: SerializeField] public SpriteVisualAsset IconVisualAsset { get; private set; }
+        [field: SerializeField] public string IconVisualAssetId { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
     }
 
