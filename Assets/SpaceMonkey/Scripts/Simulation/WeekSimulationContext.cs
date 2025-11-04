@@ -46,7 +46,6 @@ namespace SpaceMonkey.Scripts.Simulation
 
         public void Finish()
         {
-            WeekSimulation?.FinishWeek();
             _presenterService.HidePreviousAndShow<WeekReviewView>().Forget();
         }
     }
