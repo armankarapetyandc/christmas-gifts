@@ -130,7 +130,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             var account = Controller.GetAccount();
             businessName.text = account.Company.CompanyName;
             levelNumber.text = $"Level {account.Level.ToString()}";
-            moneyText.text = $"+${account.Money:F2}";
+            moneyText.text = $"${account.Money:F2}";
             prodCapText.text = $"{account.GetProductionCapacity()} hrs";
             scoreText.text = $"{account.Score.ToString()}";
             weekNumber.text = account.Week.ToString();
