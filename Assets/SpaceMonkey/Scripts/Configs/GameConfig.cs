@@ -158,7 +158,7 @@ namespace SpaceMonkey.Scripts.Configs
     public class LevelUnlockInfo
     {
         [field: SerializeField] public string Key { get; private set; }
-        [field: SerializeField] public Sprite Icon { get; private set; }
+        [field: SerializeField] public SpriteVisualAsset IconVisualAsset { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
     }
 
