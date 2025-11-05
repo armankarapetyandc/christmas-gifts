@@ -38,9 +38,21 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement
         [Header("Buttons")]
         [SerializeField] private Button backButton;
         
+        [SerializeField] private Button bottomInfoCloseButton;
+        [SerializeField] private RectTransform bottomInfoContainer;
+        
+        
+        
         public override UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            bottomInfoCloseButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                PlayerPrefs.SetInt("BusinessLoanStatementInfoShown", 1);
+                bottomInfoContainer.gameObject.SetActive(!PlayerPrefs.HasKey("BusinessLoanStatementInfoShown"));
+            }).AddTo(this);
+            bottomInfoContainer.gameObject.SetActive(!PlayerPrefs.HasKey("BusinessLoanStatementInfoShown"));
+            
             UpdateView();
             return UniTask.CompletedTask;
         }

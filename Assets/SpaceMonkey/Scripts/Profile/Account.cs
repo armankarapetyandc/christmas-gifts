@@ -20,6 +20,8 @@ namespace SpaceMonkey.Scripts.Profile
         public CompanyInfo Company { get; set; }
         public int Level { get; set; }
         public int Week => WeeksV2.Count + 1;
+        
+        public bool FromWeekEndScore { get; set; }
 
         public float Money
         {
@@ -31,17 +33,19 @@ namespace SpaceMonkey.Scripts.Profile
             }
         }
 
+    
+
         public float Score
         {
             get { return _score; }
             set
             {
                 _score = value;
-                OnScoreChanged.Execute(_score);
+                OnScoreChanged.Execute((_score,FromWeekEndScore));
             }
         }
 
-        public readonly ReactiveCommand<float> OnScoreChanged = new ReactiveCommand<float>();
+        public readonly ReactiveCommand<(float,bool)> OnScoreChanged = new ReactiveCommand<(float,bool)>();
         public readonly ReactiveCommand<float> OnMoneyChanged = new ReactiveCommand<float>();
 
 

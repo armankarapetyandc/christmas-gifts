@@ -10,6 +10,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
         Taxes,
         BusinessLoan,
         BigOrder,
-        BusinessHub
+        BusinessHub,
+        PlaceHolder
     }
 }

@@ -16,6 +16,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
         [SerializeField] private Button button;
         [SerializeField] private ColorVisualAsset placeHolderFirstShowColor;
         [SerializeField] private ColorVisualAsset placeHolderDefaultColor;
+        
+        [SerializeField] private TextMeshProUGUI averageRatingText;
+        [SerializeField] private TextMeshProUGUI ratingsCountText;
+        [SerializeField] private TextMeshProUGUI descriptionText;
+        [SerializeField] private GameObject[] stars;
 
         private SpriteVisualAsset _visualAsset;
         private PlaceType _placeType;
@@ -26,6 +31,48 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
             SetIconColor();
         }
         
+
+        public void SetAverageRating(float value)
+        {
+            if (averageRatingText is null)
+            {
+                return;
+            }
+            averageRatingText.text = $"{value}";
+        }
+
+        public void SetDescriptionText(string value)
+        {
+            if (descriptionText is null)
+            {
+                return;
+            }
+            descriptionText.text = value;
+        }
+
+
+        public void SetRatingsCount(int value)
+        {
+            if (ratingsCountText is null)
+            {
+                return;
+            }
+            ratingsCountText.text = $"({value})";
+        }
+
+
+        public void SetRatingStars(float value)
+        {
+            if (stars is null)
+            {
+                return;
+            }
+            for (int i = 0; i < stars.Length; i++)
+            {
+                stars[i].SetActive(i + 1 <= value);
+            }
+        }
+
         public void SetPlaceName(string placeName)
         {
             nameText.SetText(placeName);

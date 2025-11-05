@@ -8,6 +8,9 @@ using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto;
+using SpaceMonkey.Scripts.UI.Views.UpgradeCapacity;
+using SpaceMonkey.Scripts.Utilities;
+using UIService.Runtime.Presenter;
 using UnityEngine;
 using Logger = DCLogger.Runtime.Logger;
 
@@ -24,12 +27,14 @@ namespace SpaceMonkey.Scripts.Profile
 
         
         public readonly ReactiveCommand<int> OnLevelChanged = new ReactiveCommand<int>();
+        private PresenterService _presenterService;
         public AccountModel Model { get; private set; }
 
         public bool IsFreshAccount => !File.Exists(_path);
 
-        public AccountService(GameConfig gameConfig, PopupPresenterService popupPresenterService)
+        public AccountService(GameConfig gameConfig, PopupPresenterService popupPresenterService,PresenterService presenterService)
         {
+            _presenterService = presenterService;
             _popupPresenterService = popupPresenterService;
             _gameConfig = gameConfig;
         }
@@ -39,16 +44,23 @@ namespace SpaceMonkey.Scripts.Profile
             PlayerPrefs.DeleteAll();
             var freeProdCap = _gameConfig.ProductionLevels.Single(info => info.ProdCapCost == 0);
             Model = new AccountModel(Account.CreateEmpty(freeProdCap));
-            Model.Account.OnScoreChanged.Subscribe(score =>
+            Model.Account.OnScoreChanged.Subscribe(eventParam =>
             {
-                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= score)?.LastOrDefault();
+                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= eventParam.Item1)?.LastOrDefault();
                    
                 int currentLevel = Model.Account.Level;
                 Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
                 if (currentLevel != 1 && currentLevel < Model.Account.Level)
                 {
                     OnLevelChanged.Execute(Model.Account.Level);
+                    if (eventParam.Item2)
+                    {
+                        _presenterService.HidePreviousAndShow<WeekEndRewardView>().Forget();
+                        Model.Account.FromWeekEndScore = false;
+                        return;
+                    }
                     _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
+            
                 }
             }).AddTo(_compositeDisposable);
         }
@@ -75,15 +87,22 @@ namespace SpaceMonkey.Scripts.Profile
             var content = await File.ReadAllTextAsync(_path);
             var account = JsonConvert.DeserializeObject<Account>(content);
             Model = new AccountModel(account);
-            Model.Account.OnScoreChanged.Subscribe(score =>
+            Model.Account.OnScoreChanged.Subscribe(eventParam =>
             {
-                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= score)?.LastOrDefault();
+                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= eventParam.Item1)?.LastOrDefault();
                    
                 int currentLevel = Model.Account.Level;
                 Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
                 if (currentLevel != 1 && currentLevel < Model.Account.Level)
                 {
                     OnLevelChanged.Execute(Model.Account.Level);
+                    if (eventParam.Item2)
+                    {
+                        _presenterService.HidePreviousAndShow<WeekEndRewardView>().Forget();
+                        Model.Account.FromWeekEndScore = false;
+                        return;
+                    }
+                    
                     _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
                 }
             }).AddTo(_compositeDisposable);

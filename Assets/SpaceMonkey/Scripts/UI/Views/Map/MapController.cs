@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.BusinessLoan;
@@ -30,14 +32,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         private readonly BusinessLoanSimulator _businessLoanSimulator;
         private readonly MapConfig _mapConfig;
         private readonly VisualAssetDatabase _visualAssetDatabase;
+        private GameConfig _gameConfig;
 
         public int CurrentWeek => _accountService.Model.Account.Week;
         public int CurrentLevel => _accountService.Model.Account.Level;
+        public int ReviewsCount => _accountService.Model.Account.WeeksV2.Count > 0 ? _accountService.Model.Account.Reviews.Count:1;
+
         public MapController(PresenterService presenterService,PopupPresenterService popupPresenterService,
             NavigationPresenterService navigationPresenterService,AccountService accountService,
             CreditSimulator creditSimulator, BusinessLoanSimulator businessLoanSimulator,
-            MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase) : base(presenterService)
+            MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase,GameConfig gameConfig) : base(presenterService)
         {
+            _gameConfig = gameConfig;
             _popupPresenterService = popupPresenterService;
             _navigationPresenterService = navigationPresenterService;
             _accountService = accountService;
@@ -66,6 +72,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             place.IconVisualAsset = ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.IconVisualAssetId);
             return place;
         }
+        
+        internal float CalculateCompanyRating()
+        {
+            return _accountService.Model.Account.CalculateCompanyRating(_gameConfig.SimulationInfo.MoodRanges,_accountService.Model.Account.WeeksV2);
+        }
+        
 
         internal void ShowCreditCardInfoPopup()
         {

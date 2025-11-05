@@ -1,5 +1,5 @@
-using System;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,14 +11,15 @@ namespace SpaceMonkey.Scripts.UI.Components
         [SerializeField] private TextMeshProUGUI description;
         [SerializeField] private Image icon;
 
-        private LevelUnlockInfo _LevelUnlockInfo;
-
         public void Initialize(LevelUnlockInfo levelUnlockInfo)
         {
-            _LevelUnlockInfo = levelUnlockInfo;
             gameObject.SetActive(true);
-            icon.sprite = _LevelUnlockInfo.Icon;
-            description.text = _LevelUnlockInfo.Description;
+            description.text = levelUnlockInfo?.Description;
+        }
+
+        public void SetVisualAsset(SpriteVisualAsset visualAsset)
+        {
+            icon.sprite = visualAsset?.Sprite;
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using TMPro;
@@ -79,6 +80,13 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
             for (int i = 0; i < nextLevelInfo.UnlockInfo.Count; i++)
             {
                 unlockedItems[i].Initialize(nextLevelInfo.UnlockInfo[i]);
+                if (!string.IsNullOrEmpty(nextLevelInfo.UnlockInfo[i].IconVisualAssetId))
+                {
+                    unlockedItems[i]
+                        .SetVisualAsset(
+                            Controller.ResolveVisualAsset<SpriteVisualAsset>(nextLevelInfo.UnlockInfo[i]
+                                .IconVisualAssetId));
+                }
             }
         }
     }
