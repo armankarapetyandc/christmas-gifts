@@ -78,6 +78,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
 
         public void OnBankAccountButtonClicked()
         {
+            if (_mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.BusinessLoan)?.AppearLevel >
+                _accountService.Model.Account.Level)
+            {
+                return;
+            }
+            if (_mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.BusinessLoan)?.AppearWeek >
+                _accountService.Model.Account.Week)
+            {
+                return;
+            }
             _navigationPresenterService.HideAll();
             if (_businessLoanSimulator.HasActiveLoan)
             {
@@ -92,6 +102,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
         {
             if (_mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.BigOrder)?.AppearLevel >
                 _accountService.Model.Account.Level)
+            {
+                return;
+            }
+            
+            if (_mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.BigOrder)?.AppearWeek >
+                _accountService.Model.Account.Week)
             {
                 return;
             }
