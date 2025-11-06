@@ -4,24 +4,25 @@ using SpaceMonkey.Scripts.UI.Navigation.Core;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
-namespace SpaceMonkey.Scripts.UI.Views.Opportunities.Investing
+namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSplash
 {
-    public class InvestingViewController : BasePresenterController
+    public class BusinessLocationSplashViewController : BasePresenterController
     {
         private readonly NavigationPresenterService _navigationPresenterService;
 
-        public InvestingViewController(PresenterService presenterService,NavigationPresenterService navigationPresenterService) : base(presenterService)
+        public BusinessLocationSplashViewController(PresenterService presenterService,
+            NavigationPresenterService navigationPresenterService) : base(presenterService)
         {
             _navigationPresenterService = navigationPresenterService;
         }
 
-        internal void OnBack()
+        public void OnNext()
         {
+            PresenterService.Hide();
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Opportunities
+                Type = MainNavigationType.Map
             }).Forget();
         }
-        
     }
 }

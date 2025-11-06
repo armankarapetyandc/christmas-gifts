@@ -11,10 +11,10 @@ using SpaceMonkey.Scripts.UI.Views.Opportunities.BankAccounts;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSign;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy;
-using SpaceMonkey.Scripts.UI.Views.Opportunities.Investing;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.MutualFunds;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Examples.Popups.TempWithAll;
@@ -74,15 +74,20 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
 
             PresenterService.HidePreviousAndShow<DisasterInsuranceView>().Forget();
         }
-
-        public void OnInvestmentButtonClicked()
-        {
-            _navigationPresenterService.HideAll();
-            PresenterService.HidePreviousAndShow<InvestingView>().Forget();
-        }
+        
 
         public void OnBankAccountButtonClicked()
         {
+            if (_mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.BusinessLoan)?.AppearLevel >
+                _accountService.Model.Account.Level)
+            {
+                return;
+            }
+            if (_mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.BusinessLoan)?.AppearWeek >
+                _accountService.Model.Account.Week)
+            {
+                return;
+            }
             _navigationPresenterService.HideAll();
             if (_businessLoanSimulator.HasActiveLoan)
             {
@@ -97,6 +102,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities
         {
             if (_mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.BigOrder)?.AppearLevel >
                 _accountService.Model.Account.Level)
+            {
+                return;
+            }
+            
+            if (_mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.BigOrder)?.AppearWeek >
+                _accountService.Model.Account.Week)
             {
                 return;
             }

@@ -61,7 +61,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             foreach (var place in places)
             {
                 if ((place.AppearWeek != 0 && place.AppearWeek > Controller.CurrentWeek) || (place.AppearLevel != 0 &&
-                    place.AppearLevel > Controller.CurrentLevel))
+                        place.AppearLevel > Controller.CurrentLevel))
                 {
                     continue;
                 }
@@ -77,7 +77,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     if (place.Type == PlaceType.CreditCard && !Controller.HasCreditCard())
                     {
                         Controller.ShowCreditCardInfoPopup();
-                    }else if (place.Type == PlaceType.BigOrder)
+                    }
+                    else if (place.Type == PlaceType.BigOrder)
                     {
                         Controller.ShowBigOrderView();
                     }
@@ -89,7 +90,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     {
                         Controller.NavigateToMyCompany();
                     }
-                    else
+                    else if (place.Type == PlaceType.PlaceHolder)
                     {
                         ShowPlaceHolder(place);
                     }
@@ -106,9 +107,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 item.Init(place.Type);
                 item.SetPlaceName(place.SingleLineName);
                 item.SetIcon(place.IconVisualAsset);
+                var companyRating = Controller.CalculateCompanyRating();
+                item.SetRatingStars(companyRating);
+                item.SetRatingsCount(Controller.ReviewsCount);
+                item.SetAverageRating(companyRating);
+                
                 item.GetClickHandler().Subscribe(_ =>
                 {
-                    if (place is RuntimeMapPlace runtimeMapPlace)
+                    if (place.Type == PlaceType.PlaceHolder)
                     {
                         Controller.NavigateToMyCompany();
                     }
