@@ -31,7 +31,7 @@ namespace SpaceMonkey.Scripts.UI.Views.UpgradeCapacity
             fromLevelText.text = $"{Controller.Level}";
             toLevelText.text = $"{Controller.Level + 1}";
             levelText.text = $"Level {Controller.Level}";
-            scoreText.text = $"Score {Controller.Score}";
+            scoreText.text = $"Score {Controller.Score + Controller.SellScore}";
             pointsText.text = $"+ {Controller.SellScore}";
             StartFill(cts.Token).Forget();
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
@@ -41,7 +41,7 @@ namespace SpaceMonkey.Scripts.UI.Views.UpgradeCapacity
         private async UniTaskVoid StartFill(CancellationToken token)
         {
             float nextLevelScore = Controller.GetLevelInfoByLevel(Controller.Level+1).Score;
-            slider.value = (Controller.Score-Controller.SellScore)/nextLevelScore;
+            slider.value = (Controller.Score)/nextLevelScore;
             float elapsed = 0f;
             float duration = 2;
             while (elapsed < duration)
@@ -49,8 +49,12 @@ namespace SpaceMonkey.Scripts.UI.Views.UpgradeCapacity
                 await UniTask.Yield(PlayerLoopTiming.Update, token);
                 elapsed += Time.deltaTime;
                 float progress = Mathf.Clamp01(elapsed / duration);
-                slider.value = Mathf.Lerp((Controller.Score-Controller.SellScore)/nextLevelScore, Controller.Score/nextLevelScore, progress);
+                slider.value = Mathf.Lerp((Controller.Score)/nextLevelScore, (Controller.Score+Controller.SellScore)/nextLevelScore, progress);
             }
+
+            nextLevelScore = Controller.GetLevelInfoByLevel(Controller.Level + 2).Score;
+            slider.value = (Controller.Score + Controller.SellScore) / nextLevelScore;
+            levelText.text = $"Level {Controller.Level + 1}";
 
             await UniTask.Delay(TimeSpan.FromSeconds(0.1), cancellationToken: token);
             OnFillComplete();

@@ -1,6 +1,10 @@
+using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Profile.Simulation;
 using SpaceMonkey.Scripts.Simulation;
+using SpaceMonkey.Scripts.UI.Views.ProfitAndLoss;
 using SpaceMonkey.Scripts.UI.Views.Review;
 using SpaceMonkey.Scripts.UI.Views.UpgradeCapacity;
 using SpaceMonkey.Scripts.Utilities;
@@ -24,9 +28,30 @@ namespace SpaceMonkey.Scripts.UI.Views.WeekReview
             _presenterService = presenterService;
         }
 
-        internal void OnNext()
+        internal void OnNext(bool? levelIncreased)
         {
-            _weekSimulationContext.WeekSimulation?.FinishWeek();
+            if (levelIncreased != null && levelIncreased.Value)
+            {
+                _presenterService.HidePreviousAndShow<WeekEndRewardView>().Forget();
+                return;
+            }
+
+            if (GetReviews()?.Count() > 0)
+            {
+                PresenterService.HidePreviousAndShow<ReviewView>().Forget();
+                return;
+            }
+
+            PresenterService.Show<ProfitView>(new ProfitView.Data
+            {
+                UseSimulation = true
+            }).Forget();
+        }
+
+        private IEnumerable<CustomerReviewInfo> GetReviews()
+        {
+            return _accountService.Model.Account.Reviews?.Where(info =>
+                info.WeekId.Equals(_weekSimulationContext.WeekSimulation.CurrentWeek.Value.Id));
         }
     }
 }

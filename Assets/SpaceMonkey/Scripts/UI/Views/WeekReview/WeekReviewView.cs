@@ -9,11 +9,17 @@ namespace SpaceMonkey.Scripts.UI.Views.WeekReview
 {
     public class WeekReviewView : BasePresenterWithController<WeekReviewController>
     {
+        public class Data:IPresenterData
+        {
+            public bool LevelIncreased;
+        }
         [SerializeField] private Button nextButton;
         
         public override UniTask Initialize(IPresenterData data = null)
         {
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
+            Data presenterData = (Data)data;
+            
+            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext(presenterData?.LevelIncreased)).AddTo(this);
             return UniTask.CompletedTask;
         }
 

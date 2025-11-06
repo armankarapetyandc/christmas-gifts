@@ -46,21 +46,14 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(Account.CreateEmpty(freeProdCap));
             Model.Account.OnScoreChanged.Subscribe(eventParam =>
             {
-                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= eventParam.Item1)?.LastOrDefault();
+                LevelInfo levelInfo = _gameConfig.LevelInfos.LastOrDefault(info => info.Score <= eventParam);
                    
                 int currentLevel = Model.Account.Level;
                 Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
-                if (currentLevel != 1 && currentLevel < Model.Account.Level)
+                if (currentLevel < Model.Account.Level)
                 {
                     OnLevelChanged.Execute(Model.Account.Level);
-                    if (eventParam.Item2)
-                    {
-                        _presenterService.HidePreviousAndShow<WeekEndRewardView>().Forget();
-                        Model.Account.FromWeekEndScore = false;
-                        return;
-                    }
                     _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
-            
                 }
             }).AddTo(_compositeDisposable);
         }
@@ -89,19 +82,13 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(account);
             Model.Account.OnScoreChanged.Subscribe(eventParam =>
             {
-                LevelInfo levelInfo = _gameConfig.LevelInfos.Where(info => info.Score <= eventParam.Item1)?.LastOrDefault();
+                LevelInfo levelInfo = _gameConfig.LevelInfos.LastOrDefault(info => info.Score <= eventParam);
                    
                 int currentLevel = Model.Account.Level;
                 Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
-                if (currentLevel != 1 && currentLevel < Model.Account.Level)
+                if (currentLevel < Model.Account.Level)
                 {
                     OnLevelChanged.Execute(Model.Account.Level);
-                    if (eventParam.Item2)
-                    {
-                        _presenterService.HidePreviousAndShow<WeekEndRewardView>().Forget();
-                        Model.Account.FromWeekEndScore = false;
-                        return;
-                    }
                     _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
                 }
             }).AddTo(_compositeDisposable);

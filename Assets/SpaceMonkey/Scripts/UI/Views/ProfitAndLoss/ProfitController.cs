@@ -41,6 +41,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
 
         internal void OnNext()
         {
+            _weekSimulationContext.WeekSimulation.GrantReward();
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
                 Type = MainNavigationType.BusinessHub

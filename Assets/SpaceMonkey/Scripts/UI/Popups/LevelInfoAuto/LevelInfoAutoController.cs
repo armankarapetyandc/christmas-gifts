@@ -2,6 +2,7 @@ using System.Linq;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Views.DemoComplete;
 using UIService.Runtime.Presenter;
@@ -14,14 +15,16 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
         private PopupPresenterService _popupPresenterService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
         private AccountService _accountService;
+        private readonly NavigationPresenterService navigationPresenterService;
         private GameConfig _gameConfig;
 
         public int Level => _accountService.Model.Account.Level;
         public int Score => (int) _accountService.Model.Account.Score;
 
-        public LevelInfoAutoController(PresenterService presenterService, PopupPresenterService popupPresenterService,VisualAssetDatabase visualAssetDatabase,
+        public LevelInfoAutoController(PresenterService presenterService, NavigationPresenterService navigationPresenterService,PopupPresenterService popupPresenterService,VisualAssetDatabase visualAssetDatabase,
             AccountService accountService, GameConfig gameConfig) : base(presenterService)
         {
+            this.navigationPresenterService = navigationPresenterService;
             _gameConfig = gameConfig;
             _accountService = accountService;
             _popupPresenterService = popupPresenterService;
@@ -42,9 +45,9 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
             _popupPresenterService.HideLast();
             if (Level == 5)
             {
+                navigationPresenterService.HideAll();
                 PresenterService.Show<DemoCompleteView>();
             }
-
         }
     }
 }

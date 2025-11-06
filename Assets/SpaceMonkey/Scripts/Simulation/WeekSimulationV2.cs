@@ -277,10 +277,7 @@ namespace SpaceMonkey.Scripts.Simulation
             Account.WeeksV2.Add(CurrentWeek.Value);
             Account.AllCustomers = allCustomers;
             Account.Reviews = ProcessCustomerReviews();
-            Account.Money += _money.Value;
-            Account.FromWeekEndScore = true;
-            Account.Score += SellScore;
-
+        
             Debug.Log($"Finished Week {CurrentWeek.Value.WeekNumber} and saved to account.");
             allCustomers = null;
 
@@ -288,6 +285,13 @@ namespace SpaceMonkey.Scripts.Simulation
             _accountService.SaveAsync().Forget();
         }
 
+
+        public void GrantReward()
+        {
+            Account.Money += _money.Value;
+            Account.Score += SellScore;
+        }
+        
 
         /// <summary>
         /// Generate which customers will visit this week (BEFORE mood adjustments)
