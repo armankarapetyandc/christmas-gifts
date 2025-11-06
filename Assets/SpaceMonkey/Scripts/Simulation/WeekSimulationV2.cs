@@ -276,7 +276,8 @@ namespace SpaceMonkey.Scripts.Simulation
 
             Account.WeeksV2.Add(CurrentWeek.Value);
             Account.AllCustomers = allCustomers;
-            Account.Reviews = ProcessCustomerReviews();
+            var reviews = ProcessCustomerReviews();
+            Account.Reviews.AddRange(reviews);
         
             Debug.Log($"Finished Week {CurrentWeek.Value.WeekNumber} and saved to account.");
             allCustomers = null;
