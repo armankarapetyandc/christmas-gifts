@@ -1,5 +1,8 @@
+using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSign;
+using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -25,6 +28,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.BusinessLocationUnlocked
         public void RedirectToBusinessLoanStatement()
         {
             _navigationPresenterService.HideAll();
+            PresenterService.HidePreviousAndShow<BusinessLocationSignView>().Forget();
         }
     }
 }

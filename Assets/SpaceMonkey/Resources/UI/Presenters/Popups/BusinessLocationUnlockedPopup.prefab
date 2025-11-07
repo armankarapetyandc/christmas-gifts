@@ -1097,7 +1097,7 @@ GameObject:
   - component: {fileID: 8549009670224365666}
   - component: {fileID: 4688020478949155142}
   m_Layer: 5
-  m_Name: NewLocationUnlockedPopup
+  m_Name: BusinessLocationUnlockedPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

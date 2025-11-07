@@ -19,27 +19,19 @@ MonoBehaviour:
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <Places>k__BackingField:
-  - <Name>k__BackingField: For Rent
+  - <Name>k__BackingField: Small Commercial Facility
     <SingleLineName>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 1174, y: -597}
-    <IconVisualAsset>k__BackingField: {fileID: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: a07867ffa8a84f94cba42ae3c8d90ae4, type: 2}
     <AppearWeek>k__BackingField: 0
-    <AppearLevel>k__BackingField: 0
+    <AppearLevel>k__BackingField: 3
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   - <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
     <Type>k__BackingField: 1
     <Position>k__BackingField: {x: 1010, y: -948}
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
-    <AppearWeek>k__BackingField: 0
-    <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  - <Name>k__BackingField: For Rent
-    <SingleLineName>k__BackingField: 
-    <Type>k__BackingField: 2
-    <Position>k__BackingField: {x: 1658, y: -961}
-    <IconVisualAsset>k__BackingField: {fileID: 0}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}

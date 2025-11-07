@@ -23,7 +23,8 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public CreditCardInfo CreditCardInfo { get; private set; }
         [field: SerializeField] public BusinessLoanInfo BusinessLoanInfo { get; private set; }
         [field: SerializeField] public LevelInfo[] LevelInfos { get; private set; }
-
+        
+        [field: SerializeField] public NewLocationInfo NewLocationInfo { get; private set; }
 
         public void PatchCategories(CategoryInfo[] infos)
         {

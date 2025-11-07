@@ -90,6 +90,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     {
                         Controller.NavigateToMyCompany();
                     }
+                    else if (place.Type == PlaceType.Investment)
+                    {
+                        Controller.ShowInvestmentView();
+                    }
                     else if (place.Type == PlaceType.PlaceHolder)
                     {
                         ShowPlaceHolder(place);

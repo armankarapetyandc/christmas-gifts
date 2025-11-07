@@ -1187,12 +1187,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.63
+  m_fontSize: 47
   m_fontSizeBase: 47.63
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 47
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -1721,9 +1721,9 @@ MonoBehaviour:
   m_fontSize: 44
   m_fontSizeBase: 44
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 44
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -2073,13 +2073,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSequence:
   - animations:
-    - {fileID: 0}
+    - {fileID: 11400000, guid: e67a19552ca47b14a95e740bca1a0d3c, type: 2}
   group: {fileID: 2800671312908557361}
   presenterHolder: {fileID: 8542658057337973337}
   dimmerButton: {fileID: 0}
   <AutoFitSupported>k__BackingField: 1
   signButton: {fileID: 7612656959213197700}
-  closeButton: {fileID: 0}
+  closeButton: {fileID: 5735067819612468287}
+  cashAmountText: {fileID: 4141946158817879006}
+  locationPriceText: {fileID: 5357511002398410346}
 --- !u!114 &2720142503135687250
 MonoBehaviour:
   m_ObjectHideFlags: 0

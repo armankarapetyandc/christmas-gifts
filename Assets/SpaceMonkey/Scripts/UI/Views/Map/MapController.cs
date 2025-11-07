@@ -13,6 +13,7 @@ using SpaceMonkey.Scripts.UI.Popups.BigOrder;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.CreditCard;
 using SpaceMonkey.Scripts.UI.Popups.BusinessLoan;
+using SpaceMonkey.Scripts.UI.Popups.BusinessLocationUnlocked;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement;
@@ -129,6 +130,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             {
                 Type = MainNavigationType.BusinessHub
             }).Forget();
+        }
+
+        public void ShowInvestmentView()
+        {
+            _popupPresenterService.Show<BusinessLocationUnlockedPopup>().Forget();
         }
     }
 }

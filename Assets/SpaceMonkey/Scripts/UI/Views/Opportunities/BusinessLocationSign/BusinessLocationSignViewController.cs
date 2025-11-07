@@ -1,4 +1,6 @@
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSplash;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
@@ -8,13 +10,27 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSign
 {
     public class BusinessLocationSignViewController : BasePresenterController
     {
-        public BusinessLocationSignViewController(PresenterService presenterService) : base(presenterService)
+        private readonly AccountService _accountService;
+        private readonly GameConfig _gameConfig;
+        public float CashAmount => _accountService.Model.Account.Money;
+        public int LocationPrice => _gameConfig.NewLocationInfo.Price;
+        
+        public BusinessLocationSignViewController(PresenterService presenterService, 
+            AccountService accountService, GameConfig gameConfig) : base(presenterService)
         {
+            _accountService = accountService;
+            _gameConfig = gameConfig;
         }
 
         public void OnSign()
         {
-            PresenterService.Show<BusinessLocationSplashView>().Forget();
+            var account = _accountService.Model.Account;
+            if (account.CanAfford(_gameConfig.NewLocationInfo.Price))
+            {
+                account.Buy(_gameConfig.NewLocationInfo.Price);
+                _accountService.SaveAsync().Forget();
+                PresenterService.Show<BusinessLocationSplashView>().Forget();
+            }
         }
         
         public void OnBack()
