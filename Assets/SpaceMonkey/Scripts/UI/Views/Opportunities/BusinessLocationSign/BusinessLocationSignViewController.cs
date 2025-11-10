@@ -1,6 +1,9 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.Investment;
+using SpaceMonkey.Scripts.UI.Navigation.Bottom;
+using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSplash;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
@@ -12,30 +15,37 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSign
     {
         private readonly AccountService _accountService;
         private readonly GameConfig _gameConfig;
+        private readonly InvestmentSimulator _investmentSimulator;
+        private readonly NavigationPresenterService _navigationPresenterService;
         public float CashAmount => _accountService.Model.Account.Money;
         public int LocationPrice => _gameConfig.NewLocationInfo.Price;
         
         public BusinessLocationSignViewController(PresenterService presenterService, 
-            AccountService accountService, GameConfig gameConfig) : base(presenterService)
+            AccountService accountService, GameConfig gameConfig, 
+            InvestmentSimulator investmentSimulator, NavigationPresenterService navigationPresenterService)
+            : base(presenterService)
         {
             _accountService = accountService;
             _gameConfig = gameConfig;
+            _investmentSimulator = investmentSimulator;
+            _navigationPresenterService = navigationPresenterService;
         }
 
-        public void OnSign()
+        public void OnSign(int dataPlaceId)
         {
-            var account = _accountService.Model.Account;
-            if (account.CanAfford(_gameConfig.NewLocationInfo.Price))
+            var result = _investmentSimulator.BuyPlace(dataPlaceId);
+            if (result)
             {
-                account.Buy(_gameConfig.NewLocationInfo.Price);
-                _accountService.SaveAsync().Forget();
                 PresenterService.Show<BusinessLocationSplashView>().Forget();
             }
         }
         
         public void OnBack()
         {
-            PresenterService.HidePreviousAndShow<OpportunitiesView>().Forget();
+            _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+            {
+                Type = MainNavigationType.Opportunities
+            }).Forget();
         }
     }
 }

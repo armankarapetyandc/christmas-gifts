@@ -1,12 +1,12 @@
 using System;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace SpaceMonkey.Scripts.Configs.Map
 {
     public interface IMapPlace
     {
+        public int Id { get; }
         string Name { get; }
         string SingleLineName { get; }
         PlaceType Type { get; }
@@ -15,12 +15,14 @@ namespace SpaceMonkey.Scripts.Configs.Map
      
         int AppearWeek { get;}
         int AppearLevel { get;}
+        
          Color BackgroundColor { get; }
     }
 
     [Serializable]
     public class MapPlace : IMapPlace
     {
+        [field: SerializeField] public int Id { get; set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public string SingleLineName { get; private set; }
         [field: SerializeField] public PlaceType Type { get; private set; }
@@ -34,6 +36,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
     [Serializable]
     public class RuntimeMapPlace : IMapPlace
     {
+        [field: SerializeField] public int Id { get; private set; }
         [field: SerializeField] public PlaceType Type { get; private set; }
         [field: SerializeField] public Vector2 Position { get; private set; }
         public string SingleLineName { get; set; }
