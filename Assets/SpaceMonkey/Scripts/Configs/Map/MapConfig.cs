@@ -7,5 +7,15 @@ namespace SpaceMonkey.Scripts.Configs.Map
     {
         [field: SerializeField] public RuntimeMapPlace DefaultCompanyPlace { get; private set; }
         [field: SerializeField] public MapPlace[] Places { get; private set; }
+
+
+        [ContextMenu("Set Ids")]
+        private void SetIds()
+        {
+            for (int i = 0; i < Places.Length; i++)
+            {
+                Places[i].Id = i+1;
+            }
+        }
     }
 }

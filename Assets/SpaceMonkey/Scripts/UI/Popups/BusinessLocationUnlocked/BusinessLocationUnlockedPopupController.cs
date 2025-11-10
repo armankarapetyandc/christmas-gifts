@@ -25,10 +25,13 @@ namespace SpaceMonkey.Scripts.UI.Popups.BusinessLocationUnlocked
             _popupPresenterService.HideLast();
         }
         
-        public void RedirectToBusinessLoanStatement()
+        public void RedirectToBusinessLoanStatement(int dataPlaceId)
         {
             _navigationPresenterService.HideAll();
-            PresenterService.HidePreviousAndShow<BusinessLocationSignView>().Forget();
+            PresenterService.HidePreviousAndShow<BusinessLocationSignView>(new BusinessLocationSignView.Data
+            {
+                PlaceId = dataPlaceId
+            }).Forget();
         }
     }
 }
