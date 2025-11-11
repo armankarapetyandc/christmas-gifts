@@ -11,6 +11,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
         BusinessLoan,
         BigOrder,
         BusinessHub,
-        PlaceHolder
+        PlaceHolder,
+        TreatyBird
     }
 }

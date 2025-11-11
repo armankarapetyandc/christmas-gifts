@@ -17,6 +17,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
         int AppearLevel { get;}
         
          Color BackgroundColor { get; }
+         bool DefaultLocked { get; }
     }
 
     [Serializable]
@@ -31,6 +32,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
         [field: SerializeField] public int AppearWeek { get; private set; }
         [field: SerializeField] public int AppearLevel { get; private set; }
         [field: SerializeField] public Color BackgroundColor { get; private set; }
+        [field: SerializeField] public bool DefaultLocked { get; private set; }
     }
 
     [Serializable]
@@ -45,5 +47,6 @@ namespace SpaceMonkey.Scripts.Configs.Map
         [field: SerializeField] public int AppearWeek { get; private set; }
         [field: SerializeField] public int AppearLevel { get; private set; }
         [field: SerializeField] public Color BackgroundColor { get; private set; }
+        [field: SerializeField] public bool DefaultLocked { get; private set; } = false;
     }
 }

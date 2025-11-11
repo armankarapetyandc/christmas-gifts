@@ -7,6 +7,7 @@ using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Popups.Competition;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.LevelInfo;
 using SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto;
@@ -163,6 +164,28 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             PresenterService.Show<ProfitView>(new ProfitView.Data
             {
                 EnableBackButton = true
+            }).Forget();
+        }
+
+        public void CheckForCompetition(bool isWeekEnd)
+        {
+            if (!isWeekEnd)
+            {
+                return;
+            }
+
+            Profile.Product product =
+                _accountService.Model.Account.Products.FirstOrDefault(p =>
+                    100 * p.ProductPrice / p.MaxProductPrice > _gameConfig.CompetitionValue);
+            
+            if (!product.ProductPrice.HasValue && PlayerPrefs.GetInt("competition") == 0)
+            {
+                return;
+            }
+
+            _popupPresenterService.Show<CompetitionPopup>(new CompetitionPopup.Data
+            {
+                Product = product
             }).Forget();
         }
     }

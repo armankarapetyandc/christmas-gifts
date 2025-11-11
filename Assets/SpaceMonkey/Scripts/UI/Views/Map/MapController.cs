@@ -15,6 +15,7 @@ using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.CreditCard;
 using SpaceMonkey.Scripts.UI.Popups.BusinessLoan;
 using SpaceMonkey.Scripts.UI.Popups.BusinessLocationUnlocked;
+using SpaceMonkey.Scripts.UI.Popups.Competition;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement;
@@ -145,6 +146,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             _popupPresenterService.Show<BusinessLocationUnlockedPopup>(new BusinessLocationUnlockedPopup.Data
             {
                 PlaceId = place.Id
+            }).Forget();
+        }
+
+        public void ShowCompetitionPopup()
+        {
+            var product = _accountService.Model.Account.Products.FirstOrDefault(p => p.Id == PlayerPrefs.GetString("productId"));
+            _popupPresenterService.Show<CompetitionPopup>(new CompetitionPopup.Data
+            {
+                Product = product,
+                ShowInfoPopup = true
             }).Forget();
         }
     }

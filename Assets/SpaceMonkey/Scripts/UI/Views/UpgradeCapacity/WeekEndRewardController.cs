@@ -52,13 +52,18 @@ namespace SpaceMonkey.Scripts.UI.Views.UpgradeCapacity
         {
             if (GetReviews()?.Count() > 0)
             {
-                PresenterService.HidePreviousAndShow<ReviewView>().Forget();   
+                PresenterService.HidePreviousAndShow<ReviewView>(new ReviewView.Data()
+                {
+                    IsWeekEnd = true
+                }).Forget();   
                 return;
             }
             
             PresenterService.Show<ProfitView>(new ProfitView.Data
             {
-                UseSimulation = true
+                UseSimulation = true,
+                IsWeekEnd =  true
+                
             }).Forget();
         }
 
