@@ -75,7 +75,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
 
                 var item = Instantiate(placeItem, placesContainer);
                 item.SetPlace(place);
-                item.SetMapPlaceState(place is RuntimeMapPlace ? MapPlaceState.Open : MapPlaceState.Active);
+                item.SetMapPlaceState(place is RuntimeMapPlace ? MapPlaceState.Open :
+                    place.DefaultLocked ? MapPlaceState.Locked : MapPlaceState.Active);
                 item.SetPlaceName(place.Name);
                 item.SetPosition(place.Position);
                 item.SetPlaceContent(place.IconVisualAsset.Sprite);
