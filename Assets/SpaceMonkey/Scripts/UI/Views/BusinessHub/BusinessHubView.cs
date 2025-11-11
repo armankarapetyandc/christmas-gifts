@@ -42,9 +42,13 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         [SerializeField] private LockByLevel[] lockedByLevels;
         [SerializeField] private LockByMoney[] lockedByMoney;
+        
+        private Data _viewData;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
+            
+            _viewData = data as Data;
             productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
             marketingButton.OnClickAsObservable().Subscribe(_ =>
             {
@@ -100,6 +104,10 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             CheckForUnlockByMoney(Controller.Money);
 
             SetupDefaults();
+            if (_viewData != null)
+            {
+                Controller.CheckForCompetition(_viewData.IsWeekEnd);
+            }
             return UniTask.CompletedTask;
         }
 
@@ -177,6 +185,11 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         public override void Dispose()
         {
+        }
+        
+        public class Data : IPresenterData
+        {
+            public bool IsWeekEnd;
         }
     }
 }

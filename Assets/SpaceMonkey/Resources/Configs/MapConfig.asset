@@ -361,3 +361,13 @@ MonoBehaviour:
     <AppearLevel>k__BackingField: 4
     <BackgroundColor>k__BackingField: {r: 0.003921569, g: 0.78039217, b: 0.23921569, a: 1}
     <DefaultLocked>k__BackingField: 0
+  - <Id>k__BackingField: 35
+    <Name>k__BackingField: Treaty Bird
+    <SingleLineName>k__BackingField: 
+    <Type>k__BackingField: 10
+    <Position>k__BackingField: {x: 2700, y: -5500}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 6febc4f227c8a4e2aa2c3e7ea951fc0f, type: 2}
+    <AppearWeek>k__BackingField: 0
+    <AppearLevel>k__BackingField: 0
+    <BackgroundColor>k__BackingField: {r: 1, g: 0.20784314, b: 0.20784314, a: 1}
+    <DefaultLocked>k__BackingField: 0

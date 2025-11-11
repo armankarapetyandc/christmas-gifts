@@ -53,11 +53,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
             return _visualAssetDatabase.GetResourcesForAsset(predicate);
         }
 
-        internal void OnNext()
+        internal void OnNext(bool isWeekEnd)
         {
             _presenterService.Show<ProfitView>(new ProfitView.Data
             {
-                UseSimulation = true
+                UseSimulation = true,
+                IsWeekEnd = isWeekEnd
             }).Forget();
         }
 

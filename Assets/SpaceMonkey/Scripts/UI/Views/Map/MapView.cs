@@ -81,6 +81,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 item.SetPosition(place.Position);
                 item.SetPlaceContent(place.IconVisualAsset.Sprite);
                 item.SetBackgroundColor(place.BackgroundColor);
+                if (place.Type == PlaceType.TreatyBird)
+                {
+                    item.gameObject.SetActive(PlayerPrefs.GetInt("competition") == 1);
+                }
+
                 item.OnClickAsObservable().Subscribe(_ =>
                 {
                     if (place.Type == PlaceType.CreditCard && !Controller.HasCreditCard())
@@ -106,6 +111,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     else if (place.Type == PlaceType.PlaceHolder)
                     {
                         ShowPlaceHolder(place);
+                    }   
+                    else if (place.Type == PlaceType.TreatyBird)
+                    {
+                        Controller.ShowCompetitionPopup();
                     }
                 }).AddTo(this);
             }
