@@ -172,7 +172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1.5, y: -1862.5}
+  m_AnchoredPosition: {x: -1.5, y: -648.5}
   m_SizeDelta: {x: 480, y: 567}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5185537761408906169
@@ -4378,7 +4378,6 @@ MonoBehaviour:
   bankAccountButton: {fileID: 8377403845986661665}
   creditCardButton: {fileID: 5666269238116728915}
   investmentButton: {fileID: 5963628909950210988}
-  insuranceButton: {fileID: 2772369690765277122}
   mutualFundsButton: {fileID: 5653919375327683620}
   bigOrderButton: {fileID: 7955375816500143204}
   taxesButton: {fileID: 448373289823316798}
@@ -4674,7 +4673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3661926225911208129
 RectTransform:
   m_ObjectHideFlags: 0

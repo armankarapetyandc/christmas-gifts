@@ -4,6 +4,7 @@ using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.Investment;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Views.Map;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSplash;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
@@ -36,16 +37,30 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSign
             var result = _investmentSimulator.BuyPlace(dataPlaceId);
             if (result)
             {
-                PresenterService.Show<BusinessLocationSplashView>().Forget();
+                PresenterService.Show<BusinessLocationSplashView>(new BusinessLocationSplashView.Data
+                {
+                    PlaceId = dataPlaceId
+                }).Forget();
             }
         }
         
-        public void OnBack()
+        public async UniTaskVoid OnBack(int dataPlaceId)
         {
-            _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+            await PresenterService.Hide();
+            await _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.Opportunities
-            }).Forget();
+                Type = MainNavigationType.Map
+            });
+            
+            var mapView = PresenterService.GetPresenter<MapView>();
+
+            await UniTask.WaitWhile(() =>
+            {
+                mapView = PresenterService.GetPresenter<MapView>();
+                return mapView == null;
+            });
+
+            mapView.FocusOnPlace(dataPlaceId);
         }
     }
 }

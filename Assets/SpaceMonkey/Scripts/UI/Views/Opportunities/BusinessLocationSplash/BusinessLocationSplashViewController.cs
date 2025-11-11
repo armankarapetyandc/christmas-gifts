@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Views.Map;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 
@@ -16,13 +17,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSplash
             _navigationPresenterService = navigationPresenterService;
         }
 
-        public void OnNext()
+        public async UniTaskVoid OnNext(int dataPlaceId)
         {
-            PresenterService.Hide();
-            _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+            await PresenterService.Hide();
+            await _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
                 Type = MainNavigationType.Map
-            }).Forget();
+            });
+            var mapView = PresenterService.GetPresenter<MapView>();
+            mapView?.FocusOnPlace(dataPlaceId);
         }
     }
 }

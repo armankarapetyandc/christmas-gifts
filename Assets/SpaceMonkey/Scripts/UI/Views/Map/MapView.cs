@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs.Map;
@@ -27,7 +28,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         [SerializeField] private MapPlaceItem placeItem;
         [SerializeField] private RectTransform placesContainer;
         [SerializeField] private List<MapPlaceHolder> placeHolders;
-
+        
         public override async UniTask Initialize(IPresenterData data = null)
         {
             await UniTask.Yield();
@@ -142,6 +143,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 var item = holder.Holder;
                 item.gameObject.SetActive(false);
             }
+        }
+        
+        public void FocusOnPlace(int placeId)
+        {
+            var place = Controller.GetMapPlaces().FirstOrDefault(x => x.Id == placeId);
+            if (place == null)
+            {
+                return;
+            }
+
+            // Center the selected place within the viewport at the default zoom
+            panZoom.SetPosition(place.Position);
         }
 
         public override void Dispose()

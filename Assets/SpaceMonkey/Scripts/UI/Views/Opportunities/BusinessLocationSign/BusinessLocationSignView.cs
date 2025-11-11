@@ -21,7 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSign
             _data = data as Data;
             signButton.interactable = Controller.CashAmount >= Controller.LocationPrice;
             signButton.OnClickAsObservable().Subscribe(_ => Controller.OnSign(_data.PlaceId)).AddTo(this);
-            closeButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            closeButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack(_data.PlaceId).Forget()).AddTo(this);
             cashAmountText.text = $"${Controller.CashAmount}";
             locationPriceText.text = $"${Controller.LocationPrice}";
             return UniTask.CompletedTask;
