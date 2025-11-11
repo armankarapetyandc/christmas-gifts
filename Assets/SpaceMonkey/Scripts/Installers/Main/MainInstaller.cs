@@ -3,6 +3,7 @@ using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.Simulation.Investment;
 using SpaceMonkey.Scripts.Utilities;
 using UnityEngine;
 using Zenject;
@@ -21,6 +22,7 @@ namespace SpaceMonkey.Scripts.Installers.Main
             MainLoader.Installer.Install(Container);
             CreditCardInstaller.Install(Container);
             BusinessLoanInstaller.Install(Container);
+            InvestmentInstaller.Install(Container);
         }
     }
 }

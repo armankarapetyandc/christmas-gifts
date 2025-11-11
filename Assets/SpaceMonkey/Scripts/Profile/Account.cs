@@ -61,7 +61,9 @@ namespace SpaceMonkey.Scripts.Profile
         public BusinessLoanDataGameData BusinessLoanData { get; set; }
         public InsuranceGameData InsuranceData { get; set; }
         public BigOrderGameData BigOrderGameData { get; set; }
-
+        
+        public InvestmentGameData InvestmentGameData { get; set; }
+        
         public void SetCategory(string category)
         {
             Company.Category = category;
@@ -147,7 +149,8 @@ namespace SpaceMonkey.Scripts.Profile
                 Employees = new List<Employee>(),
                 CreditData = null,
                 InsuranceData = null,
-                BigOrderGameData = null
+                BigOrderGameData = null,
+                InvestmentGameData = null
             };
             return account;
         }
@@ -312,6 +315,14 @@ namespace SpaceMonkey.Scripts.Profile
         public void CreateBusinessLoanData(float originalAmount, float balance, float apr, int termMonths, int startWeek)
         {
             BusinessLoanData = new BusinessLoanDataGameData(originalAmount, balance, apr, termMonths, startWeek);
+        }
+        
+        public void CreateInvestmentData()
+        {
+            InvestmentGameData = new InvestmentGameData
+            {
+                UnlockedPlaces = new List<int>()
+            };
         }
         
         public void AddLoanPaymentRecord(PaymentRecord record)
@@ -611,5 +622,10 @@ namespace SpaceMonkey.Scripts.Profile
             CreditScore = creditScore;
             SelectedPayment = PaymentOption.None;
         }
+    }
+    
+    public class InvestmentGameData
+    {
+        public List<int> UnlockedPlaces { get; set; } = new();
     }
 }

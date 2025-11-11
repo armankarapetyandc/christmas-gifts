@@ -11,9 +11,10 @@ namespace SpaceMonkey.Scripts.UI.Popups.BusinessLocationUnlocked
     {
         [SerializeField] private Button closeButton;
         [SerializeField] private Button confirmButton;
-        
+        private Data _data;
         public override UniTask Initialize(IPresenterData data = null)
         {
+            _data = data as Data;
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
                 Controller.Close();
@@ -21,9 +22,14 @@ namespace SpaceMonkey.Scripts.UI.Popups.BusinessLocationUnlocked
             confirmButton.OnClickAsObservable().Subscribe(_ =>
             {
                 Controller.Close();
-                Controller.RedirectToBusinessLoanStatement();
+                Controller.RedirectToBusinessLoanStatement(_data.PlaceId);
             }).AddTo(this);
             return UniTask.CompletedTask;
+        }
+        
+        public class Data : IPresenterData
+        {
+            public int PlaceId;
         }
     }
 }

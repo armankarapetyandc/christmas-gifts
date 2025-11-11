@@ -6,6 +6,7 @@ using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.Simulation.Investment;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
@@ -33,7 +34,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         private readonly BusinessLoanSimulator _businessLoanSimulator;
         private readonly MapConfig _mapConfig;
         private readonly VisualAssetDatabase _visualAssetDatabase;
-        private GameConfig _gameConfig;
+        private readonly InvestmentSimulator _investmentSimulator;
+        private readonly GameConfig _gameConfig;
 
         public int CurrentWeek => _accountService.Model.Account.Week;
         public int CurrentLevel => _accountService.Model.Account.Level;
@@ -42,9 +44,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         public MapController(PresenterService presenterService,PopupPresenterService popupPresenterService,
             NavigationPresenterService navigationPresenterService,AccountService accountService,
             CreditSimulator creditSimulator, BusinessLoanSimulator businessLoanSimulator,
-            MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase,GameConfig gameConfig) : base(presenterService)
+            MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase,GameConfig gameConfig,
+            InvestmentSimulator investmentSimulator) : base(presenterService)
         {
             _gameConfig = gameConfig;
+            _investmentSimulator = investmentSimulator;
             _popupPresenterService = popupPresenterService;
             _navigationPresenterService = navigationPresenterService;
             _accountService = accountService;
@@ -132,9 +136,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }).Forget();
         }
 
-        public void ShowInvestmentView()
+        public void ShowInvestmentView(IMapPlace place)
         {
-            _popupPresenterService.Show<BusinessLocationUnlockedPopup>().Forget();
+            if (_investmentSimulator.IsBought(place.Id))
+            {
+                return;
+            }
+            _popupPresenterService.Show<BusinessLocationUnlockedPopup>(new BusinessLocationUnlockedPopup.Data
+            {
+                PlaceId = place.Id
+            }).Forget();
         }
     }
 }
