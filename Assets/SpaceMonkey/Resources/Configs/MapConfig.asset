@@ -19,6 +19,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   <Places>k__BackingField:
   - <Id>k__BackingField: 1
     <Name>k__BackingField: Small Commercial Facility
@@ -29,6 +30,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 2
     <Name>k__BackingField: Small Commercial Facility
     <SingleLineName>k__BackingField: 
@@ -38,6 +40,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 3
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 3
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -47,6 +50,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 4
     <Name>k__BackingField: Medium Commercial Facility
     <SingleLineName>k__BackingField: 
@@ -56,6 +60,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 5
     <Name>k__BackingField: Jarnal Bank
     <SingleLineName>k__BackingField: 
@@ -64,7 +69,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 6
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -74,6 +80,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 7
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -82,7 +89,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 8
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -91,7 +99,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 9
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -100,7 +109,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 10
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -110,6 +120,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 11
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -118,7 +129,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 12
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -128,6 +140,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 13
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -137,6 +150,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 14
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -146,6 +160,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 15
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -155,6 +170,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 16
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -163,7 +179,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 17
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -173,6 +190,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 18
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -181,7 +199,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 19
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -191,6 +210,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 20
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -199,7 +219,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 21
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -208,7 +229,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 22
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -218,6 +240,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 23
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -227,6 +250,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 24
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -235,7 +259,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 91afb761cf84ecd4bb36907a2ee4fd71, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.6, g: 0.90588236, b: 0.98039216, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 25
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -245,6 +270,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 26
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -254,6 +280,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 27
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -263,6 +290,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 28
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -272,6 +300,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 29
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -281,6 +310,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 30
     <Name>k__BackingField: Credit Card
     <SingleLineName>k__BackingField: Investus Bank Credit Card
@@ -289,7 +319,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 0551526926f069c43b718d4844041534, type: 2}
     <AppearWeek>k__BackingField: 8
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.3764706, g: 1, b: 0.627451, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 31
     <Name>k__BackingField: Investus
     <SingleLineName>k__BackingField: 
@@ -298,7 +329,8 @@ MonoBehaviour:
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 0551526926f069c43b718d4844041534, type: 2}
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
-    <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <BackgroundColor>k__BackingField: {r: 0.3764706, g: 1, b: 0.627451, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 32
     <Name>k__BackingField: Jarnall Bank
     <SingleLineName>k__BackingField: 
@@ -308,6 +340,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 33
     <Name>k__BackingField: Business Loan
     <SingleLineName>k__BackingField: Small Business Loan
@@ -317,6 +350,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 14
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 34
     <Name>k__BackingField: Big Order
     <SingleLineName>k__BackingField: 
@@ -326,3 +360,4 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 4
     <BackgroundColor>k__BackingField: {r: 0.003921569, g: 0.78039217, b: 0.23921569, a: 1}
+    <DefaultLocked>k__BackingField: 0

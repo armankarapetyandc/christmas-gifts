@@ -28,6 +28,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         [SerializeField] private RectTransform placesContainer;
         [SerializeField] private List<MapPlaceHolder> placeHolders;
 
+        private MapPlaceItem _selectedPlaceItem;
+
         public override async UniTask Initialize(IPresenterData data = null)
         {
             await UniTask.Yield();
@@ -66,11 +68,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     continue;
                 }
 
+                if (place.IconVisualAsset == null)
+                {
+                    continue;
+                }
+
                 var item = Instantiate(placeItem, placesContainer);
                 item.SetPlace(place);
+                item.SetMapPlaceState(place is RuntimeMapPlace ? MapPlaceState.Open :
+                    place.DefaultLocked ? MapPlaceState.Locked : MapPlaceState.Active);
                 item.SetPlaceName(place.Name);
                 item.SetPosition(place.Position);
-                item.SetIcon(place.IconVisualAsset);
+                item.SetPlaceContent(place.IconVisualAsset.Sprite);
                 item.SetBackgroundColor(place.BackgroundColor);
                 item.OnClickAsObservable().Subscribe(_ =>
                 {
