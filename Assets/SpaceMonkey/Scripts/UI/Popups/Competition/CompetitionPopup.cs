@@ -38,7 +38,8 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
         {
             _viewData = data as Data;
             closeButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
-            okButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
+          
+    
             CompetitionState state = CompetitionState.Info;
             if (PlayerPrefs.GetInt("competition") == 1)
             {
@@ -56,6 +57,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
                     infoBackground.color = redColor;
                     PlayerPrefs.SetInt("competition", 1);
                     PlayerPrefs.SetString("productId", _viewData?.Product.Id);
+                    okButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductsView()).AddTo(this);
                     break;
                 case CompetitionState.Win:
                     var product = Controller.GetCompetitionProduct();
@@ -64,6 +66,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
                     descriptionText.text = CompetitionTexts.CompetitionDescriptionWinText;
                     PlayerPrefs.SetInt("competition", 0);
                     infoBackground.color = greenColor;
+                    okButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
                     break;
                 case CompetitionState.Lose:
                     titleText.text = CompetitionTexts.CompetitionTitleLoseText;
@@ -71,6 +74,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
                     descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionLoseText,_viewData?.Product.Name);
                     PlayerPrefs.SetInt("competition", 0);
                     infoBackground.color = redColor;
+                    okButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
                     break;
             }
             return UniTask.CompletedTask;
