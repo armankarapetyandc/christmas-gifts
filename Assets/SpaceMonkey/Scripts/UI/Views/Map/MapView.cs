@@ -65,25 +65,32 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             var places = Controller.GetMapPlaces();
             foreach (var place in places)
             {
-                if ((place.AppearWeek != 0 && place.AppearWeek > Controller.CurrentWeek) || (place.AppearLevel != 0 &&
-                        place.AppearLevel > Controller.CurrentLevel))
+                if (!place.DefaultLocked)
                 {
-                    continue;
+                    if ((place.AppearWeek != 0 && place.AppearWeek > Controller.CurrentWeek) ||
+                        (place.AppearLevel != 0 &&
+                         place.AppearLevel > Controller.CurrentLevel))
+                    {
+                        continue;
+                    }
                 }
 
-                if (place.IconVisualAsset == null)
-                {
-                    continue;
-                }
+
+                //
+                // if (place.IconVisualAsset == null)
+                // {
+                //     continue;
+                // }
+
 
                 var item = Instantiate(placeItem, placesContainer);
                 _places.Add(item);
                 item.SetPlace(place);
+                item.SetPlaceContent(place.IconVisualAsset?.Sprite);
                 item.SetMapPlaceState(place is RuntimeMapPlace ? MapPlaceState.Open :
                     place.DefaultLocked ? MapPlaceState.Locked : MapPlaceState.Active);
                 item.SetPlaceName(place.Name);
                 item.SetPosition(place.Position);
-                item.SetPlaceContent(place.IconVisualAsset.Sprite);
                 item.SetBackgroundColor(place.BackgroundColor);
                 if (place.Type == PlaceType.TreatyBird)
                 {
