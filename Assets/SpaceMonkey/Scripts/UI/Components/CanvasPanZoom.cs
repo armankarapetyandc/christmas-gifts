@@ -363,6 +363,32 @@ namespace SpaceMonkey.Scripts.UI.Components
             SetPosition(seeeettl);
         }
 
+
+        public RectTransform target;
+
+        [ContextMenu("set to target")]
+        public void settotarget()
+        {
+            NavigateToTarget(target);
+        }
+
+        public void NavigateToTarget(RectTransform placeItemRect)
+        {
+            var targetPosition = CalculateTargetPosition(placeItemRect.anchoredPosition);
+            SetPosition(targetPosition);
+        }
+
+        private Vector2 CalculateTargetPosition(Vector2 position)
+        {
+            var targetAnchoredPos = position;
+            var targetSizeDelta = target.sizeDelta;
+            var contentSize = rectTransform.sizeDelta;
+            var calculatedPosition = new Vector2(targetAnchoredPos.x - contentSize.x * 0.5f + targetSizeDelta.x * 0.5f,
+                targetAnchoredPos.y + contentSize.y * 0.5f - targetSizeDelta.y * 0.5f);
+            calculatedPosition *= currentScale * -1f;
+            return calculatedPosition;
+        }
+
         public float GetCurrentZoom()
         {
             return currentScale;
