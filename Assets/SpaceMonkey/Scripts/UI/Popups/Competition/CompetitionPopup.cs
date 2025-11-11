@@ -43,7 +43,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
             CompetitionState state = CompetitionState.Info;
             if (PlayerPrefs.GetInt("competition") == 1)
             {
-                if (_viewData != null)
+                if (_viewData != null && !_viewData.ShowInfoPopup)
                 {
                     state = _viewData.Product.ProductPrice == null ? CompetitionState.Win : CompetitionState.Lose;
                 }
@@ -83,6 +83,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
         public class Data : IPresenterData
         {
             public Product Product { get; set; }
+            public bool ShowInfoPopup { get; set; }
         }
     }
 }

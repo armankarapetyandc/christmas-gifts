@@ -35,6 +35,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
         public void ShowProductsView()
         {
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
+            Close();
         }
 
         public new void Close()
