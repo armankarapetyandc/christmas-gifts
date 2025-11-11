@@ -129,7 +129,7 @@ namespace SpaceMonkey.Scripts.Profile
                 },
                 IsGameOver = false,
                 Level = 1,
-                Money = 30000,
+                Money = 300,
                 Score = 0,
                 Products = new List<Product>(),
                 WeeksV2 = new List<WeekSimulationV2.Week>(),
