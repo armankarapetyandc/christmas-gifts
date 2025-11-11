@@ -96,6 +96,7 @@ namespace SpaceMonkey.Scripts.Simulation
 
         public Week? CurrentWeek { get; private set; }
         private List<CustomerData> allCustomers;
+        private List<CharacterConfig> unusedCharacters;
         private readonly ReactiveProperty<float> _availableProdCap;
         private readonly ReactiveProperty<float> _money;
         public ReadOnlyReactiveProperty<float> AvailableProdCap => _availableProdCap;
@@ -119,25 +120,22 @@ namespace SpaceMonkey.Scripts.Simulation
             if (Account.AllCustomers == null || Account.AllCustomers.Count == 0)
             {
                 allCustomers = new List<CustomerData>();
-                foreach (var character in _gameConfig.Characters.Where(c =>
-                             c.Appearance.HasFlag(CharacterAppearance.Customer)))
-                {
-                    var customerData = new CustomerData
-                    {
-                        CharacterId = character.Id,
-                        Mood = Random.Range(_simulationInfo.MoodMin, _simulationInfo.MoodMax),
-                        Frequency = Random.Range(_simulationInfo.FrequencyMin, _simulationInfo.FrequencyMax),
-                        LastAppearanceWeek = 0,
-                        Active = true
-                    };
-                    allCustomers.Add(customerData);
-                }
-
-                Debug.Log($"Initialized all customers");
+                unusedCharacters = _gameConfig.Characters
+                    .Where(c => c.Appearance.HasFlag(CharacterAppearance.Customer))
+                    .ToList();
+                Debug.Log($"Initialized with {unusedCharacters.Count} potential customers in pool");
                 return;
             }
 
             allCustomers = Account.AllCustomers.Select(c => c).ToList();
+
+            // Rebuild unused characters list by excluding already-used customers
+            var usedCharacterIds = allCustomers.Select(c => c.CharacterId).ToHashSet();
+            unusedCharacters = _gameConfig.Characters
+                .Where(c => c.Appearance.HasFlag(CharacterAppearance.Customer) 
+                            && !usedCharacterIds.Contains(c.Id))
+                .ToList();
+            
         }
 
         public void StartNewWeek(int weekNumber)
@@ -292,7 +290,7 @@ namespace SpaceMonkey.Scripts.Simulation
             Account.Money += _money.Value;
             Account.Score += SellScore;
         }
-        
+
 
         /// <summary>
         /// Generate which customers will visit this week (BEFORE mood adjustments)
@@ -301,51 +299,77 @@ namespace SpaceMonkey.Scripts.Simulation
         {
             var activeCustomers = allCustomers.Where(c => c.Active).ToList();
 
-            if (activeCustomers.Count == 0)
-            {
-                Debug.Log("GAME OVER: No active customers remaining!");
-                Account.IsGameOver = true;
-                return new List<CustomerData>();
-            }
-
             List<CustomerData> selectedCustomers;
 
             int baseCount = Random.Range(_simulationInfo.CustomersMin, _simulationInfo.CustomersMax + 1);
-            // Week 1: Just base random customers
+
             if (weekNumber == 1)
             {
-                selectedCustomers = activeCustomers
-                    .OrderBy(_ => Guid.NewGuid())
-                    .Take(baseCount)
-                    .ToList();
+                // Week 1: Introduce initial customers from the unused pool
+                selectedCustomers = new List<CustomerData>();
+                int customersToAdd = Mathf.Min(baseCount, unusedCharacters.Count);
 
-                Debug.Log($"Week 1: Selected {baseCount} random customers");
+                for (int i = 0; i < customersToAdd; i++)
+                {
+                    var newCustomer = CreateNewCustomer();
+                    if (newCustomer.HasValue)
+                    {
+                        allCustomers.Add(newCustomer.Value);
+                        selectedCustomers.Add(newCustomer.Value);
+                    }
+                }
+
+                Debug.Log($"Week 1: Introduced {customersToAdd} new customers");
             }
             else
             {
-                // Week 2+: Frequency-based returns + new customers + marketing
+                // Week 2+: Mix of returning customers and potentially new ones
                 var returningCustomers = activeCustomers
                     .Where(c => ShouldReturnThisWeek(c, weekNumber))
                     .ToList();
 
                 int marketingBonus = Account.GetMarketingCustAdd();
-                int totalNeeded = Mathf.Min(
-                    baseCount + marketingBonus + returningCustomers.Count,
-                    activeCustomers.Count
-                );
+                int totalNeeded = baseCount + marketingBonus;
 
-                var additionalCustomers = activeCustomers
+                // First, add all returning customers
+                selectedCustomers = new List<CustomerData>(returningCustomers);
+
+                // Then fill remaining slots with existing active customers who aren't returning
+                var additionalExisting = activeCustomers
                     .Except(returningCustomers)
                     .OrderByDescending(c => c.Mood)
-                    .Take(totalNeeded - returningCustomers.Count)
+                    .Take(Math.Max(0, totalNeeded - returningCustomers.Count))
                     .ToList();
 
-                selectedCustomers = returningCustomers.Concat(additionalCustomers).ToList();
+                selectedCustomers.AddRange(additionalExisting);
 
-                Debug.Log(
-                    $"Selected customers: {returningCustomers.Count} returning + {additionalCustomers.Count} new = {selectedCustomers.Count} total");
-                if (marketingBonus > 0)
-                    Debug.Log($"  (Marketing bonus: +{marketingBonus} slots)");
+                // If we still need more customers and have unused characters, introduce new ones
+                int slotsRemaining = totalNeeded - selectedCustomers.Count;
+                if (slotsRemaining > 0 && unusedCharacters.Count > 0)
+                {
+                    // Determine how many new customers to introduce (you can adjust this logic)
+                    int newCustomersToAdd = Mathf.Min(
+                        slotsRemaining,
+                        unusedCharacters.Count,
+                        Random.Range(1, Math.Max(2, slotsRemaining / 2 + 1)) // Introduce gradually
+                    );
+
+                    for (int i = 0; i < newCustomersToAdd; i++)
+                    {
+                        var newCustomer = CreateNewCustomer();
+                        if (newCustomer.HasValue)
+                        {
+                            allCustomers.Add(newCustomer.Value);
+                            selectedCustomers.Add(newCustomer.Value);
+                            Debug.Log($"Week {weekNumber}: Introduced new customer {newCustomer.Value.CharacterId}");
+                        }
+                    }
+                }
+
+                Debug.Log($"Week {weekNumber}: {returningCustomers.Count} returning + " +
+                          $"{additionalExisting.Count} additional existing + " +
+                          $"{selectedCustomers.Count - returningCustomers.Count - additionalExisting.Count} new = " +
+                          $"{selectedCustomers.Count} total");
             }
 
             // Update last appearance for selected customers
@@ -354,18 +378,43 @@ namespace SpaceMonkey.Scripts.Simulation
                 var idx = allCustomers.FindIndex(c => c.CharacterId == customer.CharacterId);
                 if (idx >= 0)
                 {
-                    // Create a copy of the struct
                     var updatedCustomer = allCustomers[idx];
-                    // Modify the copy
                     updatedCustomer.LastAppearanceWeek = weekNumber;
-                    // Replace the original with the modified copy
                     allCustomers[idx] = updatedCustomer;
                 }
+            }
+
+            // Check if all characters have been used
+            if (unusedCharacters.Count == 0 && allCustomers.Count > 0)
+            {
+                Debug.Log("All available customer characters have been introduced!");
             }
 
             return selectedCustomers;
         }
 
+
+        private CustomerData? CreateNewCustomer()
+        {
+            if (unusedCharacters.Count == 0)
+                return null;
+        
+            // Pick a random unused character
+            int randomIndex = Random.Range(0, unusedCharacters.Count);
+            var character = unusedCharacters[randomIndex];
+            unusedCharacters.RemoveAt(randomIndex);
+        
+            var customerData = new CustomerData
+            {
+                CharacterId = character.Id,
+                Mood = Random.Range(_simulationInfo.MoodMin, _simulationInfo.MoodMax),
+                Frequency = Random.Range(_simulationInfo.FrequencyMin, _simulationInfo.FrequencyMax),
+                LastAppearanceWeek = 0,
+                Active = true
+            };
+        
+            return customerData;
+        }
         /// <summary>
         /// Adjust moods ONLY for customers who are visiting this week
         /// Returns updated list (some customers might leave if mood drops too low)

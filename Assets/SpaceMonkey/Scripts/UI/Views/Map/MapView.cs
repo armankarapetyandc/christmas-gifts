@@ -118,6 +118,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     }   
                     else if (place.Type == PlaceType.TreatyBird)
                     {
+                        Controller.NavigateToMyCompany();
                         Controller.ShowCompetitionPopup();
                     }
                 }).AddTo(this);
