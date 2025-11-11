@@ -6,6 +6,8 @@ using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Popups.Competition;
+using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -18,11 +20,13 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         private readonly VisualAssetDatabase _visualAssetDatabase;
         private readonly AccountService _accountService;
         private readonly WeekSimulationContext _weekSimulationContext;
+        private PopupPresenterService _popupPresenterService;
 
         public ProfitController(PresenterService presenterService,
             NavigationPresenterService navigationPresenterService, VisualAssetDatabase visualAssetDatabase,
-            AccountService accountService,WeekSimulationContext weekSimulationContext) : base(presenterService)
+            AccountService accountService,WeekSimulationContext weekSimulationContext,PopupPresenterService popupPresenterService) : base(presenterService)
         {
+            _popupPresenterService = popupPresenterService;
             _navigationPresenterService = navigationPresenterService;
             _visualAssetDatabase = visualAssetDatabase;
             _accountService = accountService;
@@ -39,12 +43,13 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             return _accountService.Model.Account;
         }
 
-        internal void OnNext()
+        internal void OnNext(bool isWeekEnd)
         {
             _weekSimulationContext.WeekSimulation.GrantReward();
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
-                Type = MainNavigationType.BusinessHub
+                Type = MainNavigationType.BusinessHub,
+                IsWeekEnd = isWeekEnd
             }).Forget();
         }
 

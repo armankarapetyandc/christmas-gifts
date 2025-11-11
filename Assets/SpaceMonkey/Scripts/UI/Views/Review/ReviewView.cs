@@ -23,9 +23,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         [SerializeField] private ReviewItem reviewItemPrefab;
         [SerializeField] private RectTransform container;
 
+        private Data _viewData;
         public override UniTask Initialize(IPresenterData data = null)
         {
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
+            _viewData = data as Data;
+            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext(_viewData.IsWeekEnd)).AddTo(this);
             InitializeInfoPanel();
             var simulationWeek = Controller.GetSimulationWeek();
             var reviews = Controller.GetReviews();
@@ -75,5 +77,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         public override void Dispose()
         {
         }
+        
+        public class Data : IPresenterData
+        {
+            public bool IsWeekEnd;
+        }
+
     }
 }

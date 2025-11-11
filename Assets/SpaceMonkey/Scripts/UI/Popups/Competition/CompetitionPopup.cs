@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using TMPro;
 using UIService.Runtime.Core;
@@ -8,7 +9,6 @@ using UnityEngine.UI;
 
 namespace SpaceMonkey.Scripts.UI.Popups.Competition
 {
-
     public enum CompetitionState
     {
         Info,
@@ -19,62 +19,66 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
     public class CompetitionPopup : PopupPresenterWithController<CompetitionController>
     {
 
-        private const string CompetitionOkText = "Modify Dilly Donut";
-        private const string CompetitionOkWinText = "Awesome!";
-        private const string CompetitionOkLoseText = "Bummer";
-
-        private const string CompetitionTitleText = "You’ve Got Company!";
-        private const string CompetitionTitleWinText = "{0} Is Back On Top!";
-        private const string CompetitionTitleLoseText = "Customers Lost!";
-
-        private const string CompetitionDescriptionText =
-            "A competing Cooking company has come out with a new product called [Sunset Sprinkles]. It is [cheaper/better quality] than {0}. " +
-            "/n/n  Tweak your product or lose customers!";
-
-        private const string CompetitionDescriptionWinText =
-            "[Sunset Sprinkles] can’t compete with your new price.  You retained your customers!";
-
-        private const string CompetitionDescriptionLoseText = "[Dilly Donut]’s price could not compete with [Sunset Sprinkles]. They stole your customers!";
 
 
         [SerializeField] private Color redColor;
         [SerializeField] private Color greenColor;
-        
+
         [SerializeField] private Button closeButton;
         [SerializeField] private Button okButton;
         [SerializeField] private TextMeshProUGUI okButtonText;
         [SerializeField] private Image infoBackground;
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI descriptionText;
-        
-        
-        
+
+        private Data _viewData;
+
 
         public override UniTask Initialize(IPresenterData data = null)
         {
+            _viewData = data as Data;
             closeButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
             okButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
             CompetitionState state = CompetitionState.Info;
-            string productName = "Qaq";
+            if (PlayerPrefs.GetInt("competition") == 1)
+            {
+                if (_viewData != null)
+                {
+                    state = _viewData.Product.ProductPrice == null ? CompetitionState.Win : CompetitionState.Lose;
+                }
+            }
             switch (state)
             {
                 case CompetitionState.Info:
-                    titleText.text = CompetitionTitleText;
-                    okButtonText.text = CompetitionOkText;
-                    descriptionText.text = string.Format(CompetitionDescriptionText, productName);
+                    titleText.text = CompetitionTexts.CompetitionTitleText;
+                    okButtonText.text = CompetitionTexts.CompetitionOkText;
+                    descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionText, _viewData?.Product.Name);
+                    infoBackground.color = redColor;
+                    PlayerPrefs.SetInt("competition", 1);
+                    PlayerPrefs.SetString("productId", _viewData?.Product.Id);
                     break;
                 case CompetitionState.Win:
-                    titleText.text = string.Format(CompetitionTitleWinText, productName);;
-                    okButtonText.text = CompetitionOkWinText;
-                    descriptionText.text = CompetitionDescriptionWinText;
+                    var product = Controller.GetCompetitionProduct();
+                    titleText.text = string.Format(CompetitionTexts.CompetitionTitleWinText, product.Name);
+                    okButtonText.text = CompetitionTexts.CompetitionOkWinText;
+                    descriptionText.text = CompetitionTexts.CompetitionDescriptionWinText;
+                    PlayerPrefs.SetInt("competition", 0);
+                    infoBackground.color = greenColor;
                     break;
                 case CompetitionState.Lose:
-                    titleText.text = CompetitionTitleLoseText;
-                    okButtonText.text = CompetitionOkLoseText;
-                    descriptionText.text = CompetitionDescriptionLoseText;
+                    titleText.text = CompetitionTexts.CompetitionTitleLoseText;
+                    okButtonText.text =CompetitionTexts.CompetitionOkLoseText;
+                    descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionLoseText,_viewData?.Product.Name);
+                    PlayerPrefs.SetInt("competition", 0);
+                    infoBackground.color = redColor;
                     break;
             }
             return UniTask.CompletedTask;
+        }
+
+        public class Data : IPresenterData
+        {
+            public Product Product { get; set; }
         }
     }
 }

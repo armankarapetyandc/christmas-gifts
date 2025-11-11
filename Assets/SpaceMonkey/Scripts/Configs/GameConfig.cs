@@ -25,6 +25,8 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public LevelInfo[] LevelInfos { get; private set; }
         
         [field: SerializeField] public NewLocationInfo NewLocationInfo { get; private set; }
+        
+        [field: SerializeField] public int CompetitionValue { get; private set; }
 
         public void PatchCategories(CategoryInfo[] infos)
         {

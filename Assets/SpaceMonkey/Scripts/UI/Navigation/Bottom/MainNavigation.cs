@@ -21,6 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
         public class Data : IPresenterData
         {
             public MainNavigationType Type { get; set; }
+            public bool IsWeekEnd { get; set; }
         }
 
         [SerializeField] private List<MainNavigationElement> elements;
@@ -100,7 +101,10 @@ namespace SpaceMonkey.Scripts.UI.Navigation.Bottom
                     Controller.HidePreviousAndShow<MapView>().Forget();
                     break;
                 case MainNavigationType.BusinessHub:
-                    Controller.HidePreviousAndShow<BusinessHubView>().Forget();
+                    Controller.HidePreviousAndShow<BusinessHubView>(new BusinessHubView.Data
+                    {
+                        IsWeekEnd = _data?.IsWeekEnd ?? false
+                    }).Forget();
                     break;
                 case MainNavigationType.Opportunities:
                     Controller.HidePreviousAndShow<OpportunitiesView>().Forget();

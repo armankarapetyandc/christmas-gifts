@@ -16,6 +16,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         {
             public bool EnableBackButton;
             public bool UseSimulation;
+            public bool IsWeekEnd;
         }
         
         
@@ -34,7 +35,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         public override UniTask Initialize(IPresenterData data = null)
         {
             _viewData = data as Data;
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
+            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext(_viewData.IsWeekEnd)).AddTo(this);
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             SetupDefaults();
             return UniTask.CompletedTask;
