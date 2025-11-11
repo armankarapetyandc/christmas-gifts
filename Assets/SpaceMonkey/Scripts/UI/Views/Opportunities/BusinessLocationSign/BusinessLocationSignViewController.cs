@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
@@ -60,6 +61,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSign
                 return mapView == null;
             });
 
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
             mapView.FocusOnPlace(dataPlaceId);
         }
     }

@@ -22,7 +22,7 @@ MonoBehaviour:
     <DefaultLocked>k__BackingField: 0
   <Places>k__BackingField:
   - <Id>k__BackingField: 1
-    <Name>k__BackingField: Small Commercial Facility
+    <Name>k__BackingField: Small Commercial \n Facility
     <SingleLineName>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 1174, y: -597}
@@ -32,7 +32,7 @@ MonoBehaviour:
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
     <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 2
-    <Name>k__BackingField: Small Commercial Facility
+    <Name>k__BackingField: Small Commercial \n Facility
     <SingleLineName>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 1174, y: -597}
@@ -52,7 +52,7 @@ MonoBehaviour:
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
     <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 4
-    <Name>k__BackingField: Medium Commercial Facility
+    <Name>k__BackingField: Medium Commercial \n Facility
     <SingleLineName>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 1174, y: -1305}

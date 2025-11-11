@@ -32,7 +32,7 @@ namespace SpaceMonkey.Scripts.UI.Components
         private SpriteVisualAsset _visualAsset;
         private IMapPlace _place;
         public Observable<IMapPlace> OnClickAsObservable() => button.OnClickAsObservable().Select(_ => _place);
-
+        public IMapPlace Place => _place;
 
         public void SetMapPlaceState(MapPlaceState placeState)
         {

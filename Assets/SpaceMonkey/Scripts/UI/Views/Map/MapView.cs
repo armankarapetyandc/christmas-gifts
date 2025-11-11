@@ -28,7 +28,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         [SerializeField] private MapPlaceItem placeItem;
         [SerializeField] private RectTransform placesContainer;
         [SerializeField] private List<MapPlaceHolder> placeHolders;
-
+        private List<MapPlaceItem> _places;
         private MapPlaceItem _selectedPlaceItem;
 
         public override async UniTask Initialize(IPresenterData data = null)
@@ -60,6 +60,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
 
         private void PopulatePlaces()
         {
+            _places?.Clear();
+            _places = new List<MapPlaceItem>();
             var places = Controller.GetMapPlaces();
             foreach (var place in places)
             {
@@ -75,6 +77,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 }
 
                 var item = Instantiate(placeItem, placesContainer);
+                _places.Add(item);
                 item.SetPlace(place);
                 item.SetMapPlaceState(place is RuntimeMapPlace ? MapPlaceState.Open :
                     place.DefaultLocked ? MapPlaceState.Locked : MapPlaceState.Active);
@@ -165,14 +168,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         
         public void FocusOnPlace(int placeId)
         {
-            var place = Controller.GetMapPlaces().FirstOrDefault(x => x.Id == placeId);
-            if (place == null)
+            var item = _places.FirstOrDefault(x => x.Place.Id == placeId);
+            if (item == null)
             {
                 return;
             }
 
-            // Center the selected place within the viewport at the default zoom
-            panZoom.SetPosition(place.Position);
+            panZoom.SetZoom(defaultMapZoom);
+            panZoom.NavigateToTarget((RectTransform)item.transform);
         }
 
         public override void Dispose()
