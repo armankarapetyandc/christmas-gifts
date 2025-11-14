@@ -270,7 +270,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-    <DefaultLocked>k__BackingField: 0
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 26
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -280,7 +280,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-    <DefaultLocked>k__BackingField: 0
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 27
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -290,7 +290,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-    <DefaultLocked>k__BackingField: 0
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 28
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -300,7 +300,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-    <DefaultLocked>k__BackingField: 0
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 29
     <Name>k__BackingField: For Rent
     <SingleLineName>k__BackingField: 
@@ -310,7 +310,7 @@ MonoBehaviour:
     <AppearWeek>k__BackingField: 0
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-    <DefaultLocked>k__BackingField: 0
+    <DefaultLocked>k__BackingField: 1
   - <Id>k__BackingField: 30
     <Name>k__BackingField: Credit Card
     <SingleLineName>k__BackingField: Investus Bank Credit Card
