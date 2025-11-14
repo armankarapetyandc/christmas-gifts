@@ -220,6 +220,20 @@ namespace SpaceMonkey.Scripts.Profile
 
                     WeeksV2[w] = week; // put back
                 }
+                
+                //Update BigOrder
+                if (BigOrderGameData != null && BigOrderGameData.OrderEntries != null)
+                {
+                    for (int i = 0; i < BigOrderGameData.OrderEntries.Count; i++)
+                    {
+                        var orderEntry = BigOrderGameData.OrderEntries[i];
+                        if (orderEntry.Product.Id == product.Id)
+                        {
+                            orderEntry.Product = product; // update
+                            BigOrderGameData.OrderEntries[i] = orderEntry; // put back
+                        }
+                    }
+                }
             }
         }
 
@@ -596,12 +610,14 @@ namespace SpaceMonkey.Scripts.Profile
     
     public class BigOrderGameData
     {
-
         public bool IsActive { get; private set; }
+        public string CharacterId { get; set; }
+        public List<WeekSimulationV2.OrderEntry> OrderEntries { get; set; }
 
         public BigOrderGameData()
         {
             IsActive = true;
+            CharacterId = "smark";
         }
     }
 

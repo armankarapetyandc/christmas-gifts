@@ -261,6 +261,10 @@ MonoBehaviour:
   bigOrderRatioText: {fileID: 3044895838202578350}
   infoPanel: {fileID: 3293497448839064396}
   infoCloseButton: {fileID: 6631345309272263903}
+  orderItems:
+  - {fileID: 2672284777824539783}
+  - {fileID: 6088569329139648227}
+  - {fileID: 2799913058873338919}
   cancelButton: {fileID: 242977478953074506}
 --- !u!1 &726503022205567750
 GameObject:
@@ -625,13 +629,15 @@ GameObject:
   - component: {fileID: 7530012188628163586}
   - component: {fileID: 8142498185316587855}
   - component: {fileID: 7437416625988270316}
+  - component: {fileID: 2672284777824539783}
+  - component: {fileID: 1151878262102925431}
   m_Layer: 5
   m_Name: InfoHolder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7530012188628163586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -691,6 +697,38 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2672284777824539783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061992039877863653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8f93d3a74e4534b41d021e36580aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder.BigOrderItem
+  iconComponent: {fileID: 1151878262102925431}
+  amountText: {fileID: 3892030763580916672}
+--- !u!114 &1151878262102925431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061992039877863653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196457f549d640b380b3bb269e70fad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Components.IconComponent
+  plusRectTransform: {fileID: 0}
+  shapeImage: {fileID: 0}
+  iconImage: {fileID: 1759243364385500762}
+  backgroundImage: {fileID: 7437416625988270316}
+  requirements: 0
+  button: {fileID: 0}
 --- !u!1 &1648753770615977704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,13 +1534,15 @@ GameObject:
   - component: {fileID: 5540522258264610300}
   - component: {fileID: 2467397548807183954}
   - component: {fileID: 2593885372094991030}
+  - component: {fileID: 2799913058873338919}
+  - component: {fileID: 4744541842124038143}
   m_Layer: 5
   m_Name: InfoHolder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5540522258264610300
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1562,6 +1602,38 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2799913058873338919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058894109476805497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8f93d3a74e4534b41d021e36580aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder.BigOrderItem
+  iconComponent: {fileID: 4744541842124038143}
+  amountText: {fileID: 8076041267542129388}
+--- !u!114 &4744541842124038143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058894109476805497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196457f549d640b380b3bb269e70fad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Components.IconComponent
+  plusRectTransform: {fileID: 0}
+  shapeImage: {fileID: 0}
+  iconImage: {fileID: 1287407015079070259}
+  backgroundImage: {fileID: 2593885372094991030}
+  requirements: 0
+  button: {fileID: 0}
 --- !u!1 &3293497448839064396
 GameObject:
   m_ObjectHideFlags: 0
@@ -4124,13 +4196,15 @@ GameObject:
   - component: {fileID: 1208383307305446346}
   - component: {fileID: 434486289922650299}
   - component: {fileID: 3616891247085176666}
+  - component: {fileID: 6088569329139648227}
+  - component: {fileID: 2445126885328590626}
   m_Layer: 5
   m_Name: InfoHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1208383307305446346
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4190,6 +4264,38 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6088569329139648227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010263274345043197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8f93d3a74e4534b41d021e36580aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder.BigOrderItem
+  iconComponent: {fileID: 2445126885328590626}
+  amountText: {fileID: 4783718036155889363}
+--- !u!114 &2445126885328590626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010263274345043197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196457f549d640b380b3bb269e70fad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Components.IconComponent
+  plusRectTransform: {fileID: 0}
+  shapeImage: {fileID: 0}
+  iconImage: {fileID: 1262439822899778559}
+  backgroundImage: {fileID: 3616891247085176666}
+  requirements: 0
+  button: {fileID: 0}
 --- !u!1 &8257996139993246579
 GameObject:
   m_ObjectHideFlags: 0

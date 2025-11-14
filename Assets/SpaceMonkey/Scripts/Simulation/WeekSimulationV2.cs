@@ -84,6 +84,7 @@ namespace SpaceMonkey.Scripts.Simulation
             public CustomerData Customer { get; set; }
             public List<OrderEntry> OrderEntries { get; set; }
             public bool WasFulfilled { get; set; }
+            public bool IsBigOrder { get; set; }
         }
 
         [Serializable]
@@ -279,7 +280,7 @@ namespace SpaceMonkey.Scripts.Simulation
         
             Debug.Log($"Finished Week {CurrentWeek.Value.WeekNumber} and saved to account.");
             allCustomers = null;
-
+            Account.ResetBigOrder();
             _creditSimulator.NextWeek();
             _accountService.SaveAsync().Forget();
         }

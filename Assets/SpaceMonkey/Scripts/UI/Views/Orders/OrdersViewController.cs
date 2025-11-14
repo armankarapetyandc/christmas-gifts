@@ -62,6 +62,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         {
             return _weekSimulationContext.WeekSimulation.CurrentWeek.Value;
         }
+        
+        internal BigOrderGameData GetBigOrder()
+        {
+            return _accountService.Model.Account.BigOrderGameData;
+        }
 
         internal Observable<float> GetAvailableProdCapObservable()
         {
@@ -75,7 +80,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         internal async UniTask<bool> TryShipOrder(WeekSimulationV2.Order order)
         {
-            if (!_weekSimulationContext.WeekSimulation.TryShipOrder(order.Customer.CharacterId))
+            if (order.IsBigOrder || !_weekSimulationContext.WeekSimulation.TryShipOrder(order.Customer.CharacterId))
             {
                 var data = new ProductionAlertPopup.Data();
                 _popupPresenterService.Show<ProductionAlertPopup>(data).Forget();

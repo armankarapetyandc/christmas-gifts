@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.BigOrder;
@@ -13,15 +16,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
     public class BigOrderDetailsViewController : BasePresenterController
     {
         private readonly NavigationPresenterService _navigationPresenterService;
+        private readonly VisualAssetDatabase visualAssetDatabase;
         private readonly PopupPresenterService _popupPresenterService;
         private AccountService _accountService;
 
         public BigOrderDetailsViewController(PresenterService presenterService,
-            NavigationPresenterService navigationPresenterService,
+            NavigationPresenterService navigationPresenterService,VisualAssetDatabase visualAssetDatabase,
             PopupPresenterService popupPresenterService, AccountService accountService) : base(presenterService)
         {
             _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
+            this.visualAssetDatabase = visualAssetDatabase;
             _popupPresenterService = popupPresenterService;
         }
 
@@ -33,7 +38,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
             }).Forget();
         }
 
-
+        internal T ResolveVisualAsset<T>(string id) where T : VisualAsset
+        {
+            return visualAssetDatabase.GetResourceForAsset<T>(id);
+        }
         public void OnCancel(MainNavigationType type)
         {
             _accountService.Model.Account.ResetBigOrder();
@@ -43,6 +51,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails
                     Type = type
                 }
             ).Forget();
+        }
+
+        internal List<WeekSimulationV2.OrderEntry> GetOrders()
+        {
+            return _accountService.Model.Account.BigOrderGameData?.OrderEntries;
         }
     }
 }
