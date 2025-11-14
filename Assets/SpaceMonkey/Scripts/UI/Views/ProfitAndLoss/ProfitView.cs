@@ -45,7 +45,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         {
             var account = Controller.GetAccount();
             businessName.text = account.Company.CompanyName;
-            weekNumberText.text = account.Week.ToString();
+            weekNumberText.text = (account.Week-1).ToString();
             var shapeVisualAsset =
                 Controller.ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.ShapeVisualAssetId);
             var iconVisualAsset =

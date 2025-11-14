@@ -27,7 +27,7 @@ MonoBehaviour:
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 1174, y: -597}
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: a07867ffa8a84f94cba42ae3c8d90ae4, type: 2}
-    <AppearWeek>k__BackingField: 0
+    <AppearWeek>k__BackingField: 7
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
     <DefaultLocked>k__BackingField: 0
@@ -37,8 +37,8 @@ MonoBehaviour:
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 1174, y: -597}
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: a07867ffa8a84f94cba42ae3c8d90ae4, type: 2}
-    <AppearWeek>k__BackingField: 0
-    <AppearLevel>k__BackingField: 3
+    <AppearWeek>k__BackingField: 7
+    <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
     <DefaultLocked>k__BackingField: 0
   - <Id>k__BackingField: 3
@@ -57,7 +57,7 @@ MonoBehaviour:
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 1174, y: -1305}
     <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: a07867ffa8a84f94cba42ae3c8d90ae4, type: 2}
-    <AppearWeek>k__BackingField: 0
+    <AppearWeek>k__BackingField: 7
     <AppearLevel>k__BackingField: 0
     <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
     <DefaultLocked>k__BackingField: 0
