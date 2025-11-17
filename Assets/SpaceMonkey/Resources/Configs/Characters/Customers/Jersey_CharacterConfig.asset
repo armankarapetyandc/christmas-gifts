@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: jersey
   <Appearance>k__BackingField: 2
-  <Name>k__BackingField: Jersey
+  <Name>k__BackingField: Victor G.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 162d7f987abf0e240844ddeed003c3d0, type: 2}
   <HeadVisualAssets>k__BackingField:
   - {fileID: 11400000, guid: 40f877056700de44c8f2180c6368cf84, type: 2}

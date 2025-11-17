@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: robber
   <Appearance>k__BackingField: 2
-  <Name>k__BackingField: Robber
+  <Name>k__BackingField: Oliver C.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 300e4ca3312041043810b44eb7bfbf93, type: 2}
   <HeadVisualAssets>k__BackingField:
   - {fileID: 11400000, guid: 91deea1fe7032244b97fe02f50b5f1ef, type: 2}

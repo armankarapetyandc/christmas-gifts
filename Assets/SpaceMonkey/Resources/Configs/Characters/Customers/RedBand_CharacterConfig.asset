@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: red_band
   <Appearance>k__BackingField: 2
-  <Name>k__BackingField: Red Band
+  <Name>k__BackingField: Nora U.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 9fac3479fb382e1449a10ca195fed630, type: 2}
   <HeadVisualAssets>k__BackingField:
   - {fileID: 11400000, guid: ed28e460e875bf442bbce41613d929d2, type: 2}

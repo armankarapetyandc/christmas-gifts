@@ -27,7 +27,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
         {
             _product = product;
             productName.text = _product.Name;
-            profitText.text = $"${_product.Profit:F2}";
+            profitText.text = $"${_product.ProductPrice:F2}";
         }
 
         public void SetVisual(SpriteVisualAsset iconVisualAsset, ColorVisualAsset colorVisualAsset)

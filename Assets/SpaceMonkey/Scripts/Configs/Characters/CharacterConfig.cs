@@ -30,7 +30,7 @@ namespace SpaceMonkey.Scripts.Configs.Characters
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            Id = Name.ToLower().Replace(" ", "_").Replace(".", "");
+            // Id = Name.ToLower().Replace(" ", "_").Replace(".", "");
             DefaultMood = Mathf.Clamp(DefaultMood, MoodMin, MoodMax);
         }
 #endif
