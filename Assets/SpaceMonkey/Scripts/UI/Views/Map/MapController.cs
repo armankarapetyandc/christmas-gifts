@@ -6,6 +6,7 @@ using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.BusinessLoan;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.Simulation.Fire;
 using SpaceMonkey.Scripts.Simulation.Investment;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
@@ -33,6 +34,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         private readonly AccountService _accountService;
         private readonly CreditSimulator _creditSimulator;
         private readonly BusinessLoanSimulator _businessLoanSimulator;
+        private readonly FireSimulator _fireSimulator;
         private readonly MapConfig _mapConfig;
         private readonly VisualAssetDatabase _visualAssetDatabase;
         private readonly InvestmentSimulator _investmentSimulator;
@@ -45,7 +47,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         public MapController(PresenterService presenterService,PopupPresenterService popupPresenterService,
             NavigationPresenterService navigationPresenterService,AccountService accountService,
             CreditSimulator creditSimulator, BusinessLoanSimulator businessLoanSimulator,
-            MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase,GameConfig gameConfig,
+            FireSimulator fireSimulator, MapConfig mapConfig,VisualAssetDatabase visualAssetDatabase,GameConfig gameConfig,
             InvestmentSimulator investmentSimulator) : base(presenterService)
         {
             _gameConfig = gameConfig;
@@ -55,6 +57,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             _accountService = accountService;
             _creditSimulator = creditSimulator;
             _businessLoanSimulator = businessLoanSimulator;
+            _fireSimulator = fireSimulator;
             _mapConfig = mapConfig;
             _visualAssetDatabase = visualAssetDatabase;
         }
@@ -157,6 +160,31 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 Product = product,
                 ShowInfoPopup = true
             }).Forget();
+        }
+        
+        internal void CheckAndShowFirePopup()
+        {
+            if (_fireSimulator.HasActiveFire)
+            {
+                int capacityLoss = _fireSimulator.GetDamagedCapacity();
+                float repairCost = _fireSimulator.GetRepairCost();
+                
+                _popupPresenterService.Show<UI.Popups.Fire.FirePopup>(new UI.Popups.Fire.FirePopup.Data
+                {
+                    CapacityLoss = capacityLoss,
+                    RepairCost = repairCost,
+                    OnViewCapacity = () =>
+                    {
+                        _navigationPresenterService.HideAll();
+                        PresenterService.HidePreviousAndShow<ProductionCapacity.ProductionCapacityView>(
+                            new ProductionCapacity.ProductionCapacityView.Data()).Forget();
+                    },
+                    OnRepair = async () =>
+                    {
+                        await _fireSimulator.RepairFire(repairCost);
+                    }
+                }).Forget();
+            }
         }
     }
 }

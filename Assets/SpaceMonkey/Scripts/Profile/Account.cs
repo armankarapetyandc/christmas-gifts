@@ -63,6 +63,7 @@ namespace SpaceMonkey.Scripts.Profile
         public BigOrderGameData BigOrderGameData { get; set; }
         
         public InvestmentGameData InvestmentGameData { get; set; }
+        public FireGameData FireData { get; set; }
         
         public void SetCategory(string category)
         {
@@ -140,7 +141,6 @@ namespace SpaceMonkey.Scripts.Profile
                     new()
                     {
                         Id = initialProdCap.Id,
-                        NeedRepair = false,
                         ProdCapCost = initialProdCap.ProdCapCost,
                         ProdCapAdd = initialProdCap.ProdCapAdd
                     }
@@ -339,6 +339,11 @@ namespace SpaceMonkey.Scripts.Profile
             };
         }
         
+        public void CreateFireData()
+        {
+            FireData = new FireGameData();
+        }
+        
         public void AddLoanPaymentRecord(PaymentRecord record)
         {
             if (BusinessLoanData != null)
@@ -360,9 +365,15 @@ namespace SpaceMonkey.Scripts.Profile
         public int GetProductionCapacity()
         {
             var employeeCapacity = Employees.Sum(e => e.Capacity);
-            var prodCap = LevelProdCaps
-                .Where(l => !l.NeedRepair)
-                .Sum(l => l.ProdCapAdd);
+            var prodCap = LevelProdCaps.Sum(l => 
+            {
+                if (FireData != null && FireData.IsActive)
+                {
+                    // When damaged, reduce capacity by DecreaseProdCost percentage
+                    return (int)(l.ProdCapAdd * 0.5f);
+                }
+                return l.ProdCapAdd;
+            });
             return employeeCapacity + prodCap;
         }
 
@@ -487,7 +498,6 @@ namespace SpaceMonkey.Scripts.Profile
         public string Id { get; set; }
         public int ProdCapAdd { get; set; }
         public int ProdCapCost { get; set; }
-        public bool NeedRepair { get; set; }
         public int LevelNumber { get; set; }
     }
 
@@ -643,5 +653,15 @@ namespace SpaceMonkey.Scripts.Profile
     public class InvestmentGameData
     {
         public List<int> UnlockedPlaces { get; set; } = new();
+    }
+    
+    public class FireGameData
+    {
+        public bool IsActive { get; set; }
+        
+        public FireGameData()
+        {
+            IsActive = true;
+        }
     }
 }

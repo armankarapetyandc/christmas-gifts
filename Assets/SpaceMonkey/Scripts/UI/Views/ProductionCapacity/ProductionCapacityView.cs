@@ -70,15 +70,11 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         private void UpdateUi(LevelProdCap level)
         {
             bool exists = _account.LevelProdCaps.Any(prodCap => prodCap.Id == level.Id);
-            if (exists && !level.NeedRepair)
+            if (exists)
             {
                 upgratedLevelCapComponent.gameObject.SetActive(false);
                 currentLevelCapComponent.UpdateUi(_account.GetProductionCapacity());
                 currentLevelCapComponent.gameObject.SetActive(true);
-            }
-            else if (exists && level.NeedRepair)
-            {
-                Debug.LogError("log");
             }
             else
             {

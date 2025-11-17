@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.Fire;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
@@ -24,16 +25,19 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         private readonly AccountService _accountService;
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly PopupPresenterService  _popupPresenterService;
+        private readonly FireSimulator _fireSimulator;
 
         public ProductionCapacityViewController(PresenterService presenterService,
             VisualAssetDatabase visualAssetDatabase, GameConfig gameConfig, AccountService accountService,
-            NavigationPresenterService navigationPresenterService, PopupPresenterService popupPresenterService) : base(presenterService)
+            NavigationPresenterService navigationPresenterService, PopupPresenterService popupPresenterService,
+            FireSimulator fireSimulator) : base(presenterService)
         {
             _visualAssetDatabase = visualAssetDatabase;
             _gameConfig = gameConfig;
             _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
             _popupPresenterService = popupPresenterService;
+            _fireSimulator = fireSimulator;
         }
 
         internal async UniTask<LevelProdCap> OpenUpgradeEquipmentPopup(LevelProdCap level)
@@ -74,6 +78,21 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
                 IsUpgraded = true,
                 FontAsset = levelFontAsset
             });
+        }
+        
+        public int GetFireCapacityLoss()
+        {
+            return _fireSimulator.GetDamagedCapacity();
+        }
+        
+        public float GetFireRepairCost()
+        {
+            return _fireSimulator.GetRepairCost();
+        }
+        
+        public async UniTask RepairFireDamage(LevelProdCap level, float cost)
+        {
+            await _fireSimulator.RepairFire(cost);
         }
     }
 }
