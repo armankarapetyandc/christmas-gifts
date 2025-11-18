@@ -64,7 +64,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             var totalRevenue = Controller.GetWeekRevenue(_viewData.UseSimulation);
             var totalProfit = Controller.GetWeekProfit(_viewData.UseSimulation);
 
-            overallTotalsComponent.SetTotals(totalExpense, totalRevenue, totalProfit);
+            overallTotalsComponent.SetTotals(totalExpense, totalRevenue, totalRevenue - totalExpense);
             
             backButton.gameObject.SetActive(_viewData.EnableBackButton);
             nextButton.gameObject.SetActive(!_viewData.EnableBackButton);

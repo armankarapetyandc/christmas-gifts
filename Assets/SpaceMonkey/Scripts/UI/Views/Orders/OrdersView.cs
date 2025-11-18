@@ -29,7 +29,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             Controller.GetAvailableProdCapObservable()
                 .Subscribe(value => productionCapacityText.text = $"{Mathf.RoundToInt(value)} hrs").AddTo(this);
             Controller.GetMoneyObservable()
-                .Subscribe(value => moneyText.text = $"+${value:F2}").AddTo(this);
+                .Subscribe(value => moneyText.text = $"${value:F2}").AddTo(this);
             SetupDefaults();
             SetupCustomers();
             

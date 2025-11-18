@@ -288,7 +288,7 @@ namespace SpaceMonkey.Scripts.Simulation
 
         public void GrantReward()
         {
-            Account.Money += _money.Value;
+            Account.Money = _money.Value;
             Account.Score += SellScore;
         }
 
@@ -578,7 +578,12 @@ namespace SpaceMonkey.Scripts.Simulation
             if (canFulfill)
             {
                 _availableProdCap.Value -= totalProdCost;
-                _money.Value += order.OrderEntries.Sum(e => e.OrderProfit);
+
+                var profit = order.OrderEntries.Sum(e =>
+                    e.Product.ProductPrice * e.Quantity - e.Product.MaterialPrice!.Value * e.Quantity -
+                    e.Product.MaterialPackagingPrice!.Value * e.Quantity - e.Product.ShippingCost!.Value);
+
+                _money.Value += profit!.Value;
             }
 
             Debug.Log(
