@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using Zenject;
 
@@ -7,20 +8,18 @@ namespace SpaceMonkey.Scripts.Simulation.Fire
     public class FireSimulator
     {
         private AccountService _accountService;
+        private GameConfig _gameConfig;
         
         public FireGameData Data => _accountService.Model.Account.FireData;
         private int Week => _accountService.Model.Account.Week;
         public bool HasActiveFire => Data != null && Data.IsActive;
         public bool HasTriggered => Data != null;
         
-        private const int FIRE_TRIGGER_MONTH = 7;
-        private const int WEEKS_PER_MONTH = 4;
-        private const int FIRE_TRIGGER_WEEK = FIRE_TRIGGER_MONTH * WEEKS_PER_MONTH;
-        
         [Inject]
-        private void Inject(AccountService accountService)
+        private void Inject(AccountService accountService, GameConfig gameConfig)
         {
             _accountService = accountService;
+            _gameConfig = gameConfig;
         }
 
         public void TryTriggerFire()
@@ -32,8 +31,7 @@ namespace SpaceMonkey.Scripts.Simulation.Fire
         }
         private bool ShouldTriggerFire()
         {
-            // Fire triggers at week 28 (month 7) and hasn't been triggered yet
-            return Week == FIRE_TRIGGER_WEEK && !HasTriggered;
+            return Week == _gameConfig.FireInfo.TriggerWeek && !HasTriggered;
         }
         
         private async UniTask TriggerFire()
@@ -41,15 +39,7 @@ namespace SpaceMonkey.Scripts.Simulation.Fire
             if (HasTriggered)
                 return;
             
-            // Create fire data
-            _accountService.Model.Account.CreateFireData();
-            
-            // Mark all equipment as needing repair (50% capacity reduction)
-            foreach (var level in _accountService.Model.Account.LevelProdCaps)
-            {
-                _accountService.Model.Account.SetLevel(level);
-            }
-            
+            _accountService.Model.Account.CreateFireData(_gameConfig.FireInfo.CapacityReductionPercent);
             await _accountService.SaveAsync();
         }
         
@@ -58,36 +48,44 @@ namespace SpaceMonkey.Scripts.Simulation.Fire
             if (!HasActiveFire)
                 return 0;
 
-            return 500;
+            return _gameConfig.FireInfo.RepairCost;
         }
         
-        public async UniTask RepairFire(float cost)
+        public async UniTask<bool> RepairFire(float cost)
         {
             if (!HasActiveFire)
-                return;
+                return false;
             
             var account = _accountService.Model.Account;
             
             if (!account.CanAfford(cost))
-                return;
+                return false;
+
             
             // Pay for repair
             account.Buy(cost);
-            
+
+            await RepairFire();
+            return true;
+        }
+
+        public async UniTask RepairFire()
+        {
             // Mark fire as inactive
             Data.IsActive = false;
             
             await _accountService.SaveAsync();
         }
+
         
         public int GetDamagedCapacity()
         {
             if (!HasActiveFire)
                 return 0;
             
-            // Calculate current capacity (should be 50% of original due to NeedRepair)
+            // Calculate current capacity reduced by the configured percentage
             int currentCapacity = _accountService.Model.Account.GetProductionCapacity();
-            return (int)(currentCapacity * 0.5f);
+            return (int)(currentCapacity * _gameConfig.FireInfo.CapacityReductionPercent);
         }
     }
 }

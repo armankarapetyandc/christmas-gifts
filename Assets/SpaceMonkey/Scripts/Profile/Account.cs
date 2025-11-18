@@ -339,9 +339,9 @@ namespace SpaceMonkey.Scripts.Profile
             };
         }
         
-        public void CreateFireData()
+        public void CreateFireData(float capacityReductionPercent = 0.5f)
         {
-            FireData = new FireGameData();
+            FireData = new FireGameData(capacityReductionPercent);
         }
         
         public void AddLoanPaymentRecord(PaymentRecord record)
@@ -369,8 +369,8 @@ namespace SpaceMonkey.Scripts.Profile
             {
                 if (FireData != null && FireData.IsActive)
                 {
-                    // When damaged, reduce capacity by DecreaseProdCost percentage
-                    return (int)(l.ProdCapAdd * 0.5f);
+                    // When damaged, reduce capacity by configured percentage
+                    return (int)(l.ProdCapAdd * FireData.CapacityReductionPercent);
                 }
                 return l.ProdCapAdd;
             });
@@ -658,10 +658,12 @@ namespace SpaceMonkey.Scripts.Profile
     public class FireGameData
     {
         public bool IsActive { get; set; }
+        public float CapacityReductionPercent { get; set; }
         
-        public FireGameData()
+        public FireGameData(float capacityReductionPercent = 0.5f)
         {
             IsActive = true;
+            CapacityReductionPercent = capacityReductionPercent;
         }
     }
 }

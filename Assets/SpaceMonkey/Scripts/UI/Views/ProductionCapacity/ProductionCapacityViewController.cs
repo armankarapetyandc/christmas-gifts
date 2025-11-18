@@ -11,6 +11,7 @@ using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment;
 using SpaceMonkey.Scripts.UI.Views.LevelUpdate;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.FireRepairSplash;
 using TMPro;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -80,19 +81,22 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             });
         }
         
-        public int GetFireCapacityLoss()
-        {
-            return _fireSimulator.GetDamagedCapacity();
-        }
-        
         public float GetFireRepairCost()
         {
             return _fireSimulator.GetRepairCost();
         }
         
-        public async UniTask RepairFireDamage(LevelProdCap level, float cost)
+        public UniTask<bool> RepairFireDamage(float cost)
         {
-            await _fireSimulator.RepairFire(cost);
+            return _fireSimulator.RepairFire(cost);
+        }
+        
+        public void ShowFireRepairSplash(LevelProdCap level)
+        {
+            PresenterService.Show<FireRepairSplashView>(new FireRepairSplashView.Data
+            {
+                Level = level
+            }).Forget();
         }
     }
 }

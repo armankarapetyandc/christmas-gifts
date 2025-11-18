@@ -164,27 +164,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         
         internal void CheckAndShowFirePopup()
         {
-            if (_fireSimulator.HasActiveFire)
-            {
-                int capacityLoss = _fireSimulator.GetDamagedCapacity();
-                float repairCost = _fireSimulator.GetRepairCost();
-                
-                _popupPresenterService.Show<UI.Popups.Fire.FirePopup>(new UI.Popups.Fire.FirePopup.Data
-                {
-                    CapacityLoss = capacityLoss,
-                    RepairCost = repairCost,
-                    OnViewCapacity = () =>
-                    {
-                        _navigationPresenterService.HideAll();
-                        PresenterService.HidePreviousAndShow<ProductionCapacity.ProductionCapacityView>(
-                            new ProductionCapacity.ProductionCapacityView.Data()).Forget();
-                    },
-                    OnRepair = async () =>
-                    {
-                        await _fireSimulator.RepairFire(repairCost);
-                    }
-                }).Forget();
-            }
+            if (_fireSimulator.HasActiveFire == false)
+                return;
+            
+            
+            _popupPresenterService.Show<Popups.Fire.FirePopup>().Forget();
         }
     }
 }

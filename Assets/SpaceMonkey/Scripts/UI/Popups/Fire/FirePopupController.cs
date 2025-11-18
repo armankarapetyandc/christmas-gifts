@@ -1,8 +1,10 @@
 using Cysharp.Threading.Tasks;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.Fire;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
+using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
@@ -13,37 +15,27 @@ namespace SpaceMonkey.Scripts.UI.Popups.Fire
     public class FirePopupController : BasePresenterController
     {
         private readonly NavigationPresenterService _navigationPresenterService;
-        private readonly FireSimulator _fireSimulator;
-        private readonly AccountService _accountService;
-        
+        private readonly PopupPresenterService _popupPresenterService;
+
         public FirePopupController(
             PresenterService presenterService,
             NavigationPresenterService navigationPresenterService,
-            FireSimulator fireSimulator,
-            AccountService accountService) : base(presenterService)
+            PopupPresenterService popupPresenterService) : base(presenterService)
         {
             _navigationPresenterService = navigationPresenterService;
-            _fireSimulator = fireSimulator;
-            _accountService = accountService;
+            _popupPresenterService = popupPresenterService;
         }
         
         public void NavigateToProductionCapacity()
         {
+            _popupPresenterService.HideLast();
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<ProductionCapacityView>(new ProductionCapacityView.Data()).Forget();
         }
-        
-        public async UniTask RepairFire()
+
+        public void ClosePopUp()
         {
-            float repairCost = _fireSimulator.GetRepairCost();
-            
-            if (!_accountService.Model.Account.CanAfford(repairCost))
-            {
-                // TODO: Show insufficient funds message
-                return;
-            }
-            
-            await _fireSimulator.RepairFire(repairCost);
+            _popupPresenterService.HideLast();
         }
     }
 }

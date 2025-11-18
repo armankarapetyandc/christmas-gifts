@@ -23,6 +23,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         [SerializeField] private EquipmentComponent equipmentComponent;
         [SerializeField] private CurrentLevelCapComponent currentLevelCapComponent;
         [SerializeField] private UpgratedLevelCapComponent upgratedLevelCapComponent;
+        [SerializeField] private DamagedLevelCapComponent damagedLevelCapComponent;
         [SerializeField] private ScrollSnap scroll;
         [SerializeField] private TextMeshProUGUI availableCashText;
         [SerializeField] private TextMeshProUGUI prodCapText;
@@ -46,6 +47,8 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             UpdateUi(_data == null ? _account.LevelProdCaps[0] : _account.LevelProdCaps[_data.LevelNumber]);
             upgratedLevelCapComponent.OnUpgradedLevelUp.Subscribe(level => { UpgradedLevelUIUpdate(level).Forget(); })
                 .AddTo(this);
+            damagedLevelCapComponent.OnRepairClicked.Subscribe(tuple => { RepairFireDamage(tuple.Item1, tuple.Item2).Forget(); })
+                .AddTo(this);
             prodCapText.text = $"{_account.GetProductionCapacity():F2}";
             availableCashText.text = $"{_account.Money:F2}";
             return UniTask.CompletedTask;
@@ -67,20 +70,45 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             }
         }
 
+        private async UniTask RepairFireDamage(LevelProdCap level, float cost)
+        {
+            var result = await Controller.RepairFireDamage(cost);
+            if (result == false)
+            {
+                return;
+            }
+            
+            Controller.ShowFireRepairSplash(level);
+        }
+
         private void UpdateUi(LevelProdCap level)
         {
             bool exists = _account.LevelProdCaps.Any(prodCap => prodCap.Id == level.Id);
+            bool isDamaged = _account.FireData != null && _account.FireData.IsActive;
+            
             if (exists)
             {
                 upgratedLevelCapComponent.gameObject.SetActive(false);
-                currentLevelCapComponent.UpdateUi(_account.GetProductionCapacity());
-                currentLevelCapComponent.gameObject.SetActive(true);
+                
+                if (isDamaged)
+                {
+                    currentLevelCapComponent.gameObject.SetActive(false);
+                    float repairCost = Controller.GetFireRepairCost();
+                    damagedLevelCapComponent.UpdateUi(level, repairCost);
+                    damagedLevelCapComponent.gameObject.SetActive(true);
+                }
+                else
+                {
+                    damagedLevelCapComponent.gameObject.SetActive(false);
+                    currentLevelCapComponent.UpdateUi(_account.GetProductionCapacity());
+                    currentLevelCapComponent.gameObject.SetActive(true);
+                }
             }
             else
             {
                 currentLevelCapComponent.gameObject.SetActive(false);
-                upgratedLevelCapComponent.UpdateUi(level, _account.GetProductionCapacity()
-                );
+                damagedLevelCapComponent.gameObject.SetActive(false);
+                upgratedLevelCapComponent.UpdateUi(level, _account.GetProductionCapacity());
                 upgratedLevelCapComponent.gameObject.SetActive(true);
             }
         }

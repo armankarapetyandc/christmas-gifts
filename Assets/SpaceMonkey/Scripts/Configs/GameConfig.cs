@@ -23,6 +23,7 @@ namespace SpaceMonkey.Scripts.Configs
         [field: SerializeField] public CreditCardInfo CreditCardInfo { get; private set; }
         [field: SerializeField] public BusinessLoanInfo BusinessLoanInfo { get; private set; }
         [field: SerializeField] public LevelInfo[] LevelInfos { get; private set; }
+        [field: SerializeField] public FireInfo FireInfo { get; private set; }
         
         [field: SerializeField] public NewLocationInfo NewLocationInfo { get; private set; }
         
@@ -183,6 +184,26 @@ namespace SpaceMonkey.Scripts.Configs
         
         [field: SerializeField] public int InsurancePrice { get; private set; }
         [field: SerializeField] public int OccurrenceLimit { get; private set; }
+    }
+
+    [Serializable]
+    public class FireInfo
+    {
+        [field: SerializeField] public int TriggerWeek { get; private set; } = 3;
+        [field: SerializeField] public float RepairCost { get; private set; } = 500f;
+        [field: SerializeField] 
+        [Range(0f, 1f)]
+        public float CapacityReductionPercent { get; private set; } = 0.5f;
+
+        public static FireInfo Create(int triggerWeek, float repairCost, float capacityReductionPercent)
+        {
+            return new FireInfo
+            {
+                TriggerWeek = triggerWeek,
+                RepairCost = repairCost,
+                CapacityReductionPercent = capacityReductionPercent
+            };
+        }
     }
 
     [Serializable]

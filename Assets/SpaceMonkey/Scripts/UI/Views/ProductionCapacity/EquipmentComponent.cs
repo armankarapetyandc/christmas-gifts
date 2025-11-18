@@ -3,6 +3,7 @@ using System.Linq;
 using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.Fire;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
 using Zenject;
@@ -16,6 +17,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         
         [Inject] private GameConfig _gameConfig;
         [Inject] private AccountService _accountService;
+        [Inject] private FireSimulator _fireSimulator;
 
         public List<LevelItemComponent> LevelItems { get; } = new List<LevelItemComponent>();
         private List<Observable<LevelProdCap>> _observables = new List<Observable<LevelProdCap>>();
@@ -35,7 +37,8 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
                 var level = levels[i];
                 var item = Instantiate(levelItemPrefab, content);
                 int assetIndex = i / assets.Length;
-                item.Setup(assets[assetIndex], level, i, !IsUpgraded(level));
+                var isDamaged = _fireSimulator.HasActiveFire;
+                item.Setup(assets[assetIndex], level, i, !IsUpgraded(level), isDamaged);
                 _observables.Add(item.OnSelected);
                 LevelItems.Add(item);
             }

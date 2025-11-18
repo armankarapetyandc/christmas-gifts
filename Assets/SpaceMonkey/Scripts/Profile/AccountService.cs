@@ -82,10 +82,7 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(account);
             Model.Account.OnScoreChanged.Subscribe(eventParam =>
             {
-                LevelInfo levelInfo = _gameConfig.LevelInfos.LastOrDefault(info => info.Score <= eventParam);
-                   
                 int currentLevel = Model.Account.Level;
-                Model.Account.Level = 5;
                 if (currentLevel < Model.Account.Level)
                 {
                     OnLevelChanged.Execute(Model.Account.Level);

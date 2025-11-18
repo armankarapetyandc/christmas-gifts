@@ -53,7 +53,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
 
             PopulatePlaces();
             
-            // Check if fire popup should be shown
             Controller.CheckAndShowFirePopup();
         }
 
