@@ -17,7 +17,7 @@
       "url": "https://package.openupm.com"
     },
     "com.doublecoconut.assetdatabase": {
-      "version": "https://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@github.com/double-coconut-unity/module-asset-database.git",
+      "version": "https://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@github.com/double-coconut-unity/module-asset-database.git",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -27,7 +27,7 @@
       "hash": "7cfdc36bb50bac776cda2e7c1f8a3885d7f1ce6f"
     },
     "com.doublecoconut.contextloaderservice": {
-      "version": "https://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@github.com/double-coconut-unity/module-context-loader-service.git",
+      "version": "https://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@github.com/double-coconut-unity/module-context-loader-service.git",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -40,14 +40,14 @@
       "hash": "617a8df86e866e16f326ffbe50da2334fd56e96d"
     },
     "com.doublecoconut.dclogger": {
-      "version": "https://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@github.com/double-coconut-unity/dc-logger.git",
+      "version": "https://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@github.com/double-coconut-unity/dc-logger.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "a7753a4a66007fefce3edd30fb1ffe25a3273772"
     },
     "com.doublecoconut.uiservice": {
-      "version": "https://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@github.com/double-coconut-unity/module-ui-service.git",
+      "version": "https://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@github.com/double-coconut-unity/module-ui-service.git",
       "depth": 0,
       "source": "git",
       "dependencies": {

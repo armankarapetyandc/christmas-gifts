@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Linq;
+using Cysharp.Threading.Tasks;
 using ObservableCollections;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -32,7 +33,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
             SetupDefaults();
             return UniTask.CompletedTask;
         }
-
         private void SetupDefaults()
         {
             var account = Controller.GetAccount();
@@ -40,6 +40,20 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
             {
                 var item = CreateProduct(product);
                 _items.Add(item);
+            }
+
+            newProductButton.interactable = false;
+            var currentLevel = account.Level;
+            if (currentLevel == 1 && account.Products.Count == 0)
+            {
+                newProductButton.interactable = true;
+                return;
+            }
+
+            var configLevel = Controller.LevelInfos().FirstOrDefault(info => info.Level == currentLevel);
+            if (configLevel != null && configLevel.UnlockInfo.Any(info => info.Key == "2product"))
+            {
+                newProductButton.interactable = true;
             }
         }
 

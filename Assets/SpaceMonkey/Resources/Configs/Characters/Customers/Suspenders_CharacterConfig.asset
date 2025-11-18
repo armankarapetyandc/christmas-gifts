@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: suspenders
   <Appearance>k__BackingField: 2
-  <Name>k__BackingField: Suspenders
+  <Name>k__BackingField: Florence B.
   <Sprite>k__BackingField: {fileID: 11400000, guid: a7b9e533f4e57cd40ab1426644dbb669, type: 2}
   <HeadVisualAssets>k__BackingField:
   - {fileID: 11400000, guid: 663ade17056086848be967a940d8fe2d, type: 2}

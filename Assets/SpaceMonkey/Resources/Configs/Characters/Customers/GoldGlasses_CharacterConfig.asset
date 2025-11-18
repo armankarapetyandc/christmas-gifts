@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: gold_glasses
   <Appearance>k__BackingField: 2
-  <Name>k__BackingField: Gold Glasses
+  <Name>k__BackingField: Zane F.
   <Sprite>k__BackingField: {fileID: 11400000, guid: cd85d57364f406940b28a098deac6e65, type: 2}
   <HeadVisualAssets>k__BackingField:
   - {fileID: 11400000, guid: ffe69a5cccbeff1418adc4a1e5c17592, type: 2}

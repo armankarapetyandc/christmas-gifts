@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: turban
   <Appearance>k__BackingField: 2
-  <Name>k__BackingField: Turban
+  <Name>k__BackingField: Jackson J.
   <Sprite>k__BackingField: {fileID: 11400000, guid: 5e0ec8e9c1d80f549a2e363cf74649c7, type: 2}
   <HeadVisualAssets>k__BackingField:
   - {fileID: 11400000, guid: 8fea1a68a7da15d48aa754d2f5e03a1a, type: 2}
