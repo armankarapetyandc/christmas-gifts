@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.Simulation.Fire;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
@@ -23,14 +24,16 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
         private readonly PopupPresenterService _popupPresenterService;
         private readonly ScoresConfigs _scoresConfigs;
         private readonly CreditSimulator _creditSimulator;
+        private readonly FireSimulator _fireSimulator;
 
         public CreditSimulator CreditSimulator => _creditSimulator;
         public UpgradeEquipmentController(PresenterService presenterService, AccountService accountService,
-            PopupPresenterService popupPresenterService,ScoresConfigs scoresConfigs, CreditSimulator creditSimulator) 
-            : base(presenterService)
+            PopupPresenterService popupPresenterService,ScoresConfigs scoresConfigs, CreditSimulator creditSimulator,
+            FireSimulator fireSimulator) : base(presenterService)
         {
             _scoresConfigs = scoresConfigs;
             _creditSimulator = creditSimulator;
+            _fireSimulator = fireSimulator;
             _accountService = accountService;
             _popupPresenterService = popupPresenterService;
         }
@@ -57,6 +60,8 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
             }
 
             await _accountService.SaveAsync();
+            await _fireSimulator.RepairFire();
+
             OnClose();
             return level;
         }

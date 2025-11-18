@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.Fire;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment;
 using SpaceMonkey.Scripts.UI.Views.LevelUpdate;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.FireRepairSplash;
 using TMPro;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -24,16 +26,19 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         private readonly AccountService _accountService;
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly PopupPresenterService  _popupPresenterService;
+        private readonly FireSimulator _fireSimulator;
 
         public ProductionCapacityViewController(PresenterService presenterService,
             VisualAssetDatabase visualAssetDatabase, GameConfig gameConfig, AccountService accountService,
-            NavigationPresenterService navigationPresenterService, PopupPresenterService popupPresenterService) : base(presenterService)
+            NavigationPresenterService navigationPresenterService, PopupPresenterService popupPresenterService,
+            FireSimulator fireSimulator) : base(presenterService)
         {
             _visualAssetDatabase = visualAssetDatabase;
             _gameConfig = gameConfig;
             _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
             _popupPresenterService = popupPresenterService;
+            _fireSimulator = fireSimulator;
         }
 
         internal async UniTask<LevelProdCap> OpenUpgradeEquipmentPopup(LevelProdCap level)
@@ -74,6 +79,24 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
                 IsUpgraded = true,
                 FontAsset = levelFontAsset
             });
+        }
+        
+        public float GetFireRepairCost()
+        {
+            return _fireSimulator.GetRepairCost();
+        }
+        
+        public UniTask<bool> RepairFireDamage(float cost)
+        {
+            return _fireSimulator.RepairFire(cost);
+        }
+        
+        public void ShowFireRepairSplash(LevelProdCap level)
+        {
+            PresenterService.Show<FireRepairSplashView>(new FireRepairSplashView.Data
+            {
+                Level = level
+            }).Forget();
         }
     }
 }

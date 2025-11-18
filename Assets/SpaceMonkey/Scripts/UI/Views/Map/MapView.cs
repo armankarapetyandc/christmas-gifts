@@ -52,6 +52,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }).AddTo(this);
 
             PopulatePlaces();
+            
+            Controller.CheckAndShowFirePopup();
         }
 
         private void Update()
