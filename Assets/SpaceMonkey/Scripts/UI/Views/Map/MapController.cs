@@ -170,5 +170,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             
             _popupPresenterService.Show<Popups.Fire.FirePopup>().Forget();
         }
+
+        internal bool HasActiveFire()
+        {
+            return _fireSimulator.HasActiveFire;
+        }
     }
 }

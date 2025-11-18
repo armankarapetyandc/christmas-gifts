@@ -27,6 +27,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         [SerializeField] private Vector2 defaultMapPosition;
         [SerializeField] private MapPlaceItem placeItem;
         [SerializeField] private RectTransform placesContainer;
+        [SerializeField] private MapPlace fireEventMapPlace;
         [SerializeField] private List<MapPlaceHolder> placeHolders;
         private List<MapPlaceItem> _places;
         private MapPlaceItem _selectedPlaceItem;
@@ -52,7 +53,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }).AddTo(this);
 
             PopulatePlaces();
-            
+
             Controller.CheckAndShowFirePopup();
         }
 
@@ -88,12 +89,27 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 var item = Instantiate(placeItem, placesContainer);
                 _places.Add(item);
                 item.SetPlace(place);
-                item.SetPlaceContent(place.IconVisualAsset?.Sprite);
-                item.SetMapPlaceState(place is RuntimeMapPlace ? MapPlaceState.Open :
-                    place.DefaultLocked ? MapPlaceState.Locked : MapPlaceState.Active);
+                if (Controller.HasActiveFire() && place is RuntimeMapPlace)
+                {
+                    item.SetPlaceContent(fireEventMapPlace.IconVisualAsset?.Sprite);
+                }
+                else
+                {
+                    item.SetPlaceContent(place.IconVisualAsset?.Sprite);
+                }
+
+                item.SetMapPlaceState(place is RuntimeMapPlace
+                    ?
+                    !Controller.HasActiveFire() ? MapPlaceState.Open : MapPlaceState.Event
+                    :
+                    place.DefaultLocked
+                        ? MapPlaceState.Locked
+                        : MapPlaceState.Active);
                 item.SetPlaceName(place.Name);
                 item.SetPosition(place.Position);
+
                 item.SetBackgroundColor(place.BackgroundColor);
+
                 if (place.Type == PlaceType.TreatyBird)
                 {
                     item.gameObject.SetActive(PlayerPrefs.GetInt("competition") == 1);
@@ -124,7 +140,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     else if (place.Type == PlaceType.PlaceHolder)
                     {
                         ShowPlaceHolder(place);
-                    }   
+                    }
                     else if (place.Type == PlaceType.TreatyBird)
                     {
                         Controller.NavigateToMyCompany();
@@ -147,7 +163,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 item.SetRatingStars(companyRating);
                 item.SetRatingsCount(Controller.ReviewsCount);
                 item.SetAverageRating(companyRating);
-                
+
                 item.GetClickHandler().Subscribe(_ =>
                 {
                     if (place.Type == PlaceType.PlaceHolder)
@@ -175,7 +191,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 item.gameObject.SetActive(false);
             }
         }
-        
+
         public void FocusOnPlace(int placeId)
         {
             var item = _places.FirstOrDefault(x => x.Place.Id == placeId);
