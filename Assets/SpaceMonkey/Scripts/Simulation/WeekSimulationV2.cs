@@ -9,6 +9,7 @@ using SpaceMonkey.Scripts.Configs.Characters;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Profile.Simulation;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
+using SpaceMonkey.Scripts.Simulation.Fire;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -21,6 +22,7 @@ namespace SpaceMonkey.Scripts.Simulation
         private readonly AccountService _accountService;
         private readonly GameConfig _gameConfig;
         private readonly CreditSimulator _creditSimulator;
+        private readonly FireSimulator _fireSimulator;
         private readonly SimulationInfo _simulationInfo;
         private Account Account => _accountService.Model.Account;
 
@@ -84,6 +86,7 @@ namespace SpaceMonkey.Scripts.Simulation
             public CustomerData Customer { get; set; }
             public List<OrderEntry> OrderEntries { get; set; }
             public bool WasFulfilled { get; set; }
+            public bool IsBigOrder { get; set; }
         }
 
         [Serializable]
@@ -104,11 +107,12 @@ namespace SpaceMonkey.Scripts.Simulation
 
         public float SellScore { get; set; }
 
-        public WeekSimulationV2(AccountService accountService, GameConfig gameConfig, CreditSimulator creditSimulator)
+        public WeekSimulationV2(AccountService accountService, GameConfig gameConfig, CreditSimulator creditSimulator, FireSimulator fireSimulator)
         {
             _accountService = accountService;
             _gameConfig = gameConfig;
             _creditSimulator = creditSimulator;
+            _fireSimulator = fireSimulator;
             _simulationInfo = gameConfig.SimulationInfo;
             _availableProdCap = new ReactiveProperty<float>(accountService.Model.Account.GetProductionCapacity());
             _money = new ReactiveProperty<float>(accountService.Model.Account.Money);
@@ -279,15 +283,17 @@ namespace SpaceMonkey.Scripts.Simulation
         
             Debug.Log($"Finished Week {CurrentWeek.Value.WeekNumber} and saved to account.");
             allCustomers = null;
-
+            Account.ResetBigOrder();
             _creditSimulator.NextWeek();
+           _fireSimulator.TryTriggerFire();
+            
             _accountService.SaveAsync().Forget();
         }
 
 
         public void GrantReward()
         {
-            Account.Money += _money.Value;
+            Account.Money = _money.Value;
             Account.Score += SellScore;
         }
 
@@ -577,7 +583,12 @@ namespace SpaceMonkey.Scripts.Simulation
             if (canFulfill)
             {
                 _availableProdCap.Value -= totalProdCost;
-                _money.Value += order.OrderEntries.Sum(e => e.OrderProfit);
+
+                var profit = order.OrderEntries.Sum(e =>
+                    e.Product.ProductPrice * e.Quantity - e.Product.MaterialPrice!.Value * e.Quantity -
+                    e.Product.MaterialPackagingPrice!.Value * e.Quantity - e.Product.ShippingCost!.Value);
+
+                _money.Value += profit!.Value;
             }
 
             Debug.Log(

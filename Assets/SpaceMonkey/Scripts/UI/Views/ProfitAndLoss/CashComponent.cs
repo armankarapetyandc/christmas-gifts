@@ -39,7 +39,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             // Products
             var totalMaterials = weekExpenses.Sum(pair => pair.Value * pair.Key.MaterialPrice);
             var totalPackaging = weekExpenses.Sum(pair => pair.Value * pair.Key.MaterialPackagingPrice);
-            var totalShipping = weekExpenses.Sum(pair => pair.Value * pair.Key.ShippingCost);
+            var totalShipping = weekExpenses.Sum(pair => pair.Key.ShippingCost);
             var totalProducts = totalMaterials + totalPackaging + totalShipping;
 
             if (totalProducts > 0)

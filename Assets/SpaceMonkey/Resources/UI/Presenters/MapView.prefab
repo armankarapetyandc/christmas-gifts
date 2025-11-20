@@ -1084,6 +1084,7 @@ MonoBehaviour:
   rectTransform: {fileID: 8982166029243276538}
   viewport: {fileID: 8823847383160214947}
   seeeettl: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &2547345848398518521
 GameObject:
   m_ObjectHideFlags: 0
@@ -4074,6 +4075,17 @@ MonoBehaviour:
   defaultMapPosition: {x: 15, y: 6000}
   placeItem: {fileID: 4783032270565465510, guid: 8a47501b495458441a99adcb3e382f07, type: 3}
   placesContainer: {fileID: 8982166029243276538}
+  fireEventMapPlace:
+    <Id>k__BackingField: 0
+    <Name>k__BackingField: 
+    <SingleLineName>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 0, y: 0}
+    <IconVisualAsset>k__BackingField: {fileID: 11400000, guid: 8e2b86de48d0d55469a7eecb97c439d9, type: 2}
+    <AppearWeek>k__BackingField: 0
+    <AppearLevel>k__BackingField: 0
+    <BackgroundColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
+    <DefaultLocked>k__BackingField: 0
   placeHolders:
   - Type: 0
     Holder: {fileID: 9004935585530225516}

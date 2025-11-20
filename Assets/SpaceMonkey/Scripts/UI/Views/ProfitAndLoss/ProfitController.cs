@@ -80,8 +80,8 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         internal float GetWeekTotalExpenses(bool useSimulation)
         {
             return GetTotalQuantitiesByProduct(useSimulation).Sum(pair => (pair.Key.MaterialPrice!.Value +
-                                                                           pair.Key.MaterialPackagingPrice!.Value +
-                                                                           pair.Key.ShippingCost!.Value) * pair.Value);
+                                                                           pair.Key.MaterialPackagingPrice!.Value) *
+                pair.Value + pair.Key.ShippingCost!.Value);
         }
     }
 }

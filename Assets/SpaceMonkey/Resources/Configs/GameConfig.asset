@@ -520,12 +520,12 @@ MonoBehaviour:
     - <Key>k__BackingField: stuff
       <IconVisualAssetId>k__BackingField: icn_r_staff
       <Description>k__BackingField: Stuff
-  - <Level>k__BackingField: 3
-    <Score>k__BackingField: 500
-    <UnlockInfo>k__BackingField:
     - <Key>k__BackingField: 2product
       <IconVisualAssetId>k__BackingField: 
       <Description>k__BackingField: 2nd Product Slot Unlock
+  - <Level>k__BackingField: 3
+    <Score>k__BackingField: 500
+    <UnlockInfo>k__BackingField:
     - <Key>k__BackingField: smallSpace
       <IconVisualAssetId>k__BackingField: small_comerical_faciloty_unlock_icon_256_0
       <Description>k__BackingField: Small Space Unlocks

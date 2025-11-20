@@ -63,6 +63,7 @@ namespace SpaceMonkey.Scripts.Profile
         public BigOrderGameData BigOrderGameData { get; set; }
         
         public InvestmentGameData InvestmentGameData { get; set; }
+        public FireGameData FireData { get; set; }
         
         public void SetCategory(string category)
         {
@@ -140,7 +141,6 @@ namespace SpaceMonkey.Scripts.Profile
                     new()
                     {
                         Id = initialProdCap.Id,
-                        NeedRepair = false,
                         ProdCapCost = initialProdCap.ProdCapCost,
                         ProdCapAdd = initialProdCap.ProdCapAdd
                     }
@@ -219,6 +219,20 @@ namespace SpaceMonkey.Scripts.Profile
                     }
 
                     WeeksV2[w] = week; // put back
+                }
+                
+                //Update BigOrder
+                if (BigOrderGameData != null && BigOrderGameData.OrderEntries != null)
+                {
+                    for (int i = 0; i < BigOrderGameData.OrderEntries.Count; i++)
+                    {
+                        var orderEntry = BigOrderGameData.OrderEntries[i];
+                        if (orderEntry.Product.Id == product.Id)
+                        {
+                            orderEntry.Product = product; // update
+                            BigOrderGameData.OrderEntries[i] = orderEntry; // put back
+                        }
+                    }
                 }
             }
         }
@@ -325,6 +339,11 @@ namespace SpaceMonkey.Scripts.Profile
             };
         }
         
+        public void CreateFireData(float capacityReductionPercent = 0.5f)
+        {
+            FireData = new FireGameData(capacityReductionPercent);
+        }
+        
         public void AddLoanPaymentRecord(PaymentRecord record)
         {
             if (BusinessLoanData != null)
@@ -346,9 +365,15 @@ namespace SpaceMonkey.Scripts.Profile
         public int GetProductionCapacity()
         {
             var employeeCapacity = Employees.Sum(e => e.Capacity);
-            var prodCap = LevelProdCaps
-                .Where(l => !l.NeedRepair)
-                .Sum(l => l.ProdCapAdd);
+            var prodCap = LevelProdCaps.Sum(l => 
+            {
+                if (FireData != null && FireData.IsActive)
+                {
+                    // When damaged, reduce capacity by configured percentage
+                    return (int)(l.ProdCapAdd * FireData.CapacityReductionPercent);
+                }
+                return l.ProdCapAdd;
+            });
             return employeeCapacity + prodCap;
         }
 
@@ -473,7 +498,6 @@ namespace SpaceMonkey.Scripts.Profile
         public string Id { get; set; }
         public int ProdCapAdd { get; set; }
         public int ProdCapCost { get; set; }
-        public bool NeedRepair { get; set; }
         public int LevelNumber { get; set; }
     }
 
@@ -596,12 +620,14 @@ namespace SpaceMonkey.Scripts.Profile
     
     public class BigOrderGameData
     {
-
         public bool IsActive { get; private set; }
+        public string CharacterId { get; set; }
+        public List<WeekSimulationV2.OrderEntry> OrderEntries { get; set; }
 
         public BigOrderGameData()
         {
             IsActive = true;
+            CharacterId = "smark";
         }
     }
 
@@ -627,5 +653,17 @@ namespace SpaceMonkey.Scripts.Profile
     public class InvestmentGameData
     {
         public List<int> UnlockedPlaces { get; set; } = new();
+    }
+    
+    public class FireGameData
+    {
+        public bool IsActive { get; set; }
+        public float CapacityReductionPercent { get; set; }
+        
+        public FireGameData(float capacityReductionPercent = 0.5f)
+        {
+            IsActive = true;
+            CapacityReductionPercent = capacityReductionPercent;
+        }
     }
 }

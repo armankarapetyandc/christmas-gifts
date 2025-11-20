@@ -29,7 +29,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             Controller.GetAvailableProdCapObservable()
                 .Subscribe(value => productionCapacityText.text = $"{Mathf.RoundToInt(value)} hrs").AddTo(this);
             Controller.GetMoneyObservable()
-                .Subscribe(value => moneyText.text = $"+${value:F2}").AddTo(this);
+                .Subscribe(value => moneyText.text = $"${value:F2}").AddTo(this);
             SetupDefaults();
             SetupCustomers();
             
@@ -60,8 +60,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             var currentWeek = Controller.GetCurrentWeek();
             var moodVisualAssets = Controller.ResolveVisualAssets<MoodVisualAsset>().OrderBy(asset => asset.MoodValue)
                 .ToList();
-
-
             foreach (var order in currentWeek.Orders)
             {
                 var character = Controller.GetCharacter(order.Customer.CharacterId);
@@ -81,6 +79,40 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 )).ToList();
                 orderItem.SetProducts(products);
                 _orders.Add(orderItem);
+            }
+
+            var bigOrder = Controller.GetBigOrder();
+            if (bigOrder != null)
+            {
+                var character = Controller.GetCharacter(bigOrder.CharacterId);
+                var orderItem = Instantiate(orderItemPrefab, container);
+                var order = new WeekSimulationV2.Order
+                {
+                    Customer = new WeekSimulationV2.CustomerData()
+                    {
+                        CharacterId = bigOrder.CharacterId,
+                        Active = true,
+                        Mood = 60,
+                    },
+                    OrderEntries = bigOrder.OrderEntries,
+                    WasFulfilled = bigOrder.OrderEntries.All(e => e.Ship),
+                    IsBigOrder = true
+                };
+                orderItem.SetOrder(order);
+                orderItem.SetCustomer(character);
+                orderItem.ShipOrder.Subscribe(item => ShipOrder(item).Forget()).AddTo(this);
+                orderItem.SetCharacterVisual(character.Sprite, character.BackgroundColor);
+                var moodAsset = moodVisualAssets.FirstOrDefault(asset => order.Customer.Mood <= asset.MoodValue);
+                orderItem.SetMood(order.Customer.Mood, moodAsset);
+                var products = order.OrderEntries.Select(o => (
+                    productOrder: o,
+                    iconVisualAsset: Controller.ResolveVisualAsset<SpriteVisualAsset>(o.Product.IconVisualAssetId),
+                    colorVisualAsset:
+                    Controller.ResolveVisualAsset<ColorVisualAsset>(o.Product.BackgroundColorVisualAssetId)
+                )).ToList();
+                orderItem.SetProducts(products);
+                orderItem.transform.SetAsFirstSibling();
+                _orders.Insert(0, orderItem);
             }
         }
 

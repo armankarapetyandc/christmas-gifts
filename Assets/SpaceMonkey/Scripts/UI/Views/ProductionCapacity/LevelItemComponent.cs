@@ -10,6 +10,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
     {
         [SerializeField] private TextMeshProUGUI levelIndexText;
         [SerializeField] private Image levelIcon;
+        [SerializeField] private Image levelDamaImage;
         [SerializeField] private TextMeshProUGUI levelText;
         [SerializeField] private Image lockImage;
         [SerializeField] private Toggle toggle;
@@ -36,8 +37,13 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             toggle.isOn = !toggle.isOn;
         }
 
-        internal void Setup(LevelVisualAsset visualAsset, Profile.LevelProdCap levelInfo, int index, bool isLocked)
+        internal void Setup(LevelVisualAsset visualAsset, Profile.LevelProdCap levelInfo, int index, bool isLocked, 
+            bool isDamaged)
         {
+            levelDamaImage.gameObject.SetActive(isDamaged && !isLocked);
+            alertImage.gameObject.SetActive(isDamaged && !isLocked);
+            levelIcon.gameObject.SetActive(!isDamaged || isLocked);
+            
             _visualAsset = visualAsset;
             _level = levelInfo;
             levelIcon.sprite = visualAsset.LevelIconSprite;
