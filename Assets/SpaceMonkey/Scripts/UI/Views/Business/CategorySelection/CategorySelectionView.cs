@@ -33,6 +33,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         [SerializeField] private Button nextButton;
         [SerializeField] private CanvasGroup categoryDetailsCanvasGroup;
 
+        [Header("Tutorial")]
+        [SerializeField] private RectTransform labelText;
+
+        [SerializeField] private Image tutorialCategory;
+        
+        public RectTransform LabelText => labelText;
+        public Image TutorialCategory => tutorialCategory;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
