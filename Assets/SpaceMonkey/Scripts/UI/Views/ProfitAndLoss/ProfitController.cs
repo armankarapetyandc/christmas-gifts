@@ -43,6 +43,11 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             return _accountService.Model.Account;
         }
 
+        internal float TotalCash()
+        {
+            return _weekSimulationContext.WeekSimulation.Money.CurrentValue;
+        }
+
         internal void OnNext(bool isWeekEnd)
         {
             _weekSimulationContext.WeekSimulation.GrantReward();

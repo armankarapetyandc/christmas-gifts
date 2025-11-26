@@ -36,6 +36,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
 
         private void SetupExpenses(Dictionary<Profile.Product, int> weekExpenses)
         {
+            expensesComponentPrefab.ResetItemsList();
             // Products
             var totalMaterials = weekExpenses.Sum(pair => pair.Value * pair.Key.MaterialPrice);
             var totalPackaging = weekExpenses.Sum(pair => pair.Value * pair.Key.MaterialPackagingPrice);
