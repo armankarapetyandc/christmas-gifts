@@ -108,6 +108,8 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             {
                 Controller.CheckForCompetition(_viewData.IsWeekEnd);
             }
+
+            Controller.CheckAndShowFirePopup();
             return UniTask.CompletedTask;
         }
 

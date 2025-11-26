@@ -5,6 +5,7 @@ using R3;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
+using SpaceMonkey.Scripts.Simulation.Fire;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Competition;
@@ -33,6 +34,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly WeekSimulationContext _weekSimulationContext;
         private PopupPresenterService _popupPresenterService;
+        private readonly FireSimulator fireSimulator;
         private GameConfig _gameConfig;
 
         public Observable<int> OnLevelChanged => _accountService.OnLevelChanged;
@@ -44,12 +46,13 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         public readonly ReactiveCommand<LockByLevel> OnUnlockByLevel = new ReactiveCommand<LockByLevel>();
         public readonly ReactiveCommand<LockByMoney> OnUnlockByMoney = new ReactiveCommand<LockByMoney>();
 
-        public BusinessHubController(PresenterService presenterService,
+        public BusinessHubController(PresenterService presenterService,FireSimulator fireSimulator,
             AccountService accountService, VisualAssetDatabase visualAssetDatabase,
             NavigationPresenterService navigationPresenterService,
             WeekSimulationContext weekSimulationContext,
             PopupPresenterService popupPresenterService, GameConfig gameConfig) : base(presenterService)
         {
+            this.fireSimulator = fireSimulator;
             _gameConfig = gameConfig;
             _popupPresenterService = popupPresenterService;
             _accountService = accountService;
@@ -75,7 +78,14 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
-
+        internal void CheckAndShowFirePopup()
+        {
+            if (fireSimulator.HasActiveFire == false)
+                return;
+            
+            
+            _popupPresenterService.Show<Popups.Fire.FirePopup>().Forget();
+        }
 
         internal void CheckForUnlockByMoney(LockByMoney[] lockedByMoney, float money)
         {
