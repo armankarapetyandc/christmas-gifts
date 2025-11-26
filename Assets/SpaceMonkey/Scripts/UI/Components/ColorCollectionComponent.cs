@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace SpaceMonkey.Scripts.UI.Components
         [SerializeField] private RectTransform content;
         [SerializeField] private ToggleGroup toggleGroup;
         private readonly List<ColorCollectionItemComponent> _items = new List<ColorCollectionItemComponent>();
-
+        public ColorCollectionItemComponent FirstItem => _items.First();
+        
         public Observable<ColorVisualAsset> Setup(ColorVisualAsset[] assets)
         {
             while (_items.Count > 0)

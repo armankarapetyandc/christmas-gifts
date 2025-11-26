@@ -40,6 +40,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         
         public RectTransform LabelText => labelText;
         public Image TutorialCategory => tutorialCategory;
+        
+        public Button NextButton => nextButton;
 
         public override UniTask Initialize(IPresenterData data = null)
         {

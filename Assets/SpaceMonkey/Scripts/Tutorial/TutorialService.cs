@@ -1,10 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using R3;
+using R3.Triggers;
 using SpaceMonkey.Scripts.Tutorial.Steps;
+using TMPro;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace SpaceMonkey.Scripts.Tutorial
@@ -77,6 +82,20 @@ namespace SpaceMonkey.Scripts.Tutorial
             return this;
         }
         
+        public TutorialService HideArrow()
+        {
+            _tutorialView.gameObject.SetActive(true);
+            _tutorialView.HideArrow();
+            return this;
+        }
+        
+        public TutorialService HideMask()
+        {
+            _tutorialView.gameObject.SetActive(true);
+            _tutorialView.HideMask();
+            return this;
+        }
+        
         public TutorialService ShowTutorialView()
         {
             _tutorialView.gameObject.SetActive(true);
@@ -99,6 +118,24 @@ namespace SpaceMonkey.Scripts.Tutorial
             await UniTask.WaitUntil(() => _presenterService.GetPresenter<T>() == null);
         }
         
+        public async UniTask WaitForButtonPress(Button button)
+        {
+            await button.OnClickAsync();
+        }
+        
+        public async UniTask WaitForObservable(Observable<Unit> unitObservable)
+        {
+            var compilationSource = new UniTaskCompletionSource();
+            var disposable = unitObservable.Subscribe(_ => compilationSource.TrySetResult());
+            await compilationSource.Task;
+            await UniTask.WaitForEndOfFrame();
+            disposable.Dispose();
+        }
+        
+        public async UniTask WaitForInputFieldSelect(TMP_InputField inputField)
+        {
+            await UniTask.WaitUntil(() => inputField.isFocused);
+        }
         private void SetLastCompleteStep(int step)
         {
             PlayerPrefs.SetInt("lastCompleteStep", step);

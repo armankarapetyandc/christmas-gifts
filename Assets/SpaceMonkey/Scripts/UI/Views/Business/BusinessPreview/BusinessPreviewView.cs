@@ -22,6 +22,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
         [SerializeField] private Button generateNameButton;
         [SerializeField] private HashtagVerticalListComponent hashtagVerticalList;
 
+        public TMP_InputField NameInputField => nameInputField;
+
+        public IconComponent IconComponent => iconComponent;
+        public HashtagVerticalListComponent HashtagVerticalList => hashtagVerticalList;
         public override UniTask Initialize(IPresenterData data = null)
         {
             var account = Controller.GetAccount();

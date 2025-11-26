@@ -48,7 +48,19 @@ namespace SpaceMonkey.Scripts.Tutorial
         
         public void Reset()
         {
+            HideArrow();
+            HideMask();
+        }
+
+        public void HideArrow()
+        {
             arrow.gameObject.SetActive(false);
+        }
+
+        public void HideMask()
+        {
+            maskImage.gameObject.SetActive(false);
+            blocker.gameObject.SetActive(false);
         }
     }
 }
