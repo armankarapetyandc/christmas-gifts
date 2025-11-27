@@ -13,7 +13,11 @@ namespace SpaceMonkey.Scripts.Tutorial
         {
             var steps = new List<ITutorialStep>
             {
-                new TutorialStep1()
+                new TutorialStep1(),
+                new TutorialStep2(),
+                new TutorialStep3(),
+                new TutorialStep4(),
+                new TutorialStep5(),
             };
             
             foreach (var step in steps)

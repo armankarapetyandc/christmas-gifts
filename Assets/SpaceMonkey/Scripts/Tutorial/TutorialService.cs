@@ -43,7 +43,9 @@ namespace SpaceMonkey.Scripts.Tutorial
             
             while (lastCompleteStep < lastStep)
             {
+                Debug.Log($"[{nameof(TutorialService)}] Processing Step: {lastCompleteStep + 1}");
                 await ShowStep(lastCompleteStep);
+                Debug.Log($"[{nameof(TutorialService)}] Step Completed: {lastCompleteStep + 1}");
                 HideStep(lastCompleteStep);
                 SetLastCompleteStep(lastCompleteStep);
                 lastCompleteStep++;
@@ -111,11 +113,12 @@ namespace SpaceMonkey.Scripts.Tutorial
         public async UniTask WaitForWindowOpen<T>() where T : BasePresenter
         {
             await UniTask.WaitUntil(() => _presenterService.GetPresenter<T>() != null);
-        }
-        
-        public async UniTask WaitForWindowClose<T>() where T : BasePresenter
-        {
-            await UniTask.WaitUntil(() => _presenterService.GetPresenter<T>() == null);
+            var presenter = _presenterService.GetPresenter<T>();
+            var compilationSource = new UniTaskCompletionSource();
+            var disposable = presenter.OnAfterShow.Subscribe(_ => compilationSource.TrySetResult());
+            await compilationSource.Task;
+            await UniTask.WaitForEndOfFrame();
+            disposable.Dispose();
         }
         
         public async UniTask WaitForButtonPress(Button button)

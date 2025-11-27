@@ -1,15 +1,13 @@
-using DreamCode.UI;
+using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.UI.Utility;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace SpaceMonkey.Scripts.Tutorial
 {
     public class TutorialView : MonoBehaviour
     {
         [SerializeField] private RectTransform arrow;
-        [SerializeField] private Image maskImage;
-        [SerializeField] private Image blocker;
-        [SerializeField] private MaskInverter maskInverter;
+        [SerializeField] private CanvasGapRaycast canvasGapRaycast; 
         
         public void ShowArrow(RectTransform rectTransform)
         {
@@ -25,25 +23,10 @@ namespace SpaceMonkey.Scripts.Tutorial
             arrow.position = worldPoint;
         }
 
-        public void ShowMask(RectTransform rectTransform)
+        public async void ShowMask(RectTransform rectTransform)
         {
-            var image = rectTransform.GetComponent<Image>() ?? rectTransform.GetComponentInChildren<Image>(true);
-            var material = maskInverter.GetModifiedMaterial(image.material);
-            
-            blocker.material = material;
-            blocker.gameObject.SetActive(true);
-            
-            maskImage.sprite = image.sprite;
-            maskImage.SetNativeSize();
-            maskImage.gameObject.SetActive(true);
-            
-            Vector2 pivot = rectTransform.pivot;
-            Vector3 worldPoint = rectTransform.TransformPoint(new Vector3(
-                rectTransform.rect.width * (0.5f - pivot.x),
-                rectTransform.rect.height * (0.5f - pivot.y),
-                0f
-            ));
-            maskImage.transform.position = worldPoint;
+            canvasGapRaycast.gameObject.SetActive(true);
+            canvasGapRaycast.SetHoleFromUIElement(CanvasGapRaycast.HoleShape.Rectangle, rectTransform);
         }
         
         public void Reset()
@@ -59,8 +42,7 @@ namespace SpaceMonkey.Scripts.Tutorial
 
         public void HideMask()
         {
-            maskImage.gameObject.SetActive(false);
-            blocker.gameObject.SetActive(false);
+            canvasGapRaycast.gameObject.SetActive(false);
         }
     }
 }

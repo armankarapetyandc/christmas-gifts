@@ -24,13 +24,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         {
             await _tutorialService.Value.WaitForWindowOpen<BusinessIconBuilderView>();
             var businessPreviewView = _presenterService.GetPresenter<BusinessIconBuilderView>();
-            
-            var shapeItem = businessPreviewView.FirstShapeItem;
-            var shapeRect = (RectTransform)shapeItem.transform;
-            _tutorialService.Value.ShowArrow(shapeRect).ShowMask(shapeRect);
-            await _tutorialService.Value.WaitForObservable(shapeItem.SelectedShapeSprite.AsUnitObservable());
-            _tutorialService.Value.HideArrow().HideMask();
-            
+
             var iconItem = businessPreviewView.IconCollectionComponent.FirstItem;
             var iconRect = (RectTransform)iconItem.transform;
             _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect);
