@@ -19,7 +19,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
         [SerializeField] private Button nextButton;
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private TextMeshProUGUI businessName;
-
+        public Button NextButton => nextButton;
         public override async UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);

@@ -45,7 +45,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
         };
 
         private readonly ObservableHashSet<Hashtag> _selectedTags = new ObservableHashSet<Hashtag>();
-
+        public Button SaveButton => saveButton;
+        public Button BackButton => backButton;
         public override UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);

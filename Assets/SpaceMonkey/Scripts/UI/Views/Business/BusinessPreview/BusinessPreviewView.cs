@@ -26,6 +26,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
 
         public IconComponent IconComponent => iconComponent;
         public HashtagVerticalListComponent HashtagVerticalList => hashtagVerticalList;
+        public Button SaveButton => saveButton;
+        
         public override UniTask Initialize(IPresenterData data = null)
         {
             var account = Controller.GetAccount();
