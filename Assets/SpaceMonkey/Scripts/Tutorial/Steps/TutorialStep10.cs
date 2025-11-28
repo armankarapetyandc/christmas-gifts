@@ -25,6 +25,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var businessHubView = _presenterService.GetPresenter<BusinessHubView>();
             var productComponent = businessHubView.ProductComponent;
             var rectTransform = (RectTransform)productComponent.transform;
+            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step10);
             _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
             await _tutorialService.Value.WaitForObservable(productComponent.OnClick);
             _tutorialService.Value.HideArrow().HideMask();

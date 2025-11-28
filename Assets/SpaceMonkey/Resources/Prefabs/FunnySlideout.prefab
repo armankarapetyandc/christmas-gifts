@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7755883350352837616}
   - component: {fileID: 6041378763502356590}
   - component: {fileID: 1595639832681456579}
+  - component: {fileID: 4545094729418931071}
   m_Layer: 5
-  m_Name: FinnySlideout
+  m_Name: FunnySlideout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,6 +78,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4545094729418931071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4138986632069507833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67b0c5bdda4d4b5b8471010544157da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.Tutorial.FunnySlide.FunnySlideOut
+  description: {fileID: 5987950249544204078}
 --- !u!1 &4198638955403410165
 GameObject:
   m_ObjectHideFlags: 0

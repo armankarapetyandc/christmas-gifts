@@ -27,7 +27,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var businessPreviewView = _presenterService.GetPresenter<BusinessPreviewView>();
             var saveButton = businessPreviewView.SaveButton;
             var saveRect = (RectTransform)saveButton.transform;
-            
+            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step7);
             _tutorialService.Value.ShowArrow(saveRect).ShowMask(saveRect);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
