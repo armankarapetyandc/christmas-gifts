@@ -48,7 +48,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 if (EventSystem.current.currentSelectedGameObject == null)
                 {
                     // Debug.LogError(EventSystem.current.currentSelectedGameObject);
-                    HidePlaceHolder();
+                  //  HidePlaceHolder();
                 }
             }).AddTo(this);
 
