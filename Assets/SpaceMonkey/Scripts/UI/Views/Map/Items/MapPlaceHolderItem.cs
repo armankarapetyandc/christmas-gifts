@@ -106,5 +106,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
             button.onClick.RemoveAllListeners();
             return button.OnClickAsObservable();
         }
+
+        public Observable<Unit> GetButtonObservable()
+        {
+            return button.OnClickAsObservable();
+        }
     }
 }

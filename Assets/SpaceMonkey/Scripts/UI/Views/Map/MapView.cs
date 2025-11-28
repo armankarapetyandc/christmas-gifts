@@ -150,47 +150,57 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }
         }
 
-        public void SelectMyPlace()
+        public MapPlaceHolder SelectMyPlace()
         {
             MapPlaceItem place = _places.FirstOrDefault(item => item.GetType() == typeof(RuntimeMapPlace));
             if (place != null)
             {
-                ShowPlaceHolder(place.Place);
+               return ShowPlaceHolder(place.Place);
             }
+
+            return null;
         }
         
-        private void ShowPlaceHolder(IMapPlace place)
+        private MapPlaceHolder ShowPlaceHolder(IMapPlace place)
         {
+            MapPlaceHolder placeHolder = null;
             foreach (var holder in placeHolders)
             {
                 var item = holder.Holder;
-                item.gameObject.SetActive(holder.Type == place.Type);
-                item.Init(place.Type);
-                item.SetPlaceName(place.SingleLineName);
-                item.SetIcon(place.IconVisualAsset);
-                var companyRating = Controller.CalculateCompanyRating();
-                item.SetRatingStars(companyRating);
-                item.SetRatingsCount(Controller.ReviewsCount);
-                item.SetAverageRating(companyRating);
-
-                
-                item.GetClickHandler().Subscribe(_ =>
+                var isCurrentHolderType = holder.Type == place.Type;
+                item.gameObject.SetActive(isCurrentHolderType);
+                if (isCurrentHolderType)
                 {
-                    if (place.Type == PlaceType.PlaceHolder)
+                    item.Init(place.Type);
+                    item.SetPlaceName(place.SingleLineName);
+                    item.SetIcon(place.IconVisualAsset);
+                    var companyRating = Controller.CalculateCompanyRating();
+                    item.SetRatingStars(companyRating);
+                    item.SetRatingsCount(Controller.ReviewsCount);
+                    item.SetAverageRating(companyRating);
+                    
+                    item.GetClickHandler().Subscribe(_ =>
                     {
-                        Controller.NavigateToMyCompany();
-                    }
+                        if (place.Type == PlaceType.PlaceHolder)
+                        {
+                            Controller.NavigateToMyCompany();
+                        }
 
-                    if (place.Type == PlaceType.CreditCard)
-                    {
-                        Controller.ShowCreditCardInfoPopup();
-                    }
-                    else if (place.Type == PlaceType.BusinessLoan)
-                    {
-                        Controller.ShowBusinessLoanView();
-                    }
-                });
+                        if (place.Type == PlaceType.CreditCard)
+                        {
+                            Controller.ShowCreditCardInfoPopup();
+                        }
+                        else if (place.Type == PlaceType.BusinessLoan)
+                        {
+                            Controller.ShowBusinessLoanView();
+                        }
+                    });
+                    placeHolder = holder;
+                    break;
+                }
             }
+
+            return placeHolder;
         }
 
         private void HidePlaceHolder()
