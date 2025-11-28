@@ -24,9 +24,10 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         public async UniTask Show()
         {
             await _tutorialService.Value.WaitForWindowOpen<MapView>();
-            var businessSetupCelebrationView = _presenterService.GetPresenter<MapView>();
-            
-            
+            var mapView = _presenterService.GetPresenter<MapView>();
+            mapView.SelectMyPlace();
+
+
         }
 
         public void Hide()

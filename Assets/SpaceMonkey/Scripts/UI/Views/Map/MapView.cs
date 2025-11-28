@@ -150,6 +150,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }
         }
 
+        public void SelectMyPlace()
+        {
+            MapPlaceItem place = _places.FirstOrDefault(item => item.GetType() == typeof(RuntimeMapPlace));
+            if (place != null)
+            {
+                ShowPlaceHolder(place.Place);
+            }
+        }
+        
         private void ShowPlaceHolder(IMapPlace place)
         {
             foreach (var holder in placeHolders)
@@ -164,6 +173,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 item.SetRatingsCount(Controller.ReviewsCount);
                 item.SetAverageRating(companyRating);
 
+                
                 item.GetClickHandler().Subscribe(_ =>
                 {
                     if (place.Type == PlaceType.PlaceHolder)
