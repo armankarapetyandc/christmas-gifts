@@ -37,20 +37,20 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             await UniTask.Yield();
             panZoom.SetZoom(defaultMapZoom);
             panZoom.SetPosition(defaultMapPosition);
-
-            Observable.EveryUpdate().Subscribe(_ =>
-            {
-                if (EventSystem.current == null)
-                {
-                    return;
-                }
-
-                if (EventSystem.current.currentSelectedGameObject == null)
-                {
-                    // Debug.LogError(EventSystem.current.currentSelectedGameObject);
-                  //  HidePlaceHolder();
-                }
-            }).AddTo(this);
+            //
+            // Observable.EveryUpdate().Subscribe(_ =>
+            // {
+            //     if (EventSystem.current == null)
+            //     {
+            //         return;
+            //     }
+            //
+            //     if (EventSystem.current.currentSelectedGameObject == null)
+            //     {
+            //         // Debug.LogError(EventSystem.current.currentSelectedGameObject);
+            //       //  HidePlaceHolder();
+            //     }
+            // }).AddTo(this);
 
             PopulatePlaces();
 
