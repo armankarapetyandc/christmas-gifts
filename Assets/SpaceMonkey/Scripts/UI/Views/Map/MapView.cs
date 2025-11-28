@@ -48,7 +48,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 if (EventSystem.current.currentSelectedGameObject == null)
                 {
                     // Debug.LogError(EventSystem.current.currentSelectedGameObject);
-                    HidePlaceHolder();
+                  //  HidePlaceHolder();
                 }
             }).AddTo(this);
 
@@ -152,7 +152,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
 
         public MapPlaceHolder SelectMyPlace()
         {
-            MapPlaceItem place = _places.FirstOrDefault(item => item.GetType() == typeof(RuntimeMapPlace));
+            MapPlaceItem place = _places.FirstOrDefault(item => item.Place.GetType() == typeof(RuntimeMapPlace));
             if (place != null)
             {
                return ShowPlaceHolder(place.Place);
