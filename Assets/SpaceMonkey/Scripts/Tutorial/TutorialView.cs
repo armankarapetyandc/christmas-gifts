@@ -45,12 +45,14 @@ namespace SpaceMonkey.Scripts.Tutorial
         {
             HideArrow();
             HideMask();
+            HideFunnySlideOut();
         }
 
         public void HideArrow()
         {
             arrow.gameObject.SetActive(false);
         }
+
 
         public void HideMask()
         {
