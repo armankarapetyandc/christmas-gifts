@@ -18,23 +18,21 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _presenterService = presenterService;
             _tutorialService = tutorialService;
         }
-        
+
         public async UniTask Show()
         {
             await _tutorialService.Value.WaitForWindowOpen<BusinessPreviewView>();
             var businessPreviewView = _presenterService.GetPresenter<BusinessPreviewView>();
             var hashtagVerticalList = businessPreviewView.HashtagVerticalList;
-            var hashtagVerticalListRect = (RectTransform)hashtagVerticalList.transform;
-            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step5);
-            _tutorialService.Value.ShowArrow(hashtagVerticalListRect).ShowMask(hashtagVerticalListRect).AddArrowYOffset(300);;
+            var hashtagVerticalListRect = (RectTransform) hashtagVerticalList.transform;
+            _tutorialService.Value.ShowArrow(hashtagVerticalListRect).ShowMask(hashtagVerticalListRect)
+                .ShowFunnySlideOut(FunnySlideOutTexts.Step5).AddArrowYOffset(300);
             await _tutorialService.Value.WaitForObservable(hashtagVerticalList.SelectMore);
             _tutorialService.Value.HideTutorialView();
         }
 
         public void Hide()
         {
-            
         }
-
     }
 }

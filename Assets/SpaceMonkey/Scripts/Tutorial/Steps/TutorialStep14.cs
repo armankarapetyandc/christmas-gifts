@@ -19,20 +19,19 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _presenterService = presenterService;
             _tutorialService = tutorialService;
         }
-        
+
         public async UniTask Show()
         {
             await _tutorialService.Value.WaitForWindowOpen<ProductView>();
             var productView = _presenterService.GetPresenter<ProductView>();
             var inputField = productView.InputField;
-            var rectTransform = (RectTransform)inputField.transform;
-            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step14);
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
+            var rectTransform = (RectTransform) inputField.transform;
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform)
+                .ShowFunnySlideOut(FunnySlideOutTexts.Step14);
             await _tutorialService.Value.WaitForInputFieldSelect(inputField);
-            _tutorialService.Value.HideArrow().HideMask();
-            _tutorialService.Value.HideFunnySlideOut();
+            _tutorialService.Value.HideArrow().HideMask().HideFunnySlideOut();
             var saveButton = productView.SaveButton;
-            rectTransform = (RectTransform)saveButton.transform;
+            rectTransform = (RectTransform) saveButton.transform;
             _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();

@@ -19,15 +19,15 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _presenterService = presenterService;
             _tutorialService = tutorialService;
         }
-        
+
         public async UniTask Show()
         {
             await _tutorialService.Value.WaitForWindowOpen<ProductListView>();
             var productListView = _presenterService.GetPresenter<ProductListView>();
             var newProductButton = productListView.NewProductButton;
-            var rectTransform = (RectTransform)newProductButton.transform;
-            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step11);
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
+            var rectTransform = (RectTransform) newProductButton.transform;
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform)
+                .ShowFunnySlideOut(FunnySlideOutTexts.Step11);
             await _tutorialService.Value.WaitForButtonPress(newProductButton);
             _tutorialService.Value.HideArrow().HideMask();
         }

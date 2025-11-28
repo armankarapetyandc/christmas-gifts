@@ -7,7 +7,7 @@ using Zenject;
 
 namespace SpaceMonkey.Scripts.Tutorial.Steps
 {
-    public class TutorialStep8: ITutorialStep
+    public class TutorialStep8 : ITutorialStep
     {
         private LazyInject<TutorialService> _tutorialService;
         private PresenterService _presenterService;
@@ -19,23 +19,20 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _presenterService = presenterService;
             _tutorialService = tutorialService;
         }
-        
+
         public async UniTask Show()
         {
             await _tutorialService.Value.WaitForWindowOpen<BusinessSetupCelebrationView>();
             var businessSetupCelebrationView = _presenterService.GetPresenter<BusinessSetupCelebrationView>();
             var nextButton = businessSetupCelebrationView.NextButton;
-            var nextRect = (RectTransform)nextButton.transform;
-            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step7);
-            _tutorialService.Value.ShowArrow(nextRect).ShowMask(nextRect);
+            var nextRect = (RectTransform) nextButton.transform;
+            _tutorialService.Value.ShowArrow(nextRect).ShowMask(nextRect).ShowFunnySlideOut(FunnySlideOutTexts.Step8);
             await _tutorialService.Value.WaitForObservable(nextButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }
 
         public void Hide()
         {
-            
         }
-
     }
 }

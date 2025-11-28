@@ -24,8 +24,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             await _tutorialService.Value.WaitForWindowOpen<BusinessPreviewView>();
             var businessPreviewView = _presenterService.GetPresenter<BusinessPreviewView>();
             var inputFiled = (RectTransform)businessPreviewView.NameInputField.transform;
-            _tutorialService.Value.ShowArrow(inputFiled).ShowMask(inputFiled);
-            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step3);
+            _tutorialService.Value.ShowArrow(inputFiled).ShowMask(inputFiled).ShowFunnySlideOut(FunnySlideOutTexts.Step3);
             await _tutorialService.Value.WaitForInputFieldSelect(businessPreviewView.NameInputField);
             _tutorialService.Value.HideMask().HideArrow();
             var iconComponent = businessPreviewView.IconComponent;

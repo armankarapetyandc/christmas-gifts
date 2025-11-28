@@ -19,36 +19,34 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _presenterService = presenterService;
             _tutorialService = tutorialService;
         }
-        
+
         public async UniTask Show()
         {
             await _tutorialService.Value.WaitForWindowOpen<BusinessIconBuilderView>();
             var businessPreviewView = _presenterService.GetPresenter<BusinessIconBuilderView>();
-            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step4);
             var iconItem = businessPreviewView.IconCollectionComponent.FirstItem;
-            var iconRect = (RectTransform)iconItem.transform;
-            _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect);
+            var iconRect = (RectTransform) iconItem.transform;
+            _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect).ShowFunnySlideOut(FunnySlideOutTexts.Step4);
             await _tutorialService.Value.WaitForObservable(businessPreviewView.IconSelectedObservable);
             _tutorialService.Value.HideArrow().HideMask();
-            
+
             var tabItem = businessPreviewView.ColorTab;
-            var tabRect = (RectTransform)tabItem.transform;
+            var tabRect = (RectTransform) tabItem.transform;
             _tutorialService.Value.ShowArrow(tabRect).ShowMask(tabRect);
             await _tutorialService.Value.WaitForObservable(tabItem.ToggleObservable);
             _tutorialService.Value.HideArrow().HideMask();
-            
+
             var colorItem = businessPreviewView.ColorCollectionComponent.FirstItem;
-            var colorRect = (RectTransform)colorItem.transform;
+            var colorRect = (RectTransform) colorItem.transform;
             _tutorialService.Value.ShowArrow(colorRect).ShowMask(colorRect);
             await _tutorialService.Value.WaitForObservable(businessPreviewView.ColorSelectedObservable);
             _tutorialService.Value.HideArrow().HideMask();
-            
+
             var saveButton = businessPreviewView.SaveButton;
-            var saveRect = (RectTransform)saveButton.transform;
+            var saveRect = (RectTransform) saveButton.transform;
             _tutorialService.Value.ShowArrow(saveRect).ShowMask(saveRect);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
-            
         }
 
         public void Hide()
