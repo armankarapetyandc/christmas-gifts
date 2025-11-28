@@ -30,6 +30,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var saveRect = (RectTransform)saveButton.transform;
             
             await UniTask.WaitWhile(() => businessHashtagsSelectionView.SaveButton.interactable == false);
+            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step6);
             _tutorialService.Value.ShowArrow(saveRect).ShowMask(saveRect);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();

@@ -69,6 +69,20 @@ namespace SpaceMonkey.Scripts.Tutorial
             step?.Hide();
             HideTutorialView();
         }
+        
+        public TutorialService ShowFunnySlideOut(string description)
+        {
+            _tutorialView.gameObject.SetActive(true);
+            _tutorialView.ShowFunnySlideOut(description);
+            return this;
+        } 
+        
+        public TutorialService HideFunnySlideOut()
+        {
+            _tutorialView.gameObject.SetActive(true);
+            _tutorialView.HideFunnySlideOut();
+            return this;
+        } 
 
         public TutorialService ShowArrow(RectTransform rectTransform)
         {

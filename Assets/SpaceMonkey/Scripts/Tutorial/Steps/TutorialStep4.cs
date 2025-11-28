@@ -24,7 +24,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         {
             await _tutorialService.Value.WaitForWindowOpen<BusinessIconBuilderView>();
             var businessPreviewView = _presenterService.GetPresenter<BusinessIconBuilderView>();
-
+            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step4);
             var iconItem = businessPreviewView.IconCollectionComponent.FirstItem;
             var iconRect = (RectTransform)iconItem.transform;
             _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect);

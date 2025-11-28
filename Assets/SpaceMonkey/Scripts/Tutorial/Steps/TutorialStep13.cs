@@ -27,6 +27,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var productIconBuilderView = _presenterService.GetPresenter<ProductIconBuilderView>();
             var firstIcon = productIconBuilderView.IconCollectionComponent.FirstItem;
             var rectTransform = (RectTransform)firstIcon.transform;
+            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step13);
             _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
             await _tutorialService.Value.WaitForObservable(firstIcon.OnSelected.AsUnitObservable());
             

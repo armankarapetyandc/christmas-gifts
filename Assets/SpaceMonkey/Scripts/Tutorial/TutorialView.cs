@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Tutorial.FunnySlide;
 using SpaceMonkey.Scripts.UI.Utility;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace SpaceMonkey.Scripts.Tutorial
     public class TutorialView : MonoBehaviour
     {
         [SerializeField] private RectTransform arrow;
+        [SerializeField] private FunnySlideOut funnySlideOut;
         [SerializeField] private CanvasGapRaycast canvasGapRaycast; 
         
         public void ShowArrow(RectTransform rectTransform)
@@ -21,6 +23,16 @@ namespace SpaceMonkey.Scripts.Tutorial
             ));
 
             arrow.position = worldPoint;
+        }
+
+        public void ShowFunnySlideOut(string description)
+        {
+            funnySlideOut.Show(description);
+        }
+        
+        public void HideFunnySlideOut()
+        {
+            funnySlideOut.Hide();
         }
 
         public async void ShowMask(RectTransform rectTransform)
