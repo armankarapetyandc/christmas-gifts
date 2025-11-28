@@ -21,6 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
         [SerializeField] private List<ShapeItem> shapeItems;
         [SerializeField] private IconCollectionComponent iconCollectionComponent;
         [SerializeField] private ColorCollectionComponent colorCollectionComponent;
+        [SerializeField] private TabItem colorTabItem;
         private ReactiveCommand IconSelectedCommand = new ReactiveCommand();
         private ReactiveCommand ColorSelectedCommand = new ReactiveCommand();
         
@@ -30,6 +31,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
         public Observable<Unit> IconSelectedObservable => IconSelectedCommand;
         public Observable<Unit> ColorSelectedObservable => ColorSelectedCommand;
         public Button SaveButton => saveButton;
+        
+        public TabItem ColorTab => colorTabItem;
 
         public override UniTask Initialize(IPresenterData data = null)
         {

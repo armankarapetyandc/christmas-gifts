@@ -18,6 +18,15 @@ namespace SpaceMonkey.Scripts.Tutorial
                 new TutorialStep3(),
                 new TutorialStep4(),
                 new TutorialStep5(),
+                new TutorialStep6(),
+                new TutorialStep7(),
+                new TutorialStep8(),
+                new TutorialStep9(),
+                new TutorialStep10(),
+                new TutorialStep11(),
+                new TutorialStep12(),
+                new TutorialStep13(),
+                new TutorialStep14()
             };
             
             foreach (var step in steps)

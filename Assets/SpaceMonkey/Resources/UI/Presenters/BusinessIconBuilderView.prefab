@@ -400,6 +400,7 @@ MonoBehaviour:
   - {fileID: 818933869593061326}
   iconCollectionComponent: {fileID: 330426978434510392}
   colorCollectionComponent: {fileID: 5491099453247394783}
+  colorTabItem: {fileID: 8940606362041699797}
 --- !u!114 &393374380292888334
 MonoBehaviour:
   m_ObjectHideFlags: 0

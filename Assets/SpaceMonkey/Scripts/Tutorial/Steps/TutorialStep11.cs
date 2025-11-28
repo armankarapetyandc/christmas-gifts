@@ -1,18 +1,17 @@
 using Cysharp.Threading.Tasks;
-using R3;
-using SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration;
-using SpaceMonkey.Scripts.UI.Views.Map;
+using SpaceMonkey.Scripts.UI.Views.BusinessHub;
+using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using UIService.Runtime.Presenter;
 using UnityEngine;
 using Zenject;
 
 namespace SpaceMonkey.Scripts.Tutorial.Steps
 {
-    public class TutorialStep9: ITutorialStep
+    public class TutorialStep11 : ITutorialStep
     {
         private LazyInject<TutorialService> _tutorialService;
         private PresenterService _presenterService;
-        public int Order => 9;
+        public int Order => 11;
 
         [Inject]
         private void Inject(LazyInject<TutorialService> tutorialService, PresenterService presenterService)
@@ -23,19 +22,17 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         
         public async UniTask Show()
         {
-            await _tutorialService.Value.WaitForWindowOpen<MapView>();
-            var mapView = _presenterService.GetPresenter<MapView>();
-            var placeHolder = mapView.SelectMyPlace();
-            var rectTransform = (RectTransform)placeHolder.Holder.transform;
+            await _tutorialService.Value.WaitForWindowOpen<ProductListView>();
+            var productListView = _presenterService.GetPresenter<ProductListView>();
+            var newProductButton = productListView.NewProductButton;
+            var rectTransform = (RectTransform)newProductButton.transform;
             _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
-            await _tutorialService.Value.WaitForObservable(placeHolder.Holder.GetButtonObservable());
+            await _tutorialService.Value.WaitForButtonPress(newProductButton);
             _tutorialService.Value.HideArrow().HideMask();
         }
 
         public void Hide()
         {
-            
         }
-
     }
 }

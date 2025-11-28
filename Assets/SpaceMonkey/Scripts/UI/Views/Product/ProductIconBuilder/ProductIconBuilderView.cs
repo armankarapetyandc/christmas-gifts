@@ -25,6 +25,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
         [SerializeField] private ColorCollectionComponent colorCollectionComponent;
 
         private Data _data;
+        public IconCollectionComponent IconCollectionComponent => iconCollectionComponent;
+        public Button SaveButton => saveButton;
 
         public override UniTask Initialize(IPresenterData data = null)
         {

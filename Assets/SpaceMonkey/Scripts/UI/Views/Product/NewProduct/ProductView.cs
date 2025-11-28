@@ -37,7 +37,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
 
         [SerializeField] private Button deleteButton;
         [SerializeField] private ColorVisualAsset defaultIconColorVisualAsset;
-
+        public IconComponent IconComponent => iconComponent;
+        public TMP_InputField InputField => productNameInputField;
+        
+        public Button SaveButton => saveButton;
         public override async UniTask Initialize(IPresenterData data = null)
         {
             var presenterData = data as Data;

@@ -29,7 +29,12 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var iconRect = (RectTransform)iconItem.transform;
             _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect);
             await _tutorialService.Value.WaitForObservable(businessPreviewView.IconSelectedObservable);
+            _tutorialService.Value.HideArrow().HideMask();
             
+            var tabItem = businessPreviewView.ColorTab;
+            var tabRect = (RectTransform)tabItem.transform;
+            _tutorialService.Value.ShowArrow(tabRect).ShowMask(tabRect);
+            await _tutorialService.Value.WaitForObservable(tabItem.ToggleObservable);
             _tutorialService.Value.HideArrow().HideMask();
             
             var colorItem = businessPreviewView.ColorCollectionComponent.FirstItem;

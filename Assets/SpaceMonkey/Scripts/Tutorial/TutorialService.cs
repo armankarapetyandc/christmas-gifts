@@ -137,7 +137,11 @@ namespace SpaceMonkey.Scripts.Tutorial
         
         public async UniTask WaitForInputFieldSelect(TMP_InputField inputField)
         {
-            await UniTask.WaitUntil(() => inputField.isFocused);
+            var compilationSource = new UniTaskCompletionSource();
+            var disposable = inputField.onEndEdit.AsObservable().AsUnitObservable().Subscribe(_ => compilationSource.TrySetResult());
+            await compilationSource.Task;
+            await UniTask.WaitForEndOfFrame();
+            disposable.Dispose();
         }
         private void SetLastCompleteStep(int step)
         {

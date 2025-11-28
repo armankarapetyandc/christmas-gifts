@@ -11,7 +11,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
     {
         private LazyInject<TutorialService> _tutorialService;
         private PresenterService _presenterService;
-        public int Order => 7;
+        public int Order => 8;
 
         [Inject]
         private void Inject(LazyInject<TutorialService> tutorialService, PresenterService presenterService)

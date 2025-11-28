@@ -1,4 +1,5 @@
 ﻿using R3;
+using R3.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ namespace SpaceMonkey.Scripts.UI.Components
         [SerializeField] private Image image;
         [SerializeField] private Toggle toggle;
         [SerializeField] private TabContent content;
-
+        public Observable<Unit> ToggleObservable => toggle.OnPointerClickAsObservable().AsUnitObservable();
         private void Start()
         {
             toggle.OnValueChangedAsObservable().Subscribe(OnStateChanged).AddTo(this);
