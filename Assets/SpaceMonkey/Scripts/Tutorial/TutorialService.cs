@@ -109,6 +109,11 @@ namespace SpaceMonkey.Scripts.Tutorial
             _tutorialView.Reset();
             _tutorialView.gameObject.SetActive(false);
         }
+        
+        public void AddArrowYOffset(float offset)
+        {
+            _tutorialView.AddArrowYOffset(offset);
+        }
 
         public async UniTask WaitForWindowOpen<T>() where T : BasePresenter
         {
@@ -138,7 +143,13 @@ namespace SpaceMonkey.Scripts.Tutorial
         public async UniTask WaitForInputFieldSelect(TMP_InputField inputField)
         {
             var compilationSource = new UniTaskCompletionSource();
-            var disposable = inputField.onEndEdit.AsObservable().AsUnitObservable().Subscribe(_ => compilationSource.TrySetResult());
+            var disposable = inputField.onEndEdit.AsObservable().AsUnitObservable().Subscribe(_ =>
+            {
+                if (inputField.text.Length > 0)
+                {
+                    compilationSource.TrySetResult();
+                }
+            });
             await compilationSource.Task;
             await UniTask.WaitForEndOfFrame();
             disposable.Dispose();

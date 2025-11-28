@@ -29,7 +29,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _tutorialService.Value.HideMask().HideArrow();
             var iconComponent = businessPreviewView.IconComponent;
             var iconRect = (RectTransform)iconComponent.transform;
-            _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect);
+            _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect).AddArrowYOffset(100);
             await _tutorialService.Value.WaitForObservable(iconComponent.OnClick);
             _tutorialService.Value.HideTutorialView();
         }

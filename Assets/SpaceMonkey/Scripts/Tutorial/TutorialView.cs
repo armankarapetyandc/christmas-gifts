@@ -44,5 +44,10 @@ namespace SpaceMonkey.Scripts.Tutorial
         {
             canvasGapRaycast.gameObject.SetActive(false);
         }
+
+        public void AddArrowYOffset(float offset)
+        {
+            arrow.position += new Vector3(0, offset, 0);
+        }
     }
 }
