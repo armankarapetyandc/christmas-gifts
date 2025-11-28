@@ -26,7 +26,8 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var hashtagVerticalList = businessPreviewView.HashtagVerticalList;
             var hashtagVerticalListRect = (RectTransform) hashtagVerticalList.transform;
             _tutorialService.Value.ShowArrow(hashtagVerticalListRect).ShowMask(hashtagVerticalListRect)
-                .ShowFunnySlideOut(FunnySlideOutTexts.Step5).AddArrowYOffset(300);
+                .ShowFunnySlideOut(FunnySlideOutTexts.Step51)
+                .AddArrowYOffset(300);
             await _tutorialService.Value.WaitForObservable(hashtagVerticalList.SelectMore);
             _tutorialService.Value.HideTutorialView();
         }

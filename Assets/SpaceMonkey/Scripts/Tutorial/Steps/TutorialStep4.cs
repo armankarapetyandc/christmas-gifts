@@ -26,25 +26,25 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var businessPreviewView = _presenterService.GetPresenter<BusinessIconBuilderView>();
             var iconItem = businessPreviewView.IconCollectionComponent.FirstItem;
             var iconRect = (RectTransform) iconItem.transform;
-            _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect).ShowFunnySlideOut(FunnySlideOutTexts.Step4);
+            _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect).ShowFunnySlideOut(FunnySlideOutTexts.Step41);
             await _tutorialService.Value.WaitForObservable(businessPreviewView.IconSelectedObservable);
             _tutorialService.Value.HideArrow().HideMask();
 
             var tabItem = businessPreviewView.ColorTab;
             var tabRect = (RectTransform) tabItem.transform;
-            _tutorialService.Value.ShowArrow(tabRect).ShowMask(tabRect);
+            _tutorialService.Value.ShowArrow(tabRect).ShowMask(tabRect).ShowFunnySlideOut(FunnySlideOutTexts.Step42);;
             await _tutorialService.Value.WaitForObservable(tabItem.ToggleObservable);
             _tutorialService.Value.HideArrow().HideMask();
 
             var colorItem = businessPreviewView.ColorCollectionComponent.FirstItem;
             var colorRect = (RectTransform) colorItem.transform;
-            _tutorialService.Value.ShowArrow(colorRect).ShowMask(colorRect);
+            _tutorialService.Value.ShowArrow(colorRect).ShowMask(colorRect).ShowFunnySlideOut(FunnySlideOutTexts.Step43);
             await _tutorialService.Value.WaitForObservable(businessPreviewView.ColorSelectedObservable);
             _tutorialService.Value.HideArrow().HideMask();
 
             var saveButton = businessPreviewView.SaveButton;
             var saveRect = (RectTransform) saveButton.transform;
-            _tutorialService.Value.ShowArrow(saveRect).ShowMask(saveRect);
+            _tutorialService.Value.ShowArrow(saveRect).ShowMask(saveRect).ShowFunnySlideOut(FunnySlideOutTexts.Step44);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }

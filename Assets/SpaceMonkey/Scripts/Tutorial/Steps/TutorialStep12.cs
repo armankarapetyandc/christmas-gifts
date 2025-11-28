@@ -26,8 +26,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var productView = _presenterService.GetPresenter<ProductView>();
             var iconComponent = productView.IconComponent;
             var rectTransform = (RectTransform) iconComponent.transform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform)
-                .ShowFunnySlideOut(FunnySlideOutTexts.Step12);
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
             await _tutorialService.Value.WaitForObservable(iconComponent.OnClick);
             _tutorialService.Value.HideArrow().HideMask();
         }

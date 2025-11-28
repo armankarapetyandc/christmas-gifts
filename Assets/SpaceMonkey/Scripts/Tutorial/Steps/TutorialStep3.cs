@@ -18,18 +18,20 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _presenterService = presenterService;
             _tutorialService = tutorialService;
         }
-        
+
         public async UniTask Show()
         {
             await _tutorialService.Value.WaitForWindowOpen<BusinessPreviewView>();
             var businessPreviewView = _presenterService.GetPresenter<BusinessPreviewView>();
-            var inputFiled = (RectTransform)businessPreviewView.NameInputField.transform;
-            _tutorialService.Value.ShowArrow(inputFiled).ShowMask(inputFiled).ShowFunnySlideOut(FunnySlideOutTexts.Step3);
+            var inputFiled = (RectTransform) businessPreviewView.NameInputField.transform;
+            _tutorialService.Value.ShowArrow(inputFiled).ShowMask(inputFiled)
+                .ShowFunnySlideOut(FunnySlideOutTexts.Step31);
             await _tutorialService.Value.WaitForInputFieldSelect(businessPreviewView.NameInputField);
             _tutorialService.Value.HideMask().HideArrow();
             var iconComponent = businessPreviewView.IconComponent;
-            var iconRect = (RectTransform)iconComponent.transform;
-            _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect).AddArrowYOffset(100);
+            var iconRect = (RectTransform) iconComponent.transform;
+            _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect).ShowFunnySlideOut(FunnySlideOutTexts.Step32)
+                .AddArrowYOffset(100);
             await _tutorialService.Value.WaitForObservable(iconComponent.OnClick);
             _tutorialService.Value.HideTutorialView();
         }
@@ -37,6 +39,5 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         public void Hide()
         {
         }
-            
     }
 }

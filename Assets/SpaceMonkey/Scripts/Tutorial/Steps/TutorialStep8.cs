@@ -26,7 +26,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var businessSetupCelebrationView = _presenterService.GetPresenter<BusinessSetupCelebrationView>();
             var nextButton = businessSetupCelebrationView.NextButton;
             var nextRect = (RectTransform) nextButton.transform;
-            _tutorialService.Value.ShowArrow(nextRect).ShowMask(nextRect).ShowFunnySlideOut(FunnySlideOutTexts.Step8);
+            _tutorialService.Value.ShowArrow(nextRect).ShowMask(nextRect);
             await _tutorialService.Value.WaitForObservable(nextButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }

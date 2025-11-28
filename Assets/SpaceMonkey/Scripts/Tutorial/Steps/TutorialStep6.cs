@@ -28,9 +28,9 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
 
             var saveButton = businessHashtagsSelectionView.SaveButton;
             var saveRect = (RectTransform) saveButton.transform;
-
+            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step61);
             await UniTask.WaitWhile(() => businessHashtagsSelectionView.SaveButton.interactable == false);
-            _tutorialService.Value.ShowArrow(saveRect).ShowMask(saveRect).ShowFunnySlideOut(FunnySlideOutTexts.Step6);
+            _tutorialService.Value.ShowArrow(saveRect).ShowMask(saveRect).ShowFunnySlideOut(FunnySlideOutTexts.Step62);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }
