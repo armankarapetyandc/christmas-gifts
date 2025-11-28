@@ -30,7 +30,8 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform)
                 .ShowFunnySlideOut(FunnySlideOutTexts.Step13);
             await _tutorialService.Value.WaitForObservable(firstIcon.OnSelected.AsUnitObservable());
-
+            _tutorialService.Value.HideArrow().HideMask();
+            
             var saveButton = productIconBuilderView.SaveButton;
             rectTransform = (RectTransform) saveButton.transform;
             _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
