@@ -44,7 +44,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             await UniTask.WaitForEndOfFrame();
 
             _tutorialService.Value.ShowArrow(productView.ParametersContainer).ShowMask(productView.ParametersContainer)
-                .ShowFunnySlideOut(FunnySlideOutTexts.Step142).AddArrowYOffset(550);
+                .ShowFunnySlideOut(FunnySlideOutTexts.Step142).AddArrowYOffset(560);
             await UniTask.Delay(TimeSpan.FromSeconds(5));
             _tutorialService.Value.HideArrow().HideMask().HideFunnySlideOut();
             await UniTask.WaitForEndOfFrame();

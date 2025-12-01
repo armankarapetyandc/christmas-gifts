@@ -48,6 +48,8 @@ namespace SpaceMonkey.Scripts.Tutorial
                 SetLastCompleteStep(lastCompleteStep);
                 lastCompleteStep++;
             }
+
+            SetLastCompleteStep(lastCompleteStep);
         }
 
         private async UniTask<bool> ShowStep(int lastCompleteStep)
