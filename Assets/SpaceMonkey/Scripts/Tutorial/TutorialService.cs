@@ -154,12 +154,37 @@ namespace SpaceMonkey.Scripts.Tutorial
             disposable.Dispose();
         }
         
+        public async UniTask<T> WaitForObservable<T>(Observable<T> unitObservable)
+        {
+            var compilationSource = new UniTaskCompletionSource<T>();
+            var disposable = unitObservable.Subscribe(value => compilationSource.TrySetResult(value));
+            await compilationSource.Task;
+            await UniTask.WaitForEndOfFrame();
+            disposable.Dispose();
+            return await compilationSource.Task;
+        }
+        
         public async UniTask WaitForInputFieldSelect(TMP_InputField inputField)
         {
             var compilationSource = new UniTaskCompletionSource();
             var disposable = inputField.onEndEdit.AsObservable().AsUnitObservable().Subscribe(_ =>
             {
                 if (inputField.text.Length > 0)
+                {
+                    compilationSource.TrySetResult();
+                }
+            });
+            await compilationSource.Task;
+            await UniTask.WaitForEndOfFrame();
+            disposable.Dispose();
+        }
+        
+        public async UniTask WaitForInputFieldSubmit(TMP_InputField inputField)
+        {
+            var compilationSource = new UniTaskCompletionSource();
+            var disposable = inputField.onSubmit.AsObservable().AsUnitObservable().Subscribe(_ =>
+            {
+                if (inputField.text.Length > 5)
                 {
                     compilationSource.TrySetResult();
                 }

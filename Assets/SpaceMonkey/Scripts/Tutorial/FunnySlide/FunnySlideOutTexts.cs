@@ -10,8 +10,8 @@ namespace SpaceMonkey.Scripts.Tutorial
         public const string Step44 = "Awesome! Now tap save to exit the logo builder.";
         public const string Step51 = "Awesome! Add some hashtags to define your company.";
         public const string Step61 = "Remember, the more hashtags you have the better!";
-        //public const string Step12 = "You’re getting closer - try to add a few more!";
-        public const string Step62 = "Okay that should do it. You can always add more later.";
+        public const string Step62 = "You’re getting closer - try to add a few more!";
+        public const string Step63 = "Okay that should do it. You can always add more later.";
         public const string Step71 = "Way to go! Save your branding and go make some products.";
     }
 }
