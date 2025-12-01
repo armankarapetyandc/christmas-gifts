@@ -35,12 +35,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         [SerializeField] private TextMeshProUGUI totalCostText;
         [SerializeField] private TextMeshProUGUI shippingCostText;
         [SerializeField] private TextMeshProUGUI profitProductNameText;
+        [SerializeField] private HotItemSubView hotItemSubView;
 
         [SerializeField] private Button deleteButton;
         [SerializeField] private ColorVisualAsset defaultIconColorVisualAsset;
         public IconComponent IconComponent => iconComponent;
         public TMP_InputField InputField => productNameInputField;
 
+
+
+        public HotItemSubView HotItemSubView =>  hotItemSubView;
         public RectTransform ParametersContainer => parametersContainer;
         public Observable<Unit> ParametersChanged => Observable.Merge(
             timeToProductSlider.CurrentValue.Select(_ => Unit.Default),
@@ -71,6 +75,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 .BindButton(saveButton)
                 .AddTo(this);
         }
+        
 
         private void SetupDefaults(Profile.Product? product)
         {
