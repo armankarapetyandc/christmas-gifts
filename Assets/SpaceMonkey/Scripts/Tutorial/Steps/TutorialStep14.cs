@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Views.Product.NewProduct;
@@ -31,12 +32,8 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _tutorialService.Value.HideArrow().HideMask().HideFunnySlideOut();
 
             _tutorialService.Value.ShowArrow(productView.ParametersContainer).ShowMask(productView.ParametersContainer)
-                .ShowFunnySlideOut(FunnySlideOutTexts.Step142).AddArrowYOffset(20);
-            for (int i = 0; i < 3; i++)
-            {
-                await _tutorialService.Value.WaitForObservable(productView.ParametersChanged);
-            }
-            
+                .ShowFunnySlideOut(FunnySlideOutTexts.Step142);
+            await UniTask.Delay(TimeSpan.FromSeconds(4));
             var saveButton = productView.SaveButton;
             rectTransform = (RectTransform) saveButton.transform;
             _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).ShowFunnySlideOut(FunnySlideOutTexts.Step143);
