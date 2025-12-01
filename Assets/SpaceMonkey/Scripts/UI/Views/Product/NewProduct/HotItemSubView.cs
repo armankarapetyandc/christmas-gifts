@@ -7,6 +7,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
     public class HotItemSubView : MonoBehaviour
     {
         [SerializeField] private Button nextButton;
+        [SerializeField] private Button backButton;
         [SerializeField] private RectTransform nextButtonRect;
         [SerializeField] private Image productImage;
         [SerializeField] private TextMeshProUGUI productName;
@@ -14,6 +15,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         
         public RectTransform NextButtonRect => nextButtonRect;
         public Button NextButton => nextButton;
+        public Button BackButton => backButton;
 
 
         public void Initialize(Sprite sprite, string pName)
