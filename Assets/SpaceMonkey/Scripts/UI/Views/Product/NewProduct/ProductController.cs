@@ -84,7 +84,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                     transform);
             }
 
-            PresenterService.HidePreviousAndShow<ProductListView>().Forget();
+            if (_accountService.Model.Account.Products.Count == 1)
+            {
+                //show congrats
+            }
+            else
+            {
+                PresenterService.HidePreviousAndShow<ProductListView>().Forget();
+            }
         }
 
         internal void SetProduct(Profile.Product? product)
