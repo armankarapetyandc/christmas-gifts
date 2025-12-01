@@ -42,8 +42,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         public IconComponent IconComponent => iconComponent;
         public TMP_InputField InputField => productNameInputField;
 
-
-
         public HotItemSubView HotItemSubView =>  hotItemSubView;
         public RectTransform ParametersContainer => parametersContainer;
         public Observable<Unit> ParametersChanged => Observable.Merge(
@@ -75,7 +73,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 .BindButton(saveButton)
                 .AddTo(this);
         }
-        
+
+        public void HideBaseHolder()
+        {
+            presenterHolder.gameObject.SetActive(false);
+        }
 
         private void SetupDefaults(Profile.Product? product)
         {

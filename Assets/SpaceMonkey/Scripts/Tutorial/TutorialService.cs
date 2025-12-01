@@ -19,9 +19,7 @@ namespace SpaceMonkey.Scripts.Tutorial
         private List<ITutorialStep> _steps;
         private TutorialView _tutorialView;
         private PresenterService _presenterService;
-
-        public TutorialView tutorialView => _tutorialView;
-
+        public bool IsTutorialCompleted => GetLastCompleteStep() == _steps.Last().Order;
         [Inject]
         private void Inject(List<ITutorialStep> steps, TutorialView tutorialView, PresenterService presenterService)
         {

@@ -86,7 +86,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
 
         private void IconSelected(SpriteVisualAsset visualAsset)
         {
-            Debug.LogError("asdasdasdasdasdasdad");
             iconComponent.SetIcon(visualAsset);
             Controller.CompanyLogo.IconVisualAssetId = visualAsset.Id;
             IconSelectedCommand.Execute(Unit.Default);

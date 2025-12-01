@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Tutorial;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Popups.Core;
@@ -22,12 +23,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
 
         internal Profile.Product CurrentProduct;
         private ScoresConfigs _scoresConfigs;
+        private readonly TutorialService tutorialService;
 
         public ProductController(PresenterService presenterService, PopupPresenterService popupPresenterService,
             AccountService accountService,
-            VisualAssetDatabase visualAssetDatabase, ScoresConfigs scoresConfigs) : base(presenterService)
+            VisualAssetDatabase visualAssetDatabase, ScoresConfigs scoresConfigs,TutorialService tutorialService) : base(presenterService)
         {
             _scoresConfigs = scoresConfigs;
+            this.tutorialService = tutorialService;
             _popupPresenterService = popupPresenterService;
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
@@ -84,14 +87,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                     transform);
             }
 
-            if (_accountService.Model.Account.Products.Count == 1)
+            if (!tutorialService.IsTutorialCompleted)
             {
-                //show congrats
+                return;
             }
-            else
-            {
-                PresenterService.HidePreviousAndShow<ProductListView>().Forget();
-            }
+
+            PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
 
         internal void SetProduct(Profile.Product? product)
