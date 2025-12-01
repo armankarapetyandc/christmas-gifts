@@ -25,9 +25,11 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         {
             await _tutorialService.Value.WaitForWindowOpen<MapView>();
             var mapView = _presenterService.GetPresenter<MapView>();
+            mapView.SetMapInteractable(false);
             var placeHolder = mapView.SelectMyPlace();
             var rectTransform = placeHolder.Holder.BodyRectTransform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).AddArrowYOffset(80);
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform)
+                .ShowFunnySlideOut(FunnySlideOutTexts.Step91).AddArrowYOffset(80);
             await _tutorialService.Value.WaitForObservable(placeHolder.Holder.GetButtonObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }

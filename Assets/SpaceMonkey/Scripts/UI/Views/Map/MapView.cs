@@ -32,6 +32,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         private List<MapPlaceItem> _places;
         private MapPlaceItem _selectedPlaceItem;
 
+        public void SetMapInteractable(bool state)
+        {
+            panZoom.SetInteractable(state);
+        }
+
         public override async UniTask Initialize(IPresenterData data = null)
         {
             await UniTask.Yield();

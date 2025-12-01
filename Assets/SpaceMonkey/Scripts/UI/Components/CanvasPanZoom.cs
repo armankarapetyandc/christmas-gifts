@@ -34,6 +34,7 @@ namespace SpaceMonkey.Scripts.UI.Components
         private float lastTouchDistance;
         private Vector2 lastTouchCenter;
         private bool isDragging = false;
+        private bool interactable = true;
 
         // Smoothing
         private Vector3 velocity = Vector3.zero;
@@ -69,8 +70,16 @@ namespace SpaceMonkey.Scripts.UI.Components
             }
         }
 
+        public void SetInteractable(bool state)
+        {
+            interactable = state;
+        }
         public void HandleInput()
         {
+            if (!interactable)
+            {
+                return;
+            }
             // Handle touch input for mobile
             if (Input.touchCount > 0)
             {

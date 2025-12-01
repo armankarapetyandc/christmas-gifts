@@ -26,12 +26,20 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var productView = _presenterService.GetPresenter<ProductView>();
             var inputField = productView.InputField;
             var rectTransform = (RectTransform) inputField.transform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
-            await _tutorialService.Value.WaitForInputFieldSelect(inputField);
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).ShowFunnySlideOut(FunnySlideOutTexts.Step141);
+            await _tutorialService.Value.WaitForInputFieldSubmit(inputField);
             _tutorialService.Value.HideArrow().HideMask().HideFunnySlideOut();
+
+            _tutorialService.Value.ShowArrow(productView.ParametersContainer).ShowMask(productView.ParametersContainer)
+                .ShowFunnySlideOut(FunnySlideOutTexts.Step142).AddArrowYOffset(20);
+            for (int i = 0; i < 3; i++)
+            {
+                await _tutorialService.Value.WaitForObservable(productView.ParametersChanged);
+            }
+            
             var saveButton = productView.SaveButton;
             rectTransform = (RectTransform) saveButton.transform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).ShowFunnySlideOut(FunnySlideOutTexts.Step143);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }

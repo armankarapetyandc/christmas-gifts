@@ -27,13 +27,13 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             var productIconBuilderView = _presenterService.GetPresenter<ProductIconBuilderView>();
             var firstIcon = productIconBuilderView.IconCollectionComponent.FirstItem;
             var rectTransform = (RectTransform) firstIcon.transform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).ShowFunnySlideOut(FunnySlideOutTexts.Step131);
             await _tutorialService.Value.WaitForObservable(firstIcon.OnSelected.AsUnitObservable());
             _tutorialService.Value.HideArrow().HideMask();
             
             var saveButton = productIconBuilderView.SaveButton;
             rectTransform = (RectTransform) saveButton.transform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).ShowFunnySlideOut(FunnySlideOutTexts.Step132);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }
