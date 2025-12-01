@@ -9,12 +9,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
     public class HotItemSubView : MonoBehaviour
     {
         [SerializeField] private Button nextButton;
+        [SerializeField] private Button backButton;
         [SerializeField] private RectTransform nextButtonRect;
         [SerializeField] private TextMeshProUGUI productNameText;
         [SerializeField] private IconComponent iconComponent;
         
         public RectTransform NextButtonRect => nextButtonRect;
         public Button NextButton => nextButton;
+        public Button BackButton => backButton;
 
         public void Initialize(string productName,SpriteVisualAsset iconVisualAsset,ColorVisualAsset colorVisualAsset)
         {
