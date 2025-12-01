@@ -1,3 +1,5 @@
+using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,18 +10,21 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
     {
         [SerializeField] private Button nextButton;
         [SerializeField] private RectTransform nextButtonRect;
-        [SerializeField] private Image productImage;
-        [SerializeField] private TextMeshProUGUI productName;
-        
+        [SerializeField] private TextMeshProUGUI productNameText;
+        [SerializeField] private IconComponent iconComponent;
         
         public RectTransform NextButtonRect => nextButtonRect;
         public Button NextButton => nextButton;
 
-
-        public void Initialize(Sprite sprite, string pName)
+        public void Initialize(string productName,SpriteVisualAsset iconVisualAsset,ColorVisualAsset colorVisualAsset)
         {
-            productImage.sprite = sprite;
-            productName.text = pName;
+            iconComponent.SetIcon(iconVisualAsset);
+            iconComponent.SetColor(colorVisualAsset);
+            productNameText.SetText(productName);
+        }
+
+        public void Show()
+        {
             gameObject.SetActive(true);
         }
 

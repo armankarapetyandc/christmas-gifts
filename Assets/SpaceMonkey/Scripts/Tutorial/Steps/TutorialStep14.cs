@@ -38,7 +38,12 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             rectTransform = (RectTransform) saveButton.transform;
             _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).ShowFunnySlideOut(FunnySlideOutTexts.Step143);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
-            _tutorialService.Value.HideArrow().HideMask();
+            _tutorialService.Value.HideArrow().HideMask().HideFunnySlideOut();
+
+            rectTransform = productView.HotItemSubView.NextButtonRect;
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
+            await _tutorialService.Value.WaitForObservable(productView.HotItemSubView.NextButton.OnClickAsObservable());
+            _tutorialService.Value.HideArrow().HideMask().HideFunnySlideOut();
         }
 
         public void Hide()
