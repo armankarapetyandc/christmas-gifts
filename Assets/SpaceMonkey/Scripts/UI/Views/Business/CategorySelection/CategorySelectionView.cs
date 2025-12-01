@@ -33,6 +33,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         [SerializeField] private Button nextButton;
         [SerializeField] private CanvasGroup categoryDetailsCanvasGroup;
 
+        [Header("Tutorial")]
+        [SerializeField] private RectTransform labelText;
+
+        [SerializeField] private Image tutorialCategory;
+
+        private readonly ReactiveCommand _categorySelected = new ReactiveCommand();
+
+        public Observable<Unit> CategorySelectedObservable => _categorySelected;
+        
+        public RectTransform LabelText => labelText;
+        public Image TutorialCategory => tutorialCategory;
+        
+        public Button NextButton => nextButton;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -88,6 +101,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
         private void CategorySelected(CategoryInfo category)
         {
+            _categorySelected.Execute(Unit.Default);
             Controller.IdeaSelected(category.Name);
             selectedIdeaNameText.text = category.Name;
             selectedIdeaIconImage.sprite = category.Visual.Sprite;

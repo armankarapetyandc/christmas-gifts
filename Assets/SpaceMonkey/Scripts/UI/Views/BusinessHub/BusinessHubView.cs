@@ -44,6 +44,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private LockByMoney[] lockedByMoney;
         
         private Data _viewData;
+        public IconComponent ProductComponent => productComponent;
 
         public override UniTask Initialize(IPresenterData data = null)
         {

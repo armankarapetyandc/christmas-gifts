@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace SpaceMonkey.Scripts.UI.Components
         [SerializeField] private ToggleGroup toggleGroup;
 
         private readonly List<IconCollectionItemComponent> _items = new List<IconCollectionItemComponent>();
+        public IconCollectionItemComponent FirstItem => _items.First();
 
         public Observable<SpriteVisualAsset> Setup(SpriteVisualAsset[] assets)
         {

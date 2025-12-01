@@ -18,7 +18,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
         [SerializeField] private RectTransform content;
 
         private readonly ObservableList<ProductItem> _items = new ObservableList<ProductItem>();
-
+        public Button NewProductButton => newProductButton;
         public override UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);

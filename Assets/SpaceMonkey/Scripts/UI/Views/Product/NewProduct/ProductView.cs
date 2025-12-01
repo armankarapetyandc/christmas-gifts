@@ -31,13 +31,25 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         [SerializeField] private MaterialPriceSlider materialPriceSlider;
         [SerializeField] private MaterialPackagingSlider materialPackagingSlider;
         [SerializeField] private ProductPriceSlider productPriceSlider;
+        [SerializeField] private RectTransform parametersContainer;
         [SerializeField] private TextMeshProUGUI totalCostText;
         [SerializeField] private TextMeshProUGUI shippingCostText;
         [SerializeField] private TextMeshProUGUI profitProductNameText;
+        [SerializeField] private HotItemSubView hotItemSubView;
 
         [SerializeField] private Button deleteButton;
         [SerializeField] private ColorVisualAsset defaultIconColorVisualAsset;
+        public IconComponent IconComponent => iconComponent;
+        public TMP_InputField InputField => productNameInputField;
 
+        public HotItemSubView HotItemSubView =>  hotItemSubView;
+        public RectTransform ParametersContainer => parametersContainer;
+        public Observable<Unit> ParametersChanged => Observable.Merge(
+            timeToProductSlider.CurrentValue.Select(_ => Unit.Default),
+            materialPriceSlider.CurrentValue.Select(_ => Unit.Default),
+            materialPackagingSlider.CurrentValue.Select(_ => Unit.Default));
+        
+        public Button SaveButton => saveButton;
         public override async UniTask Initialize(IPresenterData data = null)
         {
             var presenterData = data as Data;
@@ -60,6 +72,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
                 )
                 .BindButton(saveButton)
                 .AddTo(this);
+        }
+
+        public void HideBaseHolder()
+        {
+            presenterHolder.gameObject.SetActive(false);
         }
 
         private void SetupDefaults(Profile.Product? product)

@@ -45,7 +45,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
         };
 
         private readonly ObservableHashSet<Hashtag> _selectedTags = new ObservableHashSet<Hashtag>();
+        public Button SaveButton => saveButton;
+        public Button BackButton => backButton;
 
+        public Observable<int> SelectedTagsCountChangedObservable =>
+            _selectedTags.ObserveCountChanged().StartWithValue(_selectedTags.Count);
+        
+        
         public override UniTask Initialize(IPresenterData data = null)
         {
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
@@ -54,7 +60,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
                 .AddTo(this);
             SetupDefaults();
             Validator
-                .Validate(_selectedTags.ObserveCountChanged(true).ToValidation(count => count >= 1))
+                .Validate(_selectedTags.ObserveCountChanged(true).ToValidation(count => count >= 16))
                 .BindButton(saveButton);
             return UniTask.CompletedTask;
         }

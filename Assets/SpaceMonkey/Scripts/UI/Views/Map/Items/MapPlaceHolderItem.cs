@@ -10,6 +10,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
 {
     public class MapPlaceHolderItem : MonoBehaviour
     {
+        [SerializeField] private RectTransform bodyRectTransform;
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private GameObject lockedState;
         [SerializeField] private IconComponent iconComponent;
@@ -22,6 +23,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private GameObject[] stars;
 
+        public RectTransform BodyRectTransform => bodyRectTransform;
+        
         private SpriteVisualAsset _visualAsset;
         private PlaceType _placeType;
 
@@ -104,6 +107,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
         public Observable<Unit> GetClickHandler()
         {
             button.onClick.RemoveAllListeners();
+            return button.OnClickAsObservable();
+        }
+
+        public Observable<Unit> GetButtonObservable()
+        {
             return button.OnClickAsObservable();
         }
     }

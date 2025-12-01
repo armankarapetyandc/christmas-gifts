@@ -21,7 +21,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
         [SerializeField] private List<ShapeItem> shapeItems;
         [SerializeField] private IconCollectionComponent iconCollectionComponent;
         [SerializeField] private ColorCollectionComponent colorCollectionComponent;
+        [SerializeField] private TabItem colorTabItem;
+        private ReactiveCommand IconSelectedCommand = new ReactiveCommand();
+        private ReactiveCommand ColorSelectedCommand = new ReactiveCommand();
         
+        public ShapeItem FirstShapeItem => shapeItems.First();
+        public IconCollectionComponent IconCollectionComponent => iconCollectionComponent;
+        public ColorCollectionComponent ColorCollectionComponent => colorCollectionComponent;
+        public Observable<Unit> IconSelectedObservable => IconSelectedCommand;
+        public Observable<Unit> ColorSelectedObservable => ColorSelectedCommand;
+        public Button SaveButton => saveButton;
+        
+        public TabItem ColorTab => colorTabItem;
+
         public override UniTask Initialize(IPresenterData data = null)
         {
             var account = Controller.GetAccount();
@@ -76,12 +88,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
         {
             iconComponent.SetIcon(visualAsset);
             Controller.CompanyLogo.IconVisualAssetId = visualAsset.Id;
+            IconSelectedCommand.Execute(Unit.Default);
         }
 
         private void ColorSelected(ColorVisualAsset visualAsset)
         {
             iconComponent.SetColor(visualAsset);
             Controller.CompanyLogo.BackgroundColorVisualAssetId = visualAsset.Id;
+            ColorSelectedCommand.Execute(Unit.Default);
         }
 
         public override void Dispose()
