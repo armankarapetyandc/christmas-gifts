@@ -65,6 +65,8 @@ namespace SpaceMonkey.Scripts.Profile
         public InvestmentGameData InvestmentGameData { get; set; }
         public FireGameData FireData { get; set; }
         
+        public List<int> AppearedPlaces { get; set; }
+        
         public void SetCategory(string category)
         {
             Company.Category = category;
@@ -147,6 +149,7 @@ namespace SpaceMonkey.Scripts.Profile
                 },
                 MarketingFeatures = new List<MarketingFeature>(),
                 Employees = new List<Employee>(),
+                AppearedPlaces = new List<int>(),
                 CreditData = null,
                 InsuranceData = null,
                 BigOrderGameData = null,
@@ -154,7 +157,6 @@ namespace SpaceMonkey.Scripts.Profile
             };
             return account;
         }
-        
 
         public bool CanAfford(float cost)
         {

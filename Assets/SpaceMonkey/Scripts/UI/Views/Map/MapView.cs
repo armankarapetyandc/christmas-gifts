@@ -70,27 +70,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         {
             _places?.Clear();
             _places = new List<MapPlaceItem>();
-            var places = Controller.GetMapPlaces();
+            var places = Controller.GetAppearedMapPlaces(Controller.CurrentWeek);
             foreach (var place in places)
             {
-                if (!place.DefaultLocked)
-                {
-                    if ((place.AppearWeek != 0 && place.AppearWeek > Controller.CurrentWeek) ||
-                        (place.AppearLevel != 0 &&
-                         place.AppearLevel > Controller.CurrentLevel))
-                    {
-                        continue;
-                    }
-                }
-
-
-                //
-                // if (place.IconVisualAsset == null)
-                // {
-                //     continue;
-                // }
-
-
+                Controller.TryAddAppearedPlace(place.Id);
                 var item = Instantiate(placeItem, placesContainer);
                 _places.Add(item);
                 item.SetPlace(place);
@@ -166,7 +149,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             return null;
         }
         
-        private MapPlaceHolder ShowPlaceHolder(IMapPlace place)
+        public MapPlaceHolder ShowPlaceHolder(IMapPlace place)
         {
             MapPlaceHolder placeHolder = null;
             foreach (var holder in placeHolders)

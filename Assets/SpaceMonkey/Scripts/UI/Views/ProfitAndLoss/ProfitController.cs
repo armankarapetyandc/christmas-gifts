@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -8,6 +11,7 @@ using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Competition;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.Map;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
@@ -21,12 +25,15 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         private readonly AccountService _accountService;
         private readonly WeekSimulationContext _weekSimulationContext;
         private PopupPresenterService _popupPresenterService;
+        private readonly MapConfig _mapConfig;
 
         public ProfitController(PresenterService presenterService,
             NavigationPresenterService navigationPresenterService, VisualAssetDatabase visualAssetDatabase,
-            AccountService accountService,WeekSimulationContext weekSimulationContext,PopupPresenterService popupPresenterService) : base(presenterService)
+            AccountService accountService,WeekSimulationContext weekSimulationContext,
+            PopupPresenterService popupPresenterService, MapConfig mapConfig) : base(presenterService)
         {
             _popupPresenterService = popupPresenterService;
+            _mapConfig = mapConfig;
             _navigationPresenterService = navigationPresenterService;
             _visualAssetDatabase = visualAssetDatabase;
             _accountService = accountService;
@@ -48,9 +55,24 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             return _weekSimulationContext.WeekSimulation.Money.CurrentValue;
         }
 
-        internal void OnNext(bool isWeekEnd)
+        internal async UniTaskVoid OnNext(bool isWeekEnd)
         {
             _weekSimulationContext.WeekSimulation.GrantReward();
+            var newPlace = HasNewAppearedPlaces();
+            if (newPlace != null)
+            {
+                await _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+                {
+                    Type = MainNavigationType.Map,
+                    IsWeekEnd = isWeekEnd
+                });
+                await UniTask.WaitUntil(() => PresenterService.GetPresenter<MapView>() != null);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+
+                var mapView = PresenterService.GetPresenter<MapView>();
+                mapView.FocusOnPlace(newPlace.Id);
+                return;
+            }
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
             {
                 Type = MainNavigationType.BusinessHub,
@@ -64,6 +86,14 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             {
                 Type = MainNavigationType.BusinessHub
             }).Forget();
+        }
+        
+        private IMapPlace HasNewAppearedPlaces()
+        {
+            var currentWeek = _accountService.Model.Account.Week;
+            var appearedPlaces = _accountService.Model.Account.AppearedPlaces;
+            var placesToAppear = _mapConfig.GetAppearedMapPlaces(_mapConfig.Places, currentWeek);
+            return placesToAppear.FirstOrDefault(place => appearedPlaces.Contains(place.Id) == false);
         }
         
         internal Dictionary<Profile.Product, int> GetTotalQuantitiesByProduct(bool useSimulation)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.Configs.Map
 {
@@ -16,6 +17,27 @@ namespace SpaceMonkey.Scripts.Configs.Map
             {
                 Places[i].Id = i+1;
             }
+        }
+        
+        
+        internal List<IMapPlace> GetAppearedMapPlaces(IMapPlace[] places, int currentWeek)
+        {
+            var appearedPlaces = new List<IMapPlace>();
+            
+            foreach (var place in places)
+            {
+                if (!place.DefaultLocked)
+                {
+                    if ((place.AppearWeek != 0 && place.AppearWeek > currentWeek) ||
+                        (place.AppearLevel != 0 &&
+                         place.AppearLevel > currentWeek))
+                    {
+                        continue;
+                    }
+                    appearedPlaces.Add(place);
+                }
+            }
+            return appearedPlaces;
         }
     }
 }

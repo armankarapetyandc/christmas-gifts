@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
@@ -62,6 +63,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             _visualAssetDatabase = visualAssetDatabase;
         }
         
+        internal void TryAddAppearedPlace(int placeId)
+        {
+            _accountService.Model.TryAddAppearedPlace(placeId);
+        }
         internal T ResolveVisualAsset<T>(string id) where T : VisualAsset
         {
             return _visualAssetDatabase.GetResourceForAsset<T>(id);
@@ -70,6 +75,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         internal IMapPlace[] GetMapPlaces()
         {
             return _mapConfig.Places.Append(GetDefaultCompanyPlace()).ToArray();
+        }
+
+        internal List<IMapPlace> GetAppearedMapPlaces(int currentWeek)
+        {
+            var places = GetMapPlaces();
+            return _mapConfig.GetAppearedMapPlaces(places, currentWeek);
         }
 
         private IMapPlace GetDefaultCompanyPlace()

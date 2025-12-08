@@ -23,6 +23,16 @@ namespace SpaceMonkey.Scripts.Profile
             Account = account;
         }
 
+        public bool TryAddAppearedPlace(int placeId)
+        {
+            if (Account.AppearedPlaces.Contains(placeId))
+            {
+                return false;
+            }
+
+            Account.AppearedPlaces.Add(placeId);
+            return true;
+        }
         public bool TryChangeMoney(float amount)
         {
             float newValue = _money.Value + amount;
