@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using SpaceMonkey.Scripts.Analytics;
+using SpaceMonkey.Scripts.Analytics.Service;
 using SpaceMonkey.Scripts.Cloud;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation;
@@ -17,6 +20,12 @@ namespace SpaceMonkey.Scripts.Installers.Main
         
         public override void InstallBindings()
         {
+            AnalyticsInstaller.Install(Container, new List<IAnalyticsProvider>
+            {
+                new GoogleAnalyticsProvider()
+            });
+            Container.BindInterfacesAndSelfTo<AnalyticsProvider>().AsSingle().Lazy();
+            
             Container.Bind<CameraHolder>().FromInstance(cameraHolder).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AccountService>().AsSingle();
             CloudDataInstaller.Install(Container);

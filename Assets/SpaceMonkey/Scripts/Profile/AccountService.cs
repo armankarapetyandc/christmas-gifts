@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using R3;
+using SpaceMonkey.Scripts.Analytics;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.UI.Popups.Core;
@@ -54,6 +56,13 @@ namespace SpaceMonkey.Scripts.Profile
                 {
                     OnLevelChanged.Execute(Model.Account.Level);
                     _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
+                    AnalyticsProvider.SendEvent(AnalyticsEvents.LevelChanged,new Dictionary<string, string>()
+                    {
+                        {"company_name",Model.Account.Company.CompanyName},
+                        {"level",Model.Account.Level.ToString()},
+                        {"score",Model.Account.Score.ToString()},
+                        {"cash",Model.Account.Money.ToString()},
+                    });
                 }
             }).AddTo(_compositeDisposable);
         }

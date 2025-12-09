@@ -4,6 +4,8 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
 using R3.Triggers;
+using SpaceMonkey.Scripts.Analytics;
+using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Tutorial.Steps;
 using TMPro;
 using UIService.Runtime.Presenter;
@@ -19,10 +21,12 @@ namespace SpaceMonkey.Scripts.Tutorial
         private List<ITutorialStep> _steps;
         private TutorialView _tutorialView;
         private PresenterService _presenterService;
+        private AccountService _accountService;
         public bool IsTutorialCompleted => GetLastCompleteStep() == _steps.Last().Order;
         [Inject]
-        private void Inject(List<ITutorialStep> steps, TutorialView tutorialView, PresenterService presenterService)
+        private void Inject(List<ITutorialStep> steps, TutorialView tutorialView, PresenterService presenterService,AccountService accountService)
         {
+            _accountService = accountService;
             _presenterService = presenterService;
             _tutorialView = tutorialView;
             _steps = steps.OrderBy(s => s.Order).ToList();
@@ -38,9 +42,12 @@ namespace SpaceMonkey.Scripts.Tutorial
             var lastCompleteStep = GetLastCompleteStep();
             var lastStep = _steps.Last().Order;
             HideTutorialView();
-            
             while (lastCompleteStep < lastStep)
             {
+                AnalyticsProvider.SendEvent(AnalyticsEvents.TutorialStep,new Dictionary<string, string>()
+                {
+                    {"tutorial_step",lastCompleteStep.ToString()}
+                });
                 Debug.Log($"[{nameof(TutorialService)}] Processing Step: {lastCompleteStep + 1}");
                 await ShowStep(lastCompleteStep);
                 Debug.Log($"[{nameof(TutorialService)}] Step Completed: {lastCompleteStep + 1}");
@@ -49,6 +56,11 @@ namespace SpaceMonkey.Scripts.Tutorial
                 lastCompleteStep++;
             }
 
+            AnalyticsProvider.SendEvent(AnalyticsEvents.TutorialCompleted, new Dictionary<string, string>()
+            {
+                { "tutorial_step", lastCompleteStep.ToString() },
+                { "company_name", _accountService.Model.Account.Company.CompanyName }
+            });
             SetLastCompleteStep(lastCompleteStep);
         }
 

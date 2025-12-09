@@ -2,6 +2,7 @@
 using ContextLoaderService.Runtime;
 using ContextLoaderService.Runtime.BaseUnits;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Analytics;
 using SpaceMonkey.Scripts.Core.ContextLoader;
 using SpaceMonkey.Scripts.UI.Views.Splash;
 using UIService.Runtime.Presenter;

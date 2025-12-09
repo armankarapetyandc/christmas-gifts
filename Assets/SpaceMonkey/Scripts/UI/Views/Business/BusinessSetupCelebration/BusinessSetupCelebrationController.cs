@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Analytics;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
@@ -44,6 +47,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
         {
             PresenterService.Hide();
             _navigationPresenterService.Show<MainNavigation>().Forget();
+            AnalyticsProvider.SendEvent(AnalyticsEvents.NewBusinessCreated,new Dictionary<string, string>()
+            {
+                {"company_name",_accountService.Model.Account.Company.CompanyName},
+                {"company_category",_accountService.Model.Account.Company.Category},
+                {"company_category_tags",string.Join(",",_accountService.Model.Account.Company.Tags.Select(hashtag => hashtag.Tag))}
+            });
         }
 
         public void OpenExamplesView()

@@ -90,10 +90,19 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         
         private IMapPlace HasNewAppearedPlaces()
         {
-            var currentWeek = _accountService.Model.Account.Week;
-            var appearedPlaces = _accountService.Model.Account.AppearedPlaces;
-            var placesToAppear = _mapConfig.GetAppearedMapPlaces(_mapConfig.Places, currentWeek);
-            return placesToAppear.FirstOrDefault(place => appearedPlaces.Contains(place.Id) == false);
+            try
+            {
+                var currentWeek = _accountService.Model.Account.Week;
+                var appearedPlaces = _accountService.Model.Account.AppearedPlaces;
+                var placesToAppear = _mapConfig.GetAppearedMapPlaces(_mapConfig.Places, currentWeek);
+                return placesToAppear.FirstOrDefault(place => appearedPlaces.Contains(place.Id) == false);
+            }
+            catch (Exception e)
+            {
+                
+            }
+
+            return null;
         }
         
         internal Dictionary<Profile.Product, int> GetTotalQuantitiesByProduct(bool useSimulation)

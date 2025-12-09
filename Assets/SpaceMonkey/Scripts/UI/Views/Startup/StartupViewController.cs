@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using ContextLoaderService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.Analytics;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
@@ -34,6 +36,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
             _uiInteractableProperty.Value = false;
             AccountService.CreateNewAccount();
             PresenterService.HidePreviousAndShow<CategorySelectionView>().Forget();
+            AnalyticsProvider.SendEvent(AnalyticsEvents.StartNewBusiness);
         }
 
         public async UniTaskVoid LoadCurrentBusiness()
@@ -41,6 +44,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
             _uiInteractableProperty.Value = false;
             await _loadingService.BeginLoading(AccountService.LoadAsync().ToLoadingUnit(),
                 _navigationPresenterService.Show<MainNavigation>().ToLoadingUnit());
+            AnalyticsProvider.SendEvent(AnalyticsEvents.LoadCurrentBusiness);
             _uiInteractableProperty.Value = true;
         }
     }

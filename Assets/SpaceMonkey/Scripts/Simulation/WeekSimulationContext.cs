@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using SpaceMonkey.Scripts.Analytics;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
@@ -60,6 +62,19 @@ namespace SpaceMonkey.Scripts.Simulation
             }
 
             WeekSimulation.FinishWeek();
+            AnalyticsProvider.SendEvent(AnalyticsEvents.WeekFinished, new Dictionary<string, string>()
+            {
+                { "company_name", _accountService.Model.Account.Company.CompanyName },
+                { "week", _accountService.Model.Account.Week.ToString() },
+                { "orders_count", _accountService.Model.Account.WeeksV2[^1].Orders.Count.ToString() },
+                {
+                    "fulfilled",
+                    _accountService.Model.Account.WeeksV2[^1].Orders.All(order => order.WasFulfilled).ToString()
+                },
+                { "level", _accountService.Model.Account.Level.ToString() },
+                { "score", _accountService.Model.Account.Score.ToString() },
+                { "cash", _accountService.Model.Account.Money.ToString() }
+            });
             _presenterService.HidePreviousAndShow<WeekReviewView>(data).Forget();
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using R3;
 using SpaceMonkey.Scripts.Analytics.Service;
 using UnityEngine;
+using Zenject;
 
 namespace SpaceMonkey.Scripts.Analytics
 {

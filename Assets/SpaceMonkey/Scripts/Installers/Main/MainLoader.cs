@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using ContextLoaderService.Runtime;
 using Cysharp.Threading.Tasks;
 using DCLogger.Runtime;
+using SpaceMonkey.Scripts.Analytics;
 using SpaceMonkey.Scripts.Cloud;
 using SpaceMonkey.Scripts.Cloud.Config.GameConfig;
 using SpaceMonkey.Scripts.Configs;
@@ -26,10 +27,11 @@ namespace SpaceMonkey.Scripts.Installers.Main
         private readonly GameConfig _gameConfig;
         private readonly CustomerReviewConfig _customerReviewConfig;
         private readonly NavigationPresenterService _navigationPresenterService;
+        private readonly AnalyticsProvider analyticsProvider;
 
         public MainLoader(LoadingService loadingService, PresenterService presenterService,
             AccountService accountService, CloudDataService cloudDataService, GameConfig gameConfig,CustomerReviewConfig customerReviewConfig,
-            NavigationPresenterService navigationPresenterService) : base(loadingService)
+            NavigationPresenterService navigationPresenterService,AnalyticsProvider analyticsProvider) : base(loadingService)
         {
             _presenterService = presenterService;
             _accountService = accountService;
@@ -37,6 +39,7 @@ namespace SpaceMonkey.Scripts.Installers.Main
             _gameConfig = gameConfig;
             _customerReviewConfig = customerReviewConfig;
             _navigationPresenterService = navigationPresenterService;
+            this.analyticsProvider = analyticsProvider;
         }
 
         protected override async UniTask Load()

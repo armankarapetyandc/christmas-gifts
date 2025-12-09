@@ -15,10 +15,7 @@ namespace SpaceMonkey.Scripts.Installers.Bootstrap
         public override void InstallBindings()
         {
             DontDestroyOnLoad(eventSystem);
-            AnalyticsInstaller.Install(Container, new List<IAnalyticsProvider>
-            {
-                new GoogleAnalyticsProvider()
-            });
+       
             BootstrapLoader.Installer.Install(Container, @params);
         }
     }
