@@ -6,7 +6,7 @@ namespace SpaceMonkey.Scripts.UI.Utility.Locker
     public class LockByMoney : LockBy
     {
         [field: SerializeField] public float Value { get; private set; }
-
+        [SerializeField] protected Button featureButton;
         public override void Unlock()
         {
             featureButton.interactable = true;

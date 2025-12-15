@@ -1,11 +1,12 @@
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard
+namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCard
 {
     public class CreditCardView : BasePresenterWithController<CreditCardViewController>
     {

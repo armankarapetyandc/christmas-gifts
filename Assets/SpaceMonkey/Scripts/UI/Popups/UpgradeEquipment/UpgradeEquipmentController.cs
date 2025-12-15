@@ -6,6 +6,7 @@ using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.Simulation.Fire;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCard;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;

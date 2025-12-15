@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCard;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;

@@ -12,6 +12,7 @@ using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrderDetails;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLoanStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.BusinessLocationSign;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCard;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.DisasterInsurancePolicy;
