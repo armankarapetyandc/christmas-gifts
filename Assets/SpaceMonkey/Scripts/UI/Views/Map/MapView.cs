@@ -103,38 +103,40 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     item.gameObject.SetActive(PlayerPrefs.GetInt("competition") == 1);
                 }
 
-                item.OnClickAsObservable().Subscribe(_ =>
-                {
-                    if (place.Type == PlaceType.CreditCard && !Controller.HasCreditCard())
-                    {
-                        Controller.ShowCreditCardInfoPopup();
-                    }
-                    else if (place.Type == PlaceType.BigOrder)
-                    {
-                        Controller.ShowBigOrderView();
-                    }
-                    else if (place.Type == PlaceType.BusinessLoan && !Controller.HasBusinessLoan())
-                    {
-                        Controller.ShowBusinessLoanPopup();
-                    }
-                    else if (place.Type == PlaceType.BusinessHub)
-                    {
-                        Controller.NavigateToMyCompany();
-                    }
-                    else if (place.Type == PlaceType.Investment)
-                    {
-                        Controller.ShowInvestmentView(place);
-                    }
-                    else if (place.Type == PlaceType.PlaceHolder)
-                    {
-                        ShowPlaceHolder(place);
-                    }
-                    else if (place.Type == PlaceType.TreatyBird)
-                    {
-                        Controller.NavigateToMyCompany();
-                        Controller.ShowCompetitionPopup();
-                    }
-                }).AddTo(this);
+                item.OnClickAsObservable().Subscribe(_ => { ProcessMapPlaceItemSelect(place); }).AddTo(this);
+            }
+        }
+
+        private void ProcessMapPlaceItemSelect(IMapPlace place)
+        {
+            if (place.Type == PlaceType.CreditCard && !Controller.HasCreditCard())
+            {
+                Controller.ShowCreditCardInfoPopup();
+            }
+            else if (place.Type == PlaceType.BigOrder)
+            {
+                Controller.ShowBigOrderView();
+            }
+            else if (place.Type == PlaceType.BusinessLoan && !Controller.HasBusinessLoan())
+            {
+                Controller.ShowBusinessLoanPopup();
+            }
+            else if (place.Type == PlaceType.BusinessHub)
+            {
+                Controller.NavigateToMyCompany();
+            }
+            else if (place.Type == PlaceType.Investment)
+            {
+                Controller.ShowInvestmentView(place);
+            }
+            else if (place.Type == PlaceType.PlaceHolder)
+            {
+                ShowPlaceHolder(place);
+            }
+            else if (place.Type == PlaceType.TreatyBird)
+            {
+                Controller.NavigateToMyCompany();
+                Controller.ShowCompetitionPopup();
             }
         }
 
@@ -210,6 +212,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
 
             panZoom.SetZoom(defaultMapZoom);
             panZoom.NavigateToTarget((RectTransform)item.transform);
+        }
+
+        public async UniTaskVoid FocusAndShowDialog(int placeId)
+        {
+            FocusOnPlace(placeId);
+            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: destroyCancellationToken);
+            var item = _places.FirstOrDefault(x => x.Place.Id == placeId);
+            ProcessMapPlaceItemSelect(item?.Place);
         }
 
         public override void Dispose()
