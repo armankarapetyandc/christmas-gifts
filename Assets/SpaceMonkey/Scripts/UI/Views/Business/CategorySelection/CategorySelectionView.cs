@@ -34,15 +34,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
         [SerializeField] private CanvasGroup categoryDetailsCanvasGroup;
 
         [Header("Tutorial")]
-        [SerializeField] private RectTransform labelText;
-
         [SerializeField] private Image tutorialCategory;
 
         private readonly ReactiveCommand _categorySelected = new ReactiveCommand();
 
         public Observable<Unit> CategorySelectedObservable => _categorySelected;
         
-        public RectTransform LabelText => labelText;
         public Image TutorialCategory => tutorialCategory;
         
         public Button NextButton => nextButton;

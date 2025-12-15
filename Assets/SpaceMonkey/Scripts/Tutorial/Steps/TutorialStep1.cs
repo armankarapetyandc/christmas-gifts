@@ -22,8 +22,8 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         {
             await _tutorialService.Value.WaitForWindowOpen<CategorySelectionView>();
             var categorySelectionView = _presenterService.GetPresenter<CategorySelectionView>();
-            _tutorialService.Value.ShowArrow(categorySelectionView.LabelText)
-               .ShowMask(categorySelectionView.TutorialCategory.rectTransform);
+            _tutorialService.Value.ShowArrow(categorySelectionView.TutorialCategory.rectTransform)
+               .ShowMask(categorySelectionView.TutorialCategory.rectTransform).AddArrowYOffset(50);
             await _tutorialService.Value.WaitForObservable(categorySelectionView.CategorySelectedObservable);
         }
 

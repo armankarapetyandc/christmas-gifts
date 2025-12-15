@@ -70,7 +70,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
 
                 var mapView = PresenterService.GetPresenter<MapView>();
-                mapView.FocusOnPlace(newPlace.Id);
+                mapView.FocusAndShowDialog(newPlace.Id).Forget();
                 return;
             }
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
@@ -94,8 +94,14 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             {
                 var currentWeek = _accountService.Model.Account.Week;
                 var appearedPlaces = _accountService.Model.Account.AppearedPlaces;
+                var hasFireEvent = _accountService.Model.Account.FireData?.IsActive ?? false;
                 var placesToAppear = _mapConfig.GetAppearedMapPlaces(_mapConfig.Places, currentWeek);
-                return placesToAppear.FirstOrDefault(place => appearedPlaces.Contains(place.Id) == false);
+                var place = placesToAppear.FirstOrDefault(place => appearedPlaces.Contains(place.Id) == false);
+                if (place != null)
+                {
+                    return place;
+                }
+                return hasFireEvent ? _mapConfig.DefaultCompanyPlace : null;
             }
             catch (Exception e)
             {

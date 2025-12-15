@@ -602,8 +602,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "The equipment you've been using to make your products has been damaged
-    in a fire! You previously opted NOT to buy Disaster Insurance. \n\n\n<color=\"red\">Current
-    Production Capacity: 36 (-50%)\n\nRepair or upgrade your equipment to fix it!</color>"
+    in a fire! \n\n\n<color=\"red\">Current Production Capacity: 36 (-50%)\n\nRepair
+    or upgrade your equipment to fix it!</color>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e6891c03f13f1e44a213bc615ab5855, type: 2}
   m_sharedMaterial: {fileID: 3712076712150920612, guid: 6e6891c03f13f1e44a213bc615ab5855, type: 2}
