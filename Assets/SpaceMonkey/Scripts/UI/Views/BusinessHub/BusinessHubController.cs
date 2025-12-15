@@ -44,9 +44,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         public float Money => _accountService.Model.Account.Money;
 
 
-        public readonly ReactiveCommand<LockByLevel> OnUnlockByLevel = new ReactiveCommand<LockByLevel>();
-        public readonly ReactiveCommand<LockByMoney> OnUnlockByMoney = new ReactiveCommand<LockByMoney>();
-        public readonly ReactiveCommand<LockByMoney> OnUnlockByWeek = new ReactiveCommand<LockByMoney>();
+        public readonly ReactiveCommand<LockBy> OnUnlockBy = new();
 
         public BusinessHubController(PresenterService presenterService,FireSimulator fireSimulator,
             AccountService accountService, VisualAssetDatabase visualAssetDatabase,
@@ -88,6 +86,30 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             
             _popupPresenterService.Show<Popups.Fire.FirePopup>().Forget();
         }
+        
+
+        
+        internal void CheckForUnlockByReview(LockByReview[] lockByReview,int week)
+        {
+            foreach (var byReview in lockByReview)
+            {
+                if (byReview.Count <= week)
+                {
+                    OnUnlockBy.Execute(byReview);
+                }
+            }
+        }
+
+        internal void CheckForUnlockByWeek(LockByWeek[] lockByWeek,int week)
+        {
+            foreach (var byWeek in lockByWeek)
+            {
+                if (byWeek.Count <= week)
+                {
+                    OnUnlockBy.Execute(byWeek);
+                }
+            }
+        }
 
         internal void CheckForUnlockByMoney(LockByMoney[] lockedByMoney, float money)
         {
@@ -95,7 +117,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             {
                 if (byMoney.Value <= money)
                 {
-                    OnUnlockByMoney.Execute(byMoney);
+                    OnUnlockBy.Execute(byMoney);
                 }
             }
         }
@@ -123,7 +145,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
                     levelInfo?.UnlockInfo.FirstOrDefault(unlockedInfo => unlockedInfo.Key == lockedByLevel.Key);
                 if (unlockedInfo != null)
                 {
-                    OnUnlockByLevel.Execute(lockedByLevel);
+                    OnUnlockBy.Execute(lockedByLevel);
                 }
             }
         }

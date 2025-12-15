@@ -43,13 +43,14 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         [SerializeField] private LockByLevel[] lockedByLevels;
         [SerializeField] private LockByMoney[] lockedByMoney;
-        
+        [SerializeField] private LockByWeek[] lockByWeek;
+        [SerializeField] private LockByReview[] lockByReview;
+
         private Data _viewData;
         public IconComponent ProductComponent => productComponent;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            
             _viewData = data as Data;
             productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
             marketingButton.OnClickAsObservable().Subscribe(_ =>
@@ -93,7 +94,16 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
                 Controller.ShowProductionView();
             }).AddTo(this);
-            reviewButton.OnClickAsObservable().Subscribe(_ => Controller.ShowAllReviewView()).AddTo(this);
+            reviewButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                if (Controller.GetAccount().Reviews.Count <= 0)
+                {
+                    toastPopup.ShowToast($"Unlocks after 1st review");
+                    return;
+                }
+
+                Controller.ShowAllReviewView();
+            }).AddTo(this);
 
             plmButton.OnClickAsObservable().Subscribe(_ =>
             {
@@ -109,10 +119,11 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
 
             Controller.OnLevelChanged.Subscribe(CheckForUnlockByLevel).AddTo(this);
-            Controller.OnUnlockByLevel.Subscribe(UnlockItemByLevel).AddTo(this);
-            Controller.OnUnlockByMoney.Subscribe(UnlockItemByLevel).AddTo(this);
+            Controller.OnUnlockBy.Subscribe(UnlockItem).AddTo(this);
             CheckForUnlockByLevel(Controller.Level);
             CheckForUnlockByMoney(Controller.Money);
+            CheckForUnlockByReview(Controller.GetAccount().Reviews.Count);
+            CheckForUnlockByWeek(Controller.GetAccount().WeeksV2.Count);
 
             SetupDefaults();
             if (_viewData != null)
@@ -124,6 +135,15 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             return UniTask.CompletedTask;
         }
 
+        private void CheckForUnlockByReview(int reviewCount)
+        {
+            Controller.CheckForUnlockByReview(lockByReview, reviewCount);
+        }
+
+        private void CheckForUnlockByWeek(int week)
+        {
+            Controller.CheckForUnlockByWeek(lockByWeek, week);
+        }
 
         private void CheckForUnlockByMoney(float money)
         {
@@ -136,15 +156,11 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         }
 
 
-        private void UnlockItemByLevel(LockByLevel lockByLevel)
+        private void UnlockItem(LockBy lockBy)
         {
-            lockByLevel.Unlock();
+            lockBy.Unlock();
         }
 
-        private void UnlockItemByLevel(LockByMoney lockByMoney)
-        {
-            lockByMoney.Unlock();
-        }
 
         private void SetupDefaults()
         {
@@ -199,7 +215,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         public override void Dispose()
         {
         }
-        
+
         public class Data : IPresenterData
         {
             public bool IsWeekEnd;
