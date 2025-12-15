@@ -6,6 +6,7 @@ using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Popups;
 using SpaceMonkey.Scripts.UI.Utility;
+using SpaceMonkey.Scripts.UI.Utility.Locker;
 using SpaceMonkey.Scripts.Utilities.Validation;
 using TMPro;
 using UIService.Runtime.Core;
@@ -94,7 +95,16 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             }).AddTo(this);
             reviewButton.OnClickAsObservable().Subscribe(_ => Controller.ShowAllReviewView()).AddTo(this);
 
-            plmButton.OnClickAsObservable().Subscribe(_ => Controller.ShowPlmView()).AddTo(this);
+            plmButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                if (Controller.GetAccount().WeeksV2.Count <= 0)
+                {
+                    toastPopup.ShowToast($"Unlocks at 1st week complete");
+                    return;
+                }
+
+                Controller.ShowPlmView();
+            }).AddTo(this);
             xpButton.OnClickAsObservable().Subscribe(_ => Controller.ShowLevelInfoPopup()).AddTo(this);
 
 
