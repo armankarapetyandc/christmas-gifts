@@ -13,6 +13,7 @@ using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.LevelInfo;
 using SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto;
 using SpaceMonkey.Scripts.UI.Utility;
+using SpaceMonkey.Scripts.UI.Utility.Locker;
 using SpaceMonkey.Scripts.UI.Views.BusinessExamples;
 using SpaceMonkey.Scripts.UI.Views.Marketing;
 using SpaceMonkey.Scripts.UI.Views.Orders;
@@ -45,6 +46,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         public readonly ReactiveCommand<LockByLevel> OnUnlockByLevel = new ReactiveCommand<LockByLevel>();
         public readonly ReactiveCommand<LockByMoney> OnUnlockByMoney = new ReactiveCommand<LockByMoney>();
+        public readonly ReactiveCommand<LockByMoney> OnUnlockByWeek = new ReactiveCommand<LockByMoney>();
 
         public BusinessHubController(PresenterService presenterService,FireSimulator fireSimulator,
             AccountService accountService, VisualAssetDatabase visualAssetDatabase,
