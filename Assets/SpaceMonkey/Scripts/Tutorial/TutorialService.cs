@@ -95,6 +95,20 @@ namespace SpaceMonkey.Scripts.Tutorial
             _tutorialView.HideFunnySlideOut();
             return this;
         } 
+        
+        public TutorialService SetFunnySlideOutPosition(Vector3 position)
+        {
+            _tutorialView.gameObject.SetActive(true);
+            _tutorialView.SetFunnySlideOutPosition(position);
+            return this;
+        }
+        public TutorialService SetFunnySlideOutOffsetY(int offset)
+        {
+            _tutorialView.gameObject.SetActive(true);
+            _tutorialView.AddFunnySlideOutYOffset(offset);
+            return this;
+        }
+        
 
         public TutorialService ShowArrow(RectTransform rectTransform)
         {

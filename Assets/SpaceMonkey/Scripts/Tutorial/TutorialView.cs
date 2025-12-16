@@ -63,5 +63,15 @@ namespace SpaceMonkey.Scripts.Tutorial
         {
             arrow.position += new Vector3(0, offset, 0);
         }
+
+        public void SetFunnySlideOutPosition(Vector3 position)
+        {
+            funnySlideOut.transform.position = position;
+        }
+
+        public void AddFunnySlideOutYOffset(int i)
+        {
+            funnySlideOut.transform.position += new Vector3(0, i, 0);
+        }
     }
 }

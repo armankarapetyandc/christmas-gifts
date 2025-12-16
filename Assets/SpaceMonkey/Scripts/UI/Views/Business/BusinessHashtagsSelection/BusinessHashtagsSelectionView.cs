@@ -60,7 +60,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
                 .AddTo(this);
             SetupDefaults();
             Validator
-                .Validate(_selectedTags.ObserveCountChanged(true).ToValidation(count => count >= 16))
+                .Validate(_selectedTags.ObserveCountChanged(true).ToValidation(count => count >= 1))
                 .BindButton(saveButton);
             return UniTask.CompletedTask;
         }

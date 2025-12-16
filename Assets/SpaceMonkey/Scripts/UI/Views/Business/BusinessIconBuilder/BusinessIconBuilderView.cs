@@ -32,6 +32,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
         public Observable<Unit> ColorSelectedObservable => ColorSelectedCommand;
         public Button SaveButton => saveButton;
         
+        public Button BackButton => backButton;
         public TabItem ColorTab => colorTabItem;
 
         public override UniTask Initialize(IPresenterData data = null)

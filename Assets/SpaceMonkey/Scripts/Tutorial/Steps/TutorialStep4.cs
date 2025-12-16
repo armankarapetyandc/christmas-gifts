@@ -24,9 +24,11 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         {
             await _tutorialService.Value.WaitForWindowOpen<BusinessIconBuilderView>();
             var businessPreviewView = _presenterService.GetPresenter<BusinessIconBuilderView>();
+            businessPreviewView.BackButton.enabled = false;
+            
             var iconItem = businessPreviewView.IconCollectionComponent.FirstItem;
             var iconRect = (RectTransform) iconItem.transform;
-            _tutorialService.Value.ShowArrow(iconRect).ShowMask(iconRect).ShowFunnySlideOut(FunnySlideOutTexts.Step41);
+            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step41);
             await _tutorialService.Value.WaitForObservable(businessPreviewView.IconSelectedObservable);
             _tutorialService.Value.HideArrow().HideMask();
 
@@ -38,7 +40,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
 
             var colorItem = businessPreviewView.ColorCollectionComponent.FirstItem;
             var colorRect = (RectTransform) colorItem.transform;
-            _tutorialService.Value.ShowArrow(colorRect).ShowMask(colorRect).ShowFunnySlideOut(FunnySlideOutTexts.Step43);
+            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step43);
             await _tutorialService.Value.WaitForObservable(businessPreviewView.ColorSelectedObservable);
             _tutorialService.Value.HideArrow().HideMask();
 

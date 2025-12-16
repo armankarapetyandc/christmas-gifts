@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection;
@@ -32,10 +33,26 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step61);
             // await UniTask.WaitWhile(() => businessHashtagsSelectionView.SaveButton.interactable == false);
 
+            CancellationTokenSource cts = new CancellationTokenSource();
+            HandleMassagesUpdate(businessHashtagsSelectionView, saveRect, cts.Token).Forget();
+            await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
+            cts.Cancel();
+            
+            _tutorialService.Value.HideArrow().HideMask();
+        }
+
+        private async UniTask HandleMassagesUpdate(BusinessHashtagsSelectionView businessHashtagsSelectionView,
+            RectTransform saveRect, CancellationToken cancellationToken)
+        {
             int countSelected = 0;
             string message = FunnySlideOutTexts.Step61;
             while (countSelected<16)
             {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return;
+                }
+                
                 countSelected = await _tutorialService.Value.WaitForObservable(businessHashtagsSelectionView
                     .SelectedTagsCountChangedObservable);
                 if (countSelected==10)
@@ -56,10 +73,9 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
                     _tutorialService.Value.ShowArrow(saveRect).ShowMask(saveRect)
                         .ShowFunnySlideOut(message);
                 }
+
+                await UniTask.DelayFrame(1, cancellationToken: cancellationToken);
             }
-           
-            await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
-            _tutorialService.Value.HideArrow().HideMask();
         }
 
         public void Hide()
