@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Tutorial.FunnySlide;
 using SpaceMonkey.Scripts.UI.Utility;
@@ -11,6 +12,13 @@ namespace SpaceMonkey.Scripts.Tutorial
         [SerializeField] private FunnySlideOut funnySlideOut;
         [SerializeField] private CanvasGapRaycast canvasGapRaycast; 
         
+        private Vector3 _funnySlideOutInitialPosition;
+
+        private void Awake()
+        {
+            _funnySlideOutInitialPosition = funnySlideOut.transform.position;
+        }
+
         public void ShowArrow(RectTransform rectTransform)
         {
             arrow.gameObject.SetActive(true);
@@ -32,6 +40,7 @@ namespace SpaceMonkey.Scripts.Tutorial
         
         public void HideFunnySlideOut()
         {
+            funnySlideOut.transform.position = _funnySlideOutInitialPosition;
             funnySlideOut.Hide();
         }
 
@@ -72,6 +81,11 @@ namespace SpaceMonkey.Scripts.Tutorial
         public void AddFunnySlideOutYOffset(int i)
         {
             funnySlideOut.transform.position += new Vector3(0, i, 0);
+        }
+        
+        public void AddFunnySlideOutXOffset(int i)
+        {
+            funnySlideOut.transform.position += new Vector3(i, 0, 0);
         }
     }
 }

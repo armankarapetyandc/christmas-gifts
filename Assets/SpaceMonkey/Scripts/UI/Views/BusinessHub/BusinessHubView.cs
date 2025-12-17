@@ -49,6 +49,8 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         private Data _viewData;
         public IconComponent ProductComponent => productComponent;
 
+        public Button StartButton => startButton;
+
         public override UniTask Initialize(IPresenterData data = null)
         {
             _viewData = data as Data;

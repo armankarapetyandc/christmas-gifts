@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using R3;
 using SpaceMonkey.Scripts.UI.Views.BusinessHub;
 using UIService.Runtime.Presenter;
 using UnityEngine;
@@ -6,11 +7,11 @@ using Zenject;
 
 namespace SpaceMonkey.Scripts.Tutorial.Steps
 {
-    public class TutorialStep10 : ITutorialStep
+    public class TutorialStep15: ITutorialStep
     {
         private LazyInject<TutorialService> _tutorialService;
         private PresenterService _presenterService;
-        public int Order => 10;
+        public int Order => 15;
 
         [Inject]
         private void Inject(LazyInject<TutorialService> tutorialService, PresenterService presenterService)
@@ -22,13 +23,10 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         public async UniTask Show()
         {
             await _tutorialService.Value.WaitForWindowOpen<BusinessHubView>();
-            var businessHubView = _presenterService.GetPresenter<BusinessHubView>();
-            var productComponent = businessHubView.ProductComponent;
-            var rectTransform = (RectTransform) productComponent.transform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform);
-            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step101)
-                .SetFunnySlideOutPosition(rectTransform.position).SetFunnySlideOutOffsetY(255).AddFunnySlideOutXOffset(300);
-            await _tutorialService.Value.WaitForObservable(productComponent.OnClick);
+            var hubView = _presenterService.GetPresenter<BusinessHubView>();
+            var startButtonRect = (RectTransform)hubView.StartButton.transform;
+            _tutorialService.Value.ShowArrow(startButtonRect).ShowMask(startButtonRect).AddArrowYOffset(-20);
+            await _tutorialService.Value.WaitForObservable(hubView.StartButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }
 

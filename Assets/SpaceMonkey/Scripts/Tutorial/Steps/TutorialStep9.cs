@@ -28,8 +28,8 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             mapView.SetMapInteractable(false);
             var placeHolder = mapView.SelectMyPlace();
             var rectTransform = placeHolder.Holder.BodyRectTransform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform)
-                .ShowFunnySlideOut(FunnySlideOutTexts.Step91).AddArrowYOffset(80);
+            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).AddArrowYOffset(80);
+            _tutorialService.Value.ShowFunnySlideOut(FunnySlideOutTexts.Step91).SetFunnySlideOutPosition(rectTransform.position).SetFunnySlideOutOffsetY(380);
             await _tutorialService.Value.WaitForObservable(placeHolder.Holder.GetButtonObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }
