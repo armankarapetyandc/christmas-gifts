@@ -41,7 +41,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
             {
                 return;
             }
-            averageRatingText.text = $"{value}";
+            averageRatingText.text = $"{value:F1}";
         }
 
         public void SetDescriptionText(string value)
