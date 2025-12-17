@@ -17,6 +17,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
         [SerializeField] private Button button;
         [SerializeField] private ColorVisualAsset placeHolderFirstShowColor;
         [SerializeField] private ColorVisualAsset placeHolderDefaultColor;
+        [SerializeField] private TextMeshProUGUI levelInfo;
         
         [SerializeField] private TextMeshProUGUI averageRatingText;
         [SerializeField] private TextMeshProUGUI ratingsCountText;
@@ -74,6 +75,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map.Items
             {
                 stars[i].SetActive(i + 1 <= value);
             }
+        }
+
+        public void SetLevel(int level)
+        {
+            levelInfo.text = $"Level {level}";
         }
 
         public void SetPlaceName(string placeName)

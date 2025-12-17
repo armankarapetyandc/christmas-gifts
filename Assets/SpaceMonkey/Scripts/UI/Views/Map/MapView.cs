@@ -163,6 +163,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 {
                     item.Init(place.Type);
                     item.SetPlaceName(place.SingleLineName);
+                    item.SetLevel(Controller.CurrentLevel);
                     item.SetIcon(place.IconVisualAsset);
                     var companyRating = Controller.CalculateCompanyRating();
                     item.SetRatingStars(companyRating);

@@ -88,7 +88,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             var account = _accountService.Model.Account;
             var place = _mapConfig.DefaultCompanyPlace;
             place.Name = $"{account.Company.CompanyName}\nLevel {account.Level}";
-            place.SingleLineName=$"{account.Company.CompanyName} Level {account.Level}";
+            place.SingleLineName = account.Company.CompanyName;//$"{account.Company.CompanyName} Level {account.Level}";
             place.IconVisualAsset = ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.IconVisualAssetId);
             return place;
         }
