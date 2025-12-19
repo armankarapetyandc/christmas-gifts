@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using ObservableCollections;
 using R3;
@@ -77,6 +79,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
 
         private void HashTagSelected((Hashtag label, bool state) tuple)
         {
+            SfxPlayer.Play(Sounds.Add_Hashtag);
             if (tuple.state)
             {
                 _selectedTags.Add(tuple.label);

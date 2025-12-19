@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs;
@@ -75,6 +77,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         internal void ShowProductView()
         {
+
             _navigationPresenterService.HideAll();
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }

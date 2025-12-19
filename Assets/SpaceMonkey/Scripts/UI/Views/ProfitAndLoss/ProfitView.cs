@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -35,8 +37,16 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         public override UniTask Initialize(IPresenterData data = null)
         {
             _viewData = data as Data;
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext(_viewData.IsWeekEnd)).AddTo(this);
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            nextButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Click_Next);
+                Controller.OnNext(_viewData.IsWeekEnd);
+            }).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnBack();
+            }).AddTo(this);
             SetupDefaults();
             return UniTask.CompletedTask;
         }

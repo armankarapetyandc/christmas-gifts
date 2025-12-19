@@ -80,3 +80,4 @@ MonoBehaviour:
   navigationPresenterViewPrefab: {fileID: 7000274042814176345, guid: aefb6c610b96aea448c4c8bc6348142b, type: 3}
   debugLogManagerPrefab: {fileID: 8221431974822133984, guid: 1bf3fe7d912bf7e4eb7044ef75499e68, type: 3}
   visualAssetDatabase: {fileID: 11400000, guid: 933f85b67f8d845f48948530131e5bee, type: 2}
+  gameSfxPlayerConfig: {fileID: 11400000, guid: 6ff47405530b94626b2113ba243950e6, type: 2}

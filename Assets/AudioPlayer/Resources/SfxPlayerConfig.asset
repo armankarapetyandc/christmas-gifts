@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb59acb0557f74263aaf7523e78b8626, type: 3}
+  m_Name: SfxPlayerConfig
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: 50597af32b2aa43bfbcc247dd74f8eef, type: 2}
+  soundsConfigs:
+  - {fileID: 11400000, guid: 6e7c70e5d90e74812a6293a650000228, type: 2}
+  - {fileID: 11400000, guid: 053319c5bf05147c5aba621fac9ae325, type: 2}
+  - {fileID: 11400000, guid: d2a9a347a198745809c7b391b45149ad, type: 2}
+  - {fileID: 11400000, guid: 080b5c7dcc2d54591a9e99f0c021944c, type: 2}
+  - {fileID: 11400000, guid: 94b2a70f6b16943308c8821e064399bd, type: 2}
+  - {fileID: 11400000, guid: d4f5424dbc6f54957a2d748ec658ab0b, type: 2}
+  - {fileID: 11400000, guid: fad0c68dada1a4e11b1a27d10a81ebcf, type: 2}
+  - {fileID: 11400000, guid: 1c610038c4df94654ac8affa0ae486bb, type: 2}
+  - {fileID: 11400000, guid: 1ebadde0f6cbb4138ac1e8bfa3ff4387, type: 2}
+  - {fileID: 11400000, guid: a4c25af218c1346528eaf329e8c38e73, type: 2}
+  - {fileID: 11400000, guid: 7f842c6df9a524033bc26a1159d215e8, type: 2}
+  - {fileID: 11400000, guid: e1349e6994a4a487fac9f7d4db379bd3, type: 2}
+  - {fileID: 11400000, guid: fe0359642c8784f159222ea03e07137f, type: 2}
+  - {fileID: 11400000, guid: 7a095fab3d60a4945805d2674e62759c, type: 2}
+  - {fileID: 11400000, guid: 6cfabd5e867984467ad853c759588729, type: 2}
+  - {fileID: 11400000, guid: 974a3ea289b044728b9cae8120483690, type: 2}
+  - {fileID: 11400000, guid: 7c65ae56ef29b45c18c74b4cea18db16, type: 2}
+  configFolder: {fileID: 102900000, guid: d34ccd1dac3d24fc588a5e3a51e4627a, type: 3}
+  showLogs: 0

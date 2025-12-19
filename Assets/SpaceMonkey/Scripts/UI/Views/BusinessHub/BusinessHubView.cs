@@ -1,4 +1,6 @@
 using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile;
@@ -54,9 +56,16 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         public override UniTask Initialize(IPresenterData data = null)
         {
             _viewData = data as Data;
-            productComponent.OnClick.Subscribe(_ => Controller.ShowProductView()).AddTo(this);
+            productComponent.OnClick.Subscribe(_ =>
+            {
+                {
+                    SfxPlayer.Play(Sounds.Button_Tap);
+                    Controller.ShowProductView();
+                }
+            }).AddTo(this);
             marketingButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 if (PlayerPrefs.GetInt("marketing") != 1)
                 {
                     var item = lockedByMoney.FirstOrDefault(level => level.Key == "marketing");
@@ -73,6 +82,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
             staffButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 var item = lockedByLevels.FirstOrDefault(level => level.Key == "stuff");
                 if (item != null && item.Locked)
                 {
@@ -83,9 +93,16 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
                 Controller.ShowStaffView();
             }).AddTo(this);
-            startButton.OnClickAsObservable().Subscribe(_ => Controller.StartWeek()).AddTo(this);
+            startButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                {
+                    SfxPlayer.Play(Sounds.Button_Tap);
+                    Controller.StartWeek();
+                }
+            }).AddTo(this);
             productionButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 var item = lockedByLevels.FirstOrDefault(level => level.Key == "production");
                 if (item != null && item.Locked)
                 {
@@ -98,6 +115,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             }).AddTo(this);
             reviewButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 if (Controller.GetAccount().Reviews.Count <= 0)
                 {
                     toastPopup.ShowToast($"Unlocks after 1st review");
@@ -109,6 +127,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
             plmButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 if (Controller.GetAccount().WeeksV2.Count <= 0)
                 {
                     toastPopup.ShowToast($"Unlocks at 1st week complete");
@@ -117,7 +136,14 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
                 Controller.ShowPlmView();
             }).AddTo(this);
-            xpButton.OnClickAsObservable().Subscribe(_ => Controller.ShowLevelInfoPopup()).AddTo(this);
+            xpButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                {
+                    SfxPlayer.Play(Sounds.Button_Tap);
+                    Controller.ShowLevelInfoPopup();
+                    
+                }
+            }).AddTo(this);
 
 
             Controller.OnLevelChanged.Subscribe(CheckForUnlockByLevel).AddTo(this);

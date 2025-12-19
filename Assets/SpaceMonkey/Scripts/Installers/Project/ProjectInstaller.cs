@@ -1,4 +1,6 @@
-﻿using ContextLoaderService.Runtime;
+﻿using AudioPlayerService.Runtime;
+using AudioPlayerService.Runtime.Configs;
+using ContextLoaderService.Runtime;
 using IngameDebugConsole;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
@@ -18,6 +20,7 @@ namespace SpaceMonkey.Scripts.Installers.Project
         [SerializeField] private NavigationPresenterView navigationPresenterViewPrefab;
         [SerializeField] private DebugLogManager debugLogManagerPrefab;
         [SerializeField] private VisualAssetDatabase visualAssetDatabase;
+        [SerializeField] private SfxPlayerConfig gameSfxPlayerConfig;
 
         public override void InstallBindings()
         {
@@ -63,6 +66,7 @@ namespace SpaceMonkey.Scripts.Installers.Project
                 .FromInstance(visualAssetDatabase)
                 .AsSingle();
 
+            SfxInstaller.Install(Container, gameSfxPlayerConfig);
         }
 
         private DebugLogManager GetDebugLogManagerInstance(InjectContext ctx)

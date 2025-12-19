@@ -785,7 +785,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN
+    Android: AUDIO_PLAYER
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
@@ -796,12 +796,12 @@ PlayerSettings:
     PS5: DOTWEEN
     QNX: DOTWEEN
     ReservedCFE: DOTWEEN
-    Standalone: DOTWEEN
+    Standalone: AUDIO_PLAYER
     VisionOS: DOTWEEN
-    WebGL: DOTWEEN
+    WebGL: AUDIO_PLAYER
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
-    iPhone: DC_LOGGING;DOTWEEN
+    iPhone: AUDIO_PLAYER
     tvOS: DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}

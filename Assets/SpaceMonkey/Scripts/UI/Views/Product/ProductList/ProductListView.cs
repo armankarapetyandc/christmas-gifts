@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using ObservableCollections;
 using R3;
@@ -24,7 +26,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnBack();
+            }).AddTo(this);
             // newProductButton.OnClickAsObservable().Subscribe(_ => Controller.OnProduct(null)).AddTo(this);
             _items
                 .ObserveAdd()
