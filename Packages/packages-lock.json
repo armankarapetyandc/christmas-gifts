@@ -7,7 +7,7 @@
       "dependencies": {
         "com.unity.modules.imgui": "1.0.0"
       },
-      "hash": "fbc12b2c0b6a1ee5ce7d534f9db936bc59069219"
+      "hash": "24d04125d68719816e24dfb79c60dd97ca396038"
     },
     "com.cysharp.unitask": {
       "version": "2.5.10",
@@ -25,6 +25,18 @@
         "com.doublecoconut.dclogger": "1.0.7"
       },
       "hash": "7cfdc36bb50bac776cda2e7c1f8a3885d7f1ce6f"
+    },
+    "com.doublecoconut.audioplayerservice": {
+      "version": "https://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@github.com/double-coconut-unity/module-audio-player-service.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.github-glitchenzo.nugetforunity": "4.1.1",
+        "com.cysharp.r3": "1.1.16",
+        "com.svermeulen.extenject": "9.2.0-stcf3",
+        "com.doublecoconut.dclogger": "1.0.7"
+      },
+      "hash": "b1bc8694a409e9c4e000a7740e8b544dddabaacf"
     },
     "com.doublecoconut.contextloaderservice": {
       "version": "https://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@github.com/double-coconut-unity/module-context-loader-service.git",
@@ -183,7 +195,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.25",
+      "version": "1.8.24",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -193,14 +205,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collections": {
-      "version": "2.5.7",
+      "version": "2.5.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.burst": "1.8.19",
-        "com.unity.mathematics": "1.3.2",
-        "com.unity.test-framework": "1.4.6",
-        "com.unity.nuget.mono-cecil": "1.11.5",
+        "com.unity.burst": "1.8.17",
+        "com.unity.test-framework": "1.4.5",
+        "com.unity.nuget.mono-cecil": "1.11.4",
         "com.unity.test-framework.performance": "3.0.3"
       },
       "url": "https://packages.unity.com"
@@ -244,14 +255,14 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.nuget.mono-cecil": {
-      "version": "1.11.5",
+      "version": "1.11.4",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "17.2.0",
+      "version": "17.1.0",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
@@ -266,12 +277,12 @@
       }
     },
     "com.unity.render-pipelines.universal": {
-      "version": "17.2.0",
+      "version": "17.1.0",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "17.2.0",
-        "com.unity.shadergraph": "17.2.0",
+        "com.unity.render-pipelines.core": "17.1.0",
+        "com.unity.shadergraph": "17.1.0",
         "com.unity.render-pipelines.universal-config": "17.0.3"
       }
     },
@@ -301,16 +312,16 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "17.2.0",
+      "version": "17.1.0",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "17.2.0",
+        "com.unity.render-pipelines.core": "17.1.0",
         "com.unity.searcher": "4.9.3"
       }
     },
     "com.unity.test-framework": {
-      "version": "1.6.0",
+      "version": "1.5.1",
       "depth": 2,
       "source": "builtin",
       "dependencies": {
@@ -320,7 +331,7 @@
       }
     },
     "com.unity.test-framework.performance": {
-      "version": "3.2.0",
+      "version": "3.1.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -355,7 +366,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "80c0c42131d4824f9ff6439eda11c2378251fe6d"
+      "hash": "192208bb4e01d0fcae194fa9bfa603c3d108d050"
     },
     "com.unity.modules.androidjni": {
       "version": "1.0.0",
@@ -422,7 +433,7 @@
     },
     "com.unity.modules.physics": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 2,
       "source": "builtin",
       "dependencies": {}
     },
@@ -468,8 +479,7 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
-        "com.unity.modules.hierarchycore": "1.0.0",
-        "com.unity.modules.physics": "1.0.0"
+        "com.unity.modules.hierarchycore": "1.0.0"
       }
     },
     "com.unity.modules.unityanalytics": {
