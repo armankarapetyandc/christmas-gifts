@@ -56,11 +56,11 @@ namespace SpaceMonkey.Scripts.Tutorial
                 lastCompleteStep++;
             }
 
-            AnalyticsProvider.SendEvent(AnalyticsEvents.TutorialCompleted, new Dictionary<string, string>()
-            {
-                { "tutorial_step", lastCompleteStep.ToString() },
-                { "company_name", _accountService.Model.Account.Company.CompanyName }
-            });
+            // AnalyticsProvider.SendEvent(AnalyticsEvents.TutorialCompleted, new Dictionary<string, string>()
+            // {
+            //     { "tutorial_step", lastCompleteStep.ToString() },
+            //     { "company_name", _accountService.Model.Account.Company.CompanyName }
+            // });
             SetLastCompleteStep(lastCompleteStep);
         }
 

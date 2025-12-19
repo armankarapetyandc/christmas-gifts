@@ -1064,7 +1064,7 @@ RectTransform:
   - {fileID: 4214435784147268258}
   - {fileID: 7226651166016125132}
   - {fileID: 9217354576619439777}
-  m_Father: {fileID: 1424246779305214843}
+  m_Father: {fileID: 3157883910516472229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1459,6 +1459,7 @@ GameObject:
   - component: {fileID: 8064775178818871306}
   - component: {fileID: 4803790423376535109}
   - component: {fileID: 7355572623570587033}
+  - component: {fileID: 8243156968544848736}
   m_Layer: 5
   m_Name: OrderItem
   m_TagString: Untagged
@@ -1478,8 +1479,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4129572199498857299}
-  - {fileID: 7886199788761605501}
+  - {fileID: 3157883910516472229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -1519,6 +1519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2516ee5a30343c384746526741c40ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationContainer: {fileID: 3157883910516472229}
+  canvasGroup: {fileID: 8243156968544848736}
   iconComponent: {fileID: 7902369503040942494}
   customerName: {fileID: 8555800833131505882}
   moneyText: {fileID: 6274507823148530813}
@@ -1528,6 +1530,7 @@ MonoBehaviour:
   shipButton: {fileID: 7355572623570587033}
   productsContainer: {fileID: 249221601716731741}
   orderProductItemPrefab: {fileID: 6536212236698648349, guid: c458ef677f531474eba529ddc7cfca52, type: 3}
+  layoutElement: {fileID: 8064775178818871306}
 --- !u!114 &7355572623570587033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,6 +1575,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &8243156968544848736
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028521301355391791}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8187756988262489367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,7 +1617,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1424246779305214843}
+  m_Father: {fileID: 3157883910516472229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1767,6 +1782,43 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &8477526163216251734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3157883910516472229}
+  m_Layer: 5
+  m_Name: AnimationContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3157883910516472229
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477526163216251734}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4129572199498857299}
+  - {fileID: 7886199788761605501}
+  m_Father: {fileID: 1424246779305214843}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8645369499991842357
 GameObject:
   m_ObjectHideFlags: 0

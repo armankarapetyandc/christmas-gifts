@@ -55,7 +55,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             weekText.text = account.Week.ToString();
         }
 
-        private void SetupCustomers()
+        private async UniTask SetupCustomers()
         {
             var currentWeek = Controller.GetCurrentWeek();
             var moodVisualAssets = Controller.ResolveVisualAssets<MoodVisualAsset>().OrderBy(asset => asset.MoodValue)
@@ -66,6 +66,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 var orderItem = Instantiate(orderItemPrefab, container);
                 orderItem.SetOrder(order);
                 orderItem.SetCustomer(character);
+                orderItem.SetInteractableState(false);
                 orderItem.ShipOrder.Subscribe(item => ShipOrder(item).Forget()).AddTo(this);
                 orderItem.SetCharacterVisual(character.Sprite, character.BackgroundColor);
                 var moodAsset = moodVisualAssets.FirstOrDefault(asset => order.Customer.Mood <= asset.MoodValue);
@@ -79,6 +80,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 )).ToList();
                 orderItem.SetProducts(products);
                 _orders.Add(orderItem);
+                await orderItem.SlideIn();
+                orderItem.SetInteractableState(true);
             }
 
             var bigOrder = Controller.GetBigOrder();
@@ -86,6 +89,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             {
                 var character = Controller.GetCharacter(bigOrder.CharacterId);
                 var orderItem = Instantiate(orderItemPrefab, container);
+                orderItem.SetInteractableState(false);
                 var order = new WeekSimulationV2.Order
                 {
                     Customer = new WeekSimulationV2.CustomerData()
@@ -113,6 +117,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 orderItem.SetProducts(products);
                 orderItem.transform.SetAsFirstSibling();
                 _orders.Insert(0, orderItem);
+                await orderItem.SlideIn();
+                orderItem.SetInteractableState(true);
             }
         }
 

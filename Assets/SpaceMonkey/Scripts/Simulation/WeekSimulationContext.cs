@@ -5,8 +5,12 @@ using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Analytics;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Profile.Simulation;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Views.Orders;
+using SpaceMonkey.Scripts.UI.Views.ProfitAndLoss;
+using SpaceMonkey.Scripts.UI.Views.Review;
+using SpaceMonkey.Scripts.UI.Views.UpgradeCapacity;
 using SpaceMonkey.Scripts.UI.Views.WeekReview;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
@@ -75,7 +79,36 @@ namespace SpaceMonkey.Scripts.Simulation
                 { "score", _accountService.Model.Account.Score.ToString() },
                 { "cash", _accountService.Model.Account.Money.ToString() }
             });
-            _presenterService.HidePreviousAndShow<WeekReviewView>(data).Forget();
+            Finished(data.LevelIncreased);
+            // _presenterService.HidePreviousAndShow<WeekReviewView>(data).Forget();
+        }
+        private IEnumerable<CustomerReviewInfo> GetReviews()
+        {
+            return _accountService.Model.Account.Reviews?.Where(info =>
+                info.WeekId.Equals(WeekSimulation.CurrentWeek.Value.Id));
+        }
+        private void Finished(bool? levelIncreased)
+        {
+            if (levelIncreased != null && levelIncreased.Value)
+            {
+                _presenterService.HidePreviousAndShow<WeekEndRewardView>().Forget();
+                return;
+            }
+            
+            if (GetReviews()?.Count() > 0)
+            {
+                _presenterService.HidePreviousAndShow<ReviewView>(new ReviewView.Data()
+                {
+                    IsWeekEnd = true
+                }).Forget();
+                return;
+            }
+            
+            _presenterService.Show<ProfitView>(new ProfitView.Data
+            {
+                UseSimulation = true,
+                IsWeekEnd = true
+            }).Forget();
         }
     }
 }
