@@ -23,7 +23,13 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         public async UniTask Show()
         {
             await _tutorialService.Value.WaitForWindowOpen<BusinessHubView>();
-            var hubView = _presenterService.GetPresenter<BusinessHubView>();
+            BusinessHubView hubView = null;
+            await UniTask.WaitWhile(() =>
+            {
+                hubView = _presenterService.GetPresenter<BusinessHubView>();
+                return hubView == null || hubView.StartButton.interactable == false;
+            });
+            
             var startButtonRect = (RectTransform)hubView.StartButton.transform;
             _tutorialService.Value.ShowArrow(startButtonRect).ShowMask(startButtonRect).AddArrowYOffset(-20);
             await _tutorialService.Value.WaitForObservable(hubView.StartButton.OnClickAsObservable());

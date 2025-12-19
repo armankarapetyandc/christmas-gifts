@@ -215,7 +215,7 @@ namespace SpaceMonkey.Scripts.Tutorial
         public async UniTask WaitForInputFieldSubmit(TMP_InputField inputField)
         {
             var compilationSource = new UniTaskCompletionSource();
-            var disposable = inputField.onSubmit.AsObservable().AsUnitObservable().Subscribe(_ =>
+            var disposable = inputField.onEndEdit.AsObservable().AsUnitObservable().Subscribe(_ =>
             {
                 if (inputField.text.Length > 5)
                 {
