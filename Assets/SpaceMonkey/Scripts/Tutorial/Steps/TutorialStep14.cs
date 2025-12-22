@@ -22,6 +22,8 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         private NavigationPresenterService _navigationPresenterService;
         public int Order => 14;
 
+        private CompositeDisposable _disposable;
+
         [Inject]
         private void Inject(LazyInject<TutorialService> tutorialService, PresenterService presenterService,AccountService accountService,VisualAssetDatabase visualAssetDatabase,NavigationPresenterService navigationPresenterService)
         {
@@ -34,6 +36,8 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
 
         public async UniTask Show()
         {
+            _disposable?.Dispose();
+            _disposable = new CompositeDisposable();
             await _tutorialService.Value.WaitForWindowOpen<ProductView>();
             var productView = _presenterService.GetPresenter<ProductView>();
             var inputField = productView.InputField;
@@ -45,14 +49,19 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
 
             _tutorialService.Value.ShowArrow(productView.ParametersContainer).ShowMask(productView.ParametersContainer)
                 .ShowFunnySlideOut(FunnySlideOutTexts.Step142).AddArrowYOffset(560);
-            await UniTask.Delay(TimeSpan.FromSeconds(5));
+
+            // await UniTask.Delay(TimeSpan.FromSeconds(5));
+            await _tutorialService.Value.WaitForObservable(productView.ParametersChanged);
+            
             _tutorialService.Value.HideArrow().HideMask().HideFunnySlideOut();
             await UniTask.WaitForEndOfFrame();
             
             var saveButton = productView.SaveButton;
             rectTransform = (RectTransform) saveButton.transform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform)
+            _tutorialService.Value.ShowMask(productView.PropsHolder)
                 .ShowFunnySlideOut(FunnySlideOutTexts.Step143);
+            var transform = rectTransform;
+            productView.AllParametersEdited.Subscribe(_ => _tutorialService.Value.ShowArrow(transform)).AddTo(_disposable);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask().HideFunnySlideOut();
 
@@ -82,6 +91,8 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
 
         public void Hide()
         {
+            _disposable?.Dispose();
+            _disposable = null;
         }
     }
 }

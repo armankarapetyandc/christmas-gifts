@@ -2268,11 +2268,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9143076649448061029}
-  m_Father: {fileID: 3686225254149222452}
+  m_Father: {fileID: 7201030972826567193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 72.5, y: -2200}
+  m_AnchoredPosition: {x: 30.5, y: -1600}
   m_SizeDelta: {x: 980, y: 129}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5253789297061780011
@@ -3884,8 +3884,7 @@ RectTransform:
   m_Children:
   - {fileID: 1330677589267543197}
   - {fileID: 8448599659484398108}
-  - {fileID: 2080936884003431916}
-  - {fileID: 2121553931082574364}
+  - {fileID: 7201030972826567193}
   m_Father: {fileID: 5386566713051121462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4098,6 +4097,43 @@ RectTransform:
   m_AnchoredPosition: {x: -20, y: 0}
   m_SizeDelta: {x: -40, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &3163949800741387378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7201030972826567193}
+  m_Layer: 5
+  m_Name: Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7201030972826567193
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3163949800741387378}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2080936884003431916}
+  - {fileID: 2121553931082574364}
+  m_Father: {fileID: 3686225254149222452}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 42, y: -600}
+  m_SizeDelta: {x: 1040, y: 1729}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &3244407628911087665
 GameObject:
   m_ObjectHideFlags: 0
@@ -6444,7 +6480,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5555729616000492491}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6452,11 +6488,11 @@ RectTransform:
   - {fileID: 3930422414783298707}
   - {fileID: 8086764920021145396}
   - {fileID: 5731880153109208815}
-  m_Father: {fileID: 3686225254149222452}
+  m_Father: {fileID: 7201030972826567193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 560, y: -600}
+  m_AnchoredPosition: {x: 518, y: 0}
   m_SizeDelta: {x: 1040, y: 1555}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &5704406954042994799
@@ -8291,6 +8327,7 @@ MonoBehaviour:
   presenterHolder: {fileID: 3686225254149222452}
   dimmerButton: {fileID: 0}
   <AutoFitSupported>k__BackingField: 1
+  propsHolder: {fileID: 7201030972826567193}
   productNameInputField: {fileID: 7109959867404844255}
   iconComponent: {fileID: 376684217215157283}
   generateProductNameButton: {fileID: 8791882570804815445}

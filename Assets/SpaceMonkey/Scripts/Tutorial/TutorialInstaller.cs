@@ -23,10 +23,10 @@ namespace SpaceMonkey.Scripts.Tutorial
                 new TutorialStep8(),
                 new TutorialStep9(),
                 new TutorialStep10(),
-                new TutorialStep11(),
-                // new TutorialStep12(),
-                // new TutorialStep13(),
-                // new TutorialStep14()
+                // new TutorialStep11(),
+                new TutorialStep12(),
+                new TutorialStep13(),
+                new TutorialStep14(),
                 new TutorialStep15()
             };
             

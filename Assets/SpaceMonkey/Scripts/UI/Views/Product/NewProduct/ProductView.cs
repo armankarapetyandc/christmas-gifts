@@ -21,6 +21,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             public Profile.Product? SelectedProduct { get; set; }
         }
 
+        [SerializeField] private RectTransform propsHolder;
         [SerializeField] private TMP_InputField productNameInputField;
         [SerializeField] private IconComponent iconComponent;
         [SerializeField] private Button generateProductNameButton;
@@ -38,17 +39,47 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         [SerializeField] private HotItemSubView hotItemSubView;
 
         [SerializeField] private Button deleteButton;
-        [SerializeField] private ColorVisualAsset defaultIconColorVisualAsset;
         public IconComponent IconComponent => iconComponent;
         public TMP_InputField InputField => productNameInputField;
 
         public HotItemSubView HotItemSubView =>  hotItemSubView;
         public RectTransform ParametersContainer => parametersContainer;
-        public Observable<Unit> ParametersChanged => Observable.Merge(
-            timeToProductSlider.CurrentValue.Select(_ => Unit.Default),
-            materialPriceSlider.CurrentValue.Select(_ => Unit.Default),
-            materialPackagingSlider.CurrentValue.Select(_ => Unit.Default));
+        public RectTransform PropsHolder => propsHolder;
+        public Observable<Unit> ParametersChanged =>
+            Observable.Merge(
+                timeToProductSlider.CurrentValue.Skip(1).AsUnitObservable(),
+                materialPriceSlider.CurrentValue.Skip(1).AsUnitObservable(),
+                materialPackagingSlider.CurrentValue.Skip(1).AsUnitObservable(),
+                productPriceSlider.CurrentValue.Skip(1).AsUnitObservable()
+            );
         
+        public Observable<Unit> AllParametersEdited =>
+            Observable.CombineLatest(
+                    timeToProductSlider.CurrentValue
+                        .Skip(1)
+                        .Select(_ => true)
+                        .Scan(false, (_, __) => true),
+
+                    materialPriceSlider.CurrentValue
+                        .Skip(1)
+                        .Select(_ => true)
+                        .Scan(false, (_, __) => true),
+
+                    materialPackagingSlider.CurrentValue
+                        .Skip(1)
+                        .Select(_ => true)
+                        .Scan(false, (_, __) => true),
+
+                    productPriceSlider.CurrentValue
+                        .Skip(1)
+                        .Select(_ => true)
+                        .Scan(false, (_, __) => true),
+
+                    (t, m, p, pr) => t && m && p && pr
+                )
+                .DistinctUntilChanged()
+                .Where(allEdited => allEdited)
+                .AsUnitObservable();
         public Button SaveButton => saveButton;
         public override async UniTask Initialize(IPresenterData data = null)
         {

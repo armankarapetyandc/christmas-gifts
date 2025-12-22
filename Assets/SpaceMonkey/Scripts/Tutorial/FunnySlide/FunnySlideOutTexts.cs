@@ -22,7 +22,7 @@ namespace SpaceMonkey.Scripts.Tutorial
         public const string Step131 = "Select from the list of icons below";
         public const string Step132 = "Tap the Save button to exit";
         public const string Step141 = "Now name your product";
-        public const string Step142 = "Set the parameters for your\nproduct";
+        public const string Step142 = "What quality standard will you set for your product?";
         public const string Step143 = "Okay! Hit the Save button to add your first product!";
     }
 }
