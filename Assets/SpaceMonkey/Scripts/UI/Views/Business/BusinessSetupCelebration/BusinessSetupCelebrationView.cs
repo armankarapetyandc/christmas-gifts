@@ -1,4 +1,6 @@
 using System;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -22,8 +24,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessSetupCelebration
         public Button NextButton => nextButton;
         public override async UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnBack();
+            }).AddTo(this);
+            nextButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Click_Next);
+                Controller.OnNext();
+            }).AddTo(this);
             seeExamplesButton.OnClickAsObservable().Subscribe(_ => Controller.OpenExamplesView()).AddTo(this);
             SetupDefaults();
 

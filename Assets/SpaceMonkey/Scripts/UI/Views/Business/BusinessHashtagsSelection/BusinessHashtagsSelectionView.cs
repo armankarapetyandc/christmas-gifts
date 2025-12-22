@@ -56,8 +56,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessHashtagsSelection
         
         public override UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
-            saveButton.OnClickAsObservable().Subscribe(_ => Controller.Save(_selectedTags.ToArray())).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnBack();
+            }).AddTo(this);
+            saveButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.Save(_selectedTags.ToArray());
+            }).AddTo(this);
             _selectedTags.ObserveCountChanged().StartWithValue(_selectedTags.Count).Subscribe(SelectedTagsCountChanged)
                 .AddTo(this);
             SetupDefaults();

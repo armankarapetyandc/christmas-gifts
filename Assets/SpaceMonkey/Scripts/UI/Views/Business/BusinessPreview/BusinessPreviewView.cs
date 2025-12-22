@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using AudioPlayer;
+using AudioPlayerService.Runtime;
+using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
@@ -31,8 +33,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessPreview
         public override UniTask Initialize(IPresenterData data = null)
         {
             var account = Controller.GetAccount();
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
-            saveButton.OnClickAsObservable().Subscribe(_ => Controller.OnSave()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnBack();
+            }).AddTo(this);
+            saveButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnSave();
+            }).AddTo(this);
             nameInputField.onValueChanged.AsObservable().Subscribe(value => account.SetCompanyName(value)).AddTo(this);
             iconComponent.OnClick.Subscribe(_ => Controller.BuildLogo()).AddTo(this);
             hashtagVerticalList.SelectMore.Subscribe(_ => Controller.SelectMoreTags()).AddTo(this);

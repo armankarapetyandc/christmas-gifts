@@ -84,12 +84,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
 
         private void IconSelected(SpriteVisualAsset visualAsset)
         {
+            SfxPlayer.Play(Sounds.Click_Small);
             iconComponent.SetIcon(visualAsset);
             Controller.Product.IconVisualAssetId = visualAsset.Id;
         }
 
         private void ColorSelected(ColorVisualAsset visualAsset)
         {
+            SfxPlayer.Play(Sounds.Click_Small);
             iconComponent.SetColor(visualAsset);
             Controller.Product.BackgroundColorVisualAssetId = visualAsset.Id;
         }
