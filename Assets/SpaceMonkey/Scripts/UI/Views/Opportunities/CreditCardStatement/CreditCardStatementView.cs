@@ -1,4 +1,6 @@
 using System;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using R3;
 using SpaceMonkey.Scripts.Profile;
 using TMPro;
@@ -30,6 +32,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
         {
             backButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 if (PresenterData?.OnClose != null)
                 {
                     Controller.CloseView();
@@ -42,28 +45,38 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
             {
                 if (isOn)
                 {
+                    SfxPlayer.Play(Sounds.Checkbox_On);
                     Controller.SelectPayment(PaymentOption.Skip);
                     SetToggleState();
+                    return;
                 }
+                SfxPlayer.Play(Sounds.Checkbox_Off);
             });
             payMinimumToggle.onValueChanged.AddListener(isOn =>
             {
                 if (isOn)
                 {
+                    SfxPlayer.Play(Sounds.Checkbox_On);
                     Controller.SelectPayment(PaymentOption.Minimum);
                     SetToggleState();
+                    return;
                 }
+                SfxPlayer.Play(Sounds.Checkbox_Off);
             });
             payFullToggle.onValueChanged.AddListener(isOn =>
             {
                 if (isOn)
                 {
+                    SfxPlayer.Play(Sounds.Checkbox_On);
                     Controller.SelectPayment(PaymentOption.Full);
                     SetToggleState();
+                    return;
                 }
+                SfxPlayer.Play(Sounds.Checkbox_Off);
             });
             bottomInfoCloseButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 PlayerPrefs.SetInt("CreditCardStatementInfoShown", 1);
                 bottomInfoContainer.gameObject.SetActive(!PlayerPrefs.HasKey("CreditCardStatementInfoShown"));
             }).AddTo(this);

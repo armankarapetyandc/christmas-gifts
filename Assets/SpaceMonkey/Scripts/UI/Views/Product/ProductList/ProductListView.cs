@@ -31,7 +31,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
                 SfxPlayer.Play(Sounds.Button_Tap);
                 Controller.OnBack();
             }).AddTo(this);
-            // newProductButton.OnClickAsObservable().Subscribe(_ => Controller.OnProduct(null)).AddTo(this);
             _items
                 .ObserveAdd()
                 .Select(e => e.Value.Selected)
@@ -51,26 +50,27 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
                 var item = CreateProduct(product);
                 _items.Add(item);
             }
-
-            //newProductButton.interactable = false;
             var currentLevel = account.Level;
             if (currentLevel == 1 && account.Products.Count == 0)
             {
-                //newProductButton.interactable = true;
-                newProductButton.OnClickAsObservable().Subscribe(_ => Controller.OnProduct(null)).AddTo(this);
+                newProductButton.OnClickAsObservable().Subscribe(_ =>
+                {
+                    SfxPlayer.Play(Sounds.Button_Tap);
+                    Controller.OnProduct(null);
+                }).AddTo(this);
                 return;
             }
 
             var configLevel = Controller.LevelInfos().FirstOrDefault(info => info.Level == currentLevel);
             if (configLevel != null && configLevel.UnlockInfo.Any(info => info.Key == "2product"))
             {
-                // newProductButton.interactable = true;
                 newProductButton.OnClickAsObservable().Subscribe(_ => Controller.OnProduct(null)).AddTo(this);
                 return;
             }
 
             newProductButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 var nextConfig = Controller.LevelInfos().FirstOrDefault(info => info.Level > currentLevel);
                 toastPopup.ShowToast($"Unlocks at Company Level {nextConfig?.Level}");
             }).AddTo(this);

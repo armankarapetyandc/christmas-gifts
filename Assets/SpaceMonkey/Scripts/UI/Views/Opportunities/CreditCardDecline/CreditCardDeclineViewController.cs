@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCard;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
@@ -15,6 +17,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardDecline
 
         internal void OnBack()
         {
+            SfxPlayer.Play(Sounds.Button_Tap);
             PresenterService.Show<CreditCardView>().Forget();
         }
     }

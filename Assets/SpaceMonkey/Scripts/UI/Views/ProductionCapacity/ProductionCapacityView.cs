@@ -1,4 +1,6 @@
 using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile;
@@ -36,7 +38,11 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         {
             _data = data as Data;
             _levelVisualAssets = Controller.ResolveVisualAssets<LevelVisualAsset>().ToArray();
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnBack();
+            }).AddTo(this);
             _account = Controller.GetAccount();
 
             equipmentComponent.Setup(

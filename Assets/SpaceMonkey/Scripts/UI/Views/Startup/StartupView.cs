@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Components;
@@ -20,9 +22,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Startup
 
         public override UniTask Initialize(IPresenterData data = null)
         {
+            SfxPlayer.Play(Sounds.Title_Screen);
             Controller.UIInteractable.Subscribe(UIInteractableChanged).AddTo(this);
-            startNewButton.OnClickAsObservable().Subscribe(_ => Controller.StartNewBusiness()).AddTo(this);
-            loadButton.OnClickAsObservable().Subscribe(_ => Controller.LoadCurrentBusiness().Forget()).AddTo(this);
+            startNewButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                Controller.StartNewBusiness();
+                SfxPlayer.Play(Sounds.Button_Tap);
+            }).AddTo(this);
+            loadButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.LoadCurrentBusiness().Forget();
+            }).AddTo(this);
             socialButtons.Select(button => button.Selected).Merge().Subscribe(SocialPlatformSelected).AddTo(this);
 
             Validator

@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Popups.Core;
@@ -16,11 +18,13 @@ namespace SpaceMonkey.Scripts.UI.Popups.Fire
         {
             viewCapacityButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 Controller.NavigateToProductionCapacity();
             }).AddTo(this);
             
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 Controller.ClosePopUp();
             }).AddTo(this);
             

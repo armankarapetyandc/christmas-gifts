@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using UIService.Runtime.Core;
@@ -13,6 +15,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardDecline
         
         public override UniTask Initialize(IPresenterData data = null)
         {
+            SfxPlayer.Play(Sounds.Credit_Declined);
             backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
             return UniTask.CompletedTask;
         }

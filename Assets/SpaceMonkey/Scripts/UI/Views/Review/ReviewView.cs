@@ -1,4 +1,6 @@
 using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile.Simulation;
@@ -27,7 +29,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         public override UniTask Initialize(IPresenterData data = null)
         {
             _viewData = data as Data;
-            nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext(_viewData.IsWeekEnd)).AddTo(this);
+            nextButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnNext(_viewData.IsWeekEnd);
+            }).AddTo(this);
             InitializeInfoPanel();
             var simulationWeek = Controller.GetSimulationWeek();
             var reviews = Controller.GetReviews();

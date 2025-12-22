@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using R3;
@@ -48,12 +50,14 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(Account.CreateEmpty(freeProdCap));
             Model.Account.OnScoreChanged.Subscribe(eventParam =>
             {
+                SfxPlayer.Play(Sounds.Score_Awarded);
                 LevelInfo levelInfo = _gameConfig.LevelInfos.LastOrDefault(info => info.Score <= eventParam);
                    
                 int currentLevel = Model.Account.Level;
                 Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
                 if (currentLevel < Model.Account.Level)
                 {
+                    SfxPlayer.Play(Sounds.Company_Level_Up);
                     OnLevelChanged.Execute(Model.Account.Level);
                     _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
                     AnalyticsProvider.SendEvent(AnalyticsEvents.LevelChanged,new Dictionary<string, string>()
@@ -91,6 +95,7 @@ namespace SpaceMonkey.Scripts.Profile
             Model = new AccountModel(account);
             Model.Account.OnScoreChanged.Subscribe(eventParam =>
             {
+                SfxPlayer.Play(Sounds.Score_Awarded);
                 int currentLevel = Model.Account.Level;
                 if (currentLevel < Model.Account.Level)
                 {

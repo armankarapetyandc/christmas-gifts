@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Popups.Core;
@@ -15,6 +17,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.CreditCardInfo
         {
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.Button_Tap);
                 Controller.ClosePopup();
             }).AddTo(this);
            
