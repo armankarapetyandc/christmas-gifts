@@ -33,8 +33,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
 
         public Configs.LevelInfo GetLeveInfoData(int level)
         {
-            Configs.LevelInfo levelInfo = _gameConfig.LevelInfos.FirstOrDefault(info => info.Level == level);
-            return levelInfo ?? _gameConfig.LevelInfos[^1];
+            return _gameConfig.GetLeveInfoData(level);
         }
         internal T ResolveVisualAsset<T>(string id) where T : VisualAsset
         {

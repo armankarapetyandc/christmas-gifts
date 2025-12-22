@@ -69,7 +69,11 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             return _visualAssetDatabase.GetResourceForAsset<T>(id);
         }
 
-
+        public LevelInfo GetLeveInfoData(int level)
+        {
+            return _gameConfig.GetLeveInfoData(level);
+        }
+        
         internal Account GetAccount()
         {
             return _accountService.Model.Account;

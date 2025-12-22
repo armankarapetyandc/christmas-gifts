@@ -159,6 +159,12 @@ namespace SpaceMonkey.Scripts.Configs
 
             SimulationInfo = info;
         }
+        
+        public LevelInfo GetLeveInfoData(int level)
+        {
+            LevelInfo levelInfo = LevelInfos.FirstOrDefault(info => info.Level == level);
+            return levelInfo ?? LevelInfos[^1];
+        }
     }
 
 

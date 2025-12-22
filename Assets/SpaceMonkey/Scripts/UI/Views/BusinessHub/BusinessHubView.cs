@@ -25,7 +25,9 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private TextMeshProUGUI businessName;
         [SerializeField] private TextMeshProUGUI weekNumber;
         [SerializeField] private TextMeshProUGUI levelNumber;
-
+        [SerializeField] private Slider levelSlider;
+        [SerializeField] private TextMeshProUGUI scoreProgressText;
+        
         [SerializeField] private TextMeshProUGUI moneyText;
         [SerializeField] private TextMeshProUGUI prodCapText;
         [SerializeField] private TextMeshProUGUI scoreText;
@@ -194,7 +196,12 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         {
             var account = Controller.GetAccount();
             businessName.text = account.Company.CompanyName;
-            levelNumber.text = $"Level {account.Level.ToString()}";
+            levelNumber.text = account.Level.ToString();
+            
+            Configs.LevelInfo nextLevelInfo = Controller.GetLeveInfoData(Controller.Level + 1);
+            scoreProgressText.text = $"{account.Score} / {nextLevelInfo.Score}";
+            levelSlider.value =  account.Score / (float) nextLevelInfo.Score;
+            
             moneyText.text = $"${account.Money:F2}";
             prodCapText.text = $"{account.GetProductionCapacity()} hrs";
             scoreText.text = $"{account.Score.ToString()}";
