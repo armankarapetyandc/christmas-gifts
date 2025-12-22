@@ -1531,6 +1531,7 @@ MonoBehaviour:
   productsContainer: {fileID: 249221601716731741}
   orderProductItemPrefab: {fileID: 6536212236698648349, guid: c458ef677f531474eba529ddc7cfca52, type: 3}
   layoutElement: {fileID: 8064775178818871306}
+  shippedTransform: {fileID: 9217354576619439777}
 --- !u!114 &7355572623570587033
 MonoBehaviour:
   m_ObjectHideFlags: 0

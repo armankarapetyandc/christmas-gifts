@@ -132,13 +132,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             }
 
             _orders.Remove(item);
+            item.SetShipped().Forget();
 
             var score = Controller.GetScoreFor("sellProduct") * item.Order.OrderEntries.Sum(order => order.Quantity);
             XPParticleEffector.SpawnXpParticles(score, Input.mousePosition, transform).Forget();
-            Destroy(item.gameObject);
 
-            if (_orders.Count==0)
+            if (_orders.Count == 0)
             {
+                await UniTask.Delay(500);
                 Controller.FinishWeek();
             }
         }

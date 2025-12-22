@@ -27,6 +27,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private RectTransform productsContainer;
         [SerializeField] private OrderProductItem orderProductItemPrefab;
         [SerializeField] private LayoutElement layoutElement;
+        [SerializeField] private RectTransform shippedTransform;
 
         public Observable<OrderItem> ShipOrder => shipButton.OnClickAsObservable().Select(_ => this);
         public WeekSimulationV2.Order Order { get; private set; }
@@ -98,6 +99,22 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             animationContainer.anchoredPosition = new Vector2(Screen.width * 1.5f, 0f);
             return animationContainer.DOAnchorPos(Vector2.zero, 1f)
             .SetEase(Ease.InOutCubic).AsyncWaitForCompletion().AsUniTask();
-        } 
+        }
+        public UniTask SlideOut()
+        {
+            return animationContainer
+                .DOAnchorPos(Vector2.right * Screen.width * 1.5f, 1f)
+                .SetEase(Ease.InOutCubic)
+                .SetDelay(0.5f)
+                .AsyncWaitForCompletion()
+                .AsUniTask();
+        }
+
+        public async UniTaskVoid SetShipped()
+        {
+            shippedTransform.gameObject.SetActive(true);
+            await SlideOut();
+            Destroy(gameObject);
+        }
     }
 }

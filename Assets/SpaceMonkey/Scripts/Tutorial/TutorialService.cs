@@ -217,7 +217,7 @@ namespace SpaceMonkey.Scripts.Tutorial
             var compilationSource = new UniTaskCompletionSource();
             var disposable = inputField.onEndEdit.AsObservable().AsUnitObservable().Subscribe(_ =>
             {
-                if (inputField.text.Length > 5)
+                if (inputField.text.Trim().Length > 1)
                 {
                     compilationSource.TrySetResult();
                 }

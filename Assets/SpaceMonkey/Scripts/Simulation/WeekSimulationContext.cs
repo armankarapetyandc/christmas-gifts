@@ -66,7 +66,7 @@ namespace SpaceMonkey.Scripts.Simulation
             }
 
             WeekSimulation.FinishWeek();
-            AnalyticsProvider.SendEvent(AnalyticsEvents.WeekFinished, new Dictionary<string, string>()
+            AnalyticsProvider.SendEvent($"{AnalyticsEvents.WeekFinished}_{_accountService.Model.Account.Week}", new Dictionary<string, string>()
             {
                 { "company_name", _accountService.Model.Account.Company.CompanyName },
                 { "week", _accountService.Model.Account.Week.ToString() },
