@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
@@ -33,9 +35,17 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
             _data = data as Data;
             var account = Controller.GetAccount();
 
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.ReturnProductView(_data!.Product))
+            backButton.OnClickAsObservable().Subscribe(_ =>
+                {
+                    SfxPlayer.Play(Sounds.Button_Tap);
+                    Controller.ReturnProductView(_data!.Product);
+                })
                 .AddTo(this);
-            saveButton.OnClickAsObservable().Subscribe(_ => Controller.ReturnProductView(Controller.Product))
+            saveButton.OnClickAsObservable().Subscribe(_ =>
+                {
+                    SfxPlayer.Play(Sounds.Button_Tap);
+                    Controller.ReturnProductView(Controller.Product);
+                })
                 .AddTo(this);
 
             iconCollectionComponent

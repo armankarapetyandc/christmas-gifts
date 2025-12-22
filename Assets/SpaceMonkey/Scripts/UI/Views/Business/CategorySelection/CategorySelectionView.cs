@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using R3;
@@ -50,6 +52,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
             infoButton.OnClickAsObservable().Subscribe(_ => OnInfoButtonClicked()).AddTo(this);
             nextButton.OnClickAsObservable().Subscribe(async _ =>
             {
+                SfxPlayer.Play(Sounds.Click_Next);
                 var value=Controller.GetScoreFor("Category");
                 await XPParticleEffector.SpawnXpParticles(value, new Vector2(Screen.width/2f, Screen.height/2f), transform);
                 Controller.OnNext();
@@ -65,6 +68,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
         private void OnBackButtonClicked()
         {
+            SfxPlayer.Play(Sounds.Button_Tap);
             if (categorySelectionPanel.gameObject.activeSelf)
             {
                 Controller.Back();
@@ -98,6 +102,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.CategorySelection
 
         private void CategorySelected(CategoryInfo category)
         {
+            SfxPlayer.Play(Sounds.Click_Business_Category);
             _categorySelected.Execute(Unit.Default);
             Controller.IdeaSelected(category.Name);
             selectedIdeaNameText.text = category.Name;

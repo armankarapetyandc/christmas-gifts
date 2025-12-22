@@ -1,6 +1,8 @@
 ﻿using R3;
 using System.Collections.Generic;
 using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
@@ -39,8 +41,16 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
         {
             var account = Controller.GetAccount();
 
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
-            saveButton.OnClickAsObservable().Subscribe(_ => Controller.OnSave()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnBack();
+            }).AddTo(this);
+            saveButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                Controller.OnSave();
+            }).AddTo(this);
 
             shapeItems.Select(item => item.SelectedShapeSprite).Merge().Subscribe(ShapeSelected).AddTo(this);
             iconCollectionComponent
@@ -80,6 +90,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
 
         private void ShapeSelected(SpriteVisualAsset visualAsset)
         {
+            SfxPlayer.Play(Sounds.Click_Small);
             Debug.Log($"ShapeSelected:  {visualAsset.Id}");
             iconComponent.SetShape(visualAsset);
             Controller.CompanyLogo.ShapeVisualAssetId = visualAsset.Id;
@@ -94,6 +105,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Business.BusinessIconBuilder
 
         private void ColorSelected(ColorVisualAsset visualAsset)
         {
+            SfxPlayer.Play(Sounds.Click_Small);
             iconComponent.SetColor(visualAsset);
             Controller.CompanyLogo.BackgroundColorVisualAssetId = visualAsset.Id;
             ColorSelectedCommand.Execute(Unit.Default);

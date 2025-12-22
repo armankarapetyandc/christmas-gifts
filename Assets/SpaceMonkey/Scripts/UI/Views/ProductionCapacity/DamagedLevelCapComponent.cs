@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using R3;
 using SpaceMonkey.Scripts.Profile;
 using TMPro;
@@ -15,7 +17,11 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         private float _repairCost;
 
         public Observable<(LevelProdCap, float)> OnRepairClicked =>
-            repairButton.onClick.AsObservable().Select(_ => (_levelProdCap, _repairCost));
+            repairButton.onClick.AsObservable().Select(_ =>
+            {
+                SfxPlayer.Play(Sounds.Button_Tap);
+                return (_levelProdCap, _repairCost);
+            });
 
         public void UpdateUi(LevelProdCap level, float repairCost)
         {

@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Simulation.CreditCard;
@@ -41,6 +43,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard
         {
             if (_accountService.Model.Account.Week >= 3)
             {
+                SfxPlayer.Play(Sounds.Click_Next);
                 _creditSimulator.ApplyForCredit().Forget();
                 PresenterService.Show<CreditCardSplashView>().Forget();   
             }
