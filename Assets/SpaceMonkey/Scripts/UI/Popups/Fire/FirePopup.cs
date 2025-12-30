@@ -19,7 +19,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Fire
         public override UniTask Initialize(IPresenterData data = null)
         {
             currentProductionText.text =
-                $"Current Production Capacity: {Controller.GetProductionCapacity():F2}(-{Controller.GetCapacityReductionPercent()}%)";
+                $"Current Production Capacity: {Controller.GetProductionCapacity()}(-{Controller.GetCapacityReductionPercent()}%)";
             viewCapacityButton.OnClickAsObservable().Subscribe(_ =>
             {
                 SfxPlayer.Play(Sounds.Button_Tap);
