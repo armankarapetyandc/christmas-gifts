@@ -41,6 +41,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         {
             await UniTask.Yield();
             panZoom.SetZoom(defaultMapZoom);
+            await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
             panZoom.SetPosition(defaultMapPosition);
             //
             // Observable.EveryUpdate().Subscribe(_ =>

@@ -32,7 +32,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
             return _accountService.Model.Account;
         }
         
-        
         internal LevelInfo[] LevelInfos()
         {
             return gameConfig.LevelInfos;

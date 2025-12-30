@@ -4291,7 +4291,7 @@ MonoBehaviour:
   <AutoFitSupported>k__BackingField: 1
   panZoom: {fileID: 7188865951154666934}
   defaultMapZoom: 1.5
-  defaultMapPosition: {x: 15, y: 6000}
+  defaultMapPosition: {x: 15, y: 4000}
   placeItem: {fileID: 4783032270565465510, guid: 8a47501b495458441a99adcb3e382f07, type: 3}
   placesContainer: {fileID: 8982166029243276538}
   fireEventMapPlace:

@@ -19,6 +19,7 @@ using SpaceMonkey.Scripts.UI.Utility.Locker;
 using SpaceMonkey.Scripts.UI.Views.BusinessExamples;
 using SpaceMonkey.Scripts.UI.Views.Marketing;
 using SpaceMonkey.Scripts.UI.Views.Orders;
+using SpaceMonkey.Scripts.UI.Views.Product.NewProduct;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using SpaceMonkey.Scripts.UI.Views.ProductionCapacity;
 using SpaceMonkey.Scripts.UI.Views.ProfitAndLoss;
@@ -81,8 +82,17 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
         internal void ShowProductView()
         {
-
             _navigationPresenterService.HideAll();
+
+            if (_accountService.Model.Account.Products.Count==0)
+            {
+                PresenterService.HidePreviousAndShow<ProductView>(new ProductView.Data
+                {
+                    SelectedProduct = null
+                }).Forget();
+                return;
+            }
+            
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
         internal void CheckAndShowFirePopup()

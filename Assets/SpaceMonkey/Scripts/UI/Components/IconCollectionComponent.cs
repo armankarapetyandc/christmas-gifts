@@ -15,6 +15,7 @@ namespace SpaceMonkey.Scripts.UI.Components
 
         private readonly List<IconCollectionItemComponent> _items = new List<IconCollectionItemComponent>();
         public IconCollectionItemComponent FirstItem => _items.First();
+        public RectTransform Content => content;
 
         public Observable<SpriteVisualAsset> Setup(SpriteVisualAsset[] assets)
         {

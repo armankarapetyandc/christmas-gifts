@@ -738,6 +738,7 @@ MonoBehaviour:
   saveButton: {fileID: 5482989277001901617}
   backButton: {fileID: 7804608241968943350}
   iconComponent: {fileID: 9155190981002765093}
+  tabsContainer: {fileID: 3483168556351129905}
   iconCollectionComponent: {fileID: 9178579018222599827}
   colorCollectionComponent: {fileID: 3096057455247463077}
 --- !u!114 &3371902822350106398

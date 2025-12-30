@@ -25,10 +25,11 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
         {
             await _tutorialService.Value.WaitForWindowOpen<ProductIconBuilderView>();
             var productIconBuilderView = _presenterService.GetPresenter<ProductIconBuilderView>();
-            var firstIcon = productIconBuilderView.IconCollectionComponent.FirstItem;
-            var rectTransform = (RectTransform) firstIcon.transform;
+            // var firstIcon = productIconBuilderView.IconCollectionComponent.FirstItem;
+            var rectTransform = (RectTransform)productIconBuilderView.TabsContainer;
             _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).ShowFunnySlideOut(FunnySlideOutTexts.Step131);
-            await _tutorialService.Value.WaitForObservable(firstIcon.OnSelected.AsUnitObservable());
+            // await _tutorialService.Value.WaitForObservable(firstIcon.OnSelected.AsUnitObservable());
+            await _tutorialService.Value.WaitForObservable(productIconBuilderView.AnyIconSelectedObservable);
             _tutorialService.Value.HideArrow().HideMask();
             
             var saveButton = productIconBuilderView.SaveButton;

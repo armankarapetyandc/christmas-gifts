@@ -23,12 +23,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
         [SerializeField] private Button saveButton;
         [SerializeField] private Button backButton;
         [SerializeField] private IconComponent iconComponent;
+        [SerializeField] private RectTransform tabsContainer;
         [SerializeField] private IconCollectionComponent iconCollectionComponent;
         [SerializeField] private ColorCollectionComponent colorCollectionComponent;
 
         private Data _data;
         public IconCollectionComponent IconCollectionComponent => iconCollectionComponent;
         public Button SaveButton => saveButton;
+
+        public RectTransform TabsContainer => tabsContainer;
+
+        private readonly Subject<Unit> _anyIconSelectedSubject = new Subject<Unit>();
+
+        public Observable<Unit> AnyIconSelectedObservable => _anyIconSelectedSubject;
 
         public override UniTask Initialize(IPresenterData data = null)
         {
@@ -87,6 +94,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
             SfxPlayer.Play(Sounds.Click_Small);
             iconComponent.SetIcon(visualAsset);
             Controller.Product.IconVisualAssetId = visualAsset.Id;
+            _anyIconSelectedSubject?.OnNext(Unit.Default);
         }
 
         private void ColorSelected(ColorVisualAsset visualAsset)

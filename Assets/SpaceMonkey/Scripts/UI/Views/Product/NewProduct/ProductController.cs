@@ -4,6 +4,8 @@ using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.Tutorial;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
+using SpaceMonkey.Scripts.UI.Navigation.Bottom;
+using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.DeleteProduct;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder;
@@ -20,13 +22,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
         private readonly PopupPresenterService _popupPresenterService;
         private readonly AccountService _accountService;
         private readonly VisualAssetDatabase _visualAssetDatabase;
+        private readonly NavigationPresenterService _navigationPresenterService;
+        
 
         internal Profile.Product CurrentProduct;
         private ScoresConfigs _scoresConfigs;
         private readonly TutorialService tutorialService;
 
         public ProductController(PresenterService presenterService, PopupPresenterService popupPresenterService,
-            AccountService accountService,
+            AccountService accountService,NavigationPresenterService navigationPresenterService,
             VisualAssetDatabase visualAssetDatabase, ScoresConfigs scoresConfigs,TutorialService tutorialService) : base(presenterService)
         {
             _scoresConfigs = scoresConfigs;
@@ -34,6 +38,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
             _popupPresenterService = popupPresenterService;
             _accountService = accountService;
             _visualAssetDatabase = visualAssetDatabase;
+            _navigationPresenterService = navigationPresenterService;
         }
 
 
@@ -49,6 +54,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.NewProduct
 
         internal void OnBack()
         {
+            if (_accountService.Model.Account.Products.Count==0)
+            {
+                _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+                {
+                    Type = MainNavigationType.BusinessHub
+                }).Forget();
+                return;
+            }
             PresenterService.HidePreviousAndShow<ProductListView>().Forget();
         }
 
