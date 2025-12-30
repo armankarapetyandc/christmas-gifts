@@ -57,6 +57,14 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             return _accountService.Model.Account;
         }
 
+        public int GetProdCupDifference()
+        {
+            int prodCup = _accountService.Model.Account.GetProductionCapacity();
+            float ratio = _accountService.Model.Account.GetCapacityReductionPercent();
+            int oldProdCup = (int)((prodCup / ratio) - prodCup);
+            return oldProdCup;
+        }
+
         internal IEnumerable<T> ResolveVisualAssets<T>(Predicate<T> predicate = null) where T : VisualAsset
         {
             return _visualAssetDatabase.GetResourcesForAsset(predicate);

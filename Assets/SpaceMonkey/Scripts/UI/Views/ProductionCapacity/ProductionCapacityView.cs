@@ -53,10 +53,10 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             UpdateUi(_data == null ? _account.LevelProdCaps[0] : _account.LevelProdCaps[_data.LevelNumber]);
             upgratedLevelCapComponent.OnUpgradedLevelUp.Subscribe(level => { UpgradedLevelUIUpdate(level).Forget(); })
                 .AddTo(this);
-            damagedLevelCapComponent.OnRepairClicked.Subscribe(tuple => { RepairFireDamage(tuple.Item1, tuple.Item2).Forget(); })
-                .AddTo(this);
-            prodCapText.text = $"{_account.GetProductionCapacity():F2}";
-            availableCashText.text = $"{_account.Money:F2}";
+            // damagedLevelCapComponent.OnRepairClicked.Subscribe(tuple => { RepairFireDamage(tuple.Item1, tuple.Item2).Forget(); })
+            //     .AddTo(this);
+            prodCapText.text = $"{_account.GetProductionCapacity()}hrs";
+            availableCashText.text = $"${_account.Money:F2}";
             return UniTask.CompletedTask;
         }
 
@@ -65,8 +65,8 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             var updateLevel = await Controller.OpenUpgradeEquipmentPopup(level);
             int index = _account.LevelProdCaps.FindIndex(prodCap => prodCap.Id == level.Id);
             scroll.SelectedLevelItem.UpdateLevelUi(index != -1);
-            prodCapText.text = $"{_account.GetProductionCapacity():F2}";
-            availableCashText.text = $"{_account.Money:F2}";
+            prodCapText.text = $"{_account.GetProductionCapacity()}hrs";
+            availableCashText.text = $"${_account.Money:F2}";
             UpdateUi(updateLevel);
             if (index != -1)
             {
@@ -100,7 +100,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
                 {
                     currentLevelCapComponent.gameObject.SetActive(false);
                     float repairCost = Controller.GetFireRepairCost();
-                    damagedLevelCapComponent.UpdateUi(level, repairCost);
+                    damagedLevelCapComponent.UpdateUi(level, repairCost,Controller.GetProdCupDifference());
                     damagedLevelCapComponent.gameObject.SetActive(true);
                 }
                 else
