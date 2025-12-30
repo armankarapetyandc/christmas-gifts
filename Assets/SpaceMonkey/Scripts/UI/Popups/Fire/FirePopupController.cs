@@ -16,16 +16,28 @@ namespace SpaceMonkey.Scripts.UI.Popups.Fire
     {
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly PopupPresenterService _popupPresenterService;
+        private AccountService _accountService;
 
         public FirePopupController(
             PresenterService presenterService,
             NavigationPresenterService navigationPresenterService,
-            PopupPresenterService popupPresenterService) : base(presenterService)
+            PopupPresenterService popupPresenterService,AccountService accountService) : base(presenterService)
         {
+            _accountService = accountService;
             _navigationPresenterService = navigationPresenterService;
             _popupPresenterService = popupPresenterService;
         }
+
+        public int GetProductionCapacity()
+        {
+            return _accountService.Model.Account.GetProductionCapacity();
+        }
         
+        public float GetCapacityReductionPercent()
+        {
+            return _accountService.Model.Account.GetCapacityReductionPercent();
+        }
+
         public void NavigateToProductionCapacity()
         {
             _popupPresenterService.HideLast();

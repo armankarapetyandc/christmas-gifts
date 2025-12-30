@@ -20,7 +20,7 @@ namespace SpaceMonkey.Scripts.Profile
         public CompanyInfo Company { get; set; }
         public int Level { get; set; }
         public int Week => WeeksV2.Count + 1;
-        
+
         public float Money
         {
             get { return _money; }
@@ -31,7 +31,6 @@ namespace SpaceMonkey.Scripts.Profile
             }
         }
 
-    
 
         public float Score
         {
@@ -61,12 +60,12 @@ namespace SpaceMonkey.Scripts.Profile
         public BusinessLoanDataGameData BusinessLoanData { get; set; }
         public InsuranceGameData InsuranceData { get; set; }
         public BigOrderGameData BigOrderGameData { get; set; }
-        
+
         public InvestmentGameData InvestmentGameData { get; set; }
         public FireGameData FireData { get; set; }
-        
+
         public List<int> AppearedPlaces { get; set; }
-        
+
         public void SetCategory(string category)
         {
             Company.Category = category;
@@ -222,7 +221,7 @@ namespace SpaceMonkey.Scripts.Profile
 
                     WeeksV2[w] = week; // put back
                 }
-                
+
                 //Update BigOrder
                 if (BigOrderGameData != null && BigOrderGameData.OrderEntries != null)
                 {
@@ -299,13 +298,12 @@ namespace SpaceMonkey.Scripts.Profile
         {
             InsuranceData = null;
         }
-        
+
         public void ResetBigOrder()
         {
             BigOrderGameData = null;
         }
-        
-        
+
 
         public void CreateInsuranceData(InsuranceInfo insuranceInfo)
         {
@@ -314,6 +312,7 @@ namespace SpaceMonkey.Scripts.Profile
                 ResetInsurance();
                 return;
             }
+
             Buy(insuranceInfo.InsurancePrice);
             InsuranceData = new InsuranceGameData();
         }
@@ -327,12 +326,13 @@ namespace SpaceMonkey.Scripts.Profile
         {
             CreditData = new CreditDataGameData(balance, creditLimit, creditScore);
         }
-        
-        public void CreateBusinessLoanData(float originalAmount, float balance, float apr, int termMonths, int startWeek)
+
+        public void CreateBusinessLoanData(float originalAmount, float balance, float apr, int termMonths,
+            int startWeek)
         {
             BusinessLoanData = new BusinessLoanDataGameData(originalAmount, balance, apr, termMonths, startWeek);
         }
-        
+
         public void CreateInvestmentData()
         {
             InvestmentGameData = new InvestmentGameData
@@ -340,12 +340,12 @@ namespace SpaceMonkey.Scripts.Profile
                 UnlockedPlaces = new List<int>()
             };
         }
-        
+
         public void CreateFireData(float capacityReductionPercent = 0.5f)
         {
             FireData = new FireGameData(capacityReductionPercent);
         }
-        
+
         public void AddLoanPaymentRecord(PaymentRecord record)
         {
             if (BusinessLoanData != null)
@@ -367,16 +367,27 @@ namespace SpaceMonkey.Scripts.Profile
         public int GetProductionCapacity()
         {
             var employeeCapacity = Employees.Sum(e => e.Capacity);
-            var prodCap = LevelProdCaps.Sum(l => 
+            var prodCap = LevelProdCaps.Sum(l =>
             {
                 if (FireData != null && FireData.IsActive)
                 {
                     // When damaged, reduce capacity by configured percentage
-                    return (int)(l.ProdCapAdd * FireData.CapacityReductionPercent);
+                    return (int) (l.ProdCapAdd * FireData.CapacityReductionPercent);
                 }
+
                 return l.ProdCapAdd;
             });
             return employeeCapacity + prodCap;
+        }
+
+        public float GetCapacityReductionPercent()
+        {
+            if (FireData is {IsActive: true})
+            {
+                return FireData.CapacityReductionPercent;
+            }
+
+            return 0;
         }
 
         public int GetMarketingCustAdd()
@@ -619,7 +630,7 @@ namespace SpaceMonkey.Scripts.Profile
             IsActive = true;
         }
     }
-    
+
     public class BigOrderGameData
     {
         public bool IsActive { get; private set; }
@@ -651,17 +662,17 @@ namespace SpaceMonkey.Scripts.Profile
             SelectedPayment = PaymentOption.None;
         }
     }
-    
+
     public class InvestmentGameData
     {
         public List<int> UnlockedPlaces { get; set; } = new();
     }
-    
+
     public class FireGameData
     {
         public bool IsActive { get; set; }
         public float CapacityReductionPercent { get; set; }
-        
+
         public FireGameData(float capacityReductionPercent = 0.5f)
         {
             IsActive = true;
