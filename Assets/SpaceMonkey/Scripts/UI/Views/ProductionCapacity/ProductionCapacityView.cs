@@ -62,7 +62,32 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
 
         private async UniTask UpgradedLevelUIUpdate(LevelProdCap level)
         {
-            var updateLevel = await Controller.OpenUpgradeEquipmentPopup(level);
+            LevelProdCap updateLevel;
+            if (_account.CanAfford(level.ProdCapCost))
+            {
+                _account.Buy(level.ProdCapCost);
+                updateLevel = await Controller.UpgradeLevel(level,transform);
+            }
+            else
+            {
+                var needEquip = await Controller.OpenUpgradeEquipmentPopup(level);
+                if (needEquip == false)
+                {
+                    return;
+                }
+                if (!Controller.CreditSimulator.HasActiveCard)
+                {
+                    await Controller.ShowCreditCardView();
+                }
+                var result = await Controller.MakeCreditCardPurchase(level);
+                if (!result)
+                {
+                    Debug.LogError("Credit card purchase failed");
+                    return;
+                }
+                updateLevel = await Controller.UpgradeLevel(level,transform);
+            }
+            
             int index = _account.LevelProdCaps.FindIndex(prodCap => prodCap.Id == level.Id);
             scroll.SelectedLevelItem.UpdateLevelUi(index != -1);
             prodCapText.text = $"{_account.GetProductionCapacity()}hrs";

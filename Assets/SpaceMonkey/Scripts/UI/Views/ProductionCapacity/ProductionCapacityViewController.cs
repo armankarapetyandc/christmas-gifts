@@ -4,13 +4,16 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.Simulation.CreditCard;
 using SpaceMonkey.Scripts.Simulation.Fire;
 using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment;
 using SpaceMonkey.Scripts.UI.Views.LevelUpdate;
+using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardSplash;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.FireRepairSplash;
 using TMPro;
 using UIService.Runtime.Presenter;
@@ -27,11 +30,14 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
         private readonly NavigationPresenterService _navigationPresenterService;
         private readonly PopupPresenterService  _popupPresenterService;
         private readonly FireSimulator _fireSimulator;
+        private readonly ScoresConfigs _scoresConfigs;
+        private readonly CreditSimulator _creditSimulator;
+        public CreditSimulator CreditSimulator => _creditSimulator;
 
         public ProductionCapacityViewController(PresenterService presenterService,
             VisualAssetDatabase visualAssetDatabase, GameConfig gameConfig, AccountService accountService,
             NavigationPresenterService navigationPresenterService, PopupPresenterService popupPresenterService,
-            FireSimulator fireSimulator) : base(presenterService)
+            FireSimulator fireSimulator, ScoresConfigs scoresConfigs, CreditSimulator creditSimulator) : base(presenterService)
         {
             _visualAssetDatabase = visualAssetDatabase;
             _gameConfig = gameConfig;
@@ -39,11 +45,13 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             _navigationPresenterService = navigationPresenterService;
             _popupPresenterService = popupPresenterService;
             _fireSimulator = fireSimulator;
+            _scoresConfigs = scoresConfigs;
+            _creditSimulator = creditSimulator;
         }
 
-        internal async UniTask<LevelProdCap> OpenUpgradeEquipmentPopup(LevelProdCap level)
+        internal async UniTask<bool> OpenUpgradeEquipmentPopup(LevelProdCap level)
         {
-            var tcs = new UniTaskCompletionSource<LevelProdCap>();
+            var tcs = new UniTaskCompletionSource<bool>();
             _popupPresenterService.Show<UpgradeEquipmentPopup>(new UpgradeEquipmentPopup.Data
             {
                 UpgradeLevelProdCap = level,
@@ -89,6 +97,23 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             });
         }
         
+        public async UniTask<LevelProdCap> UpgradeLevel(LevelProdCap level, Transform transform)
+        {
+            _accountService.Model.Account.SetLevel(level);
+            var score = _scoresConfigs.CalculateScoreConfigByKey($"UpgradeProd{level.Id}");
+            GetAccount().Score += score;
+            if (score > 0)
+            {
+                XPParticleEffector.SpawnXpParticles(score, new Vector2(Screen.width, Screen.height) * 0.5f, transform)
+                    .Forget();
+            }
+
+            await _accountService.SaveAsync();
+            await _fireSimulator.RepairFire();
+            
+            return level;
+        }
+        
         public float GetFireRepairCost()
         {
             return _fireSimulator.GetRepairCost();
@@ -105,6 +130,24 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             {
                 Level = level
             }).Forget();
+        }
+        
+        public async UniTask<bool> MakeCreditCardPurchase(LevelProdCap level)
+        {
+            var result = await _creditSimulator.MakePurchase(level.ProdCapCost, String.Empty);
+            return result;
+        }
+        
+        public async UniTask ShowCreditCardView()
+        {
+            _creditSimulator.ApplyForCredit().Forget();
+            var onNextTcs = new UniTaskCompletionSource();
+            await PresenterService.Show<CreditCardSplashView>(new CreditCardSplashView.Data
+            {
+                OnNexTaskCompletionSource = onNextTcs
+            }, hidePrevious: false);
+            await onNextTcs.Task;
+            await PresenterService.Hide();
         }
     }
 }
