@@ -26,11 +26,9 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private TextMeshProUGUI weekNumber;
         [SerializeField] private TextMeshProUGUI levelNumber;
         [SerializeField] private Slider levelSlider;
-        [SerializeField] private TextMeshProUGUI scoreProgressText;
         
         [SerializeField] private TextMeshProUGUI moneyText;
         [SerializeField] private TextMeshProUGUI prodCapText;
-        [SerializeField] private TextMeshProUGUI scoreText;
 
         [SerializeField] private Button startButton;
         [SerializeField] private IconComponent productComponent;
@@ -42,7 +40,6 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         [SerializeField] private Button plmButton;
         [SerializeField] private Button reviewButton;
 
-        [SerializeField] private Button xpButton;
         [SerializeField] private ToastPopup toastPopup;
 
         [SerializeField] private LockByLevel[] lockedByLevels;
@@ -138,14 +135,6 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
                 Controller.ShowPlmView();
             }).AddTo(this);
-            xpButton.OnClickAsObservable().Subscribe(_ =>
-            {
-                {
-                    SfxPlayer.Play(Sounds.Button_Tap);
-                    Controller.ShowLevelInfoPopup();
-                    
-                }
-            }).AddTo(this);
 
 
             Controller.OnLevelChanged.Subscribe(CheckForUnlockByLevel).AddTo(this);
@@ -199,12 +188,10 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             levelNumber.text = account.Level.ToString();
             
             Configs.LevelInfo nextLevelInfo = Controller.GetLeveInfoData(Controller.Level + 1);
-            scoreProgressText.text = $"{account.Score} / {nextLevelInfo.Score}";
             levelSlider.value =  account.Score / (float) nextLevelInfo.Score;
             
             moneyText.text = $"${account.Money:F2}";
             prodCapText.text = $"{account.GetProductionCapacity()} hrs";
-            scoreText.text = $"{account.Score.ToString()}";
             weekNumber.text = account.Week.ToString();
             productsCountText.text = account.Products.Count == 0
                 ? "Products"

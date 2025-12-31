@@ -52,6 +52,10 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
 
         internal float TotalCash()
         {
+            if (_weekSimulationContext.WeekSimulation == null)
+            {
+                return 0;
+            }
             return _weekSimulationContext.WeekSimulation.Money.CurrentValue;
         }
 
