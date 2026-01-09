@@ -34,7 +34,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
 
             var tabItem = businessPreviewView.ColorTab;
             var tabRect = (RectTransform) tabItem.transform;
-            _tutorialService.Value.ShowArrow(tabRect).ShowMask(tabRect).ShowFunnySlideOut(FunnySlideOutTexts.Step42);;
+            _tutorialService.Value.ShowArrow(tabRect).ShowFunnySlideOut(FunnySlideOutTexts.Step42);;
             await _tutorialService.Value.WaitForObservable(tabItem.ToggleObservable);
             _tutorialService.Value.HideArrow().HideMask();
 

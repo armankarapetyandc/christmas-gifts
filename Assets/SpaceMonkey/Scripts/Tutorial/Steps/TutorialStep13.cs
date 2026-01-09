@@ -34,7 +34,7 @@ namespace SpaceMonkey.Scripts.Tutorial.Steps
             
             var saveButton = productIconBuilderView.SaveButton;
             rectTransform = (RectTransform) saveButton.transform;
-            _tutorialService.Value.ShowArrow(rectTransform).ShowMask(rectTransform).ShowFunnySlideOut(FunnySlideOutTexts.Step132);
+            _tutorialService.Value.ShowArrow(rectTransform).ShowFunnySlideOut(FunnySlideOutTexts.Step132);
             await _tutorialService.Value.WaitForObservable(saveButton.OnClickAsObservable());
             _tutorialService.Value.HideArrow().HideMask();
         }
