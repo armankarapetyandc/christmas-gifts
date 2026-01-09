@@ -33,9 +33,9 @@ namespace SpaceMonkey.Scripts.UI.Popups.Fire
             return _accountService.Model.Account.GetProductionCapacity();
         }
         
-        public float GetCapacityReductionPercent()
+        public int GetCapacityReductionPercent()
         {
-            return _accountService.Model.Account.GetCapacityReductionPercent();
+            return (int)(_accountService.Model.Account.GetCapacityReductionPercent()*100);
         }
 
         public void NavigateToProductionCapacity()
