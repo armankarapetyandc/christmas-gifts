@@ -1063,12 +1063,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "When you don\u2019t have enough cash to handle operating costs, borrowing
+  m_text: "When you don\u2019t have enough cash to handle operating costs borrowing
     money can be helpful, but there are risks. It is convenient and can help build
     your credit score.\n\nThink of a credit card as a tool, not free money.\n\nIf
-    you borrow $1000 at 22% APR, you\u2019ll pay about $18 every month in interest.\n\nDo
+    you borrow $1000 at 26% APR, you\u2019ll pay about $18 every month in interest.\n\nDo
     you want to pay for the equipment upgrade with a new Credit Card with:\n\n   
-    - No annual fee\L\n    - APR 22%\L\L"
+    - No annual fee\L\n    - APR 26%\L\L"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b494bbecf8f8284aaddd701b3563269, type: 2}
   m_sharedMaterial: {fileID: 1309805500137172838, guid: 3b494bbecf8f8284aaddd701b3563269, type: 2}

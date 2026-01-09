@@ -72,6 +72,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         {
             return _weekSimulationContext.WeekSimulation.AvailableProdCap;
         }
+
+        internal float GetAvailableProdCap()
+        {
+            return _weekSimulationContext.WeekSimulation.AvailableProdCap.CurrentValue;
+        }
         
         internal Observable<float> GetMoneyObservable()
         {

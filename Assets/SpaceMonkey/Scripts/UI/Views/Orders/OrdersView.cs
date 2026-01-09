@@ -55,6 +55,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             weekText.text = account.Week.ToString();
         }
 
+        private void RefreshOrderItems()
+        {
+            foreach (OrderItem orderItem in _orders.Where(item => !item.IsShipped))
+            {
+                orderItem.Refresh(Controller.GetAvailableProdCap());
+            }
+        }
+
         private async UniTask SetupCustomers()
         {
             var currentWeek = Controller.GetCurrentWeek();
@@ -67,7 +75,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 orderItem.SetOrder(order);
                 orderItem.SetCustomer(character);
                 orderItem.SetInteractableState(false);
-                orderItem.ShipOrder.Subscribe(item => ShipOrder(item).Forget()).AddTo(this);
+                orderItem.ShipOrder.Subscribe(item =>
+                {
+                    ShipOrder(item).Forget();
+                    RefreshOrderItems();
+                }).AddTo(this);
                 orderItem.SetCharacterVisual(character.Sprite, character.BackgroundColor);
                 var moodAsset = moodVisualAssets.FirstOrDefault(asset => order.Customer.Mood <= asset.MoodValue);
                 orderItem.SetMood(order.Customer.Mood, moodAsset);

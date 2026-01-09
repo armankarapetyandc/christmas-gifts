@@ -15,6 +15,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 {
     public class OrderItem : MonoBehaviour
     {
+        [SerializeField] private Image backgroundImage;
+        [SerializeField] private Sprite defaultBackground;
+        [SerializeField] private Sprite redBackground;
         [SerializeField] private RectTransform animationContainer;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private CharacterIconComponent iconComponent;
@@ -29,6 +32,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private LayoutElement layoutElement;
         [SerializeField] private RectTransform shippedTransform;
 
+        public bool IsShipped { get; private set; }
+        
         public Observable<OrderItem> ShipOrder => shipButton.OnClickAsObservable().Select(_ => this);
         public WeekSimulationV2.Order Order { get; private set; }
         public int ProductionCapCost { get; private set; }
@@ -112,9 +117,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         public async UniTaskVoid SetShipped()
         {
+            IsShipped = true;
             shippedTransform.gameObject.SetActive(true);
             await SlideOut();
             Destroy(gameObject);
+        }
+
+        public void Refresh(float availableProdCap)
+        {
+            backgroundImage.sprite = Mathf.Round(availableProdCap) >= ProductionCapCost ? defaultBackground : redBackground;
         }
     }
 }

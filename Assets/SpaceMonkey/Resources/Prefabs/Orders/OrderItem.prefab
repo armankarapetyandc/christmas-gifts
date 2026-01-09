@@ -1519,6 +1519,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2516ee5a30343c384746526741c40ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 8801852465610323354}
+  defaultBackground: {fileID: 21300000, guid: 50e17f9c2a16ab64ba86417b0b21d5b1, type: 3}
+  redBackground: {fileID: 21300000, guid: 7444c240ec7114548904ef4766525b7b, type: 3}
   animationContainer: {fileID: 3157883910516472229}
   canvasGroup: {fileID: 8243156968544848736}
   iconComponent: {fileID: 7902369503040942494}
