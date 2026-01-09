@@ -49,7 +49,7 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
 
             var orderedReviewsByWeek = weeks
                 .Where(w => groupedReviews.ContainsKey(w.Id))
-                .OrderBy(w => weekOrderMap[w.Id])
+                .OrderByDescending(w => weekOrderMap[w.Id])
                 .ToDictionary(
                     w => w.WeekNumber,
                     w => groupedReviews[w.Id]
