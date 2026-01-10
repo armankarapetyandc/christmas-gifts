@@ -86,32 +86,28 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             }).Forget();
         }
 
-        public void UpgradeLevel(int levelNumber, Sprite levelSprite, TMP_FontAsset levelFontAsset)
+        public void UpgradeLevel(int levelNumber, int score, Sprite levelSprite, TMP_FontAsset levelFontAsset)
         {
             PresenterService.Show<LevelUpdateView>(new LevelUpdateView.Data
             {
                 LevelNumber = levelNumber,
                 LevelSprite = levelSprite,
                 IsUpgraded = true,
-                FontAsset = levelFontAsset
+                FontAsset = levelFontAsset, 
+                Score = score 
             });
         }
         
-        public async UniTask<LevelProdCap> UpgradeLevel(LevelProdCap level, Transform transform)
+        public async UniTask<(LevelProdCap level, int score)> UpgradeLevel(LevelProdCap level, Transform transform)
         {
             _accountService.Model.Account.SetLevel(level);
             var score = _scoresConfigs.CalculateScoreConfigByKey($"UpgradeProd{level.Id}");
             GetAccount().Score += score;
-            if (score > 0)
-            {
-                XPParticleEffector.SpawnXpParticles(score, new Vector2(Screen.width, Screen.height) * 0.5f, transform)
-                    .Forget();
-            }
-
+            
             await _accountService.SaveAsync();
             await _fireSimulator.RepairFire();
             
-            return level;
+            return (level, score);
         }
         
         public float GetFireRepairCost()
