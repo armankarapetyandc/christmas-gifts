@@ -80,7 +80,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
         internal List<IMapPlace> GetAppearedMapPlaces(int currentWeek)
         {
             var places = GetMapPlaces();
-            return _mapConfig.GetAppearedMapPlaces(places, currentWeek);
+            return _mapConfig.GetAppearedMapPlaces(places, currentWeek,_accountService.Model.Account.Level);
         }
 
         private IMapPlace GetDefaultCompanyPlace()

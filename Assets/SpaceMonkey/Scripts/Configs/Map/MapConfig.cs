@@ -20,7 +20,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
         }
         
         
-        internal List<IMapPlace> GetAppearedMapPlaces(IMapPlace[] places, int currentWeek)
+        internal List<IMapPlace> GetAppearedMapPlaces(IMapPlace[] places, int currentWeek,int currentLevel)
         {
             var appearedPlaces = new List<IMapPlace>();
             
@@ -30,7 +30,7 @@ namespace SpaceMonkey.Scripts.Configs.Map
                 {
                     if ((place.AppearWeek != 0 && place.AppearWeek > currentWeek) ||
                         (place.AppearLevel != 0 &&
-                         place.AppearLevel > currentWeek))
+                         place.AppearLevel > currentLevel))
                     {
                         continue;
                     }
