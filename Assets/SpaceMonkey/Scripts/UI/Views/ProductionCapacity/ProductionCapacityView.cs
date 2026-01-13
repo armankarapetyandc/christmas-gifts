@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using AudioPlayer;
 using AudioPlayerService.Runtime;
@@ -5,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
+using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Utility;
 using TMPro;
 using UIService.Runtime.Core;
@@ -62,11 +64,11 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
 
         private async UniTask UpgradedLevelUIUpdate(LevelProdCap level)
         {
-            LevelProdCap updateLevel;
+            (LevelProdCap level, int score) upgradeData;
             if (_account.CanAfford(level.ProdCapCost))
             {
                 _account.Buy(level.ProdCapCost);
-                updateLevel = await Controller.UpgradeLevel(level,transform);
+                upgradeData=  await Controller.UpgradeLevel(level,transform);
             }
             else
             {
@@ -85,19 +87,20 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
                     Debug.LogError("Credit card purchase failed");
                     return;
                 }
-                updateLevel = await Controller.UpgradeLevel(level,transform);
+               
+                upgradeData =  await Controller.UpgradeLevel(level,transform);
             }
             
             int index = _account.LevelProdCaps.FindIndex(prodCap => prodCap.Id == level.Id);
             scroll.SelectedLevelItem.UpdateLevelUi(index != -1);
             prodCapText.text = $"{_account.GetProductionCapacity()}hrs";
             availableCashText.text = $"${_account.Money:F2}";
-            UpdateUi(updateLevel);
+            UpdateUi(upgradeData.level);
             if (index != -1)
             {
                 int assetIndex = index / _levelVisualAssets.Length;
                 var visualAsset = _levelVisualAssets[assetIndex];
-                Controller.UpgradeLevel(index,visualAsset.LevelIconSprite, visualAsset.FontAsset);
+                Controller.UpgradeLevel(index,upgradeData.score, visualAsset.LevelIconSprite, visualAsset.FontAsset);
             }
         }
 

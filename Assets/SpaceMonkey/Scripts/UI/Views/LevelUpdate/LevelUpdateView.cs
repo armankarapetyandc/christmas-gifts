@@ -1,5 +1,7 @@
+using System;
 using Cysharp.Threading.Tasks;
 using R3;
+using SpaceMonkey.Scripts.UI.Components;
 using TMPro;
 using UIService.Runtime.Core;
 using UIService.Runtime.Presenter.Base;
@@ -16,6 +18,8 @@ namespace SpaceMonkey.Scripts.UI.Views.LevelUpdate
             public Sprite LevelSprite { get; internal set; }
             public bool IsUpgraded { get; internal set; }
             public TMP_FontAsset FontAsset { get; internal set; }
+            
+            public int Score { get; internal set; }
         }
         
         [SerializeField] private TextMeshProUGUI numberText;
@@ -38,7 +42,19 @@ namespace SpaceMonkey.Scripts.UI.Views.LevelUpdate
             descriptionText.text = _data.IsUpgraded ? $"Level {_data.LevelNumber + 1}" : $"Production\nRepaired!";
             leveIcon.sprite = _data.LevelSprite;
             nextButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext(_data.LevelNumber));
+            
+            SpawnScoreParticles(_data.Score).Forget();
             return UniTask.CompletedTask;
+        }
+
+        private async UniTask SpawnScoreParticles(int score)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            if (score > 0)
+            {
+                XPParticleEffector.SpawnXpParticles(score, 
+                    new Vector2(Screen.width, Screen.height) * 0.5f, transform).Forget();
+            }
         }
 
         public override void Dispose()
