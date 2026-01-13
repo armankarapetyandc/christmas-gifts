@@ -527,14 +527,18 @@ MonoBehaviour:
     <Score>k__BackingField: 500
     <UnlockInfo>k__BackingField:
     - <Key>k__BackingField: smallSpace
-      <IconVisualAssetId>k__BackingField: small_comerical_faciloty_unlock_icon_256_0
-      <Description>k__BackingField: Small Space Unlocks
+      <IconVisualAssetId>k__BackingField: oppGiver
+      <Description>k__BackingField: Small Commercial Facility
   - <Level>k__BackingField: 4
     <Score>k__BackingField: 1000
     <UnlockInfo>k__BackingField: []
   - <Level>k__BackingField: 5
     <Score>k__BackingField: 2000
     <UnlockInfo>k__BackingField: []
+  <FireInfo>k__BackingField:
+    <TriggerWeek>k__BackingField: 3
+    <RepairCost>k__BackingField: 500
+    <CapacityReductionPercent>k__BackingField: 0.5
   <NewLocationInfo>k__BackingField:
     Price: 1500
   <CompetitionValue>k__BackingField: 85

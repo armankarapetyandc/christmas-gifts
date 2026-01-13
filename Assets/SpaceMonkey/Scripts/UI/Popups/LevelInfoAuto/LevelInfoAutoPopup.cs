@@ -29,6 +29,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
         [SerializeField]  private Color endColor;
         
         private CancellationTokenSource cts;
+        
 
         public override UniTask Initialize(IPresenterData data = null)
         {

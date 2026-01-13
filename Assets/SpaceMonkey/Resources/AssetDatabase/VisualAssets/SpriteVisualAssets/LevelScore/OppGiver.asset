@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abdd03f7641647d5ba2e3069e0209e07, type: 3}
-  m_Name: small_comerical_faciloty_unlock_icon_256_0_VisualAsset
+  m_Name: OppGiver
   m_EditorClassIdentifier: SpaceMonkey.Runtime::SpaceMonkey.Scripts.UI.Asset.Database.SpriteVisualAsset
-  id: small_comerical_faciloty_unlock_icon_256_0
+  id: oppGiver
   <Type>k__BackingField: 0
-  <Sprite>k__BackingField: {fileID: 607206419683989458, guid: 69e2280351def4b71a02e3a54c1ee453, type: 3}
+  <Sprite>k__BackingField: {fileID: -3117979610942037276, guid: d5dc918e87790d84088431e969835814, type: 3}
