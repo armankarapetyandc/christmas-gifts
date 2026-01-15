@@ -89,11 +89,11 @@ namespace SpaceMonkey.Scripts.Simulation
         }
         private void Finished(bool? levelIncreased)
         {
-            if (levelIncreased != null && levelIncreased.Value)
-            {
-                _presenterService.HidePreviousAndShow<WeekEndRewardView>().Forget();
-                return;
-            }
+            // if (levelIncreased != null && levelIncreased.Value)
+            // {
+            //     _presenterService.HidePreviousAndShow<WeekEndRewardView>().Forget();
+            //     return;
+            // }
             
             if (GetReviews()?.Count() > 0)
             {
