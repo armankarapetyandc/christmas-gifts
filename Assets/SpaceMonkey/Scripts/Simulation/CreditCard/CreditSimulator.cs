@@ -10,7 +10,6 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
 {
     public class CreditSimulator
     {
-        public const string ProdCapacityDescription = "Interest (APR 26%)";
         private static readonly Random Rng = new();
 
         private GameConfig _config;
@@ -151,7 +150,7 @@ namespace SpaceMonkey.Scripts.Simulation.CreditCard
                 
                 Data.Balance -= payment;
                 _accountService.Model.Account.AddPaymentRecord(new PaymentRecord
-                    { Week = Week, Payment = interest, Type = Data.SelectedPayment, Description = ProdCapacityDescription});
+                    { Week = Week, Payment = interest, Type = Data.SelectedPayment, Description = "Credit Card Payment"});
                 UpdateCreditScore(Data.SelectedPayment);
             }
             
