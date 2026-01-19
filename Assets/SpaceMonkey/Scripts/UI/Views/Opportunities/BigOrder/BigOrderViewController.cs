@@ -29,7 +29,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder
         private List<WeekSimulationV2.OrderEntry> _orderEntries;
 
         public BigOrderViewController(PresenterService presenterService,
-            NavigationPresenterService navigationPresenterService,VisualAssetDatabase visualAssetDatabase,
+            NavigationPresenterService navigationPresenterService, VisualAssetDatabase visualAssetDatabase,
             PopupPresenterService popupPresenterService, AccountService accountService) : base(presenterService)
         {
             _accountService = accountService;
@@ -54,12 +54,15 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder
         internal List<WeekSimulationV2.OrderEntry> InitializeBigOrder()
         {
             var products = _accountService.Model.Account.Products;
+            var prodCap = _accountService.Model.Account.GetProductionCapacity();
             var orderEntries = products
                 .PickRandomElements(Mathf.Min(3, products.Count))
                 .Select(p => new WeekSimulationV2.OrderEntry
                 {
                     Product = p,
-                    Quantity = 200,
+                    Quantity = p.ProdCapCost!.Value != 0
+                        ? (int) (prodCap * 1.1f / p.ProdCapCost!.Value)
+                        : (int) (prodCap * 1.1f / 0.1f),
                     Ship = false
                 }).ToList();
             return orderEntries;
@@ -67,8 +70,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder
 
         internal List<WeekSimulationV2.OrderEntry> GetOrders()
         {
-           _orderEntries= _accountService.Model.Account.BigOrderGameData?.OrderEntries ?? InitializeBigOrder();
-           return _orderEntries;
+            _orderEntries = _accountService.Model.Account.BigOrderGameData?.OrderEntries ?? InitializeBigOrder();
+            return _orderEntries;
         }
 
         public void OnDecline(MainNavigationType type)
