@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SpaceMonkey.Scripts.Profile.Simulation
 {
@@ -14,6 +15,25 @@ namespace SpaceMonkey.Scripts.Profile.Simulation
         public string TriggerReason { get; set; } // What caused the review (e.g., "Price -80%")
     }
 
+    public sealed class CustomerReviewComparer : IEqualityComparer<CustomerReviewInfo>
+    {
+        public bool Equals(CustomerReviewInfo x, CustomerReviewInfo y)
+        {
+            return string.Equals(x.WeekId, y.WeekId, StringComparison.Ordinal) &&
+                   string.Equals(x.CharacterId, y.CharacterId, StringComparison.Ordinal) &&
+                   string.Equals(x.ProductId, y.ProductId, StringComparison.Ordinal);
+        }
+
+        public int GetHashCode(CustomerReviewInfo obj)
+        {
+            return HashCode.Combine(
+                obj.WeekId,
+                obj.CharacterId,
+                obj.ProductId
+            );
+        }
+    }
+    
     public enum ReviewType
     {
         BigChange,

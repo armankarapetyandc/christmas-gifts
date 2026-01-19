@@ -34,6 +34,8 @@ namespace SpaceMonkey.Scripts.Simulation
             public int Frequency { get; set; }
             public int LastAppearanceWeek { get; set; }
             public bool Active { get; set; }
+            
+            public bool IsValid=> !string.IsNullOrEmpty(CharacterId);
 
             // Implement IEquatable<CustomerData>
             public bool Equals(CustomerData other)

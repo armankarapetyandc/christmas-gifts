@@ -84,7 +84,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
         internal IEnumerable<CustomerReviewInfo> GetReviews()
         {
             var account = GetAccount();
-            return account.Reviews?.Where(info => info.WeekId.Equals(_weekSimulationContext.WeekSimulation.CurrentWeek.Value.Id));
+            return account.Reviews?.Where(info =>
+                    info.WeekId.Equals(_weekSimulationContext.WeekSimulation.CurrentWeek.Value.Id))
+                .Distinct(new CustomerReviewComparer());
         }
 
         public CharacterConfig GetCharacterConfig(string customerCharacterId)

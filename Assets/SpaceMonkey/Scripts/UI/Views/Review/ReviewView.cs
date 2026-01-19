@@ -44,7 +44,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Review
                 {
                     var customer = simulationWeek.Orders.Select(o => o.Customer)
                         .FirstOrDefault(c => c.CharacterId.Equals(reviewInfo.CharacterId));
-                    if (customer==null)
+                    if (!customer.IsValid)
                     {
                         continue;
                     }
