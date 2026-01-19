@@ -167,10 +167,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58
+  m_fontSize: 49.95
   m_fontSizeBase: 58
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2552,7 +2552,6 @@ MonoBehaviour:
   levelSlider: {fileID: 1189686227290090373}
   moneyText: {fileID: 4489796466048212817}
   prodCapText: {fileID: 966279129233832193}
-  scoreText: {fileID: 0}
   startButton: {fileID: 2358870650593701188}
   productComponent: {fileID: 7591280952295700012}
   productsCountText: {fileID: 5633905486719189454}
@@ -2561,7 +2560,6 @@ MonoBehaviour:
   staffButton: {fileID: 1078467762630206259}
   plmButton: {fileID: 4983065232253104143}
   reviewButton: {fileID: 2883412023075280684}
-  xpButton: {fileID: 0}
   toastPopup: {fileID: 5733194286612784335}
   lockedByLevels:
   - {fileID: 5829497971999333026}
