@@ -112,5 +112,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         {
             return _scoresConfigs.PeekScoreConfigByKey(key);
         }
+
+        public async UniTaskVoid ForceFinishWeekWithAlert()
+        {
+            var data = new ProductionAlertPopup.Data();
+            _popupPresenterService.Show<ProductionAlertPopup>(data).Forget();
+            await data.CompletionSource.Task;
+            FinishWeek();
+        }
     }
 }

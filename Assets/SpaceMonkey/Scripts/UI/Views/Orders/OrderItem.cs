@@ -39,6 +39,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         public int ProductionCapCost { get; private set; }
         public float Profit { get; private set; }
 
+        public bool CanFulfill { get; private set; }
+
         public void SetCustomer(CharacterConfig customerCharacter)
         {
             customerName.text = customerCharacter.Name;
@@ -125,7 +127,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         public void Refresh(float availableProdCap)
         {
-            backgroundImage.sprite = Mathf.Round(availableProdCap) >= ProductionCapCost ? defaultBackground : redBackground;
+            CanFulfill = Mathf.Round(availableProdCap) >= ProductionCapCost; 
+            backgroundImage.sprite = CanFulfill? defaultBackground : redBackground;
         }
     }
 }

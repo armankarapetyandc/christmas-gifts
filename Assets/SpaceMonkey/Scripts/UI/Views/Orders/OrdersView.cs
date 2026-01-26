@@ -75,11 +75,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 orderItem.SetOrder(order);
                 orderItem.SetCustomer(character);
                 orderItem.SetInteractableState(false);
-                orderItem.ShipOrder.Subscribe(item =>
-                {
-                    ShipOrder(item).Forget();
-                    RefreshOrderItems();
-                }).AddTo(this);
+                orderItem.ShipOrder.Subscribe(ShipOrderClicked).AddTo(this);
                 orderItem.SetCharacterVisual(character.Sprite, character.BackgroundColor);
                 var moodAsset = moodVisualAssets.FirstOrDefault(asset => order.Customer.Mood <= asset.MoodValue);
                 orderItem.SetMood(order.Customer.Mood, moodAsset);
@@ -116,7 +112,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 };
                 orderItem.SetOrder(order);
                 orderItem.SetCustomer(character);
-                orderItem.ShipOrder.Subscribe(item => ShipOrder(item).Forget()).AddTo(this);
+                orderItem.ShipOrder.Subscribe(ShipOrderClicked).AddTo(this);
                 orderItem.SetCharacterVisual(character.Sprite, character.BackgroundColor);
                 var moodAsset = moodVisualAssets.FirstOrDefault(asset => order.Customer.Mood <= asset.MoodValue);
                 orderItem.SetMood(order.Customer.Mood, moodAsset);
@@ -132,6 +128,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 await orderItem.SlideIn();
                 orderItem.SetInteractableState(true);
             }
+            
+            RefreshOrderItems();
+        }
+
+        private void ShipOrderClicked(OrderItem item)
+        {
+            ShipOrder(item).Forget();
+            RefreshOrderItems();
+            if (_orders.Count!=0 && _orders.All(order => !order.CanFulfill))
+            {
+                Controller.ForceFinishWeekWithAlert().Forget();
+            }
+
         }
 
         private async UniTaskVoid ShipOrder(OrderItem item)
