@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
 using SpaceMonkey.Scripts.Profile;
@@ -31,7 +32,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
         {
             return _accountService.Model.Account;
         }
-        public void HireStaff(Configs.Staff hireStaff,Transform transform)
+        public async void HireStaff(Configs.Staff hireStaff,Transform transform)
         {
             Employee newEmployee = new Employee()
             {
@@ -49,9 +50,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Staff.StaffManagement
             {
                 XPParticleEffector.SpawnXpParticles(score, new Vector2(Screen.width, Screen.height) * 0.5f, transform)
                     .Forget();
+                await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
             }
             _accountService.Model.Account.Score += score;
-            _accountService.SaveAsync();
+            _accountService.SaveAsync().Forget();
         }
     }
     
