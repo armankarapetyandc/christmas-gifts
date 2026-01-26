@@ -137,7 +137,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         private async UniTaskVoid ShipOrder(OrderItem item)
         {
             var isShipped = await Controller.TryShipOrder(item.Order);
-            if (!isShipped)
+            if (isShipped ==null)
+            {
+                return;
+            }
+
+            if (!isShipped.Value)
             {
                 Controller.FinishWeek();
                 return;
