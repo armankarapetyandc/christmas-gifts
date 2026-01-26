@@ -26,9 +26,11 @@ namespace SpaceMonkey.Scripts.UI.Popups.Core
             _panelShowObservable = new ReactiveCommand<PopupPresenter>();
         }
 
-        public async UniTask<T> Show<T>(IPresenterData data = null) where T : PopupPresenter
+        public async UniTask<T> Show<T>(IPresenterData data = null, bool isAsync = true) where T : PopupPresenter
         {
-            T panelPrefab = await _asset.LoadPrefabAsync<T>(PanelPrefabsPath);
+            var panelPrefab = isAsync
+                ? await _asset.LoadPrefabAsync<T>(PanelPrefabsPath)
+                : _asset.LoadPrefab<T>(PanelPrefabsPath);
             T panel = Object.Instantiate(panelPrefab);
             _panelShowObservable.Execute(panel);
             _activePanels.Add(panel);
@@ -72,11 +74,6 @@ namespace SpaceMonkey.Scripts.UI.Popups.Core
         public T GetPresenter<T>() where T : PopupPresenter
         {
             PopupPresenter panel = _activePanels.FirstOrDefault(panel => panel is T);
-            if (panel == null)
-            {
-                Debug.LogError($"Unable to find panel{typeof(T)}");
-            }
-
             return panel as T;
         }
     }

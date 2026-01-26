@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Profile;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Popups.Core;
 using TMPro;
 using UIService.Runtime.Core;
@@ -30,7 +31,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
         [SerializeField] private Image infoBackground;
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI descriptionText;
-
+        [SerializeField] private Image icon;
         private Data _viewData;
 
 
@@ -41,11 +42,15 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
           
     
             CompetitionState state = CompetitionState.Info;
+            var product = Controller.GetCompetitionProduct();
+            var visualAsset = Controller.ResolveVisualAsset<SpriteVisualAsset>(product.IconVisualAssetId);
+            icon.sprite = visualAsset.Sprite;
+            
             if (PlayerPrefs.GetInt("competition") == 1)
             {
                 if (_viewData != null && !_viewData.ShowInfoPopup)
                 {
-                    state = _viewData.Product.ProductPrice == null ? CompetitionState.Win : CompetitionState.Lose;
+                    state = product.ProductPrice == null ? CompetitionState.Win : CompetitionState.Lose;
                 }
             }
             switch (state)
@@ -53,26 +58,27 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
                 case CompetitionState.Info:
                     titleText.text = CompetitionTexts.CompetitionTitleText;
                     okButtonText.text = CompetitionTexts.CompetitionOkText;
-                    descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionText, _viewData?.Product.Name);
+                    descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionText, product.Name);
                     infoBackground.color = redColor;
                     PlayerPrefs.SetInt("competition", 1);
-                    PlayerPrefs.SetString("productId", _viewData?.Product.Id);
+                    PlayerPrefs.SetInt("competitionPin", 1);
                     okButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductsView()).AddTo(this);
                     break;
                 case CompetitionState.Win:
-                    var product = Controller.GetCompetitionProduct();
                     titleText.text = string.Format(CompetitionTexts.CompetitionTitleWinText, product.Name);
                     okButtonText.text = CompetitionTexts.CompetitionOkWinText;
-                    descriptionText.text = CompetitionTexts.CompetitionDescriptionWinText;
+                    descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionWinText, product.Name);
                     PlayerPrefs.SetInt("competition", 0);
+                    PlayerPrefs.SetInt("competitionPin", 0);
                     infoBackground.color = greenColor;
                     okButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
                     break;
                 case CompetitionState.Lose:
                     titleText.text = CompetitionTexts.CompetitionTitleLoseText;
                     okButtonText.text =CompetitionTexts.CompetitionOkLoseText;
-                    descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionLoseText,_viewData?.Product.Name);
+                    descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionLoseText,product.Name);
                     PlayerPrefs.SetInt("competition", 0);
+                    PlayerPrefs.SetInt("competitionPin", 0);
                     infoBackground.color = redColor;
                     okButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
                     break;
@@ -82,7 +88,6 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
 
         public class Data : IPresenterData
         {
-            public Product Product { get; set; }
             public bool ShowInfoPopup { get; set; }
         }
     }

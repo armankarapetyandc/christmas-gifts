@@ -143,12 +143,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             CheckForUnlockByMoney(Controller.Money);
             CheckForUnlockByReview(Controller.GetAccount().Reviews.Count);
             CheckForUnlockByWeek(Controller.GetAccount().WeeksV2.Count);
-
             SetupDefaults();
-            if (_viewData != null)
-            {
-                Controller.CheckForCompetition(_viewData.IsWeekEnd);
-            }
 
             Controller.CheckAndShowFirePopup();
             return UniTask.CompletedTask;

@@ -43,6 +43,11 @@ namespace SpaceMonkey.Scripts.Profile
             _gameConfig = gameConfig;
         }
 
+        public Product GetCompetitionProduct()
+        {
+            return Model.Account.Products.FirstOrDefault(p =>
+                100 * p.ProductPrice / p.MaxProductPrice > _gameConfig.CompetitionValue);
+        }
         public void CreateNewAccount()
         {
             PlayerPrefs.DeleteAll();
@@ -59,7 +64,7 @@ namespace SpaceMonkey.Scripts.Profile
                 {
                     SfxPlayer.Play(Sounds.Company_Level_Up);
                     OnLevelChanged.Execute(Model.Account.Level);
-                    _popupPresenterService.Show<LevelInfoAutoPopup>().Forget();
+                    _popupPresenterService.Show<LevelInfoAutoPopup>(isAsync:false).Forget();
                     AnalyticsProvider.SendEvent(AnalyticsEvents.LevelChanged,new Dictionary<string, string>()
                     {
                         {"company_name",Model.Account.Company.CompanyName},

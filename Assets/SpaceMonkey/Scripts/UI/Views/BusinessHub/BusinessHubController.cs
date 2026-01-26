@@ -217,27 +217,5 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
                 EnableBackButton = true
             }).Forget();
         }
-
-        public void CheckForCompetition(bool isWeekEnd)
-        {
-            if (!isWeekEnd)
-            {
-                return;
-            }
-
-            Profile.Product product =
-                _accountService.Model.Account.Products.FirstOrDefault(p =>
-                    100 * p.ProductPrice / p.MaxProductPrice > _gameConfig.CompetitionValue);
-            
-            if (!product.ProductPrice.HasValue && PlayerPrefs.GetInt("competition") == 0)
-            {
-                return;
-            }
-
-            _popupPresenterService.Show<CompetitionPopup>(new CompetitionPopup.Data
-            {
-                Product = product
-            }).Forget();
-        }
     }
 }

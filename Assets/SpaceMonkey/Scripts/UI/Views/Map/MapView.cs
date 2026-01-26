@@ -4,6 +4,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.Configs.Map;
+using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Components;
 using SpaceMonkey.Scripts.UI.Views.Map.Items;
 using UIService.Runtime.Core;
@@ -74,41 +75,55 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             var places = Controller.GetAppearedMapPlaces(Controller.CurrentWeek);
             foreach (var place in places)
             {
-                Controller.TryAddAppearedPlace(place.Id);
-                var item = Instantiate(placeItem, placesContainer);
+                var item = PopulatePlace(place);
                 _places.Add(item);
-                item.SetPlace(place);
-                if (Controller.HasActiveFire() && place is RuntimeMapPlace)
-                {
-                    item.SetPlaceContent(fireEventMapPlace.IconVisualAsset?.Sprite);
-                }
-                else
-                {
-                    item.SetPlaceContent(place.IconVisualAsset?.Sprite);
-                }
-
-                item.SetMapPlaceState(place is RuntimeMapPlace
-                    ?
-                    !Controller.HasActiveFire() ? MapPlaceState.Open : MapPlaceState.Event
-                    :
-                    place.DefaultLocked
-                        ? MapPlaceState.Locked
-                        : MapPlaceState.Active);
-                item.SetPlaceName(place.Name);
-                item.SetPosition(place.Position);
-
-                item.SetBackgroundColor(place.BackgroundColor);
-
-                if (place.Type == PlaceType.TreatyBird)
-                {
-                    item.gameObject.SetActive(PlayerPrefs.GetInt("competition") == 1);
-                }
-
-                item.OnClickAsObservable().Subscribe(_ => { ProcessMapPlaceItemSelect(place); }).AddTo(this);
             }
         }
 
-        private void ProcessMapPlaceItemSelect(IMapPlace place)
+        private MapPlaceItem PopulatePlace(IMapPlace place)
+        {
+            Controller.TryAddAppearedPlace(place.Id);
+            var item = Instantiate(placeItem, placesContainer);
+            item.SetPlace(place);
+            if (Controller.HasActiveFire() && place is RuntimeMapPlace)
+            {
+                item.SetPlaceContent(fireEventMapPlace.IconVisualAsset?.Sprite);
+            }
+            else
+            {
+                item.SetPlaceContent(place.IconVisualAsset?.Sprite);
+            }
+
+            item.SetMapPlaceState(place is RuntimeMapPlace
+                ?
+                !Controller.HasActiveFire() ? MapPlaceState.Open : MapPlaceState.Event
+                :
+                place.DefaultLocked
+                    ? MapPlaceState.Locked
+                    : MapPlaceState.Active);
+            item.SetPlaceName(place.Name);
+            item.SetPosition(place.Position);
+
+            item.SetBackgroundColor(place.BackgroundColor);
+
+            if (place.Type == PlaceType.TreatyBird)
+            {
+                var isActive = PlayerPrefs.GetInt("competitionPin") == 1;
+                item.gameObject.SetActive(isActive);
+                if (isActive)
+                {
+                    var product = Controller.GetCompetitionProduct();
+                    var visualAsset = Controller.ResolveVisualAsset<SpriteVisualAsset>(product.IconVisualAssetId);
+                    item.SetPlaceContent(visualAsset.Sprite);
+                    item.SetMapPlaceState(MapPlaceState.Event);   
+                }
+            }
+
+            item.OnClickAsObservable().Subscribe(_ => { ProcessMapPlaceItemSelect(place); }).AddTo(this);
+            return item;
+        }
+        
+        private void ProcessMapPlaceItemSelect(IMapPlace place, bool isForce = false)
         {
             if (place.Type == PlaceType.CreditCard && !Controller.HasCreditCard())
             {
@@ -136,8 +151,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }
             else if (place.Type == PlaceType.TreatyBird)
             {
-                Controller.NavigateToMyCompany();
-                Controller.ShowCompetitionPopup();
+                Controller.ShowCompetitionPopup(!isForce);
             }
         }
 
@@ -221,7 +235,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             FocusOnPlace(placeId);
             await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: destroyCancellationToken);
             var item = _places.FirstOrDefault(x => x.Place.Id == placeId);
-            ProcessMapPlaceItemSelect(item?.Place);
+            ProcessMapPlaceItemSelect(item?.Place, true);
         }
 
         public override void Dispose()

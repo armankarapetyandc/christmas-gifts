@@ -11,10 +11,12 @@ using SpaceMonkey.Scripts.UI.Navigation.Bottom;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Competition;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto;
 using SpaceMonkey.Scripts.UI.Views.Map;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
 using UIService.Runtime.Presenter.Base;
+using UnityEngine;
 
 namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
 {
@@ -26,14 +28,16 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         private readonly WeekSimulationContext _weekSimulationContext;
         private PopupPresenterService _popupPresenterService;
         private readonly MapConfig _mapConfig;
+        private readonly GameConfig _gameConfig;
 
         public ProfitController(PresenterService presenterService,
             NavigationPresenterService navigationPresenterService, VisualAssetDatabase visualAssetDatabase,
             AccountService accountService,WeekSimulationContext weekSimulationContext,
-            PopupPresenterService popupPresenterService, MapConfig mapConfig) : base(presenterService)
+            PopupPresenterService popupPresenterService, MapConfig mapConfig, GameConfig gameConfig) : base(presenterService)
         {
             _popupPresenterService = popupPresenterService;
             _mapConfig = mapConfig;
+            _gameConfig = gameConfig;
             _navigationPresenterService = navigationPresenterService;
             _visualAssetDatabase = visualAssetDatabase;
             _accountService = accountService;
@@ -62,6 +66,24 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
         internal async UniTaskVoid OnNext(bool isWeekEnd)
         {
             _weekSimulationContext.WeekSimulation.GrantReward();
+            await UniTask.WaitWhile(() => _popupPresenterService.GetPresenter<LevelInfoAutoPopup>() != null);
+            
+            if (CanShowCompetition())
+            {
+                PlayerPrefs.SetInt("competitionPin", 1);
+                await _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data
+                {
+                    Type = MainNavigationType.Map,
+                    IsWeekEnd = isWeekEnd
+                });
+                await UniTask.WaitUntil(() => PresenterService.GetPresenter<MapView>() != null);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+
+                var competitionPlace = _mapConfig.Places.FirstOrDefault(place => place.Type == PlaceType.TreatyBird);
+                var mapView = PresenterService.GetPresenter<MapView>();
+                mapView.FocusAndShowDialog(competitionPlace.Id).Forget();
+                return;
+            }
             var newPlace = HasNewAppearedPlaces();
             if (newPlace != null)
             {
@@ -84,6 +106,16 @@ namespace SpaceMonkey.Scripts.UI.Views.ProfitAndLoss
             }).Forget();
         }
 
+        private bool CanShowCompetition()
+        {
+            Profile.Product product = _accountService.GetCompetitionProduct();
+            if (!product.ProductPrice.HasValue && PlayerPrefs.GetInt("competition") == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
         public void OnBack()
         {
             _navigationPresenterService.Show<MainNavigation>(new MainNavigation.Data

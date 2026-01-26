@@ -92,6 +92,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             place.IconVisualAsset = ResolveVisualAsset<SpriteVisualAsset>(account.Company.Logo.IconVisualAssetId);
             return place;
         }
+
+        public Profile.Product GetCompetitionProduct()
+        {
+            return _accountService.GetCompetitionProduct();
+        } 
         
         internal float CalculateCompanyRating()
         {
@@ -163,13 +168,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }).Forget();
         }
 
-        public void ShowCompetitionPopup()
+        public void ShowCompetitionPopup(bool isForce = false)
         {
-            var product = _accountService.Model.Account.Products.FirstOrDefault(p => p.Id == PlayerPrefs.GetString("productId"));
             _popupPresenterService.Show<CompetitionPopup>(new CompetitionPopup.Data
             {
-                Product = product,
-                ShowInfoPopup = true
+                ShowInfoPopup = isForce
             }).Forget();
         }
         

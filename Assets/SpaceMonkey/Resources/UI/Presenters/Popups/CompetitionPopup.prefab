@@ -1197,6 +1197,7 @@ MonoBehaviour:
   infoBackground: {fileID: 5501813528726704049}
   titleText: {fileID: 8692729876902126878}
   descriptionText: {fileID: 2494455451531919980}
+  icon: {fileID: 8174900571970886004}
 --- !u!1 &8078739985754899005
 GameObject:
   m_ObjectHideFlags: 0
