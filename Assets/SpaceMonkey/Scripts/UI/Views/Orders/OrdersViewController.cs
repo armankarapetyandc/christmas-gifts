@@ -83,13 +83,18 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             return _weekSimulationContext.WeekSimulation.Money;
         }
 
-        internal async UniTask<bool> TryShipOrder(WeekSimulationV2.Order order)
+        internal async UniTask<bool?> TryShipOrder(WeekSimulationV2.Order order)
         {
             if (order.IsBigOrder || !_weekSimulationContext.WeekSimulation.TryShipOrder(order.Customer.CharacterId))
             {
                 var data = new ProductionAlertPopup.Data();
                 _popupPresenterService.Show<ProductionAlertPopup>(data).Forget();
-                await data.CompletionSource.Task;
+                var closeResult = await data.CompletionSource.Task;
+                if (closeResult == ProductionAlertPopup.Data.CloseResult.Close)
+                {
+                    return null;
+                }
+
                 return false;
             }
 
