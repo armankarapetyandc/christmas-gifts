@@ -62,7 +62,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
                     infoBackground.color = redColor;
                     PlayerPrefs.SetInt("competition", 1);
                     PlayerPrefs.SetInt("competitionPin", 1);
-                    okButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductsView()).AddTo(this);
+                    okButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductsView(product)).AddTo(this);
                     break;
                 case CompetitionState.Win:
                     titleText.text = string.Format(CompetitionTexts.CompetitionTitleWinText, product.Name);

@@ -5,6 +5,7 @@ using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.Product.NewProduct;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using SpaceMonkey.Scripts.Utilities;
 using UIService.Runtime.Presenter;
@@ -37,10 +38,13 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
             return _accountService.GetCompetitionProduct();
         }
 
-        public void ShowProductsView()
+        public void ShowProductsView(Profile.Product product)
         {
             _navigationPresenterService.HideAll();
-            PresenterService.HidePreviousAndShow<ProductListView>().Forget();
+            PresenterService.HidePreviousAndShow<ProductView>(new ProductView.Data
+            {
+                SelectedProduct = product
+            }).Forget();
             Close();
         }
 
