@@ -57,7 +57,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
             {
                 case CompetitionState.Info:
                     titleText.text = CompetitionTexts.CompetitionTitleText;
-                    okButtonText.text = CompetitionTexts.CompetitionOkText;
+                    okButtonText.text = string.Format(CompetitionTexts.CompetitionOkText, product.Name);
                     descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionText, product.Name);
                     infoBackground.color = redColor;
                     PlayerPrefs.SetInt("competition", 1);

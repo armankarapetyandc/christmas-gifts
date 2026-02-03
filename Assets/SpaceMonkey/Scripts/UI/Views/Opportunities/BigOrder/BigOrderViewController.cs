@@ -50,27 +50,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.BigOrder
         {
             return _visualAssetDatabase.GetResourceForAsset<T>(id);
         }
-
-        internal List<WeekSimulationV2.OrderEntry> InitializeBigOrder()
-        {
-            var products = _accountService.Model.Account.Products;
-            var prodCap = _accountService.Model.Account.GetProductionCapacity();
-            var orderEntries = products
-                .PickRandomElements(Mathf.Min(3, products.Count))
-                .Select(p => new WeekSimulationV2.OrderEntry
-                {
-                    Product = p,
-                    Quantity = p.ProdCapCost!.Value != 0
-                        ? (int) (prodCap * 1.1f / p.ProdCapCost!.Value)
-                        : (int) (prodCap * 1.1f / 0.1f),
-                    Ship = false
-                }).ToList();
-            return orderEntries;
-        }
-
+        
         internal List<WeekSimulationV2.OrderEntry> GetOrders()
         {
-            _orderEntries = _accountService.Model.Account.BigOrderGameData?.OrderEntries ?? InitializeBigOrder();
+            _orderEntries = _accountService.Model.Account.GetOrders();
             return _orderEntries;
         }
 

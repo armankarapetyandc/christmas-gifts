@@ -129,7 +129,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             {
                 Controller.ShowCreditCardInfoPopup();
             }
-            else if (place.Type == PlaceType.BigOrder)
+            else if (place.Type == PlaceType.BigOrder && !Controller.HasBigOrder())
             {
                 Controller.ShowBigOrderView();
             }
@@ -192,6 +192,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                             Controller.NavigateToMyCompany();
                         }
 
+                        if (place.Type == PlaceType.BigOrder)
+                        {
+                            Controller.ShowBigOrderView();
+                        }
                         if (place.Type == PlaceType.CreditCard)
                         {
                             Controller.ShowCreditCardInfoPopup();

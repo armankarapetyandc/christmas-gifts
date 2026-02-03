@@ -147,6 +147,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             return _creditSimulator.HasActiveCard;
         }
 
+        internal bool HasBigOrder()
+        {
+            return _accountService.Model.Account.BigOrderGameData is { IsActive: true };
+        }
+
         internal void NavigateToMyCompany()
         {
             _navigationPresenterService.HideAll();

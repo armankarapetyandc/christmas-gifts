@@ -76,6 +76,27 @@ namespace SpaceMonkey.Scripts.Profile
             Company.CompanyName = companyName;
         }
 
+        public List<WeekSimulationV2.OrderEntry> GetOrders()
+        {
+            return BigOrderGameData?.OrderEntries ?? InitializeBigOrder();
+            
+            List<WeekSimulationV2.OrderEntry> InitializeBigOrder()
+            {
+                var products = Products;
+                var prodCap = GetProductionCapacity();
+                var orderEntries = products
+                    .PickRandomElements(Mathf.Min(3, products.Count))
+                    .Select(p => new WeekSimulationV2.OrderEntry
+                    {
+                        Product = p,
+                        Quantity = p.ProdCapCost!.Value != 0
+                            ? (int) (prodCap * 1.1f / p.ProdCapCost!.Value)
+                            : (int) (prodCap * 1.1f / 0.1f),
+                        Ship = false
+                    }).ToList();
+                return orderEntries;
+            }
+        }
         public float CalculateCompanyRating(RangeValue[] values, List<WeekSimulationV2.Week> weekInfos)
         {
             if (weekInfos.Count == 0)

@@ -122,6 +122,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             IsShipped = true;
             shippedTransform.gameObject.SetActive(true);
             await SlideOut();
+
+            if (destroyCancellationToken.IsCancellationRequested) 
+                return;
+            
             Destroy(gameObject);
         }
 
