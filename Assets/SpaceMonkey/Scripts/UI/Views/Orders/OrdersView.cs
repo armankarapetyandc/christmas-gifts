@@ -139,6 +139,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         private void ShipOrderClicked(OrderItem item)
         {
+            item.SetNotInteractable();
             ShipOrder(item).Forget();
             RefreshOrderItems();
         }
@@ -161,6 +162,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             item.SetShipped().Forget();
 
             var score = Controller.GetScoreFor("sellProduct") * item.Order.OrderEntries.Sum(order => order.Quantity);
+            Controller.AddScore(score);
             XPParticleEffector.SpawnXpParticles(score, Input.mousePosition, transform).Forget();
 
             if (_orders.Count == 0)

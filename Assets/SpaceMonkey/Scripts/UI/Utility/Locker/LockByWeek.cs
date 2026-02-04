@@ -10,9 +10,9 @@ namespace SpaceMonkey.Scripts.UI.Utility.Locker
 
         public override void Unlock()
         {
+            PlayerPrefs.SetInt(Key,1);
             featureButton.interactable = true;
             icon.SetActive(false);
-            PlayerPrefs.SetInt(Key, 1);
         }
     }
 }

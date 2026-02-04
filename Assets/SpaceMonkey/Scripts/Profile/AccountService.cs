@@ -102,6 +102,9 @@ namespace SpaceMonkey.Scripts.Profile
             {
                 SfxPlayer.Play(Sounds.Score_Awarded);
                 int currentLevel = Model.Account.Level;
+                LevelInfo levelInfo = _gameConfig.LevelInfos.LastOrDefault(info => info.Score <= eventParam);
+                Model.Account.Level = levelInfo!.Level;
+
                 if (currentLevel < Model.Account.Level)
                 {
                     OnLevelChanged.Execute(Model.Account.Level);

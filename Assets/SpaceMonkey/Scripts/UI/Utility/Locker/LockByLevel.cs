@@ -9,6 +9,7 @@ namespace SpaceMonkey.Scripts.UI.Utility.Locker
 
         public override void Unlock()
         {
+            PlayerPrefs.SetInt(Key,1);
             Locked = false;
             icon.SetActive(false);
         }

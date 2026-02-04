@@ -42,7 +42,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfoAuto
         public new void Close()
         {
             _popupPresenterService.HideLast();
-            if (Level == 5)
+            if (Level >= _gameConfig.LevelInfos.Length)
             {
                 navigationPresenterService.HideAll();
                 PresenterService.Show<DemoCompleteView>();
