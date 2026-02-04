@@ -139,7 +139,6 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         private void ShipOrderClicked(OrderItem item)
         {
-            item.SetNotInteractable();
             ShipOrder(item).Forget();
             RefreshOrderItems();
         }
