@@ -8,8 +8,6 @@ namespace SpaceMonkey.Scripts.UI.Utility.Locker
         [field: SerializeField] public string Key { get; private set; }
         [SerializeField] protected GameObject icon;
 
-        public virtual void Unlock()
-        {
-        }
+        public abstract void Unlock();
     }
 }

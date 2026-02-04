@@ -9,9 +9,9 @@ namespace SpaceMonkey.Scripts.UI.Utility.Locker
         [SerializeField] protected Button featureButton;
         public override void Unlock()
         {
+            PlayerPrefs.SetInt(Key,1);
             featureButton.interactable = true;
             icon.SetActive(false);
-            PlayerPrefs.SetInt(Key, 1);
         }
     }
 }

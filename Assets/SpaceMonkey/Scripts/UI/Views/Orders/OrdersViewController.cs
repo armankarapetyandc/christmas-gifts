@@ -113,6 +113,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             return _scoresConfigs.PeekScoreConfigByKey(key);
         }
 
+        public void AddScore(int score)
+        {
+            _accountService.Model.Account.Score += score;
+        }
+
         public async UniTaskVoid ForceFinishWeekWithAlert()
         {
             var data = new ProductionAlertPopup.Data();

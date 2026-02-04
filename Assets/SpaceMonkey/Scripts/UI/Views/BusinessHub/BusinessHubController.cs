@@ -104,13 +104,28 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
             _popupPresenterService.Show<Popups.Fire.FirePopup>().Forget();
         }
         
+        
+        internal void CheckForUnlockByMoney(LockByLevel[] lockedByLevels, int level)
+        {
+            var levelInfo = _gameConfig.LevelInfos.FirstOrDefault(info => info.Level == level);
+            foreach (var lockedByLevel in lockedByLevels)
+            {
+
+                var unlockedInfo =
+                    levelInfo?.UnlockInfo.FirstOrDefault(unlockedInfo => unlockedInfo.Key == lockedByLevel.Key);
+                if (unlockedInfo != null || PlayerPrefs.GetInt(lockedByLevel.Key) == 1)
+                {
+                    OnUnlockBy.Execute(lockedByLevel);
+                }
+            }
+        }
 
         
         internal void CheckForUnlockByReview(LockByReview[] lockByReview,int week)
         {
             foreach (var byReview in lockByReview)
             {
-                if (byReview.Count <= week)
+                if (byReview.Count <= week || PlayerPrefs.GetInt(byReview.Key) == 1)
                 {
                     OnUnlockBy.Execute(byReview);
                 }
@@ -121,7 +136,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         {
             foreach (var byWeek in lockByWeek)
             {
-                if (byWeek.Count <= week)
+                if (byWeek.Count <= week || PlayerPrefs.GetInt(byWeek.Key) == 1)
                 {
                     OnUnlockBy.Execute(byWeek);
                 }
@@ -132,7 +147,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
         {
             foreach (var byMoney in lockedByMoney)
             {
-                if (byMoney.Value <= money)
+                if (byMoney.Value <= money || PlayerPrefs.GetInt(byMoney.Key) == 1)
                 {
                     OnUnlockBy.Execute(byMoney);
                 }
@@ -152,20 +167,7 @@ namespace SpaceMonkey.Scripts.UI.Views.BusinessHub
 
             return null;
         }
-
-        internal void CheckForUnlockByMoney(LockByLevel[] lockedByLevels, int level)
-        {
-            foreach (var lockedByLevel in lockedByLevels)
-            {
-                var levelInfo = _gameConfig.LevelInfos.FirstOrDefault(info => info.Level == level);
-                var unlockedInfo =
-                    levelInfo?.UnlockInfo.FirstOrDefault(unlockedInfo => unlockedInfo.Key == lockedByLevel.Key);
-                if (unlockedInfo != null)
-                {
-                    OnUnlockBy.Execute(lockedByLevel);
-                }
-            }
-        }
+        
 
         internal void StartWeek()
         {
