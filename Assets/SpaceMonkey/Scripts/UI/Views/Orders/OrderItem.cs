@@ -33,8 +33,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         [SerializeField] private RectTransform shippedTransform;
 
         public bool IsShipped { get; private set; }
-        
-        public Observable<OrderItem> ShipOrder => shipButton.OnClickAsObservable().Select(_ => this);
+        public Observable<OrderItem> ShipOrder =>
+            shipButton.OnClickAsObservable().Where(_ => CanFulfill).Select(_ => this);
         public WeekSimulationV2.Order Order { get; private set; }
         public int ProductionCapCost { get; private set; }
         public float Profit { get; private set; }
@@ -45,7 +45,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         {
             customerName.text = customerCharacter.Name;
         }
-        
+
         public void SetOrder(WeekSimulationV2.Order order)
         {
             Order = order;
@@ -105,8 +105,9 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             DOVirtual.Float(0, elementHeight, 0.5f, value => layoutElement.preferredHeight = value);
             animationContainer.anchoredPosition = new Vector2(Screen.width * 1.5f, 0f);
             return animationContainer.DOAnchorPos(Vector2.zero, 1f)
-            .SetEase(Ease.InOutCubic).AsyncWaitForCompletion().AsUniTask();
+                .SetEase(Ease.InOutCubic).AsyncWaitForCompletion().AsUniTask();
         }
+
         public UniTask SlideOut()
         {
             return animationContainer
@@ -123,16 +124,21 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             shippedTransform.gameObject.SetActive(true);
             await SlideOut();
 
-            if (destroyCancellationToken.IsCancellationRequested) 
+            if (this == null)
+            {
                 return;
-            
+            }
+
+            if (destroyCancellationToken.IsCancellationRequested)
+                return;
+
             Destroy(gameObject);
         }
 
         public void Refresh(float availableProdCap)
         {
-            CanFulfill = Mathf.Round(availableProdCap) >= ProductionCapCost; 
-            backgroundImage.sprite = CanFulfill? defaultBackground : redBackground;
+            CanFulfill = Mathf.Round(availableProdCap) >= ProductionCapCost;
+            backgroundImage.sprite = CanFulfill ? defaultBackground : redBackground;
         }
     }
 }

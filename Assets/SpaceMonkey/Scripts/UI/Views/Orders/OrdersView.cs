@@ -32,8 +32,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 .Subscribe(value => moneyText.text = $"${value:F2}").AddTo(this);
             SetupDefaults();
             SetupCustomers();
-            
-            
+
+
             return UniTask.CompletedTask;
         }
 
@@ -61,6 +61,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
             {
                 orderItem.Refresh(Controller.GetAvailableProdCap());
             }
+
+            if (_orders.Count != 0 && _orders.All(order => !order.CanFulfill))
+            {
+                Controller.ForceFinishWeekWithAlert().Forget();
+            }
         }
 
         private async UniTask SetupCustomers()
@@ -79,7 +84,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 orderItem.SetCharacterVisual(character.Sprite, character.BackgroundColor);
                 var moodAsset = moodVisualAssets.FirstOrDefault(asset => order.Customer.Mood <= asset.MoodValue);
                 orderItem.SetMood(order.Customer.Mood, moodAsset);
-                
+
                 var products = order.OrderEntries.Select(o => (
                     productOrder: o,
                     iconVisualAsset: Controller.ResolveVisualAsset<SpriteVisualAsset>(o.Product.IconVisualAssetId),
@@ -128,7 +133,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
                 await orderItem.SlideIn();
                 orderItem.SetInteractableState(true);
             }
-            
+
             RefreshOrderItems();
         }
 
@@ -136,17 +141,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         {
             ShipOrder(item).Forget();
             RefreshOrderItems();
-            if (_orders.Count!=0 && _orders.All(order => !order.CanFulfill))
-            {
-                Controller.ForceFinishWeekWithAlert().Forget();
-            }
-
         }
 
         private async UniTaskVoid ShipOrder(OrderItem item)
         {
             var isShipped = await Controller.TryShipOrder(item.Order);
-            if (isShipped ==null)
+            if (isShipped == null)
             {
                 return;
             }
