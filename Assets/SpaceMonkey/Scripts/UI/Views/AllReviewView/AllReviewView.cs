@@ -38,8 +38,9 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
             var orderedWeeks = weeks.OrderByDescending(info => info.WeekNumber).ToList();
             weekNumberText.text = weeks.Count >1 ? weeks.Max(info => info.WeekNumber).ToString() : "1";
             var weekOrderMap = weeks
-                .Select((w, index) => new {w.Id, index})
-                .ToDictionary(x => x.Id, x => x.index);
+                .Select((w, index) => new { w.Id, index })
+                .GroupBy(x => x.Id)
+                .ToDictionary(g => g.Key, g => g.First().index);
 
 
             var groupedReviews = reviews
@@ -49,6 +50,8 @@ namespace SpaceMonkey.Scripts.UI.Views.AllReviewView
 
             var orderedReviewsByWeek = weeks
                 .Where(w => groupedReviews.ContainsKey(w.Id))
+                .GroupBy(w => w.WeekNumber)
+                .Select(g => g.First())
                 .OrderByDescending(w => weekOrderMap[w.Id])
                 .ToDictionary(
                     w => w.WeekNumber,
