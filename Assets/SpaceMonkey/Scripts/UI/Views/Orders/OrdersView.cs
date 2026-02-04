@@ -134,6 +134,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
 
         private void ShipOrderClicked(OrderItem item)
         {
+            item.SetNotInteractable();
             ShipOrder(item).Forget();
             RefreshOrderItems();
             if (_orders.Count!=0 && _orders.All(order => !order.CanFulfill))

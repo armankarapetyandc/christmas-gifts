@@ -45,7 +45,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         {
             customerName.text = customerCharacter.Name;
         }
-        
+
+        public void SetNotInteractable()
+        {
+            shipButton.interactable = false;
+        }
+
         public void SetOrder(WeekSimulationV2.Order order)
         {
             Order = order;
