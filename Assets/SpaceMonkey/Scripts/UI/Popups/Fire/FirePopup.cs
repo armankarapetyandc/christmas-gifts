@@ -28,7 +28,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Fire
 
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
-                SfxPlayer.Play(Sounds.Button_Tap);
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
                 Controller.ClosePopUp();
             }).AddTo(this);
 

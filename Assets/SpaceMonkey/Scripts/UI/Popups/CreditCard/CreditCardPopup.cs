@@ -18,7 +18,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.CreditCard
         {
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
-                SfxPlayer.Play(Sounds.Button_Tap);
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
                 Controller.Close();
             }).AddTo(this);
             confirmButton.OnClickAsObservable().Subscribe(_ =>

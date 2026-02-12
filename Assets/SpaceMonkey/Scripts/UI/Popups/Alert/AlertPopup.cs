@@ -1,4 +1,6 @@
 ﻿using System;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Popups.Core;
@@ -35,6 +37,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.Alert
             }).AddTo(this);
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
                 _data.OnCancel?.Invoke();
                 _data.Result?.TrySetResult(false);
             }).AddTo(this);

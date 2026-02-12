@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Popups.Core;
@@ -20,7 +22,11 @@ namespace SpaceMonkey.Scripts.UI.Popups.LevelInfo
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            closeButton.OnClickAsObservable().Subscribe(_ => { Controller.Close(); }).AddTo(this);
+            closeButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
+                Controller.Close();
+            }).AddTo(this);
             okButton.OnClickAsObservable().Subscribe(_ => { Controller.Close(); }).AddTo(this);
             Configs.LevelInfo nextLevelInfo = Controller.GetLeveInfoData(Controller.Level + 1);
             slider.value = Controller.Score / (float) nextLevelInfo.Score;

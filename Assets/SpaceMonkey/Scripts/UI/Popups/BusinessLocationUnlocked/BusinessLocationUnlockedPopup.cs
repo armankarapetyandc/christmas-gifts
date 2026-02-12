@@ -17,6 +17,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.BusinessLocationUnlocked
             _data = data as Data;
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
+                
                 Controller.Close();
             }).AddTo(this);
             confirmButton.OnClickAsObservable().Subscribe(_ =>

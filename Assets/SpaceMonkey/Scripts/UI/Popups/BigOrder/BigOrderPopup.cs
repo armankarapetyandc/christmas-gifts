@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Popups.Core;
@@ -16,6 +18,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.BigOrder
         {
             closeButton.OnClickAsObservable().Subscribe(_ =>
             {
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
                 Controller.Close();
             }).AddTo(this);
             confirmButton.OnClickAsObservable().Subscribe(_ =>
