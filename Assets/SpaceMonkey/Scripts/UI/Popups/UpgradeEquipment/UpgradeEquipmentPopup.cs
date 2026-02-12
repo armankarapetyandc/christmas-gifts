@@ -63,8 +63,9 @@ namespace SpaceMonkey.Scripts.UI.Popups.UpgradeEquipment
 
         private void SetInfoText(int cost, float apr, int months)
         {
+            apr *= 100;
             infoText.text =
-                $"When you don’t have enough cash to handle operating costs, borrowing money can be helpful, but there are risks. It is convenient and can help build your credit score.\n\nThink of a credit card as a tool, not free money.\n\nIf you borrow ${cost} at {apr}% APR, you’ll pay about ${months} every month in interest.\n\nDo you want to pay for the equipment upgrade with a new Credit Card with:\n\n    - No annual fee\u2028\n    - APR {apr}%\u2028\u2028";
+                $"When you don’t have enough cash to handle operating costs borrowing money can be helpful, but there are risks. It is convenient and can help build your credit score.\n\nThink of a credit card as a tool, not free money.\n\nIf you borrow ${cost} at {apr}% APR, you’ll pay about ${months} every month in interest.\n\nDo you want to pay for the equipment upgrade with a new Credit Card with:\n\n    - No annual fee\u2028\n    - APR {apr}%\u2028\u2028";
         }
         // private async UniTask UseCreditCard()
         // {
