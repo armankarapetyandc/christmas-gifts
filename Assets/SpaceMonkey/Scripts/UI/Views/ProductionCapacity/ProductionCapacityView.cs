@@ -42,7 +42,7 @@ namespace SpaceMonkey.Scripts.UI.Views.ProductionCapacity
             _levelVisualAssets = Controller.ResolveVisualAssets<LevelVisualAsset>().ToArray();
             backButton.OnClickAsObservable().Subscribe(_ =>
             {
-                SfxPlayer.Play(Sounds.Button_Tap);
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
                 Controller.OnBack();
             }).AddTo(this);
             _account = Controller.GetAccount();

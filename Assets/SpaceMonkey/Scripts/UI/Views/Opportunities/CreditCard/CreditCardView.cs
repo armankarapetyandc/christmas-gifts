@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using SpaceMonkey.Scripts.UI.Views.Opportunities.CreditcCard;
@@ -16,7 +18,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCard
         [SerializeField] private Button learMoreButton;
         public override UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
+                Controller.OnBack();
+            }).AddTo(this);
             applyButton.OnClickAsObservable().Subscribe(_ => Controller.OnNext()).AddTo(this);
             infoButton.OnClickAsObservable().Subscribe(_ => Controller.OnInfo()).AddTo(this);
             learMoreButton.OnClickAsObservable().Subscribe(_ => Controller.OnInfo()).AddTo(this);

@@ -16,7 +16,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardDecline
         public override UniTask Initialize(IPresenterData data = null)
         {
             SfxPlayer.Play(Sounds.Credit_Declined);
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
+                Controller.OnBack();
+            }).AddTo(this);
             return UniTask.CompletedTask;
         }
 

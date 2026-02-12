@@ -1,4 +1,6 @@
-﻿using R3;
+﻿using AudioPlayer;
+using AudioPlayerService.Runtime;
+using R3;
 using R3.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +24,10 @@ namespace SpaceMonkey.Scripts.UI.Components
         {
             content.SetState(state);
             image.sprite = state ? selectedStateSprite : deselectedStateSprite;
+            if (state)
+            {
+                SfxPlayer.Play(Sounds.sfx_SwitchTabs);
+            }
         }
     }
 }

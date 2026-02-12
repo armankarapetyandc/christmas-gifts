@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using R3;
 using TMPro;
@@ -20,7 +22,11 @@ namespace SpaceMonkey.Scripts.UI.Views.DisasterInsurance
 
         public override UniTask Initialize(IPresenterData data = null)
         {
-            backButton.OnClickAsObservable().Subscribe(_ => Controller.OnBack()).AddTo(this);
+            backButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
+                Controller.OnBack();
+            }).AddTo(this);
             purchasePolicyButton.OnClickAsObservable().Subscribe(_ => Controller.PurchasePolicy()).AddTo(this);
             learnAboutInsuranceButton.OnClickAsObservable().Subscribe(_ => infoPanel.SetActive(true))
                 .AddTo(this);

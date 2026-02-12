@@ -28,7 +28,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductList
         {
             backButton.OnClickAsObservable().Subscribe(_ =>
             {
-                SfxPlayer.Play(Sounds.Button_Tap);
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
                 Controller.OnBack();
             }).AddTo(this);
             _items

@@ -1,3 +1,5 @@
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using R3;
 using TMPro;
 using UnityEngine;
@@ -74,7 +76,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
             }
 
             slider.OnValueChangedAsObservable().Subscribe(value => Model.CalculateCurrent(value)).AddTo(this);
-            if(increaseButton != null) increaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(sliderStep)).AddTo(this);
+            if(increaseButton != null) increaseButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                SfxPlayer.Play(Sounds.sfx_ButtonTap2);
+                ChangeSliderValue(sliderStep);
+            }).AddTo(this);
             if(decreaseButton != null) decreaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(-sliderStep)).AddTo(this);
         }
 

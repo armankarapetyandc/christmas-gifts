@@ -44,7 +44,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Product.ProductIconBuilder
 
             backButton.OnClickAsObservable().Subscribe(_ =>
                 {
-                    SfxPlayer.Play(Sounds.Button_Tap);
+                    SfxPlayer.Play(Sounds.sfx_ClickSmall);
                     Controller.ReturnProductView(_data!.Product);
                 })
                 .AddTo(this);

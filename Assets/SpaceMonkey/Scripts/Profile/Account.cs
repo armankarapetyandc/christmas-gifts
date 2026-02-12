@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Newtonsoft.Json;
 using R3;
 using SpaceMonkey.Scripts.Configs;
@@ -180,12 +182,17 @@ namespace SpaceMonkey.Scripts.Profile
 
         public bool CanAfford(float cost)
         {
+            if (Money < cost)
+            {
+                SfxPlayer.Play(Sounds.No_Money);
+            }
+
             return Money >= cost;
         }
 
         public void Buy(float cost)
         {
-            if (!CanAfford(cost))
+            if (Money < cost)
             {
                 throw new Exception("Not enough money");
             }

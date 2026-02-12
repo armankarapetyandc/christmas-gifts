@@ -32,7 +32,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Opportunities.CreditCardStatement
         {
             backButton.OnClickAsObservable().Subscribe(_ =>
             {
-                SfxPlayer.Play(Sounds.Button_Tap);
+                SfxPlayer.Play(Sounds.sfx_ClickSmall);
                 if (PresenterData?.OnClose != null)
                 {
                     Controller.CloseView();
