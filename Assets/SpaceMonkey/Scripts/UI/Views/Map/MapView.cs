@@ -95,10 +95,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }
 
             item.SetMapPlaceState(place is RuntimeMapPlace
-                ?
-                !Controller.HasActiveFire() ? MapPlaceState.Open : MapPlaceState.Event
-                :
-                place.DefaultLocked
+                ? !Controller.HasActiveFire() ? MapPlaceState.Open : MapPlaceState.Event
+                : place.DefaultLocked
                     ? MapPlaceState.Locked
                     : MapPlaceState.Active);
             item.SetPlaceName(place.Name);
@@ -114,15 +112,19 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                 {
                     var product = Controller.GetCompetitionProduct();
                     var visualAsset = Controller.ResolveVisualAsset<SpriteVisualAsset>(product.IconVisualAssetId);
-                    item.SetPlaceContent(visualAsset.Sprite);
-                    item.SetMapPlaceState(MapPlaceState.Event);   
+                    Debug.LogError($"product name {product.Name} IconVisualAssetId {product.IconVisualAssetId}");
+                    if (visualAsset != null)
+                    {
+                        item.SetPlaceContent(visualAsset.Sprite);
+                        item.SetMapPlaceState(MapPlaceState.Event);
+                    }
                 }
             }
 
             item.OnClickAsObservable().Subscribe(_ => { ProcessMapPlaceItemSelect(place); }).AddTo(this);
             return item;
         }
-        
+
         private void ProcessMapPlaceItemSelect(IMapPlace place, bool isForce = false)
         {
             if (place.Type == PlaceType.CreditCard && !Controller.HasCreditCard())
@@ -160,12 +162,12 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             MapPlaceItem place = _places.FirstOrDefault(item => item.Place.GetType() == typeof(RuntimeMapPlace));
             if (place != null)
             {
-               return ShowPlaceHolder(place.Place);
+                return ShowPlaceHolder(place.Place);
             }
 
             return null;
         }
-        
+
         public MapPlaceHolder ShowPlaceHolder(IMapPlace place)
         {
             MapPlaceHolder placeHolder = null;
@@ -184,7 +186,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                     item.SetRatingStars(companyRating);
                     item.SetRatingsCount(Controller.ReviewsCount);
                     item.SetAverageRating(companyRating);
-                    
+
                     item.GetClickHandler().Subscribe(_ =>
                     {
                         if (place.Type == PlaceType.PlaceHolder)
@@ -196,6 +198,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
                         {
                             Controller.ShowBigOrderView();
                         }
+
                         if (place.Type == PlaceType.CreditCard)
                         {
                             Controller.ShowCreditCardInfoPopup();
@@ -213,13 +216,14 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             return placeHolder;
         }
 
-        private void HidePlaceHolder()
+        public void HidePlace(PlaceType type)
         {
-            foreach (var holder in placeHolders)
+            var items = _places.Where(p => p.Place.Type == type).ToList();
+            foreach (var mapPlaceHolder in items)
             {
-                var item = holder.Holder;
-                item.gameObject.SetActive(false);
+                mapPlaceHolder.gameObject.SetActive(false);
             }
+
         }
 
         public void FocusOnPlace(int placeId)
@@ -231,7 +235,7 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             }
 
             panZoom.SetZoom(defaultMapZoom);
-            panZoom.NavigateToTarget((RectTransform)item.transform);
+            panZoom.NavigateToTarget((RectTransform) item.transform);
         }
 
         public async UniTaskVoid FocusAndShowDialog(int placeId)
@@ -239,7 +243,10 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
             FocusOnPlace(placeId);
             await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: destroyCancellationToken);
             var item = _places.FirstOrDefault(x => x.Place.Id == placeId);
-            ProcessMapPlaceItemSelect(item?.Place, true);
+            if (item != null)
+            {
+                ProcessMapPlaceItemSelect(item.Place, true);
+            }
         }
 
         public override void Dispose()

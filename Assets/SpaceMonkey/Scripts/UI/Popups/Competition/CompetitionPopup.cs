@@ -3,8 +3,10 @@ using R3;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.Map;
 using TMPro;
 using UIService.Runtime.Core;
+using UIService.Runtime.Presenter;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,7 +45,13 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
     
             CompetitionState state = CompetitionState.Info;
             var product = Controller.GetCompetitionProduct();
-            var visualAsset = Controller.ResolveVisualAsset<SpriteVisualAsset>(product.IconVisualAssetId);
+
+            var savedProduct = Controller.GetSavedProduct();
+            
+            var curProduct = string.IsNullOrEmpty(product.IconVisualAssetId)
+                ? savedProduct
+                : product;
+            var visualAsset = Controller.ResolveVisualAsset<SpriteVisualAsset>(curProduct.IconVisualAssetId);
             icon.sprite = visualAsset.Sprite;
             
             if (PlayerPrefs.GetInt("competition") == 1)
@@ -57,21 +65,27 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
             {
                 case CompetitionState.Info:
                     titleText.text = CompetitionTexts.CompetitionTitleText;
-                    okButtonText.text = string.Format(CompetitionTexts.CompetitionOkText, product.Name);
+                    okButtonText.text = string.Format(CompetitionTexts.CompetitionOkText, curProduct.Name);
                     descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionText, product.Name);
                     infoBackground.color = redColor;
                     PlayerPrefs.SetInt("competition", 1);
                     PlayerPrefs.SetInt("competitionPin", 1);
-                    okButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductsView(product)).AddTo(this);
+                    PlayerPrefs.SetString("competitionItemId", curProduct.Id);
+                    okButton.OnClickAsObservable().Subscribe(_ => Controller.ShowProductsView(curProduct)).AddTo(this);
                     break;
                 case CompetitionState.Win:
-                    titleText.text = string.Format(CompetitionTexts.CompetitionTitleWinText, product.Name);
+                    titleText.text = string.Format(CompetitionTexts.CompetitionTitleWinText, curProduct.Name);
                     okButtonText.text = CompetitionTexts.CompetitionOkWinText;
-                    descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionWinText, product.Name);
+                    descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionWinText, curProduct.Name);
                     PlayerPrefs.SetInt("competition", 0);
                     PlayerPrefs.SetInt("competitionPin", 0);
+                    PlayerPrefs.SetString("competitionItemId", "");
                     infoBackground.color = greenColor;
-                    okButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
+                    okButton.OnClickAsObservable().Subscribe(_ =>
+                    {
+                        Controller.HideMapIcon();
+                        Controller.Close();
+                    }).AddTo(this);
                     break;
                 case CompetitionState.Lose:
                     titleText.text = CompetitionTexts.CompetitionTitleLoseText;
@@ -79,12 +93,18 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
                     descriptionText.text = string.Format(CompetitionTexts.CompetitionDescriptionLoseText,product.Name);
                     PlayerPrefs.SetInt("competition", 0);
                     PlayerPrefs.SetInt("competitionPin", 0);
+                    PlayerPrefs.SetString("competitionItemId", "");
                     infoBackground.color = redColor;
-                    okButton.OnClickAsObservable().Subscribe(_ => Controller.Close()).AddTo(this);
+                    okButton.OnClickAsObservable().Subscribe(_ =>
+                    {
+                        Controller.HideMapIcon();
+                        Controller.Close();
+                    }).AddTo(this);
                     break;
             }
             return UniTask.CompletedTask;
         }
+        
 
         public class Data : IPresenterData
         {

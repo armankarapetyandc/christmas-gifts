@@ -29,25 +29,42 @@ namespace SpaceMonkey.Scripts.Profile
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
         private PopupPresenterService _popupPresenterService;
 
-        
+
         public readonly ReactiveCommand<int> OnLevelChanged = new ReactiveCommand<int>();
         private PresenterService _presenterService;
         public AccountModel Model { get; private set; }
 
         public bool IsFreshAccount => !File.Exists(_path);
 
-        public AccountService(GameConfig gameConfig, PopupPresenterService popupPresenterService,PresenterService presenterService)
+        public AccountService(GameConfig gameConfig, PopupPresenterService popupPresenterService,
+            PresenterService presenterService)
         {
             _presenterService = presenterService;
             _popupPresenterService = popupPresenterService;
             _gameConfig = gameConfig;
         }
 
+        public Product GetSavedProduct()
+        {
+            var productId = PlayerPrefs.GetString("competitionItemId");
+            var product = Model.Account.Products.FirstOrDefault(product => product.Id == productId);
+            return product;
+        }
+
         public Product GetCompetitionProduct()
         {
+            var savedProduct = GetSavedProduct();
+            if (!string.IsNullOrEmpty(savedProduct.Id))
+            {
+                return 100 * savedProduct.ProductPrice / savedProduct.MaxProductPrice > _gameConfig.CompetitionValue
+                    ? savedProduct
+                    : default;
+            }
+
             return Model.Account.Products.FirstOrDefault(p =>
                 100 * p.ProductPrice / p.MaxProductPrice > _gameConfig.CompetitionValue);
         }
+
         public void CreateNewAccount()
         {
             PlayerPrefs.DeleteAll();
@@ -57,20 +74,20 @@ namespace SpaceMonkey.Scripts.Profile
             {
                 SfxPlayer.Play(Sounds.Score_Awarded);
                 LevelInfo levelInfo = _gameConfig.LevelInfos.LastOrDefault(info => info.Score <= eventParam);
-                   
+
                 int currentLevel = Model.Account.Level;
                 Model.Account.Level = levelInfo?.Level ?? _gameConfig.LevelInfos.Length;
                 if (currentLevel < Model.Account.Level)
                 {
                     SfxPlayer.Play(Sounds.Company_Level_Up);
                     OnLevelChanged.Execute(Model.Account.Level);
-                    _popupPresenterService.Show<LevelInfoAutoPopup>(isAsync:false).Forget();
-                    AnalyticsProvider.SendEvent(AnalyticsEvents.LevelChanged,new Dictionary<string, string>()
+                    _popupPresenterService.Show<LevelInfoAutoPopup>(isAsync: false).Forget();
+                    AnalyticsProvider.SendEvent(AnalyticsEvents.LevelChanged, new Dictionary<string, string>()
                     {
-                        {"company_name",Model.Account.Company.CompanyName},
-                        {"level",Model.Account.Level.ToString()},
-                        {"score",Model.Account.Score.ToString()},
-                        {"cash",Model.Account.Money.ToString()},
+                        {"company_name", Model.Account.Company.CompanyName},
+                        {"level", Model.Account.Level.ToString()},
+                        {"score", Model.Account.Score.ToString()},
+                        {"cash", Model.Account.Money.ToString()},
                     });
                 }
             }).AddTo(_compositeDisposable);

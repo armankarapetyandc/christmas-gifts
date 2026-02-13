@@ -19,6 +19,7 @@ namespace SpaceMonkey.Scripts.UI.Popups.ProductionAlert
         public override UniTask Initialize(IPresenterData data = null)
         {
             _data = data as Data;
+            SfxPlayer.Play(Sounds.sfx_AlertDisaster);
             closeButton.OnClickAsObservable()
                 .Subscribe(_ =>
                 {

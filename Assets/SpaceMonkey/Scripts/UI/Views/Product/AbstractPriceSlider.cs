@@ -32,9 +32,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
                     _current.Value = _minimum.CurrentValue;
                     return;
                 }
-
+             
                 var result = (sliderValue / 100f) * (_maximum.CurrentValue - _minimum.CurrentValue) +
                              _minimum.CurrentValue;
+
+                SfxPlayer.Play(_current.Value > result ? Sounds.sfx_OrderDown : Sounds.sfx_OrderIn);
                 _current.Value = result;
             }
 
@@ -81,7 +83,11 @@ namespace SpaceMonkey.Scripts.UI.Views.Product
                 SfxPlayer.Play(Sounds.sfx_ButtonTap2);
                 ChangeSliderValue(sliderStep);
             }).AddTo(this);
-            if(decreaseButton != null) decreaseButton.OnClickAsObservable().Subscribe(_ => ChangeSliderValue(-sliderStep)).AddTo(this);
+            if(decreaseButton != null) decreaseButton.OnClickAsObservable().Subscribe(_ =>
+            {
+
+                ChangeSliderValue(-sliderStep);
+            }).AddTo(this);
         }
 
         internal void ResetCurrentValueText()

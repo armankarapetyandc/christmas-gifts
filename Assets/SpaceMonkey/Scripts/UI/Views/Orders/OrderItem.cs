@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using AudioPlayer;
+using AudioPlayerService.Runtime;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using R3;
@@ -121,6 +123,8 @@ namespace SpaceMonkey.Scripts.UI.Views.Orders
         public async UniTaskVoid SetShipped()
         {
             IsShipped = true;
+            
+            SfxPlayer.Play( Sounds.sfx_OrderShipped);
             shippedTransform.gameObject.SetActive(true);
             await SlideOut();
 

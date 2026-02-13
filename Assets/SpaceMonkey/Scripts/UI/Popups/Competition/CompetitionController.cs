@@ -1,10 +1,12 @@
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using SpaceMonkey.Scripts.Configs;
+using SpaceMonkey.Scripts.Configs.Map;
 using SpaceMonkey.Scripts.Profile;
 using SpaceMonkey.Scripts.UI.Asset.Database;
 using SpaceMonkey.Scripts.UI.Navigation.Core;
 using SpaceMonkey.Scripts.UI.Popups.Core;
+using SpaceMonkey.Scripts.UI.Views.Map;
 using SpaceMonkey.Scripts.UI.Views.Product.NewProduct;
 using SpaceMonkey.Scripts.UI.Views.Product.ProductList;
 using SpaceMonkey.Scripts.Utilities;
@@ -37,6 +39,18 @@ namespace SpaceMonkey.Scripts.UI.Popups.Competition
         {
             return _accountService.GetCompetitionProduct();
         }
+        public Product GetSavedProduct()
+        {
+            return _accountService.GetSavedProduct();
+
+        }
+        
+        public void HideMapIcon()
+        {
+            var mapView = PresenterService.GetPresenter<MapView>();
+            mapView.HidePlace(PlaceType.TreatyBird);
+        }
+
 
         public void ShowProductsView(Profile.Product product)
         {

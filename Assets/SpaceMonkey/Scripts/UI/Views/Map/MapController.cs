@@ -95,7 +95,13 @@ namespace SpaceMonkey.Scripts.UI.Views.Map
 
         public Profile.Product GetCompetitionProduct()
         {
-            return _accountService.GetCompetitionProduct();
+            var product = _accountService.GetSavedProduct();
+            if (!string.IsNullOrEmpty(product.Id))
+            {
+                return product;
+            }
+
+            return  _accountService.GetCompetitionProduct();
         } 
         
         internal float CalculateCompanyRating()
